@@ -43,17 +43,21 @@ class Helpers {
         let minutes = minutesToConvert - hours * (60);
         
         if hours == 0 {
-            return "\(minutes) " +  NSLocalizedString("minutes", comment: "")
+            return "\(minutes) " +  getLocalizedString("minutes")
         } else if minutes == 0 {
             if hours == 1 {
-                return NSLocalizedString("hour", comment: "")
+                return getLocalizedString("hour")
             } else if hours == 2 {
-                return NSLocalizedString("2hours", comment: "")
+                return getLocalizedString("2hours")
             }
-            return "\(hours) " +  NSLocalizedString("hours", comment: "")
+            return "\(hours) " +  getLocalizedString("hours")
         }
         
-        return "\(hours)" + NSLocalizedString("hoursShort", comment: "") + "\(minutes)" + NSLocalizedString("minutesShort", comment: "")
+        return "\(hours)" + getLocalizedString("hoursShort") + "\(minutes)" + getLocalizedString("minutesShort")
     }
     
+}
+
+func getLocalizedString(key: String) -> String {
+    return NSLocalizedString(key, comment: "")
 }

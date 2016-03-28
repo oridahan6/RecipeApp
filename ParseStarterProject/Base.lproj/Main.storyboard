@@ -151,11 +151,11 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="היום" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vkw-04-U9n">
-                                                    <rect key="frame" x="8" y="0.0" width="53" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="לפני 3 שבועות" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vkw-04-U9n">
+                                                    <rect key="frame" x="8" y="0.0" width="89" height="21"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="width" constant="89" id="FkA-jv-mHg"/>
                                                         <constraint firstAttribute="height" constant="21" id="ied-ov-aRS"/>
-                                                        <constraint firstAttribute="width" constant="53" id="wIX-MN-qi5"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.41176470588235292" green="0.41176470588235292" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
@@ -224,10 +224,10 @@
                                                 <constraint firstItem="Shs-qh-FTz" firstAttribute="top" secondItem="Spp-X0-ELo" secondAttribute="bottom" constant="3" id="RkW-2h-3NM"/>
                                                 <constraint firstAttribute="height" constant="50" id="Roe-vs-4vM"/>
                                                 <constraint firstItem="3qp-v8-cEa" firstAttribute="top" secondItem="Spp-X0-ELo" secondAttribute="bottom" constant="3" id="VHN-Me-0gs"/>
-                                                <constraint firstItem="Spp-X0-ELo" firstAttribute="leading" secondItem="vkw-04-U9n" secondAttribute="trailing" constant="59.5" id="Xed-V1-yBw"/>
                                                 <constraint firstItem="V2T-9w-zv8" firstAttribute="leading" secondItem="ZfN-64-WrK" secondAttribute="trailing" constant="8" id="cFU-BN-D54"/>
                                                 <constraint firstItem="RIL-oK-1iX" firstAttribute="leading" secondItem="3qp-v8-cEa" secondAttribute="trailing" constant="8" id="cwb-u8-1oa"/>
                                                 <constraint firstItem="vkw-04-U9n" firstAttribute="leading" secondItem="9Rx-fd-8At" secondAttribute="leading" constant="8" id="hiU-FY-Lih"/>
+                                                <constraint firstItem="Spp-X0-ELo" firstAttribute="leading" secondItem="vkw-04-U9n" secondAttribute="trailing" constant="23.5" id="kav-FO-1PV"/>
                                                 <constraint firstItem="kjf-v7-3Ln" firstAttribute="leading" secondItem="Shs-qh-FTz" secondAttribute="trailing" constant="8" id="oiE-gB-PmK"/>
                                                 <constraint firstItem="Spp-X0-ELo" firstAttribute="top" secondItem="9Rx-fd-8At" secondAttribute="top" id="qcJ-tj-lLe"/>
                                                 <constraint firstItem="RIL-oK-1iX" firstAttribute="top" secondItem="Spp-X0-ELo" secondAttribute="bottom" constant="1" id="s4i-Qw-bC9"/>

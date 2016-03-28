@@ -11,6 +11,7 @@ import UIKit
 class Recipe: NSObject {
 
     var id: String = ""
+    var dateAdded: NSDate!
     var title: String!
     var directions: [String]!
     var ingredients: [String: [String]]!
@@ -25,6 +26,7 @@ class Recipe: NSObject {
         super.init()
 
         self.id = recipe.getId()
+        self.dateAdded = recipe.getAddedDate()
         self.title = recipe.getTitle()
         self.directions = recipe.getDirections()
         self.ingredients = recipe.getIngredients()
@@ -48,6 +50,10 @@ class Recipe: NSObject {
 
     func getOverallPreperationTimeText() -> String {
         return Helpers().convertMinutesToHoursAndMinText(self.getOverallPreperationTime())
+    }
+    
+    func getDateAddedDiff() -> String {
+        return getLocalizedString("before") + " " + NSDate().offsetFrom(self.dateAdded)
     }
     
 }

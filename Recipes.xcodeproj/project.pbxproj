@@ -18,6 +18,7 @@
 		0C7BDA7C1CA931F80056ADCD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7BDA7B1CA931F80056ADCD /* Constants.swift */; };
 		0C7BDA7E1CA942DF0056ADCD /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7BDA7D1CA942DF0056ADCD /* Helpers.swift */; };
 		0C7BDA811CA95E260056ADCD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C7BDA831CA95E260056ADCD /* Localizable.strings */; };
+		0C7BDA851CA969BB0056ADCD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7BDA841CA969BB0056ADCD /* Extensions.swift */; };
 		81BA814B1A49DA1800E65899 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BA814A1A49DA1800E65899 /* AppDelegate.swift */; };
 		81BA814D1A49DA1800E65899 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BA814C1A49DA1800E65899 /* ViewController.swift */; };
 		81BA81501A49DA1800E65899 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81BA814E1A49DA1800E65899 /* Main.storyboard */; };
@@ -43,8 +44,9 @@
 		0C7BDA771CA90DB70056ADCD /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
 		0C7BDA791CA90E650056ADCD /* RecipeDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDetails.swift; sourceTree = "<group>"; };
 		0C7BDA7B1CA931F80056ADCD /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		0C7BDA7D1CA942DF0056ADCD /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		0C7BDA7D1CA942DF0056ADCD /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Helpers.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0C7BDA821CA95E260056ADCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0C7BDA841CA969BB0056ADCD /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Extensions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81BA81451A49DA1800E65899 /* Recipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Recipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81BA81491A49DA1800E65899 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81BA814A1A49DA1800E65899 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +122,16 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		0C7BDA861CA969C70056ADCD /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				0C7BDA7B1CA931F80056ADCD /* Constants.swift */,
+				0C7BDA7D1CA942DF0056ADCD /* Helpers.swift */,
+				0C7BDA841CA969BB0056ADCD /* Extensions.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		81BA813C1A49DA1800E65899 = {
 			isa = PBXGroup;
 			children = (
@@ -140,8 +152,7 @@
 		81BA81471A49DA1800E65899 /* Recipes */ = {
 			isa = PBXGroup;
 			children = (
-				0C7BDA7B1CA931F80056ADCD /* Constants.swift */,
-				0C7BDA7D1CA942DF0056ADCD /* Helpers.swift */,
+				0C7BDA861CA969C70056ADCD /* Helpers */,
 				0C7BDA761CA90D9C0056ADCD /* Views */,
 				0C7BD9E91CA80D990056ADCD /* Parse */,
 				81BA814A1A49DA1800E65899 /* AppDelegate.swift */,
@@ -286,6 +297,7 @@
 				0C7BD9CD1CA8020E0056ADCD /* FavoritesViewController.swift in Sources */,
 				0C7BD9E61CA808D00056ADCD /* Recipe.swift in Sources */,
 				0C7BDA7E1CA942DF0056ADCD /* Helpers.swift in Sources */,
+				0C7BDA851CA969BB0056ADCD /* Extensions.swift in Sources */,
 				0C7BD9CF1CA802780056ADCD /* RecipesViewController.swift in Sources */,
 				0C7BD9CB1CA7F7120056ADCD /* CategoriesViewController.swift in Sources */,
 				0C7BDA7A1CA90E650056ADCD /* RecipeDetails.swift in Sources */,

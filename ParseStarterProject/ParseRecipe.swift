@@ -25,7 +25,14 @@ class ParseRecipe: NSObject {
         }
         return ""
     }
-    
+
+    func getAddedDate() -> NSDate {
+        if let dateAdded = recipe.createdAt {
+            return dateAdded
+        }
+        return NSDate()
+    }
+
     func getTitle() -> String {
         if let title = recipe["title"] as? String {
             return title

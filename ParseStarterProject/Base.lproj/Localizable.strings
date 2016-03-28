@@ -6,9 +6,31 @@
   Copyright © 2016 Parse. All rights reserved.
 */
 
+// General
+"before" = "לפני";
+
+
+// Time
+"second" = "שניה";
+"seconds" = "שניות";
+
+"minute" = "דקה";
 "minutes" = "דקות";
+"minutesShort" = "ד";
+
 "hour" = "שעה";
 "hours" = "שעות";
 "2hours" = "שעתיים";
 "hoursShort" = "ש";
-"minutesShort" = "ד";
+
+"day" = "יום";
+"days" = "ימים";
+"2days" = "יומיים";
+
+"week" = "שבוע";
+"weeks" = "שבועות";
+"2weeks" = "שבועיים";
+
+"year" = "שנה";
+"2years" = "שנתיים";
+"years" = "שנים";

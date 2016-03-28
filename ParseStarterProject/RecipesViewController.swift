@@ -58,12 +58,11 @@ class RecipesViewController: UITableViewController {
         cell.type.text = recipe.type
         cell.level.text = recipe.level
         cell.overallTime.text = recipe.getOverallPreperationTimeText()
+        cell.dateAdded.text = recipe.getDateAddedDiff()
         
         // update image async
         let imageUrlString = Constants.GDRecipesImagesPath + recipe.imageName
         Helpers().updateImageFromUrlAsync(imageUrlString, imageViewToUpdate: cell.recipeImageView)
-        
-//        cell.textLabel?.text = recipe.title
         
         return cell
     }
