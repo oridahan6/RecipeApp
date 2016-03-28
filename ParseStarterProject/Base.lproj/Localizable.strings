@@ -6,6 +6,10 @@
   Copyright © 2016 Parse. All rights reserved.
 */
 
+// Titles
+"Recipes" = "מתכונים";
+
+
 // General
 "before" = "לפני";
 

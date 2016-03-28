@@ -25,7 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //--------------------------------------
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Enable storing and querying data from Local Datastore. 
+        
+        self.customizeApp()
+        
+        // Enable storing and querying data from Local Datastore.
         // Remove this line if you don't want to use Local Datastore features or want to use cachePolicy.
         Parse.enableLocalDatastore()
 
@@ -124,4 +127,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
     //     return FBAppCall.handleOpenURL(url, sourceApplication:sourceApplication, session:PFFacebookUtils.session())
     // }
+    
+    // MARK:- customization
+    func customizeApp() {
+        // Set Navigation bar background image
+        let navBgImage:UIImage = UIImage(named: "navbar.png")!
+        UINavigationBar.appearance().setBackgroundImage(navBgImage, forBarMetrics: .Default)
+        
+        // Set Navigation bar Title color
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+        
+        // Light status bar color
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
+    }
 }
