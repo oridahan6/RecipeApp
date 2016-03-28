@@ -56,31 +56,7 @@ class RecipesViewController: UITableViewController {
         
         let urlString = Constants.GDRecipesImagesPath + recipe.imageName
         
-        let imgURL = NSURL(string: urlString)!
-        
-        let request: NSURLRequest = NSURLRequest(URL: imgURL)
-        let mainQueue = NSOperationQueue.mainQueue()
-        NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
-            if error == nil {
-                if let data = data {
-                    
-                    // Convert the downloaded data in to a UIImage object
-                    let image = UIImage(data: data)
-                    // Store the image in to our cache
-//                    self.imageCache[urlString] = image
-                    // Update the cell
-                    dispatch_async(dispatch_get_main_queue(), {
-                        if let cellToUpdate = tableView.cellForRowAtIndexPath(indexPath) as? RecipeTableViewCell {
-                            cellToUpdate.recipeImage.image = image
-                        }
-                    })
-                }
-            }
-            else {
-                print("Error: \(error!.localizedDescription)")
-            }
-        })
-        
+        Helpers().updateImageFromUrlAsync(urlString, imageViewToUpdate: cell.recipeImage)
         
 //        cell.textLabel?.text = recipe.title
         
