@@ -71,8 +71,6 @@ class RecipesViewController: UITableViewController {
                     // Update the cell
                     dispatch_async(dispatch_get_main_queue(), {
                         if let cellToUpdate = tableView.cellForRowAtIndexPath(indexPath) as? RecipeTableViewCell {
-                            print("update")
-                            print(image)
                             cellToUpdate.recipeImage.image = image
                         }
                     })
