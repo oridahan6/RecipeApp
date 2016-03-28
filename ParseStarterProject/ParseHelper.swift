@@ -23,8 +23,9 @@ class ParseHelper: NSObject {
                     for object in objects {
                         if let object = object as? PFObject {
                             let parseRecipe = ParseRecipe(recipe: object)
-                            let recipe = Recipe(recipe: parseRecipe)
-                            vc.recipes.append(recipe)
+                            if let recipe = Recipe(recipe: parseRecipe) {
+                                vc.recipes.append(recipe)
+                            }
                         }
                     }
                 }
