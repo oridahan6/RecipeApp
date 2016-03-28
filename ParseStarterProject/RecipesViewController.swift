@@ -10,7 +10,7 @@ import UIKit
 
 class RecipesViewController: UITableViewController {
 
-    let CellIdentifier = "Cell Identifier"
+    let CellIdentifier = "RecipeTableViewCell"
     
     var recipes = [Recipe]() {
         didSet {
@@ -30,7 +30,7 @@ class RecipesViewController: UITableViewController {
         ParseHelper().updateRecipes(self)
         
         // Register Class
-        tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: CellIdentifier)
+        // tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: CellIdentifier)
 
     }
 
@@ -50,11 +50,41 @@ class RecipesViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as! RecipeTableViewCell
 
         let recipe = recipes[indexPath.row]
         
-        cell.textLabel?.text = recipe.title
+        let urlString = Constants.GDRecipesImagesPath + recipe.imageName
+        
+        let imgURL = NSURL(string: urlString)!
+        
+        let request: NSURLRequest = NSURLRequest(URL: imgURL)
+        let mainQueue = NSOperationQueue.mainQueue()
+        NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
+            if error == nil {
+                if let data = data {
+                    
+                    // Convert the downloaded data in to a UIImage object
+                    let image = UIImage(data: data)
+                    // Store the image in to our cache
+//                    self.imageCache[urlString] = image
+                    // Update the cell
+                    dispatch_async(dispatch_get_main_queue(), {
+                        if let cellToUpdate = tableView.cellForRowAtIndexPath(indexPath) as? RecipeTableViewCell {
+                            print("update")
+                            print(image)
+                            cellToUpdate.recipeImage.image = image
+                        }
+                    })
+                }
+            }
+            else {
+                print("Error: \(error!.localizedDescription)")
+            }
+        })
+        
+        
+//        cell.textLabel?.text = recipe.title
         
         return cell
     }

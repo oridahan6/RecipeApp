@@ -18,9 +18,6 @@ import Parse
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    let GDRecipesImagesPath = "https://googledrive.com/host/0B1tVd-X6T988bE1yUDdJa0FMRTQ/"
-    let GDCategoriesImagesPath = "https://googledrive.com/host/0B1tVd-X6T988LW1oblVsQWpUOWM/"
-    
     var window: UIWindow?
 
     //--------------------------------------
