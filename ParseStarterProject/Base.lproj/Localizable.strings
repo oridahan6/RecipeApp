@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  Recipes
+
+  Created by Ori Dahan on 28/03/2016.
+  Copyright © 2016 Parse. All rights reserved.
+*/
+
+"minutes" = "דקות";
+"hour" = "שעה";
+"hours" = "שעות";
+"2hours" = "שעתיים";
+"hoursShort" = "ש";
+"minutesShort" = "ד";

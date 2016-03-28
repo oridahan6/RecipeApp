@@ -40,4 +40,14 @@ class Recipe: NSObject {
         }
     }
     
+    // MARK: - Helper Methods
+    
+    func getOverallPreperationTime() -> Int {
+        return self.cookTime + self.prepTime
+    }
+
+    func getOverallPreperationTimeText() -> String {
+        return Helpers().convertMinutesToHoursAndMinText(self.getOverallPreperationTime())
+    }
+    
 }

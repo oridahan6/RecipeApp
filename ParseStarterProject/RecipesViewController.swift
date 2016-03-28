@@ -53,10 +53,15 @@ class RecipesViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as! RecipeTableViewCell
 
         let recipe = recipes[indexPath.row]
+
+        cell.title.text = recipe.title
+        cell.type.text = recipe.type
+        cell.level.text = recipe.level
+        cell.overallTime.text = recipe.getOverallPreperationTimeText()
         
-        let urlString = Constants.GDRecipesImagesPath + recipe.imageName
-        
-        Helpers().updateImageFromUrlAsync(urlString, imageViewToUpdate: cell.recipeImageView)
+        // update image async
+        let imageUrlString = Constants.GDRecipesImagesPath + recipe.imageName
+        Helpers().updateImageFromUrlAsync(imageUrlString, imageViewToUpdate: cell.recipeImageView)
         
 //        cell.textLabel?.text = recipe.title
         

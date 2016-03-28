@@ -38,4 +38,22 @@ class Helpers {
  
     }
     
+    func convertMinutesToHoursAndMinText(minutesToConvert: Int) -> String {
+        let hours = minutesToConvert / (60);
+        let minutes = minutesToConvert - hours * (60);
+        
+        if hours == 0 {
+            return "\(minutes) " +  NSLocalizedString("minutes", comment: "")
+        } else if minutes == 0 {
+            if hours == 1 {
+                return NSLocalizedString("hour", comment: "")
+            } else if hours == 2 {
+                return NSLocalizedString("2hours", comment: "")
+            }
+            return "\(hours) " +  NSLocalizedString("hours", comment: "")
+        }
+        
+        return "\(hours)" + NSLocalizedString("hoursShort", comment: "") + "\(minutes)" + NSLocalizedString("minutesShort", comment: "")
+    }
+    
 }
