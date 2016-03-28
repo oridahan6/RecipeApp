@@ -56,7 +56,7 @@ class RecipesViewController: UITableViewController {
         
         let urlString = Constants.GDRecipesImagesPath + recipe.imageName
         
-        Helpers().updateImageFromUrlAsync(urlString, imageViewToUpdate: cell.recipeImage)
+        Helpers().updateImageFromUrlAsync(urlString, imageViewToUpdate: cell.recipeImageView)
         
 //        cell.textLabel?.text = recipe.title
         

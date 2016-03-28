@@ -10,7 +10,7 @@ import UIKit
 
 class RecipeTableViewCell: UITableViewCell {
 
-    @IBOutlet var recipeImage: UIImageView!
+    @IBOutlet var recipeImageView: UIImageView!
     @IBOutlet var title: UILabel!
     @IBOutlet var dateAdded: UILabel!
     @IBOutlet var level: UILabel!

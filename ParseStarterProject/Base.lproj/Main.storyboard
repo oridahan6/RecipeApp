@@ -260,7 +260,7 @@
                                     <outlet property="dateAdded" destination="vkw-04-U9n" id="OO8-z0-r8e"/>
                                     <outlet property="level" destination="3qp-v8-cEa" id="UTU-b4-2im"/>
                                     <outlet property="overallTime" destination="ZfN-64-WrK" id="oSU-uo-nTe"/>
-                                    <outlet property="recipeImage" destination="rlP-bj-YRA" id="WcO-uk-mCu"/>
+                                    <outlet property="recipeImageView" destination="rlP-bj-YRA" id="ApC-jz-xPO"/>
                                     <outlet property="title" destination="Spp-X0-ELo" id="bOA-QC-48c"/>
                                     <outlet property="type" destination="Shs-qh-FTz" id="Mqd-g2-Wic"/>
                                 </connections>
