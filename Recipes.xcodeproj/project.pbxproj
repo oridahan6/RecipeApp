@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C0CD0C71CABD5FB00F682F9 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0CD0C31CABD5FB00F682F9 /* Enum.swift */; };
+		0C0CD0C81CABD5FB00F682F9 /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0C0CD0C51CABD5FB00F682F9 /* FontAwesome.otf */; };
+		0C0CD0C91CABD5FB00F682F9 /* FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0CD0C61CABD5FB00F682F9 /* FontAwesome.swift */; };
 		0C7BD9CB1CA7F7120056ADCD /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7BD9CA1CA7F7120056ADCD /* CategoriesViewController.swift */; };
 		0C7BD9CD1CA8020E0056ADCD /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7BD9CC1CA8020E0056ADCD /* FavoritesViewController.swift */; };
 		0C7BD9CF1CA802780056ADCD /* RecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7BD9CE1CA802780056ADCD /* RecipesViewController.swift */; };
@@ -35,6 +38,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C0CD0C31CABD5FB00F682F9 /* Enum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
+		0C0CD0C41CABD5FB00F682F9 /* FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontAwesome.h; sourceTree = "<group>"; };
+		0C0CD0C51CABD5FB00F682F9 /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
+		0C0CD0C61CABD5FB00F682F9 /* FontAwesome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontAwesome.swift; sourceTree = "<group>"; };
 		0C7BD9CA1CA7F7120056ADCD /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		0C7BD9CC1CA8020E0056ADCD /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		0C7BD9CE1CA802780056ADCD /* RecipesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipesViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +92,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C0CD0BC1CABD09300F682F9 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				0C0CD0C21CABD5E100F682F9 /* FontAwesomeSwift */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		0C0CD0C21CABD5E100F682F9 /* FontAwesomeSwift */ = {
+			isa = PBXGroup;
+			children = (
+				0C0CD0C31CABD5FB00F682F9 /* Enum.swift */,
+				0C0CD0C41CABD5FB00F682F9 /* FontAwesome.h */,
+				0C0CD0C51CABD5FB00F682F9 /* FontAwesome.otf */,
+				0C0CD0C61CABD5FB00F682F9 /* FontAwesome.swift */,
+			);
+			name = FontAwesomeSwift;
+			sourceTree = "<group>";
+		};
 		0C7BD9E31CA808A70056ADCD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				0C7BDA861CA969C70056ADCD /* Helpers */,
+				0C0CD0BC1CABD09300F682F9 /* Libraries */,
 				0C7BD9E41CA808B10056ADCD /* Model */,
 				0C7BDA761CA90D9C0056ADCD /* Views */,
 				0C7BD9E31CA808A70056ADCD /* Controller */,
@@ -260,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81BA81501A49DA1800E65899 /* Main.storyboard in Resources */,
+				0C0CD0C81CABD5FB00F682F9 /* FontAwesome.otf in Resources */,
 				0C7BDA811CA95E260056ADCD /* Localizable.strings in Resources */,
 				81BA81521A49DA1800E65899 /* Images.xcassets in Resources */,
 			);
@@ -293,10 +321,12 @@
 				0C7BDA7C1CA931F80056ADCD /* Constants.swift in Sources */,
 				81BA814B1A49DA1800E65899 /* AppDelegate.swift in Sources */,
 				0C7BD9E81CA809AD0056ADCD /* ParseHelper.swift in Sources */,
+				0C0CD0C91CABD5FB00F682F9 /* FontAwesome.swift in Sources */,
 				0C7BDA781CA90DB70056ADCD /* RecipeTableViewCell.swift in Sources */,
 				0C7BD9CD1CA8020E0056ADCD /* FavoritesViewController.swift in Sources */,
 				0C7BD9E61CA808D00056ADCD /* Recipe.swift in Sources */,
 				0C7BDA7E1CA942DF0056ADCD /* Helpers.swift in Sources */,
+				0C0CD0C71CABD5FB00F682F9 /* Enum.swift in Sources */,
 				0C7BDA851CA969BB0056ADCD /* Extensions.swift in Sources */,
 				0C7BD9CF1CA802780056ADCD /* RecipesViewController.swift in Sources */,
 				0C7BD9CB1CA7F7120056ADCD /* CategoriesViewController.swift in Sources */,

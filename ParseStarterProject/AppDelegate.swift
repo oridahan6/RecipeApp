@@ -139,5 +139,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Light status bar color
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
+        
+        // Set Tab bar tint color
+        UITabBar.appearance().tintColor = UIColor(red:0.682, green:0.29, blue:0.302, alpha:1)
     }
 }

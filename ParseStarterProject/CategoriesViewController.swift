@@ -10,6 +10,13 @@ import UIKit
 
 class CategoriesViewController: UITableViewController {
 
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        // Initialize Tab Bar Item
+        tabBarItem = UITabBarItem(title: getLocalizedString("Categories"), image: UIImage.fontAwesomeIconWithName(FontAwesome.ThList, textColor: UIColor.grayColor(), size: CGSizeMake(30, 30)), tag: 0)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,6 +25,8 @@ class CategoriesViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        self.title = getLocalizedString("Categories")
     }
 
     override func didReceiveMemoryWarning() {

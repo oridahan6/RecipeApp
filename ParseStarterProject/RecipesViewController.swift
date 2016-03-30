@@ -18,6 +18,13 @@ class RecipesViewController: UITableViewController {
         }
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        // Initialize Tab Bar Item
+        tabBarItem = UITabBarItem(title: getLocalizedString("Recipes"), image: UIImage.fontAwesomeIconWithName(FontAwesome.Cutlery, textColor: UIColor.grayColor(), size: CGSizeMake(30, 30)), tag: 2)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

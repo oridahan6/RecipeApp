@@ -10,6 +10,13 @@ import UIKit
 
 class FavoritesViewController: UITableViewController {
 
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        // Initialize Tab Bar Item
+        tabBarItem = UITabBarItem(title: getLocalizedString("Favorites"), image: UIImage.fontAwesomeIconWithName(FontAwesome.Heart, textColor: UIColor.grayColor(), size: CGSizeMake(30, 30)), tag: 1)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,6 +25,8 @@ class FavoritesViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        self.title = getLocalizedString("Favorites")
     }
 
     override func didReceiveMemoryWarning() {
