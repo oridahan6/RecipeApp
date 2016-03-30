@@ -40,11 +40,11 @@ class ParseRecipe: NSObject {
         return ""
     }
     
-    func getDirections() -> [String] {
-        if let directions = recipe["directions"] as? [String] {
+    func getDirections() -> [String: [String]] {
+        if let directions = recipe["directions"] as? [String: [String]] {
             return directions
         }
-        return []
+        return ["":[]]
     }
 
     func getIngredients() -> [String: [String]] {

@@ -13,7 +13,7 @@ class Recipe: NSObject {
     var id: String = ""
     var dateAdded: NSDate!
     var title: String!
-    var directions: [String]!
+    var directions: [String: [String]]!
     var ingredients: [String: [String]]!
     var categories = [Int]()
     var level: String!
