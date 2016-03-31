@@ -315,6 +315,7 @@
                                     <outlet property="recipeImageView" destination="rlP-bj-YRA" id="ApC-jz-xPO"/>
                                     <outlet property="title" destination="Spp-X0-ELo" id="bOA-QC-48c"/>
                                     <outlet property="type" destination="Shs-qh-FTz" id="Mqd-g2-Wic"/>
+                                    <segue destination="qb3-eo-CcQ" kind="show" identifier="RecipeViewController" id="BbG-em-Haw"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -328,6 +329,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O7z-8C-cTZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1456" y="705"/>
+        </scene>
+        <!--Recipe View Controller-->
+        <scene sceneID="3Qr-nh-Fqx">
+            <objects>
+                <viewController id="qb3-eo-CcQ" customClass="RecipeViewController" customModule="Recipes" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="f2p-KI-LWI"/>
+                        <viewControllerLayoutGuide type="bottom" id="JH7-wJ-QHg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9JK-Pb-gws">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LEb-uF-Y3q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2187" y="705"/>
         </scene>
         <!--Item-->
         <scene sceneID="Ify-Ec-r8K">

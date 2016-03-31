@@ -139,6 +139,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Set Navigation bar Title color
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         
+        // Set Navigation bar tint color
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        
         // Light status bar color
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
         

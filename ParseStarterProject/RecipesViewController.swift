@@ -11,6 +11,7 @@ import UIKit
 class RecipesViewController: UITableViewController {
 
     let CellIdentifier = "RecipeTableViewCell"
+    let SegueRecipeViewController = "RecipeViewController"
     
     var recipes = [Recipe]() {
         didSet {
@@ -48,6 +49,16 @@ class RecipesViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == SegueRecipeViewController {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let recipe = recipes[indexPath.row]
+                let destinationViewController = segue.destinationViewController as! RecipeViewController
+                destinationViewController.recipe = recipe
+            }
+        }
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -72,6 +83,8 @@ class RecipesViewController: UITableViewController {
         // update image async
         let imageUrlString = Constants.GDRecipesImagesPath + recipe.imageName
         Helpers().updateImageFromUrlAsync(imageUrlString, imageViewToUpdate: cell.recipeImageView)
+        
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
         
         return cell
     }
