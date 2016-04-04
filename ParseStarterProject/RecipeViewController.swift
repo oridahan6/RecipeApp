@@ -98,7 +98,14 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCellWithIdentifier(IngredientTableViewCellIdentifier, forIndexPath: indexPath) as! IngredientTableViewCell
-                cell.ingredientLabel.text = self.ingredientsOrderedArray[indexPath.row]
+                
+                let ingredient = self.ingredientsOrderedArray[indexPath.row]
+                let ingredientArr = ingredient.componentsSeparatedByString("|")
+                let amount: String = ingredientArr[0]
+                let ingredientText: String = ingredientArr[1]
+                
+                cell.ingredientAmountLabel.text = Helpers().getFractionSymbolFromString(amount)
+                cell.ingredientLabel.text = ingredientText
                 cell.backgroundColor = .clearColor()
                 return cell
             }

@@ -56,6 +56,21 @@ class Helpers {
         return "\(hours)" + getLocalizedString("hoursShort") + "\(minutes)" + getLocalizedString("minutesShort")
     }
     
+    func getFractionSymbolFromString(str: String) -> String {
+        if str == "1/2" {
+            return "½"
+        } else if str == "1/4" {
+            return "¼"
+        } else if str == "3/4" {
+            return "¾"
+        } else if str == "1/3" {
+            return "⅓"
+        } else if str == "2/3" {
+            return "⅔"
+        }
+        return str
+    }
+    
 }
 
 func getLocalizedString(key: String) -> String {
