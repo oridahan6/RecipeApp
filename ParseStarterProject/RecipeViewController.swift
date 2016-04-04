@@ -11,17 +11,12 @@ import UIKit
 class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     let SectionHeaderTableViewCellIdentifier = "SectionHeaderTableViewCell"
+    let RecipeDetailSectionHeaderTableViewCellIdentifier = "RecipeDetailSectionHeaderTableViewCell"
     let RecipeSubtitleTableViewCellIdentifier = "RecipeSubtitleTableViewCell"
+    let RecipeImageTableViewCellIdentifier = "RecipeImageTableViewCell"
     let PrepTimeTableViewCellIdentifier = "PrepTimeTableViewCell"
     let IngredientTableViewCellIdentifier = "IngredientTableViewCell"
     let DirectionTableViewCellIdentifier = "DirectionTableViewCell"
-    
-    @IBOutlet var recipeImageView: UIImageView!
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var dateAdded: UILabel!
-    @IBOutlet var level: UILabel!
-    @IBOutlet var overallTime: UILabel!
-    @IBOutlet var type: UILabel!
     
     @IBOutlet var tableView: UITableView!
     
@@ -40,16 +35,6 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        self.titleLabel.text = recipe.title
-        self.type.text = recipe.type
-        self.level.text = recipe.level
-        self.overallTime.text = recipe.getOverallPreperationTimeText()
-        self.dateAdded.text = recipe.getDateAddedDiff()
-        
-        // update image async
-        let imageUrlString = Constants.GDRecipesImagesPath + recipe.imageName
-        Helpers().updateImageFromUrlAsync(imageUrlString, imageViewToUpdate: self.recipeImageView)
-
         // Make sections headers static and not floating
         self.stopSectionsHeadersFromFloating()
         
@@ -68,16 +53,19 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: - Table view data source
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         switch section {
             case 0:
                 return 1
             case 1:
-                return self.getNumOfRowsFromDict(self.recipe.ingredients)
+                return 1
             case 2:
+                return self.getNumOfRowsFromDict(self.recipe.ingredients)
+            case 3:
                 return self.getNumOfRowsFromDict(self.recipe.directions)
             default:
                 return 0
@@ -87,12 +75,22 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
         if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier(RecipeImageTableViewCellIdentifier, forIndexPath: indexPath) as! RecipeImageTableViewCell
+            
+            print("in cellrow")
+            
+            // update image async
+            let imageUrlString = Constants.GDRecipesImagesPath + recipe.imageName
+            Helpers().updateImageFromUrlAsync(imageUrlString, imageViewToUpdate: cell.recipeImageView)
+            
+            return cell
+        } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCellWithIdentifier(PrepTimeTableViewCellIdentifier, forIndexPath: indexPath) as! PrepTimeTableViewCell
             cell.backgroundColor = .clearColor()
             cell.cookTimeLabel.text = recipe.getCookTimeText()
             cell.prepTimeLabel.text = recipe.getPreperationTimeText()
             return cell
-        } else if indexPath.section == 1 {
+        } else if indexPath.section == 2 {
 
             if self.ingredientsSubtitleByIndexArray[indexPath.row] == true {
                 let cell = tableView.dequeueReusableCellWithIdentifier(RecipeSubtitleTableViewCellIdentifier, forIndexPath: indexPath) as! RecipeSubtitleTableViewCell
@@ -113,7 +111,7 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 return cell
             }
             
-        } else if indexPath.section == 2 {
+        } else if indexPath.section == 3 {
             
             if self.directionsSubtitleByIndexArray[indexPath.row] == true {
                 let cell = tableView.dequeueReusableCellWithIdentifier(RecipeSubtitleTableViewCellIdentifier, forIndexPath: indexPath) as! RecipeSubtitleTableViewCell
@@ -132,14 +130,23 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 215
+        }
         return UITableViewAutomaticDimension
     }
     
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 215
+        }
         return UITableViewAutomaticDimension
     }
 
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 58.0
+        }
         return 45.0
     }
     
@@ -148,14 +155,27 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         switch section {
             case 0:
-                self.setSectionHeaderElements(cell, FAIconName: FontAwesome.ClockO, title: "sectionHeaderTitleTime")
+                let recipeDetailCell = tableView.dequeueReusableCellWithIdentifier(RecipeDetailSectionHeaderTableViewCellIdentifier) as! RecipeDetailSectionHeaderTableViewCell
+
+                recipeDetailCell.titleLabel.text = recipe.title
+                recipeDetailCell.typeLabel.text = recipe.type
+                recipeDetailCell.levelLabel.text = recipe.level
+                recipeDetailCell.overallTimeLabel.text = recipe.getOverallPreperationTimeText()
+                recipeDetailCell.dateAdded.text = recipe.getDateAddedDiff()
+
+                return recipeDetailCell
+            
             case 1:
+                self.setSectionHeaderElements(cell, FAIconName: FontAwesome.ClockO, title: "sectionHeaderTitleTime")
+            case 2:
                 // SPLIT TEST: shopping-cart|lemon-o|pencil-square-o
                 self.setSectionHeaderElements(cell, FAIconName: FontAwesome.ShoppingBasket, title: "sectionHeaderTitleIngredients")
-            case 2:
+            case 3:
                 self.setSectionHeaderElements(cell, FAIconName: FontAwesome.FileTextO, title: "sectionHeaderTitleDirections")
             default:
-                self.setSectionHeaderElements(cell, FAIconName: FontAwesome.ClockO, title: "sectionHeaderTitleTime")
+                let dummyViewHeight: CGFloat = 45
+                let dummyView: UIView = UIView(frame: CGRectMake(0, 0, tableView.bounds.size.width, dummyViewHeight))
+                return dummyView
         }
 
         return cell.contentView
@@ -218,7 +238,7 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 
     private func stopSectionsHeadersFromFloating() {
-        let dummyViewHeight: CGFloat = 40
+        let dummyViewHeight: CGFloat = 60
         let dummyView: UIView = UIView(frame: CGRectMake(0, 0, tableView.bounds.size.width, dummyViewHeight))
         tableView.tableHeaderView = dummyView
         tableView.contentInset = UIEdgeInsetsMake(-dummyViewHeight, 0, 0, 0)
