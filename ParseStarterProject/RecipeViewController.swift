@@ -59,6 +59,9 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // prepare ordered directions array for later use
         self.prepareDirectionsOrderedArray()
         
+        // set table view background image
+        self.view.backgroundColor = UIColor(patternImage: Helpers().getDeviceSpecificBGImage("tableview-bg"))
+
         self.tableView.backgroundColor = UIColor.clearColor()
     }
     

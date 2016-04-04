@@ -10,6 +10,7 @@ import UIKit
 
 class Helpers {
     
+    // MARK:- Images Methods
     func updateImageFromUrlAsync(url: String, imageViewToUpdate: UIImageView) {
         let imgURL = NSURL(string: url)!
         
@@ -38,6 +39,26 @@ class Helpers {
  
     }
     
+    func getDeviceSpecificBGImage(imageName: String) -> UIImage {
+        var BGImage: UIImage = UIImage(named: "\(imageName).png")!
+        
+        let screenHeight: CGFloat = UIScreen.mainScreen().bounds.size.height
+        let scale: CGFloat = UIScreen.mainScreen().scale
+        
+        if scale == 2.0 && screenHeight == 568.0 {
+            BGImage = UIImage(named: "\(imageName)-568h@2x.png")!
+        } else if scale == 2.0 && screenHeight == 667.0 {
+            BGImage = UIImage(named: "\(imageName)-667h@2x.png")!
+        } else if scale == 3.0 && screenHeight == 736.0 {
+            BGImage = UIImage(named: "\(imageName)-736h@3x.png")!
+        } else if scale == 2.0 {
+            BGImage = UIImage(named: "\(imageName)@2x.png")!
+        }
+        
+        return BGImage
+    }
+    
+    // MARK:- Numbers Methods
     func convertMinutesToHoursAndMinText(minutesToConvert: Int) -> String {
         let hours = minutesToConvert / (60);
         let minutes = minutesToConvert - hours * (60);

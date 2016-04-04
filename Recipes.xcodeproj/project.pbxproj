@@ -15,6 +15,12 @@
 		0C0CD0CF1CAD618E00F682F9 /* IngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0CD0CE1CAD618E00F682F9 /* IngredientTableViewCell.swift */; };
 		0C0CD0D11CAD61CC00F682F9 /* SectionHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0CD0D01CAD61CC00F682F9 /* SectionHeaderTableViewCell.swift */; };
 		0C0CD0D31CAD627000F682F9 /* PrepTimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0CD0D21CAD627000F682F9 /* PrepTimeTableViewCell.swift */; };
+		0C192F171CB27FC500811CB4 /* tableview-bg-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C192F111CB27FC500811CB4 /* tableview-bg-568h@2x.png */; };
+		0C192F181CB27FC500811CB4 /* tableview-bg-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C192F121CB27FC500811CB4 /* tableview-bg-667h@2x.png */; };
+		0C192F191CB27FC500811CB4 /* tableview-bg-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C192F131CB27FC500811CB4 /* tableview-bg-736h@3x.png */; };
+		0C192F1A1CB27FC500811CB4 /* tableview-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C192F141CB27FC500811CB4 /* tableview-bg.png */; };
+		0C192F1B1CB27FC500811CB4 /* tableview-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C192F151CB27FC500811CB4 /* tableview-bg@2x.png */; };
+		0C192F1C1CB27FC500811CB4 /* tableview-bg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C192F161CB27FC500811CB4 /* tableview-bg@3x.png */; };
 		0C7BD9CB1CA7F7120056ADCD /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7BD9CA1CA7F7120056ADCD /* CategoriesViewController.swift */; };
 		0C7BD9CD1CA8020E0056ADCD /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7BD9CC1CA8020E0056ADCD /* FavoritesViewController.swift */; };
 		0C7BD9CF1CA802780056ADCD /* RecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7BD9CE1CA802780056ADCD /* RecipesViewController.swift */; };
@@ -56,6 +62,12 @@
 		0C0CD0CE1CAD618E00F682F9 /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientTableViewCell.swift; sourceTree = "<group>"; };
 		0C0CD0D01CAD61CC00F682F9 /* SectionHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		0C0CD0D21CAD627000F682F9 /* PrepTimeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepTimeTableViewCell.swift; sourceTree = "<group>"; };
+		0C192F111CB27FC500811CB4 /* tableview-bg-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tableview-bg-568h@2x.png"; sourceTree = "<group>"; };
+		0C192F121CB27FC500811CB4 /* tableview-bg-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tableview-bg-667h@2x.png"; sourceTree = "<group>"; };
+		0C192F131CB27FC500811CB4 /* tableview-bg-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tableview-bg-736h@3x.png"; sourceTree = "<group>"; };
+		0C192F141CB27FC500811CB4 /* tableview-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tableview-bg.png"; sourceTree = "<group>"; };
+		0C192F151CB27FC500811CB4 /* tableview-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tableview-bg@2x.png"; sourceTree = "<group>"; };
+		0C192F161CB27FC500811CB4 /* tableview-bg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tableview-bg@3x.png"; sourceTree = "<group>"; };
 		0C7BD9CA1CA7F7120056ADCD /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		0C7BD9CC1CA8020E0056ADCD /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		0C7BD9CE1CA802780056ADCD /* RecipesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipesViewController.swift; sourceTree = "<group>"; };
@@ -129,6 +141,29 @@
 			name = FontAwesomeSwift;
 			sourceTree = "<group>";
 		};
+		0C192F0F1CB27FAB00811CB4 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				0CD15FF11CB140F000C7B828 /* Alef-bold.ttf */,
+				0CD15FF21CB140F000C7B828 /* Alef-regular.ttf */,
+				0CD15FEF1CB1323200C7B828 /* hillelclm-medium-webfont.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		0C192F101CB27FB200811CB4 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				0C192F111CB27FC500811CB4 /* tableview-bg-568h@2x.png */,
+				0C192F121CB27FC500811CB4 /* tableview-bg-667h@2x.png */,
+				0C192F131CB27FC500811CB4 /* tableview-bg-736h@3x.png */,
+				0C192F141CB27FC500811CB4 /* tableview-bg.png */,
+				0C192F151CB27FC500811CB4 /* tableview-bg@2x.png */,
+				0C192F161CB27FC500811CB4 /* tableview-bg@3x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		0C7BD9E31CA808A70056ADCD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,9 +221,8 @@
 		0CD15FEE1CB1320F00C7B828 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				0CD15FF11CB140F000C7B828 /* Alef-bold.ttf */,
-				0CD15FF21CB140F000C7B828 /* Alef-regular.ttf */,
-				0CD15FEF1CB1323200C7B828 /* hillelclm-medium-webfont.ttf */,
+				0C192F101CB27FB200811CB4 /* Images */,
+				0C192F0F1CB27FAB00811CB4 /* Fonts */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -322,11 +356,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				81BA81501A49DA1800E65899 /* Main.storyboard in Resources */,
+				0C192F1B1CB27FC500811CB4 /* tableview-bg@2x.png in Resources */,
+				0C192F1C1CB27FC500811CB4 /* tableview-bg@3x.png in Resources */,
+				0C192F181CB27FC500811CB4 /* tableview-bg-667h@2x.png in Resources */,
 				0C0CD0C81CABD5FB00F682F9 /* FontAwesome.otf in Resources */,
 				0CD15FF41CB140F000C7B828 /* Alef-regular.ttf in Resources */,
 				0C7BDA811CA95E260056ADCD /* Localizable.strings in Resources */,
 				0CD15FF31CB140F000C7B828 /* Alef-bold.ttf in Resources */,
+				0C192F191CB27FC500811CB4 /* tableview-bg-736h@3x.png in Resources */,
+				0C192F1A1CB27FC500811CB4 /* tableview-bg.png in Resources */,
 				0CD15FF01CB1323200C7B828 /* hillelclm-medium-webfont.ttf in Resources */,
+				0C192F171CB27FC500811CB4 /* tableview-bg-568h@2x.png in Resources */,
 				81BA81521A49DA1800E65899 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

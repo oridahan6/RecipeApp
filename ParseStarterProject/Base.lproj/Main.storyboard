@@ -363,9 +363,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tableview-bg" translatesAutoresizingMaskIntoConstraints="NO" id="kgP-ek-YQP">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
-                            </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wLt-N2-uIr">
                                 <rect key="frame" x="0.0" y="121" width="600" height="215"/>
                                 <constraints>
@@ -744,18 +741,14 @@
                         <constraints>
                             <constraint firstItem="wLt-N2-uIr" firstAttribute="top" secondItem="f2p-KI-LWI" secondAttribute="bottom" constant="57" id="2oK-Fd-Dmr"/>
                             <constraint firstItem="UbM-ca-8NU" firstAttribute="top" secondItem="f2p-KI-LWI" secondAttribute="bottom" id="3c8-19-748"/>
-                            <constraint firstItem="JH7-wJ-QHg" firstAttribute="top" secondItem="kgP-ek-YQP" secondAttribute="bottom" id="6bL-B7-ujc"/>
                             <constraint firstItem="SRY-IC-veK" firstAttribute="top" secondItem="wLt-N2-uIr" secondAttribute="bottom" id="86b-zz-Ew7"/>
                             <constraint firstItem="JH7-wJ-QHg" firstAttribute="top" secondItem="SRY-IC-veK" secondAttribute="bottom" id="Gwf-iy-bes"/>
-                            <constraint firstItem="kgP-ek-YQP" firstAttribute="top" secondItem="f2p-KI-LWI" secondAttribute="bottom" id="IUt-Rh-Zsb"/>
                             <constraint firstItem="UbM-ca-8NU" firstAttribute="leading" secondItem="9JK-Pb-gws" secondAttribute="leading" id="Jh6-pa-ICr"/>
                             <constraint firstAttribute="trailing" secondItem="wLt-N2-uIr" secondAttribute="trailing" id="TBa-Q5-cga"/>
-                            <constraint firstItem="kgP-ek-YQP" firstAttribute="leading" secondItem="9JK-Pb-gws" secondAttribute="leading" id="UPV-S0-wBN"/>
                             <constraint firstItem="SRY-IC-veK" firstAttribute="leading" secondItem="9JK-Pb-gws" secondAttribute="leading" id="Udx-EX-TD0"/>
                             <constraint firstItem="wLt-N2-uIr" firstAttribute="leading" secondItem="9JK-Pb-gws" secondAttribute="leading" id="UvS-PB-Iod"/>
                             <constraint firstAttribute="trailing" secondItem="SRY-IC-veK" secondAttribute="trailing" id="Zks-1x-XnL"/>
                             <constraint firstAttribute="trailing" secondItem="UbM-ca-8NU" secondAttribute="trailing" id="qLE-re-Ywb"/>
-                            <constraint firstAttribute="trailing" secondItem="kgP-ek-YQP" secondAttribute="trailing" id="z3B-01-tpz"/>
                         </constraints>
                     </view>
                     <connections>
@@ -797,7 +790,6 @@
         <image name="chef-icon" width="25" height="22"/>
         <image name="dotted-line" width="325" height="4"/>
         <image name="section-circle" width="30" height="30"/>
-        <image name="tableview-bg" width="320" height="480"/>
         <image name="timer-icon" width="25" height="25"/>
     </resources>
 </document>
