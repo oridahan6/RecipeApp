@@ -142,6 +142,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Set Navigation bar tint color
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         
+        // Set bar button items font
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Alef-Regular", size: 18)!], forState: UIControlState.Normal)
+        
         // Light status bar color
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
         
