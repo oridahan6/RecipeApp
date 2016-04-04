@@ -17,7 +17,7 @@ class ParseHelper: NSObject {
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             if error == nil {
                 // The find succeeded.
-                print("Successfully retrieved \(objects!.count) recipes.")
+//                print("Successfully retrieved \(objects!.count) recipes.")
                 // Do something with the found objects
                 if let objects = objects {
                     for object in objects {

@@ -11,6 +11,9 @@
 "Favorites" = "מועדפים";
 "Categories" = "קטגוריות";
 
+"sectionHeaderTitleTime" = "זמן הכנה כולל";
+"sectionHeaderTitleIngredients" = "מצרכים";
+"sectionHeaderTitleDirections" = "שלבי הכנה";
 
 // General
 "before" = "לפני";

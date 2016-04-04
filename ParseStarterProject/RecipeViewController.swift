@@ -8,8 +8,14 @@
 
 import UIKit
 
-class RecipeViewController: UIViewController {
+class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    let SectionHeaderTableViewCellIdentifier = "SectionHeaderTableViewCell"
+    let RecipeSubtitleTableViewCellIdentifier = "RecipeSubtitleTableViewCell"
+    let PrepTimeTableViewCellIdentifier = "PrepTimeTableViewCell"
+    let IngredientTableViewCellIdentifier = "IngredientTableViewCell"
+    let DirectionTableViewCellIdentifier = "DirectionTableViewCell"
+    
     @IBOutlet var recipeImageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var dateAdded: UILabel!
@@ -17,12 +23,20 @@ class RecipeViewController: UIViewController {
     @IBOutlet var overallTime: UILabel!
     @IBOutlet var type: UILabel!
     
+    @IBOutlet var tableView: UITableView!
+    
     var recipe: Recipe!
+    
+    private var ingredientsSubtitleByIndexArray = [Bool]()
+    private var ingredientsOrderedArray = [String]()
     
     // MARK: -
     // MARK: View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         
         self.titleLabel.text = recipe.title
         self.type.text = recipe.type
@@ -34,7 +48,131 @@ class RecipeViewController: UIViewController {
         let imageUrlString = Constants.GDRecipesImagesPath + recipe.imageName
         Helpers().updateImageFromUrlAsync(imageUrlString, imageViewToUpdate: self.recipeImageView)
 
+        // Make sections headers static and not floating
+        self.stopSectionsHeadersFromFloating()
         
+        // prepare ordered ingredients array for later use
+        self.prepareIngredientsOrderedArray()
+        
+        self.tableView.backgroundColor = UIColor.clearColor()
     }
     
+    // MARK: - Table view data source
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 3
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+            case 0:
+                return 1
+            case 1:
+                return self.getNumOfRowsFromDict(self.recipe.ingredients)
+            case 2:
+                return self.getNumOfRowsFromDict(self.recipe.directions)
+            default:
+                return 0
+        }
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier(PrepTimeTableViewCellIdentifier, forIndexPath: indexPath) as! PrepTimeTableViewCell
+            cell.backgroundColor = .clearColor()
+            cell.cookTimeLabel.text = recipe.getCookTimeText()
+            cell.prepTimeLabel.text = recipe.getPreperationTimeText()
+            return cell
+        } else if indexPath.section == 1 {
+
+            if self.ingredientsSubtitleByIndexArray[indexPath.row] == true {
+                let cell = tableView.dequeueReusableCellWithIdentifier(RecipeSubtitleTableViewCellIdentifier, forIndexPath: indexPath) as! RecipeSubtitleTableViewCell
+                cell.subtitleLabel.text = self.ingredientsOrderedArray[indexPath.row]
+                cell.backgroundColor = .clearColor()
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCellWithIdentifier(IngredientTableViewCellIdentifier, forIndexPath: indexPath) as! IngredientTableViewCell
+                cell.ingredientLabel.text = self.ingredientsOrderedArray[indexPath.row]
+                cell.backgroundColor = .clearColor()
+                return cell
+            }
+            
+        } else if indexPath.section == 2 {
+            let cell = tableView.dequeueReusableCellWithIdentifier(DirectionTableViewCellIdentifier, forIndexPath: indexPath) as! DirectionTableViewCell
+            
+            cell.testLabel.text = "test dir"
+            cell.backgroundColor = .clearColor()
+            return cell
+        }
+        return UITableViewCell()
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 45.0
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let cell = tableView.dequeueReusableCellWithIdentifier(SectionHeaderTableViewCellIdentifier) as! SectionHeaderTableViewCell
+        
+        switch section {
+            case 0:
+                self.setSectionHeaderElements(cell, FAIconName: FontAwesome.ClockO, title: "sectionHeaderTitleTime")
+            case 1:
+                // SPLIT TEST: shopping-cart|lemon-o|pencil-square-o
+                self.setSectionHeaderElements(cell, FAIconName: FontAwesome.ShoppingBasket, title: "sectionHeaderTitleIngredients")
+            case 2:
+                self.setSectionHeaderElements(cell, FAIconName: FontAwesome.FileTextO, title: "sectionHeaderTitleDirections")
+            default:
+                self.setSectionHeaderElements(cell, FAIconName: FontAwesome.ClockO, title: "sectionHeaderTitleTime")
+        }
+
+        return cell.contentView
+    }
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        cell.backgroundColor = .clearColor()
+    }
+    
+    // MARK: -
+    // MARK: Helpers
+    private func getNumOfRowsFromDict(dict: [String: [String]]) -> Int {
+        var numOfRows: Int = 0
+        if dict.count > 1 {
+            numOfRows += dict.count - 1
+        }
+        for (_, values) in dict {
+            numOfRows += values.count
+        }
+        return numOfRows
+    }
+    
+    private func setSectionHeaderElements(cell: SectionHeaderTableViewCell, FAIconName: FontAwesome, title: String) {
+        cell.sectionHeaderIconImageView.image = UIImage.fontAwesomeIconWithName(FAIconName, textColor: UIColor.blackColor(), size: CGSizeMake(20, 20))
+        cell.titleLabel.text = getLocalizedString(title)
+    }
+    
+    private func prepareIngredientsOrderedArray() {
+        
+        for (title, ingredients) in recipe.ingredients.reverse() {
+            
+            if title != "general" {
+                self.ingredientsOrderedArray.append(title)
+                self.ingredientsSubtitleByIndexArray.append(true)
+            }
+            for ingredient in ingredients {
+                self.ingredientsSubtitleByIndexArray.append(false)
+                self.ingredientsOrderedArray.append(ingredient)
+            }
+            
+        }
+
+    }
+
+    private func stopSectionsHeadersFromFloating() {
+        let dummyViewHeight: CGFloat = 40
+        let dummyView: UIView = UIView(frame: CGRectMake(0, 0, tableView.bounds.size.width, dummyViewHeight))
+        tableView.tableHeaderView = dummyView
+        tableView.contentInset = UIEdgeInsetsMake(-dummyViewHeight, 0, 0, 0)
+    }
 }

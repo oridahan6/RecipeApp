@@ -22,6 +22,7 @@ class Recipe: NSObject {
     var type: String = ""
     var imageName: String = ""
     
+    // MARK: - Init Methods
     init?(recipe: ParseRecipe) {
         super.init()
 
@@ -51,7 +52,15 @@ class Recipe: NSObject {
     func getOverallPreperationTimeText() -> String {
         return Helpers().convertMinutesToHoursAndMinText(self.getOverallPreperationTime())
     }
-    
+
+    func getPreperationTimeText() -> String {
+        return Helpers().convertMinutesToHoursAndMinText(self.prepTime)
+    }
+
+    func getCookTimeText() -> String {
+        return Helpers().convertMinutesToHoursAndMinText(self.cookTime)
+    }
+
     func getDateAddedDiff() -> String {
         return getLocalizedString("before") + " " + NSDate().offsetFrom(self.dateAdded)
     }
