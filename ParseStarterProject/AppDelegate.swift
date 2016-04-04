@@ -136,9 +136,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navBgImage:UIImage = UIImage(named: "navbar.png")!
         UINavigationBar.appearance().setBackgroundImage(navBgImage, forBarMetrics: .Default)
         
-        // Set Navigation bar Title color
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
-        
+        // Set Navigation bar Title font & color
+        UINavigationBar.appearance().titleTextAttributes = ([NSFontAttributeName: UIFont(name: "Alef-Bold", size: 20)! ,NSForegroundColorAttributeName:UIColor.whiteColor()])
+
         // Set Navigation bar tint color
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         
@@ -147,5 +147,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Set Tab bar tint color
         UITabBar.appearance().tintColor = UIColor(red:0.682, green:0.29, blue:0.302, alpha:1)
+        
+        // Set tab bar items font
+        UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Alef-Regular", size: 10)!], forState: UIControlState.Normal)
     }
 }
