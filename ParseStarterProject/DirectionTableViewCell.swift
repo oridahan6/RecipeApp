@@ -10,7 +10,8 @@ import UIKit
 
 class DirectionTableViewCell: UITableViewCell {
 
-    @IBOutlet var testLabel: UILabel!
+    @IBOutlet var directionLabel: UILabel!
+    @IBOutlet var directionIndexLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

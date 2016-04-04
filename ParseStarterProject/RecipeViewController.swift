@@ -29,6 +29,8 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     private var ingredientsSubtitleByIndexArray = [Bool]()
     private var ingredientsOrderedArray = [String]()
+    private var directionsSubtitleByIndexArray = [Bool]()
+    private var directionsOrderedArray = [String]()
     
     // MARK: -
     // MARK: View Life Cycle
@@ -53,6 +55,9 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         // prepare ordered ingredients array for later use
         self.prepareIngredientsOrderedArray()
+        
+        // prepare ordered directions array for later use
+        self.prepareDirectionsOrderedArray()
         
         self.tableView.backgroundColor = UIColor.clearColor()
     }
@@ -99,15 +104,31 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
             
         } else if indexPath.section == 2 {
-            let cell = tableView.dequeueReusableCellWithIdentifier(DirectionTableViewCellIdentifier, forIndexPath: indexPath) as! DirectionTableViewCell
             
-            cell.testLabel.text = "test dir"
-            cell.backgroundColor = .clearColor()
-            return cell
+            if self.directionsSubtitleByIndexArray[indexPath.row] == true {
+                let cell = tableView.dequeueReusableCellWithIdentifier(RecipeSubtitleTableViewCellIdentifier, forIndexPath: indexPath) as! RecipeSubtitleTableViewCell
+                cell.subtitleLabel.text = self.directionsOrderedArray[indexPath.row]
+                cell.backgroundColor = .clearColor()
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCellWithIdentifier(DirectionTableViewCellIdentifier, forIndexPath: indexPath) as! DirectionTableViewCell
+                cell.directionLabel.text = self.directionsOrderedArray[indexPath.row]
+                cell.directionIndexLabel.text = "\(indexPath.row + 1)"
+                cell.backgroundColor = .clearColor()
+                return cell
+            }
         }
         return UITableViewCell()
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 45.0
     }
@@ -167,6 +188,23 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
         }
 
+    }
+
+    private func prepareDirectionsOrderedArray() {
+        
+        for (title, directions) in recipe.directions.reverse() {
+            
+            if title != "general" {
+                self.directionsOrderedArray.append(title)
+                self.directionsSubtitleByIndexArray.append(true)
+            }
+            for direction in directions {
+                self.directionsSubtitleByIndexArray.append(false)
+                self.directionsOrderedArray.append(direction)
+            }
+            
+        }
+        
     }
 
     private func stopSectionsHeadersFromFloating() {
