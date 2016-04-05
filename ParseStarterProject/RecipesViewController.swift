@@ -14,6 +14,8 @@ class RecipesViewController: UITableViewController {
     let CellIdentifier = "RecipeTableViewCell"
     let SegueRecipeViewController = "RecipeViewController"
     
+    var loadAllRecipes: Bool = true
+    
     var recipes = [Recipe]() {
         didSet {
             tableView.reloadData()
@@ -38,7 +40,9 @@ class RecipesViewController: UITableViewController {
 
         self.title = getLocalizedString("Recipes")
         
-        ParseHelper().updateRecipes(self)
+        if loadAllRecipes == true {
+            ParseHelper().updateRecipes(self)
+        }
         
         // Register Class
         // tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: CellIdentifier)

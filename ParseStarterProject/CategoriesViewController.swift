@@ -12,6 +12,7 @@ import Kingfisher
 class CategoriesViewController: UITableViewController {
     
     let CellIdentifier = "CategoryTableViewCell"
+    let SegueRecipesViewController = "RecipesViewController"
     
     var categories = [Category]() {
         didSet {
@@ -38,11 +39,25 @@ class CategoriesViewController: UITableViewController {
         self.title = getLocalizedString("Categories")
         
         ParseHelper().updateCategories(self)
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == SegueRecipesViewController {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let category = categories[indexPath.row]
+                let destinationViewController = segue.destinationViewController as! RecipesViewController
+                destinationViewController.loadAllRecipes = false
+                ParseHelper().updateRecipesFromCategoryId(destinationViewController, catId: category.catId)
+                
+//                destinationViewController.recipes = recipe
+            }
+        }
     }
 
     // MARK: - Table view data source
@@ -67,6 +82,8 @@ class CategoriesViewController: UITableViewController {
         let imageUrlString = Constants.GDCategoriesImagesPath + category.imageName
         cell.categoryImage.kf_setImageWithURL(NSURL(string: imageUrlString)!, placeholderImage: UIImage(named: "placeholder.jpg"))
         
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
+
 //        cell.textLabel?.text = category.name
         
         return cell
