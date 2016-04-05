@@ -78,8 +78,6 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier(RecipeImageTableViewCellIdentifier, forIndexPath: indexPath) as! RecipeImageTableViewCell
             
-            print("in cellrow")
-            
             // update image async
             let imageUrlString = Constants.GDRecipesImagesPath + recipe.imageName
             cell.recipeImageView.kf_setImageWithURL(NSURL(string: imageUrlString)!, placeholderImage: UIImage(named: "placeholder.jpg"))

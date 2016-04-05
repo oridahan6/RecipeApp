@@ -84,8 +84,6 @@ class CategoriesViewController: UITableViewController {
         
         cell.selectionStyle = UITableViewCellSelectionStyle.None
 
-//        cell.textLabel?.text = category.name
-        
         return cell
     }
 
