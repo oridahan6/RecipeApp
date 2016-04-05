@@ -81,7 +81,8 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             // update image async
             let imageUrlString = Constants.GDRecipesImagesPath + recipe.imageName
-            Helpers().updateImageFromUrlAsync(imageUrlString, imageViewToUpdate: cell.recipeImageView)
+            cell.recipeImageView.kf_setImageWithURL(NSURL(string: imageUrlString)!, placeholderImage: UIImage(named: "placeholder.jpg"))
+
             
             return cell
         } else if indexPath.section == 1 {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class RecipesViewController: UITableViewController {
 
@@ -82,7 +83,7 @@ class RecipesViewController: UITableViewController {
         
         // update image async
         let imageUrlString = Constants.GDRecipesImagesPath + recipe.imageName
-        Helpers().updateImageFromUrlAsync(imageUrlString, imageViewToUpdate: cell.recipeImageView)
+        cell.recipeImageView.kf_setImageWithURL(NSURL(string: imageUrlString)!, placeholderImage: UIImage(named: "placeholder.jpg"))
         
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         
