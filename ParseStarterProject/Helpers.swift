@@ -92,6 +92,14 @@ class Helpers {
         return str
     }
     
+    func getSingularOrPluralForm(number: Int, textToConvert: String) -> String {
+        
+        if number == 1 {
+            return getLocalizedString(textToConvert + "Singular") + " " + getLocalizedString("singular")
+        }
+        return "\(number) " + getLocalizedString(textToConvert + "Plural")
+    }
+    
 }
 
 func getLocalizedString(key: String) -> String {

@@ -18,6 +18,13 @@
 // General
 "before" = "לפני";
 
+// Singular/Plural
+"singular" = "אחד";
+
+"recipeSingular" = "מתכון";
+"recipePlural" = "מתכונים";
+
+
 
 // Time
 "second" = "שניה";

@@ -40,6 +40,13 @@ class ParseCategory: NSObject {
         return 0
     }
     
+    func getRecipesCount() -> Int {
+        if let recipesCount = category["recipesCount"] as? Int {
+            return recipesCount
+        }
+        return 0
+    }
+    
     func getImageName() -> String {
         if let imageName = category["imageName"] as? String {
             return imageName

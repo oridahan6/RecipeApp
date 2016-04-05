@@ -10,6 +10,8 @@ import UIKit
 
 class CategoriesViewController: UITableViewController {
     
+    let CellIdentifier = "CategoryTableViewCell"
+    
     var categories = [Category]() {
         didSet {
             tableView.reloadData()
@@ -53,13 +55,18 @@ class CategoriesViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as! CategoryTableViewCell
 
         let category = categories[indexPath.row]
 
-        print(category)
+        cell.categoryNameLabel.text = category.name
+        cell.recipesCountLabel.text = Helpers().getSingularOrPluralForm(category.recipesCount, textToConvert: "recipe")
         
-        cell.textLabel?.text = category.name
+        // update image async
+        let imageUrlString = Constants.GDCategoriesImagesPath + category.imageName
+        Helpers().updateImageFromUrlAsync(imageUrlString, imageViewToUpdate: cell.categoryImage)
+        
+//        cell.textLabel?.text = category.name
         
         return cell
     }

@@ -13,9 +13,11 @@ class Category: NSObject {
     var id: String = ""
     var catId: Int!
     var name: String!
-    var recipes = [Recipe]()
     var imageName: String = ""
-    
+    var recipesCount: Int!
+
+//    var recipes = [Recipe]()
+
     // MARK: - Init Methods
     init?(category: ParseCategory) {
         super.init()
@@ -25,6 +27,7 @@ class Category: NSObject {
         self.name = category.getName()
 //        self.recipes = category.getRecipes()
         self.imageName = category.getImageName()
+        self.recipesCount = category.getRecipesCount()
         
         if id.isEmpty || name.isEmpty {
             return nil

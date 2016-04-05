@@ -19,8 +19,10 @@
             <string>Alef-Regular</string>
             <string>Alef-Regular</string>
             <string>Alef-Regular</string>
+            <string>Alef-Regular</string>
         </mutableArray>
         <mutableArray key="hillelclm-medium-webfont.ttf">
+            <string>HillelCLM-Medium</string>
             <string>HillelCLM-Medium</string>
             <string>HillelCLM-Medium</string>
             <string>HillelCLM-Medium</string>
@@ -54,18 +56,93 @@
         <scene sceneID="MIO-7y-p2h">
             <objects>
                 <tableViewController id="tU0-tT-zcf" customClass="CategoriesViewController" customModule="Recipes" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="FGi-GY-HaY">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="165" sectionHeaderHeight="28" sectionFooterHeight="28" id="FGi-GY-HaY">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="KLf-Pw-1wS">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryTableViewCell" rowHeight="165" id="KLf-Pw-1wS" customClass="CategoryTableViewCell" customModule="Recipes" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="165"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KLf-Pw-1wS" id="hEO-gX-V5d">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="165"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="EeJ-gL-76C">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="165"/>
+                                            <rect key="contentStretch" x="0.0" y="1" width="1" height="1"/>
+                                        </imageView>
+                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pYx-77-fyz">
+                                            <rect key="frame" x="0.0" y="131" width="600" height="33"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="איטלקי" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bea-SR-GYB">
+                                                    <rect key="frame" x="146" y="0.0" width="446" height="33"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="33" id="KBA-ve-GKH"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HillelCLM-Medium" family="Hillel CLM" pointSize="25"/>
+                                                    <color key="textColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32 מתכונים" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SBf-Jf-sFz">
+                                                    <rect key="frame" x="8" y="6" width="84" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="84" id="kTF-U7-ZfT"/>
+                                                        <constraint firstAttribute="height" constant="21" id="qpz-Rj-xkn"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Alef-Regular" family="Alef" pointSize="15"/>
+                                                    <color key="textColor" red="0.792156862745098" green="0.792156862745098" blue="0.792156862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="SBf-Jf-sFz" firstAttribute="leading" secondItem="pYx-77-fyz" secondAttribute="leading" constant="8" id="8Uw-NJ-E7I"/>
+                                                <constraint firstItem="Bea-SR-GYB" firstAttribute="top" secondItem="pYx-77-fyz" secondAttribute="top" id="Osr-Ga-QnR"/>
+                                                <constraint firstAttribute="height" constant="33" id="WNn-Cy-FoE"/>
+                                                <constraint firstAttribute="trailing" secondItem="Bea-SR-GYB" secondAttribute="trailing" constant="8" id="XY4-Kk-eIX"/>
+                                                <constraint firstItem="Bea-SR-GYB" firstAttribute="leading" secondItem="SBf-Jf-sFz" secondAttribute="trailing" constant="54" id="asV-dl-L8b"/>
+                                                <constraint firstItem="SBf-Jf-sFz" firstAttribute="top" secondItem="pYx-77-fyz" secondAttribute="top" constant="6" id="pHJ-MD-Q9l"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="EeJ-gL-76C" firstAttribute="top" secondItem="hEO-gX-V5d" secondAttribute="top" id="CML-D1-awF"/>
+                                        <constraint firstItem="EeJ-gL-76C" firstAttribute="top" secondItem="hEO-gX-V5d" secondAttribute="top" id="D5o-VH-tOD"/>
+                                        <constraint firstItem="pYx-77-fyz" firstAttribute="leading" secondItem="hEO-gX-V5d" secondAttribute="leading" id="EJq-ZB-jgw"/>
+                                        <constraint firstAttribute="trailing" secondItem="EeJ-gL-76C" secondAttribute="trailing" id="FA5-Nn-wp7"/>
+                                        <constraint firstAttribute="bottom" secondItem="EeJ-gL-76C" secondAttribute="bottom" id="Hju-Gc-YBo"/>
+                                        <constraint firstItem="EeJ-gL-76C" firstAttribute="leading" secondItem="hEO-gX-V5d" secondAttribute="leading" id="IYu-dl-URP"/>
+                                        <constraint firstItem="pYx-77-fyz" firstAttribute="top" secondItem="hEO-gX-V5d" secondAttribute="top" constant="131" id="K6Z-Yg-n9Q"/>
+                                        <constraint firstItem="EeJ-gL-76C" firstAttribute="leading" secondItem="hEO-gX-V5d" secondAttribute="leading" id="Nao-6w-Iyz"/>
+                                        <constraint firstItem="EeJ-gL-76C" firstAttribute="leading" secondItem="hEO-gX-V5d" secondAttribute="leading" id="Okl-a3-zdu"/>
+                                        <constraint firstAttribute="trailing" secondItem="EeJ-gL-76C" secondAttribute="trailing" id="Ssg-Up-eYa"/>
+                                        <constraint firstAttribute="bottom" secondItem="EeJ-gL-76C" secondAttribute="bottom" id="bMi-hQ-xJ8"/>
+                                        <constraint firstAttribute="bottom" secondItem="pYx-77-fyz" secondAttribute="bottom" id="cce-5Z-2jg"/>
+                                        <constraint firstAttribute="trailing" secondItem="EeJ-gL-76C" secondAttribute="trailing" id="e7M-bS-PtE"/>
+                                        <constraint firstItem="EeJ-gL-76C" firstAttribute="top" secondItem="hEO-gX-V5d" secondAttribute="top" id="eTz-kE-r5f"/>
+                                        <constraint firstAttribute="bottom" secondItem="EeJ-gL-76C" secondAttribute="bottom" id="m6a-hI-wrl"/>
+                                        <constraint firstAttribute="trailing" secondItem="pYx-77-fyz" secondAttribute="trailing" id="u8L-02-pM1"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="CML-D1-awF"/>
+                                            <exclude reference="D5o-VH-tOD"/>
+                                            <exclude reference="FA5-Nn-wp7"/>
+                                            <exclude reference="Hju-Gc-YBo"/>
+                                            <exclude reference="Nao-6w-Iyz"/>
+                                            <exclude reference="Okl-a3-zdu"/>
+                                            <exclude reference="bMi-hQ-xJ8"/>
+                                            <exclude reference="e7M-bS-PtE"/>
+                                            <exclude reference="K6Z-Yg-n9Q"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="categoryImage" destination="EeJ-gL-76C" id="cxg-S2-wP6"/>
+                                    <outlet property="categoryNameLabel" destination="Bea-SR-GYB" id="ZUo-oC-B9S"/>
+                                    <outlet property="recipesCountLabel" destination="SBf-Jf-sFz" id="KXT-a5-jOb"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -827,6 +904,7 @@
         <image name="cheese-icon" width="25" height="20"/>
         <image name="chef-icon" width="25" height="22"/>
         <image name="dotted-line" width="325" height="4"/>
+        <image name="placeholder.jpg" width="1250" height="703"/>
         <image name="section-circle" width="30" height="30"/>
         <image name="timer-icon" width="25" height="25"/>
     </resources>
