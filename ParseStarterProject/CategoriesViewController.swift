@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CategoriesViewController: UITableViewController {
     
@@ -64,7 +65,7 @@ class CategoriesViewController: UITableViewController {
         
         // update image async
         let imageUrlString = Constants.GDCategoriesImagesPath + category.imageName
-        Helpers().updateImageFromUrlAsync(imageUrlString, imageViewToUpdate: cell.categoryImage)
+        cell.categoryImage.kf_setImageWithURL(NSURL(string: imageUrlString)!, placeholderImage: nil)
         
 //        cell.textLabel?.text = category.name
         
