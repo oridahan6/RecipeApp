@@ -22,6 +22,8 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet var tableView: UITableView!
     
     var recipe: Recipe!
+    var isFavorite: Bool = false
+    var favoriteButton: UIButton!
     
     private var ingredientsSubtitleByIndexArray = [Bool]()
     private var ingredientsOrderedArray = [String]()
@@ -48,7 +50,36 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // set table view background image
         self.view.backgroundColor = UIColor(patternImage: Helpers().getDeviceSpecificBGImage("tableview-bg"))
 
+        
+        if let favoritesIds = NSUserDefaults.standardUserDefaults().arrayForKey("favorites") as? [String] {
+            if favoritesIds.contains(recipe.id) {
+                isFavorite = true
+            }
+            
+        }
+        
         self.tableView.backgroundColor = UIColor.clearColor()
+    }
+    
+    // MARK: - Buttons actions
+
+    @IBAction func markAsFavorite(sender: AnyObject) {
+        if self.isFavorite == true {
+            self.isFavorite = false
+            if var favoriteIds = NSUserDefaults.standardUserDefaults().arrayForKey("favorites") as? [String] {
+                favoriteIds.removeObject(recipe.id)
+                NSUserDefaults.standardUserDefaults().setObject(favoriteIds, forKey: "favorites")
+            }
+        } else {
+            self.isFavorite = true
+            if var favoriteIds = NSUserDefaults.standardUserDefaults().arrayForKey("favorites") as? [String] {
+                favoriteIds.append(self.recipe.id)
+                NSUserDefaults.standardUserDefaults().setObject(favoriteIds, forKey: "favorites")
+            } else {
+                NSUserDefaults.standardUserDefaults().setObject([self.recipe.id], forKey: "favorites")
+            }
+        }
+        self.setFavoriteButtonIcon(self.favoriteButton)
     }
     
     // MARK: - Table view data source
@@ -82,6 +113,11 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let imageUrlString = Constants.GDRecipesImagesPath + recipe.imageName
             cell.recipeImageView.kf_setImageWithURL(NSURL(string: imageUrlString)!, placeholderImage: UIImage(named: "placeholder.jpg"))
 
+            
+            cell.favoriteButton.titleLabel?.font = UIFont.fontAwesomeOfSize(22)
+            self.setFavoriteButtonIcon(cell.favoriteButton)
+            
+            self.favoriteButton = cell.favoriteButton
             
             return cell
         } else if indexPath.section == 1 {
@@ -242,5 +278,13 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let dummyView: UIView = UIView(frame: CGRectMake(0, 0, tableView.bounds.size.width, dummyViewHeight))
         tableView.tableHeaderView = dummyView
         tableView.contentInset = UIEdgeInsetsMake(-dummyViewHeight, 0, 0, 0)
+    }
+    
+    private func setFavoriteButtonIcon(favoriteButton: UIButton) {
+        if self.isFavorite == true {
+            favoriteButton.setTitle(String.fontAwesomeIconWithName(FontAwesome.Heart), forState: .Normal)
+        } else {
+            favoriteButton.setTitle(String.fontAwesomeIconWithName(FontAwesome.HeartO), forState: .Normal)
+        }
     }
 }

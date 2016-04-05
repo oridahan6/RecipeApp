@@ -11,6 +11,7 @@ import UIKit
 class RecipeImageTableViewCell: UITableViewCell {
 
     @IBOutlet var recipeImageView: UIImageView!
+    @IBOutlet var favoriteButton: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

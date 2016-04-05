@@ -552,7 +552,7 @@
                                                 <constraint firstItem="pTV-n9-TZY" firstAttribute="leading" secondItem="dvP-TC-DBl" secondAttribute="trailing" constant="8" id="xMU-Wb-zZK"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.95379849137931039" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.9882352941176471" green="0.9882352941176471" blue="0.9882352941176471" alpha="0.95379849137931039" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="dateAdded" destination="jeR-I3-t6x" id="7OT-fj-UFb"/>
                                             <outlet property="levelLabel" destination="lFA-1t-bFq" id="lxV-gx-0XB"/>
@@ -826,15 +826,41 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Flz-Xl-URX">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="215"/>
                                                 </imageView>
+                                                <imageView userInteractionEnabled="NO" tag="30" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="favorite-btn-bg" translatesAutoresizingMaskIntoConstraints="NO" id="eFn-CA-H8V">
+                                                    <rect key="frame" x="550" y="10" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="U4E-Oa-7Qq"/>
+                                                        <constraint firstAttribute="width" constant="40" id="VQ9-qM-twi"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L1b-4E-1G7">
+                                                    <rect key="frame" x="555" y="16" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="j7i-wv-B2N"/>
+                                                        <constraint firstAttribute="height" constant="30" id="vb7-Ob-7co"/>
+                                                    </constraints>
+                                                    <size key="titleShadowOffset" width="2.2250738585072014e-308" height="2.2250738585072014e-308"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="markAsFavorite:" destination="qb3-eo-CcQ" eventType="touchUpInside" id="Jw2-jQ-ttw"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="L1b-4E-1G7" firstAttribute="top" secondItem="abl-Bo-x7h" secondAttribute="topMargin" constant="8" id="2hW-fM-dHF"/>
                                                 <constraint firstItem="Flz-Xl-URX" firstAttribute="leading" secondItem="abl-Bo-x7h" secondAttribute="leading" id="3Si-5R-ERt"/>
                                                 <constraint firstAttribute="trailing" secondItem="Flz-Xl-URX" secondAttribute="trailing" id="4lm-2d-6UZ"/>
+                                                <constraint firstAttribute="trailing" secondItem="eFn-CA-H8V" secondAttribute="trailing" constant="10" id="KRV-WQ-vq3"/>
                                                 <constraint firstAttribute="bottom" secondItem="Flz-Xl-URX" secondAttribute="bottom" id="Ntc-3x-Di9"/>
                                                 <constraint firstItem="Flz-Xl-URX" firstAttribute="top" secondItem="abl-Bo-x7h" secondAttribute="top" id="fqA-O7-z3D"/>
+                                                <constraint firstItem="eFn-CA-H8V" firstAttribute="top" secondItem="abl-Bo-x7h" secondAttribute="top" constant="10" id="hCW-JN-A1j"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="L1b-4E-1G7" secondAttribute="trailing" constant="7" id="vp7-Mf-e9i"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="favoriteButton" destination="L1b-4E-1G7" id="Bwh-lH-UnM"/>
                                             <outlet property="recipeImageView" destination="Flz-Xl-URX" id="YsG-hp-AwC"/>
                                         </connections>
                                     </tableViewCell>
@@ -905,6 +931,7 @@
         <image name="cheese-icon" width="25" height="20"/>
         <image name="chef-icon" width="25" height="22"/>
         <image name="dotted-line" width="325" height="4"/>
+        <image name="favorite-btn-bg" width="40" height="40"/>
         <image name="placeholder.jpg" width="1250" height="703"/>
         <image name="section-circle" width="30" height="30"/>
         <image name="timer-icon" width="25" height="25"/>
