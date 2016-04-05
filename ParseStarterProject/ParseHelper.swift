@@ -35,4 +35,31 @@ class ParseHelper: NSObject {
             }
         }
     }
+    
+    func updateCategories(vc: CategoriesViewController) -> Void {
+
+        let query = PFQuery(className:"Categories")
+        //        query.whereKey("playerName", equalTo:"Sean Plott")
+        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+            if error == nil {
+                // The find succeeded.
+//                print("Successfully retrieved \(objects!.count) categories.")
+                // Do something with the found objects
+                if let objects = objects {
+                    for object in objects {
+                        if let object = object as? PFObject {
+                            let parseCategory = ParseCategory(category: object)
+                            if let category = Category(category: parseCategory) {
+                                vc.categories.append(category)
+                            }
+                        }
+                    }
+                }
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+            }
+        }
+
+    }
 }

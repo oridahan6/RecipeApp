@@ -9,6 +9,12 @@
 import UIKit
 
 class CategoriesViewController: UITableViewController {
+    
+    var categories = [Category]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -27,6 +33,8 @@ class CategoriesViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         self.title = getLocalizedString("Categories")
+        
+        ParseHelper().updateCategories(self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,24 +45,24 @@ class CategoriesViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return categories.count
     }
 
-    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
 
-        // Configure the cell...
+        let category = categories[indexPath.row]
 
+        print(category)
+        
+        cell.textLabel?.text = category.name
+        
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
