@@ -37,15 +37,15 @@ class FavoritesViewController: UITableViewController {
         
         self.title = getLocalizedString("Favorites")
         
-        if let favoriteIds = NSUserDefaults.standardUserDefaults().arrayForKey("favorites") as? [String] {
-            ParseHelper().updateFavoriteRecipes(self, ids: favoriteIds)
-        }
-        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.reloadFavorites()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -55,6 +55,17 @@ class FavoritesViewController: UITableViewController {
                 let destinationViewController = segue.destinationViewController as! RecipeViewController
                 destinationViewController.recipe = recipe
             }
+        }
+    }
+    
+    //--------------------------------------
+    // MARK: - Helpers
+    //--------------------------------------
+
+    func reloadFavorites() {
+        if let favoriteIds = NSUserDefaults.standardUserDefaults().arrayForKey("favorites") as? [String] {
+            self.recipes = []
+            ParseHelper().updateFavoriteRecipes(self, ids: favoriteIds)
         }
     }
 

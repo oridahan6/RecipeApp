@@ -52,15 +52,93 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // set table view background image
         self.view.backgroundColor = UIColor(patternImage: Helpers().getDeviceSpecificBGImage("tableview-bg"))
 
+        self.tableView.backgroundColor = UIColor.clearColor()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.prepareFavoritesElements()
+    }
+    
+    //--------------------------------------
+    // MARK: - Helpers
+    //--------------------------------------
+    
+    private func getNumOfRowsFromDict(dict: [String: [String]]) -> Int {
+        var numOfRows: Int = 0
+        if dict.count > 1 {
+            numOfRows += dict.count - 1
+        }
+        for (_, values) in dict {
+            numOfRows += values.count
+        }
+        return numOfRows
+    }
+    
+    private func setSectionHeaderElements(cell: SectionHeaderTableViewCell, FAIconName: FontAwesome, title: String) {
+        cell.sectionHeaderIconImageView.image = UIImage.fontAwesomeIconWithName(FAIconName, textColor: UIColor.blackColor(), size: CGSizeMake(20, 20))
+        cell.titleLabel.text = getLocalizedString(title)
+    }
+    
+    private func prepareIngredientsOrderedArray() {
         
-        if let favoritesIds = NSUserDefaults.standardUserDefaults().arrayForKey("favorites") as? [String] {
-            if favoritesIds.contains(recipe.id) {
-                isFavorite = true
+        for (title, ingredients) in recipe.ingredients.reverse() {
+            
+            if title != "general" {
+                self.ingredientsOrderedArray.append(title)
+                self.ingredientsSubtitleByIndexArray.append(true)
+            }
+            for ingredient in ingredients {
+                self.ingredientsSubtitleByIndexArray.append(false)
+                self.ingredientsOrderedArray.append(ingredient)
             }
             
         }
         
-        self.tableView.backgroundColor = UIColor.clearColor()
+    }
+    
+    private func prepareDirectionsOrderedArray() {
+        
+        for (title, directions) in recipe.directions.reverse() {
+            
+            if title != "general" {
+                self.directionsOrderedArray.append(title)
+                self.directionsSubtitleByIndexArray.append(true)
+            }
+            for direction in directions {
+                self.directionsSubtitleByIndexArray.append(false)
+                self.directionsOrderedArray.append(direction)
+            }
+            
+        }
+        
+    }
+    
+    private func stopSectionsHeadersFromFloating() {
+        let dummyViewHeight: CGFloat = 60
+        let dummyView: UIView = UIView(frame: CGRectMake(0, 0, tableView.bounds.size.width, dummyViewHeight))
+        tableView.tableHeaderView = dummyView
+        tableView.contentInset = UIEdgeInsetsMake(-dummyViewHeight, 0, 0, 0)
+    }
+    
+    private func setFavoriteButtonIcon(favoriteButton: UIButton) {
+        if self.isFavorite == true {
+            favoriteButton.setTitle(String.fontAwesomeIconWithName(FontAwesome.Heart), forState: .Normal)
+        } else {
+            favoriteButton.setTitle(String.fontAwesomeIconWithName(FontAwesome.HeartO), forState: .Normal)
+        }
+    }
+    
+    private func prepareFavoritesElements() {
+        if let favoritesIds = NSUserDefaults.standardUserDefaults().arrayForKey("favorites") as? [String] {
+            if favoritesIds.contains(recipe.id) {
+                isFavorite = true
+            } else {
+                isFavorite = false
+            }
+        }
+        if let favoriteButton = self.favoriteButton {
+            self.setFavoriteButtonIcon(favoriteButton)
+        }
     }
     
     //--------------------------------------
@@ -228,74 +306,5 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         cell.backgroundColor = .clearColor()
-    }
-    
-    //--------------------------------------
-    // MARK: - Helpers
-    //--------------------------------------
-    
-    private func getNumOfRowsFromDict(dict: [String: [String]]) -> Int {
-        var numOfRows: Int = 0
-        if dict.count > 1 {
-            numOfRows += dict.count - 1
-        }
-        for (_, values) in dict {
-            numOfRows += values.count
-        }
-        return numOfRows
-    }
-    
-    private func setSectionHeaderElements(cell: SectionHeaderTableViewCell, FAIconName: FontAwesome, title: String) {
-        cell.sectionHeaderIconImageView.image = UIImage.fontAwesomeIconWithName(FAIconName, textColor: UIColor.blackColor(), size: CGSizeMake(20, 20))
-        cell.titleLabel.text = getLocalizedString(title)
-    }
-    
-    private func prepareIngredientsOrderedArray() {
-        
-        for (title, ingredients) in recipe.ingredients.reverse() {
-            
-            if title != "general" {
-                self.ingredientsOrderedArray.append(title)
-                self.ingredientsSubtitleByIndexArray.append(true)
-            }
-            for ingredient in ingredients {
-                self.ingredientsSubtitleByIndexArray.append(false)
-                self.ingredientsOrderedArray.append(ingredient)
-            }
-            
-        }
-
-    }
-
-    private func prepareDirectionsOrderedArray() {
-        
-        for (title, directions) in recipe.directions.reverse() {
-            
-            if title != "general" {
-                self.directionsOrderedArray.append(title)
-                self.directionsSubtitleByIndexArray.append(true)
-            }
-            for direction in directions {
-                self.directionsSubtitleByIndexArray.append(false)
-                self.directionsOrderedArray.append(direction)
-            }
-            
-        }
-        
-    }
-
-    private func stopSectionsHeadersFromFloating() {
-        let dummyViewHeight: CGFloat = 60
-        let dummyView: UIView = UIView(frame: CGRectMake(0, 0, tableView.bounds.size.width, dummyViewHeight))
-        tableView.tableHeaderView = dummyView
-        tableView.contentInset = UIEdgeInsetsMake(-dummyViewHeight, 0, 0, 0)
-    }
-    
-    private func setFavoriteButtonIcon(favoriteButton: UIButton) {
-        if self.isFavorite == true {
-            favoriteButton.setTitle(String.fontAwesomeIconWithName(FontAwesome.Heart), forState: .Normal)
-        } else {
-            favoriteButton.setTitle(String.fontAwesomeIconWithName(FontAwesome.HeartO), forState: .Normal)
-        }
     }
 }
