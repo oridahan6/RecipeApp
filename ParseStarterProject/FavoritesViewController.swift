@@ -13,9 +13,11 @@ class FavoritesViewController: UITableViewController {
     let CellIdentifier = "FavoriteRecipeTableViewCell"
     let SegueRecipeViewController = "RecipeViewController"
 
+    var recipeIds = [String]()
     var recipes = [Recipe]() {
         didSet {
             tableView.reloadData()
+            self.updateRecipeIds()
         }
     }
 
@@ -64,8 +66,44 @@ class FavoritesViewController: UITableViewController {
 
     func reloadFavorites() {
         if let favoriteIds = NSUserDefaults.standardUserDefaults().arrayForKey("favorites") as? [String] {
-            self.recipes = []
-            ParseHelper().updateFavoriteRecipes(self, ids: favoriteIds)
+            if favoriteIds.count > self.recipes.count {
+                self.addToFavoritesList(favoriteIds)
+            } else if favoriteIds.count < self.recipes.count {
+                self.removeFromFavoritesList(favoriteIds)
+            }
+        }
+    }
+    
+    func addToFavoritesList(favoriteIds: [String]) {
+        
+        self.updateRecipeIds()
+        let notDisplayedRecipeIds = favoriteIds.filter() {
+            let id = $0
+            if self.recipeIds.contains(id) {
+                return false
+            }
+            return true
+        }
+        ParseHelper().updateFavoriteRecipes(self, ids: notDisplayedRecipeIds)
+    }
+    
+    func removeFromFavoritesList(favoriteIds: [String]) {
+        
+        let removedFromFavoritesRecipeIds = self.recipeIds.getDiffFromArray(favoriteIds)
+        self.recipes = self.recipes.filter() {
+            let recipe = $0
+            if removedFromFavoritesRecipeIds.contains(recipe.id) {
+                return false
+            }
+            return true
+        }
+    }
+    
+    func updateRecipeIds() {
+        for recipe in self.recipes {
+            if !self.recipeIds.contains(recipe.id) {
+                self.recipeIds.append(recipe.id)
+            }
         }
     }
 

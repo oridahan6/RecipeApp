@@ -22,7 +22,17 @@ class Recipe: NSObject {
     var type: String = ""
     var imageName: String = ""
     
+    //--------------------------------------
+    // MARK: - Printable
+    //--------------------------------------
+    override var description: String {
+        return "Recipe - title: \(self.title), id: \(self.id)"
+    }
+    
+    //--------------------------------------
     // MARK: - Init Methods
+    //--------------------------------------
+
     init?(recipe: ParseRecipe) {
         super.init()
 

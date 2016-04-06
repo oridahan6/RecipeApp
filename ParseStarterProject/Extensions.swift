@@ -103,6 +103,25 @@ extension NSDate {
 
 }
 
+// Arrays
+extension CollectionType where Generator.Element : Comparable {
+
+    // Return difference between arrays
+    func getDiffFromArray(elem: [String]) -> [String] {
+        if let selfArray = self as? [String] {
+            let setA = Set(selfArray)
+            let setB = Set(elem)
+            
+            // Return a set with all values in A which are not contained in B
+            let diff = setA.subtract(setB)
+            
+            return Array(diff)
+        }
+        return []
+ 
+    }
+}
+
 extension RangeReplaceableCollectionType where Generator.Element : Equatable {
     
     // Remove first collection element that is equal to the given `object`:
@@ -111,4 +130,5 @@ extension RangeReplaceableCollectionType where Generator.Element : Equatable {
             self.removeAtIndex(index)
         }
     }
+    
 }
