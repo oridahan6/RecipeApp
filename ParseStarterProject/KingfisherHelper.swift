@@ -9,9 +9,9 @@
 import UIKit
 import Kingfisher
 
-class KingfisherCacheHelper {
+class KingfisherHelper {
 
-    static let sharedInstance = KingfisherCacheHelper()
+    static let sharedInstance = KingfisherHelper()
     
     private var cache: ImageCache
     
@@ -19,6 +19,17 @@ class KingfisherCacheHelper {
         self.cache = KingfisherManager.sharedManager.cache
     }
     
+    //--------------------------------------
+    // MARK: - Images
+    //--------------------------------------
+    func setImageWithUrl(imageView: UIImageView, url: String) {
+        imageView.kf_setImageWithURL(NSURL(string: url)!, placeholderImage: UIImage(named: "placeholder.jpg"))
+    }
+    
+    //--------------------------------------
+    // MARK: - Cache
+    //--------------------------------------
+
     func clearAllCache() {
         self.clearDiskCache()
         self.clearMemoryCache()

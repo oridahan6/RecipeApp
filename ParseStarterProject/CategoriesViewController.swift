@@ -58,7 +58,9 @@ class CategoriesViewController: UITableViewController {
         }
     }
 
+    //--------------------------------------
     // MARK: - Table view data source
+    //--------------------------------------
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -78,7 +80,7 @@ class CategoriesViewController: UITableViewController {
         
         // update image async
         let imageUrlString = Constants.GDCategoriesImagesPath + category.imageName
-        cell.categoryImage.kf_setImageWithURL(NSURL(string: imageUrlString)!, placeholderImage: UIImage(named: "placeholder.jpg"))
+        KingfisherHelper.sharedInstance.setImageWithUrl(cell.categoryImage, url: imageUrlString)
         
         cell.selectionStyle = UITableViewCellSelectionStyle.None
 

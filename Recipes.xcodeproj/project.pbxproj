@@ -40,7 +40,7 @@
 		0C7BDA7E1CA942DF0056ADCD /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7BDA7D1CA942DF0056ADCD /* Helpers.swift */; };
 		0C7BDA811CA95E260056ADCD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C7BDA831CA95E260056ADCD /* Localizable.strings */; };
 		0C7BDA851CA969BB0056ADCD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7BDA841CA969BB0056ADCD /* Extensions.swift */; };
-		0C999F5C1CB4D80400E3844D /* KingfisherCacheHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C999F5B1CB4D80400E3844D /* KingfisherCacheHelper.swift */; };
+		0C999F5C1CB4D80400E3844D /* KingfisherHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C999F5B1CB4D80400E3844D /* KingfisherHelper.swift */; };
 		0CD15FF01CB1323200C7B828 /* hillelclm-medium-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0CD15FEF1CB1323200C7B828 /* hillelclm-medium-webfont.ttf */; };
 		0CD15FF31CB140F000C7B828 /* Alef-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0CD15FF11CB140F000C7B828 /* Alef-bold.ttf */; };
 		0CD15FF41CB140F000C7B828 /* Alef-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0CD15FF21CB140F000C7B828 /* Alef-regular.ttf */; };
@@ -96,7 +96,7 @@
 		0C7BDA7D1CA942DF0056ADCD /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Helpers.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0C7BDA821CA95E260056ADCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0C7BDA841CA969BB0056ADCD /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Extensions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		0C999F5B1CB4D80400E3844D /* KingfisherCacheHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KingfisherCacheHelper.swift; sourceTree = "<group>"; };
+		0C999F5B1CB4D80400E3844D /* KingfisherHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KingfisherHelper.swift; sourceTree = "<group>"; };
 		0CD15FEF1CB1323200C7B828 /* hillelclm-medium-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "hillelclm-medium-webfont.ttf"; sourceTree = "<group>"; };
 		0CD15FF11CB140F000C7B828 /* Alef-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Alef-bold.ttf"; sourceTree = "<group>"; };
 		0CD15FF21CB140F000C7B828 /* Alef-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Alef-regular.ttf"; sourceTree = "<group>"; };
@@ -250,7 +250,7 @@
 				0C7BDA7B1CA931F80056ADCD /* Constants.swift */,
 				0C7BDA7D1CA942DF0056ADCD /* Helpers.swift */,
 				0C7BDA841CA969BB0056ADCD /* Extensions.swift */,
-				0C999F5B1CB4D80400E3844D /* KingfisherCacheHelper.swift */,
+				0C999F5B1CB4D80400E3844D /* KingfisherHelper.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -497,7 +497,7 @@
 				0C0CD0D11CAD61CC00F682F9 /* SectionHeaderTableViewCell.swift in Sources */,
 				0C7BDA7C1CA931F80056ADCD /* Constants.swift in Sources */,
 				81BA814B1A49DA1800E65899 /* AppDelegate.swift in Sources */,
-				0C999F5C1CB4D80400E3844D /* KingfisherCacheHelper.swift in Sources */,
+				0C999F5C1CB4D80400E3844D /* KingfisherHelper.swift in Sources */,
 				0C7BD9E81CA809AD0056ADCD /* ParseHelper.swift in Sources */,
 				0C192F241CB38D4B00811CB4 /* ParseCategory.swift in Sources */,
 				0C0CD0C91CABD5FB00F682F9 /* FontAwesome.swift in Sources */,

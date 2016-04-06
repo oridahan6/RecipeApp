@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Kingfisher
+//import Kingfisher
 
 class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -30,8 +30,10 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     private var directionsSubtitleByIndexArray = [Bool]()
     private var directionsOrderedArray = [String]()
     
-    // MARK: -
-    // MARK: View Life Cycle
+    //--------------------------------------
+    // MARK: - View Life Cycle
+    //--------------------------------------
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,7 +63,9 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.tableView.backgroundColor = UIColor.clearColor()
     }
     
+    //--------------------------------------
     // MARK: - Buttons actions
+    //--------------------------------------
 
     @IBAction func markAsFavorite(sender: AnyObject) {
         if self.isFavorite == true {
@@ -82,7 +86,9 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.setFavoriteButtonIcon(self.favoriteButton)
     }
     
+    //--------------------------------------
     // MARK: - Table view data source
+    //--------------------------------------
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 4
@@ -111,8 +117,7 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             // update image async
             let imageUrlString = Constants.GDRecipesImagesPath + recipe.imageName
-            cell.recipeImageView.kf_setImageWithURL(NSURL(string: imageUrlString)!, placeholderImage: UIImage(named: "placeholder.jpg"))
-
+            KingfisherHelper.sharedInstance.setImageWithUrl(cell.recipeImageView, url: imageUrlString)
             
             cell.favoriteButton.titleLabel?.font = UIFont.fontAwesomeOfSize(22)
             self.setFavoriteButtonIcon(cell.favoriteButton)
@@ -225,8 +230,10 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.backgroundColor = .clearColor()
     }
     
-    // MARK: -
-    // MARK: Helpers
+    //--------------------------------------
+    // MARK: - Helpers
+    //--------------------------------------
+    
     private func getNumOfRowsFromDict(dict: [String: [String]]) -> Int {
         var numOfRows: Int = 0
         if dict.count > 1 {

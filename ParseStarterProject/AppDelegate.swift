@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.customizeApp()
         
-//        KingfisherCacheHelper.sharedInstance.clearAllCache()
+//        KingfisherHelper.sharedInstance.clearAllCache()
     
         self.configureParse(application, launchOptions: launchOptions)
         
