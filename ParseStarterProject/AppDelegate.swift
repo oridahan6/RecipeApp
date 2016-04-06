@@ -29,56 +29,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.customizeApp()
         
 //        KingfisherCacheHelper.sharedInstance.clearAllCache()
-        
-        // Enable storing and querying data from Local Datastore.
-        // Remove this line if you don't want to use Local Datastore features or want to use cachePolicy.
-        Parse.enableLocalDatastore()
-
-        Parse.setApplicationId("TfxEtNghomvfES82wGReLepDKSmQcgq5wJwQqxIi",
-            clientKey: "p8ZdtbGbMmlbYAhDEXGQ9iIcJDkfzNroNnMvdW03")
-
-//        PFUser.enableAutomaticUser()
-
-        let defaultACL = PFACL();
-
-        // If you would like all objects to be private by default, remove this line.
-        defaultACL.setPublicReadAccess(true)
-
-        PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser:true)
-
-        if application.applicationState != UIApplicationState.Background {
-            // Track an app open here if we launch with a push, unless
-            // "content_available" was used to trigger a background push (introduced in iOS 7).
-            // In that case, we skip tracking here to avoid double counting the app-open.
-
-            let preBackgroundPush = !application.respondsToSelector("backgroundRefreshStatus")
-            let oldPushHandlerOnly = !self.respondsToSelector("application:didReceiveRemoteNotification:fetchCompletionHandler:")
-            var noPushPayload = false;
-            if let options = launchOptions {
-                noPushPayload = options[UIApplicationLaunchOptionsRemoteNotificationKey] != nil;
-            }
-            if (preBackgroundPush || oldPushHandlerOnly || noPushPayload) {
-                PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
-            }
-        }
-        
-        if application.respondsToSelector("registerUserNotificationSettings:") {
-            let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-            
-            
-           
-            application.registerUserNotificationSettings(settings)
-            application.registerForRemoteNotifications()
-        } else {
-            let types: UIUserNotificationType = [.Alert, .Badge, .Sound]
-            let settings = UIUserNotificationSettings(forTypes: types, categories: nil)
-            application.registerUserNotificationSettings(settings)
-            application.registerForRemoteNotifications()
-        }
     
+        self.configureParse(application, launchOptions: launchOptions)
+        
         return true
     }
-
+    
+    // MARK:- customization
+    
+    func customizeApp() {
+        // Set Navigation bar background image
+        let navBgImage:UIImage = UIImage(named: "navbar.png")!
+        UINavigationBar.appearance().setBackgroundImage(navBgImage, forBarMetrics: .Default)
+        
+        // Set Navigation bar Title font & color
+        UINavigationBar.appearance().titleTextAttributes = ([NSFontAttributeName: UIFont(name: "Alef-Bold", size: 20)! ,NSForegroundColorAttributeName:UIColor.whiteColor()])
+        
+        // Set Navigation bar tint color
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        
+        // Set bar button items font
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Alef-Regular", size: 18)!], forState: UIControlState.Normal)
+        
+        // Light status bar color
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
+        
+        // Set Tab bar tint color
+        UITabBar.appearance().tintColor = UIColor(red:0.682, green:0.29, blue:0.302, alpha:1)
+        
+        // Set tab bar items font
+        UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Alef-Regular", size: 10)!], forState: UIControlState.Normal)
+    }
+    
     //--------------------------------------
     // MARK: Push Notifications
     //--------------------------------------
@@ -133,27 +115,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // }
     
     // MARK:- customization
-    func customizeApp() {
-        // Set Navigation bar background image
-        let navBgImage:UIImage = UIImage(named: "navbar.png")!
-        UINavigationBar.appearance().setBackgroundImage(navBgImage, forBarMetrics: .Default)
-        
-        // Set Navigation bar Title font & color
-        UINavigationBar.appearance().titleTextAttributes = ([NSFontAttributeName: UIFont(name: "Alef-Bold", size: 20)! ,NSForegroundColorAttributeName:UIColor.whiteColor()])
 
-        // Set Navigation bar tint color
-        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+    func configureParse(application: UIApplication, launchOptions: [NSObject: AnyObject]?) {
         
-        // Set bar button items font
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Alef-Regular", size: 18)!], forState: UIControlState.Normal)
+        // Enable storing and querying data from Local Datastore.
+        // Remove this line if you don't want to use Local Datastore features or want to use cachePolicy.
+        Parse.enableLocalDatastore()
         
-        // Light status bar color
-        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
+        Parse.setApplicationId("TfxEtNghomvfES82wGReLepDKSmQcgq5wJwQqxIi",
+                               clientKey: "p8ZdtbGbMmlbYAhDEXGQ9iIcJDkfzNroNnMvdW03")
         
-        // Set Tab bar tint color
-        UITabBar.appearance().tintColor = UIColor(red:0.682, green:0.29, blue:0.302, alpha:1)
+        //        PFUser.enableAutomaticUser()
         
-        // Set tab bar items font
-        UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Alef-Regular", size: 10)!], forState: UIControlState.Normal)
+        let defaultACL = PFACL();
+        
+        // If you would like all objects to be private by default, remove this line.
+        defaultACL.setPublicReadAccess(true)
+        
+        PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser:true)
+        
+        if application.applicationState != UIApplicationState.Background {
+            // Track an app open here if we launch with a push, unless
+            // "content_available" was used to trigger a background push (introduced in iOS 7).
+            // In that case, we skip tracking here to avoid double counting the app-open.
+            
+            let preBackgroundPush = !application.respondsToSelector("backgroundRefreshStatus")
+            let oldPushHandlerOnly = !self.respondsToSelector("application:didReceiveRemoteNotification:fetchCompletionHandler:")
+            var noPushPayload = false;
+            if let options = launchOptions {
+                noPushPayload = options[UIApplicationLaunchOptionsRemoteNotificationKey] != nil;
+            }
+            if (preBackgroundPush || oldPushHandlerOnly || noPushPayload) {
+                PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
+            }
+        }
+        
+        if application.respondsToSelector("registerUserNotificationSettings:") {
+            let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+            
+            
+            
+            application.registerUserNotificationSettings(settings)
+            application.registerForRemoteNotifications()
+        } else {
+            let types: UIUserNotificationType = [.Alert, .Badge, .Sound]
+            let settings = UIUserNotificationSettings(forTypes: types, categories: nil)
+            application.registerUserNotificationSettings(settings)
+            application.registerForRemoteNotifications()
+        }
+
     }
 }
