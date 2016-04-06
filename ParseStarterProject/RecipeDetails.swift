@@ -10,6 +10,12 @@ import UIKit
 
 class RecipeDetails: UIView {
 
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var dateAddedLabel: UILabel!
+    @IBOutlet var levelLabel: UILabel!
+    @IBOutlet var overallTimeLabel: UILabel!
+    @IBOutlet var typeLabel: UILabel!
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }

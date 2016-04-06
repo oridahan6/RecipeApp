@@ -89,5 +89,33 @@ class ParseHelper: NSObject {
         }
         
     }
+    
+    func updateFavoriteRecipes(vc: FavoritesViewController, ids: [String]) -> Void {
+        
+        let query = PFQuery(className:"Recipe")
+        query.whereKey("objectId", containedIn: ids)
+        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+            if error == nil {
+                // The find succeeded.
+                print("Successfully retrieved \(objects!.count) recipes.")
+                // Do something with the found objects
+                if let objects = objects {
+                    for object in objects {
+                        if let object = object as? PFObject {
+                            let parseRecipe = ParseRecipe(recipe: object)
+                            if let recipe = Recipe(recipe: parseRecipe) {
+                                vc.recipes.append(recipe)
+                            }
+                        }
+                    }
+                }
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+            }
+        }
+        
+    }
+
 
 }

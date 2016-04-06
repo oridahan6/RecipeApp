@@ -1,14 +1,14 @@
 //
-//  RecipeTableViewCell.swift
+//  FavoriteRecipeTableViewCell.swift
 //  Recipes
 //
-//  Created by Ori Dahan on 28/03/2016.
+//  Created by Ori Dahan on 06/04/2016.
 //  Copyright © 2016 Parse. All rights reserved.
 //
 
 import UIKit
 
-class RecipeTableViewCell: UITableViewCell {
+class FavoriteRecipeTableViewCell: UITableViewCell {
 
     @IBOutlet var recipeImageView: UIImageView!
     @IBOutlet var recipeDetailsView: RecipeDetails!

@@ -10,6 +10,15 @@ import UIKit
 
 class FavoritesViewController: UITableViewController {
 
+    let CellIdentifier = "FavoriteRecipeTableViewCell"
+    let SegueRecipeViewController = "RecipeViewController"
+
+    var recipes = [Recipe]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -27,11 +36,26 @@ class FavoritesViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         self.title = getLocalizedString("Favorites")
+        
+        if let favoriteIds = NSUserDefaults.standardUserDefaults().arrayForKey("favorites") as? [String] {
+            ParseHelper().updateFavoriteRecipes(self, ids: favoriteIds)
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == SegueRecipeViewController {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let recipe = recipes[indexPath.row]
+                let destinationViewController = segue.destinationViewController as! RecipeViewController
+                destinationViewController.recipe = recipe
+            }
+        }
     }
 
     //--------------------------------------
@@ -39,24 +63,31 @@ class FavoritesViewController: UITableViewController {
     //--------------------------------------
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return recipes.count
     }
 
-    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as! FavoriteRecipeTableViewCell
+        
+        let recipe = recipes[indexPath.row]
+        
+        cell.recipeDetailsView.titleLabel.text = recipe.title
+        cell.recipeDetailsView.typeLabel.text = recipe.type
+        cell.recipeDetailsView.levelLabel.text = recipe.level
+        cell.recipeDetailsView.overallTimeLabel.text = recipe.getOverallPreperationTimeText()
+        
+        // update image async
+        let imageUrlString = Constants.GDRecipesImagesPath + recipe.imageName
+        KingfisherHelper.sharedInstance.setImageWithUrl(cell.recipeImageView, url: imageUrlString)
+        
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
