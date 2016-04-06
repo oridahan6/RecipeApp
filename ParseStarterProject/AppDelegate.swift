@@ -35,8 +35,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    // MARK:- customization
-    
+    //--------------------------------------
+    // MARK: - App Customization
+    //--------------------------------------
+
     func customizeApp() {
         // Set Navigation bar background image
         let navBgImage:UIImage = UIImage(named: "navbar.png")!

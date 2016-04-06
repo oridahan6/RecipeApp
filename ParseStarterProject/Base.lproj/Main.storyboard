@@ -723,6 +723,7 @@
                                                     <nil key="highlightedColor"/>
                                                     <variation key="default">
                                                         <mask key="constraints">
+                                                            <exclude reference="1CZ-Ed-ZID"/>
                                                             <exclude reference="Vei-P9-ShF"/>
                                                         </mask>
                                                     </variation>
@@ -744,6 +745,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="8NG-Ef-X4g" secondAttribute="trailing" constant="46" id="Shs-5o-Ddn"/>
                                                 <constraint firstItem="8NG-Ef-X4g" firstAttribute="top" secondItem="B0Z-h9-Iaz" secondAttribute="top" constant="9" id="Vj4-kM-sbd"/>
                                                 <constraint firstAttribute="trailing" secondItem="uBh-cc-y0K" secondAttribute="trailing" constant="85" id="dmr-qk-fbg"/>
+                                                <constraint firstAttribute="bottom" secondItem="uBh-cc-y0K" secondAttribute="bottom" constant="12" id="sg3-gj-SOM"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

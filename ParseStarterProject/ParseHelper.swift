@@ -65,8 +65,6 @@ class ParseHelper: NSObject {
     
     func updateRecipesFromCategoryId(vc: RecipesViewController, catId: Int) -> Void {
         
-        print(catId)
-        
         let query = PFQuery(className:"Recipe")
         query.whereKey("categories", equalTo:catId)
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in

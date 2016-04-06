@@ -54,8 +54,6 @@ class CategoriesViewController: UITableViewController {
                 let destinationViewController = segue.destinationViewController as! RecipesViewController
                 destinationViewController.loadAllRecipes = false
                 ParseHelper().updateRecipesFromCategoryId(destinationViewController, catId: category.catId)
-                
-//                destinationViewController.recipes = recipe
             }
         }
     }

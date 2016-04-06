@@ -168,13 +168,17 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return 215
+        } else if indexPath.section == 1 {
+            return 53.0
         }
         return UITableViewAutomaticDimension
     }
     
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 215
+            return 215.0
+        } else if indexPath.section == 1 {
+            return 53.0
         }
         return UITableViewAutomaticDimension
     }
