@@ -66,39 +66,40 @@ class FavoritesViewController: UITableViewController {
 
     func reloadFavorites() {
         if let favoriteIds = NSUserDefaults.standardUserDefaults().arrayForKey("favorites") as? [String] {
-            if favoriteIds.count > self.recipes.count {
-                self.addToFavoritesList(favoriteIds)
-            } else if favoriteIds.count < self.recipes.count {
-                self.removeFromFavoritesList(favoriteIds)
-            }
+            self.addToFavorites(favoriteIds)
+            self.removeFromFavorites(favoriteIds)
         }
     }
     
-    func addToFavoritesList(favoriteIds: [String]) {
+    func addToFavorites(favoriteIds: [String]) {
+        var recipeIdsToAdd = [String]()
         
-        self.updateRecipeIds()
-        let notDisplayedRecipeIds = favoriteIds.filter() {
-            let id = $0
-            if self.recipeIds.contains(id) {
-                return false
+        for id in favoriteIds {
+            if !self.recipeIds.contains(id) {
+                recipeIdsToAdd.append(id)
             }
-            return true
         }
-        ParseHelper().updateFavoriteRecipes(self, ids: notDisplayedRecipeIds)
-    }
-    
-    func removeFromFavoritesList(favoriteIds: [String]) {
+        if !recipeIdsToAdd.isEmpty {
+            ParseHelper().updateFavoriteRecipes(self, ids: recipeIdsToAdd)
+        }
         
-        let removedFromFavoritesRecipeIds = self.recipeIds.getDiffFromArray(favoriteIds)
-        self.recipes = self.recipes.filter() {
-            let recipe = $0
-            if removedFromFavoritesRecipeIds.contains(recipe.id) {
-                return false
-            }
-            return true
-        }
     }
     
+    func removeFromFavorites(favoriteIds: [String]) {
+        for recipeId in recipeIds {
+            if !favoriteIds.contains(recipeId) {
+                recipeIds.removeObject(recipeId)
+                for recipe in recipes {
+                    if recipe.id == recipeId {
+                        if let index = recipes.indexOf(recipe) {
+                            recipes.removeAtIndex(index)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     func updateRecipeIds() {
         for recipe in self.recipes {
             if !self.recipeIds.contains(recipe.id) {
