@@ -146,11 +146,11 @@ class FavoritesViewController: UITableViewController {
         if editingStyle == .Delete {
             if var favoriteIds = NSUserDefaults.standardUserDefaults().arrayForKey("favorites") as? [String] {
                 let recipe = self.recipes[indexPath.row]
-                    favoriteIds.removeObject(recipe.id)
-                    NSUserDefaults.standardUserDefaults().setObject(favoriteIds, forKey: "favorites")
-                }
+                favoriteIds.removeObject(recipe.id)
+                NSUserDefaults.standardUserDefaults().setObject(favoriteIds, forKey: "favorites")
             }
             self.recipes.removeAtIndex(indexPath.row)
+        }
     }
     
     //--------------------------------------
