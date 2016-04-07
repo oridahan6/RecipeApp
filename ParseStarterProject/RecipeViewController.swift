@@ -248,6 +248,10 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return UITableViewCell()
     }
     
+    //--------------------------------------
+    // MARK: - Table view delegate
+    //--------------------------------------
+
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return 215

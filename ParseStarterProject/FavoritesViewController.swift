@@ -34,10 +34,10 @@ class FavoritesViewController: UITableViewController {
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
         self.title = getLocalizedString("Favorites")
+        
+        // Create Edit Button
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: getLocalizedString("edit"), style: .Plain, target: self, action: #selector(FavoritesViewController.editItems(_:)))
         
     }
 
@@ -48,16 +48,6 @@ class FavoritesViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         self.reloadFavorites()
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == SegueRecipeViewController {
-            if let indexPath = tableView.indexPathForSelectedRow {
-                let recipe = recipes[indexPath.row]
-                let destinationViewController = segue.destinationViewController as! RecipeViewController
-                destinationViewController.recipe = recipe
-            }
-        }
     }
     
     //--------------------------------------
@@ -108,6 +98,15 @@ class FavoritesViewController: UITableViewController {
         }
     }
 
+    func editItems(sender: UIBarButtonItem) {
+        tableView.setEditing(!tableView.editing, animated: true)
+        if tableView.editing {
+            navigationItem.rightBarButtonItem?.title = getLocalizedString("done")
+        } else {
+            navigationItem.rightBarButtonItem?.title = getLocalizedString("edit")
+        }
+    }
+    
     //--------------------------------------
     // MARK: - Table view data source
     //--------------------------------------
@@ -139,49 +138,46 @@ class FavoritesViewController: UITableViewController {
         return cell
     }
 
-    /*
-    // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
-
-    /*
-    // Override to support editing the table view.
+    
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            if var favoriteIds = NSUserDefaults.standardUserDefaults().arrayForKey("favorites") as? [String] {
+                let recipe = self.recipes[indexPath.row]
+                    favoriteIds.removeObject(recipe.id)
+                    NSUserDefaults.standardUserDefaults().setObject(favoriteIds, forKey: "favorites")
+                }
+            }
+            self.recipes.removeAtIndex(indexPath.row)
     }
-    */
+    
+    //--------------------------------------
+    // MARK: - Table view delegate
+    //--------------------------------------
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
+    override func tableView(tableView: UITableView, willBeginEditingRowAtIndexPath indexPath: NSIndexPath) {
+        print("edit \(indexPath.row)")
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+    
+    override func tableView(tableView: UITableView, shouldIndentWhileEditingRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return false
     }
-    */
-
-    /*
+    
+    //--------------------------------------
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    //--------------------------------------
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == SegueRecipeViewController {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let recipe = recipes[indexPath.row]
+                let destinationViewController = segue.destinationViewController as! RecipeViewController
+                destinationViewController.recipe = recipe
+            }
+        }
     }
-    */
+    
 
 }

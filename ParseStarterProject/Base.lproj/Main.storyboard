@@ -189,7 +189,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoriteRecipeTableViewCell" rowHeight="215" id="eHb-Iv-UK0" customClass="FavoriteRecipeTableViewCell" customModule="Recipes" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="FavoriteRecipeTableViewCell" rowHeight="215" id="eHb-Iv-UK0" customClass="FavoriteRecipeTableViewCell" customModule="Recipes" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="215"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eHb-Iv-UK0" id="KJD-QI-MNj">
