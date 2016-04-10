@@ -13,10 +13,15 @@ class FavoritesViewController: UITableViewController {
     let CellIdentifier = "FavoriteRecipeTableViewCell"
     let SegueRecipeViewController = "RecipeViewController"
 
+    var recipeRemoved = false
+    
     var recipeIds = [String]()
     var recipes = [Recipe]() {
         didSet {
-            tableView.reloadData()
+            if !self.recipeRemoved {
+                tableView.reloadData()
+            }
+            self.recipeRemoved = false
             self.updateRecipeIds()
         }
     }
@@ -143,12 +148,14 @@ class FavoritesViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
+            recipeRemoved = true
             if var favoriteIds = NSUserDefaults.standardUserDefaults().arrayForKey("favorites") as? [String] {
                 let recipe = self.recipes[indexPath.row]
                 favoriteIds.removeObject(recipe.id)
                 NSUserDefaults.standardUserDefaults().setObject(favoriteIds, forKey: "favorites")
             }
             self.recipes.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Left)
         }
     }
     
