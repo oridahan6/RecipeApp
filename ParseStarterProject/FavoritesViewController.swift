@@ -91,10 +91,9 @@ class FavoritesViewController: UITableViewController {
     }
 
     func updateRecipeIds() {
+        self.recipeIds = []
         for recipe in self.recipes {
-            if !self.recipeIds.contains(recipe.id) {
-                self.recipeIds.append(recipe.id)
-            }
+            self.recipeIds.append(recipe.id)
         }
     }
 
