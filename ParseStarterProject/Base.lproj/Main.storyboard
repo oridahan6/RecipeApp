@@ -196,14 +196,14 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="215"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="mOG-VL-xPj">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="mOG-VL-xPj">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="215"/>
                                         </imageView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="634-3j-bKj" customClass="RecipeDetails" customModule="Recipes" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="165" width="600" height="50"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="לזניה" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dkc-56-g3u">
-                                                    <rect key="frame" x="121" y="2" width="471" height="28"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="לזניה" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dkc-56-g3u">
+                                                    <rect key="frame" x="44" y="2" width="548" height="28"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="28" id="LtL-5c-are"/>
                                                     </constraints>
@@ -297,6 +297,7 @@
                                             </subviews>
                                             <color key="backgroundColor" red="0.9882352941176471" green="0.9882352941176471" blue="0.9882352941176471" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Dkc-56-g3u" secondAttribute="trailing" constant="8" id="51S-Ue-sAt"/>
                                                 <constraint firstItem="uSs-pD-5Qu" firstAttribute="leading" secondItem="1a7-Gl-miw" secondAttribute="trailing" constant="8" id="7Oj-km-G8K"/>
                                                 <constraint firstAttribute="trailing" secondItem="uFo-lJ-OSW" secondAttribute="trailing" constant="8" id="88e-d3-qU3"/>
                                                 <constraint firstItem="XQy-Jc-AYE" firstAttribute="top" secondItem="Dkc-56-g3u" secondAttribute="bottom" constant="1" id="Ek5-OJ-Tso"/>
@@ -305,16 +306,20 @@
                                                 <constraint firstItem="1a7-Gl-miw" firstAttribute="leading" secondItem="NN1-ro-tDV" secondAttribute="trailing" constant="8" id="JO5-Ym-hXd"/>
                                                 <constraint firstAttribute="height" constant="50" id="OMz-PZ-qt3"/>
                                                 <constraint firstItem="NN1-ro-tDV" firstAttribute="top" secondItem="Dkc-56-g3u" secondAttribute="bottom" constant="1" id="QTI-Sz-mdX"/>
+                                                <constraint firstItem="Dkc-56-g3u" firstAttribute="leading" secondItem="634-3j-bKj" secondAttribute="leading" constant="45" id="cTW-Za-WFR"/>
                                                 <constraint firstItem="feB-2t-F4a" firstAttribute="top" secondItem="Dkc-56-g3u" secondAttribute="bottom" id="h9n-oc-rQr"/>
                                                 <constraint firstItem="uFo-lJ-OSW" firstAttribute="top" secondItem="634-3j-bKj" secondAttribute="top" constant="29" id="j0h-nJ-iPE"/>
                                                 <constraint firstItem="Dkc-56-g3u" firstAttribute="top" secondItem="634-3j-bKj" secondAttribute="top" constant="2" id="pZt-S2-u6k"/>
                                                 <constraint firstItem="1a7-Gl-miw" firstAttribute="top" secondItem="Dkc-56-g3u" secondAttribute="bottom" id="rtf-JY-WVh"/>
-                                                <constraint firstItem="Dkc-56-g3u" firstAttribute="leading" secondItem="634-3j-bKj" secondAttribute="leading" constant="121" id="sWK-BB-p87"/>
                                                 <constraint firstItem="uSs-pD-5Qu" firstAttribute="top" secondItem="Dkc-56-g3u" secondAttribute="bottom" constant="1" id="sy3-e6-EvJ"/>
                                                 <constraint firstItem="feB-2t-F4a" firstAttribute="leading" secondItem="XQy-Jc-AYE" secondAttribute="trailing" constant="8" id="vRl-NX-7vf"/>
                                                 <constraint firstItem="NN1-ro-tDV" firstAttribute="leading" secondItem="feB-2t-F4a" secondAttribute="trailing" constant="8" id="w6R-fw-8Hm"/>
-                                                <constraint firstAttribute="trailing" secondItem="Dkc-56-g3u" secondAttribute="trailing" constant="8" id="ytj-OA-sCN"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="cTW-Za-WFR"/>
+                                                </mask>
+                                            </variation>
                                             <connections>
                                                 <outlet property="levelLabel" destination="uSs-pD-5Qu" id="Xrc-fZ-JdT"/>
                                                 <outlet property="overallTimeLabel" destination="XQy-Jc-AYE" id="D1G-mH-ege"/>
