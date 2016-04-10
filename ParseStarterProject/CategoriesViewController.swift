@@ -57,8 +57,7 @@ class CategoriesViewController: UITableViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let category = categories[indexPath.row]
                 let destinationViewController = segue.destinationViewController as! RecipesViewController
-                destinationViewController.loadAllRecipes = false
-                ParseHelper().updateRecipesFromCategoryId(destinationViewController, catId: category.catId)
+                destinationViewController.catId = category.catId
             }
         }
     }

@@ -12,6 +12,9 @@ import Parse
 class ParseHelper: NSObject {
 
     func updateRecipes(vc: RecipesViewController) -> Void {
+        
+        vc.activityIndicator.show()
+        
         let query = PFQuery(className:"Recipe")
         //        query.whereKey("playerName", equalTo:"Sean Plott")
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
@@ -28,6 +31,7 @@ class ParseHelper: NSObject {
                             }
                         }
                     }
+                    vc.activityIndicator.hide()
                 }
             } else {
                 // Log details of the failure
@@ -68,6 +72,8 @@ class ParseHelper: NSObject {
     
     func updateRecipesFromCategoryId(vc: RecipesViewController, catId: Int) -> Void {
         
+        vc.activityIndicator.show()
+        
         let query = PFQuery(className:"Recipe")
         query.whereKey("categories", equalTo:catId)
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
@@ -84,6 +90,7 @@ class ParseHelper: NSObject {
                             }
                         }
                     }
+                    vc.activityIndicator.hide()
                 }
             } else {
                 // Log details of the failure
