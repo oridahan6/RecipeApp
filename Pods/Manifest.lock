@@ -1,10 +1,13 @@
 PODS:
   - Kingfisher (2.2.0)
+  - NVActivityIndicatorView (2.4)
 
 DEPENDENCIES:
   - Kingfisher (~> 2.2)
+  - NVActivityIndicatorView
 
 SPEC CHECKSUMS:
   Kingfisher: 350869ed88d6451803b390475d977abdd9f0a357
+  NVActivityIndicatorView: 275a3248d752b5eb1163b33aee664d7e3b43c101
 
 COCOAPODS: 0.39.0

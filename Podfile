@@ -5,6 +5,7 @@ use_frameworks!
 target 'Recipes' do
 
 pod 'Kingfisher', '~> 2.2'
+pod 'NVActivityIndicatorView'
 
 end
 

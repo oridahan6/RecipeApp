@@ -42,6 +42,7 @@
 		0C7BDA851CA969BB0056ADCD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7BDA841CA969BB0056ADCD /* Extensions.swift */; };
 		0C999F5C1CB4D80400E3844D /* KingfisherHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C999F5B1CB4D80400E3844D /* KingfisherHelper.swift */; };
 		0C999F5E1CB5028C00E3844D /* FavoriteRecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C999F5D1CB5028C00E3844D /* FavoriteRecipeTableViewCell.swift */; };
+		0CA7C1381CBAA2FB00BEDD65 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA7C1371CBAA2FB00BEDD65 /* ActivityIndicator.swift */; };
 		0CD15FF01CB1323200C7B828 /* hillelclm-medium-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0CD15FEF1CB1323200C7B828 /* hillelclm-medium-webfont.ttf */; };
 		0CD15FF31CB140F000C7B828 /* Alef-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0CD15FF11CB140F000C7B828 /* Alef-bold.ttf */; };
 		0CD15FF41CB140F000C7B828 /* Alef-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0CD15FF21CB140F000C7B828 /* Alef-regular.ttf */; };
@@ -99,6 +100,7 @@
 		0C7BDA841CA969BB0056ADCD /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Extensions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0C999F5B1CB4D80400E3844D /* KingfisherHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KingfisherHelper.swift; sourceTree = "<group>"; };
 		0C999F5D1CB5028C00E3844D /* FavoriteRecipeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteRecipeTableViewCell.swift; sourceTree = "<group>"; };
+		0CA7C1371CBAA2FB00BEDD65 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		0CD15FEF1CB1323200C7B828 /* hillelclm-medium-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "hillelclm-medium-webfont.ttf"; sourceTree = "<group>"; };
 		0CD15FF11CB140F000C7B828 /* Alef-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Alef-bold.ttf"; sourceTree = "<group>"; };
 		0CD15FF21CB140F000C7B828 /* Alef-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Alef-regular.ttf"; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				0C7BD9E91CA80D990056ADCD /* Parse */,
 				0C7BDA7B1CA931F80056ADCD /* Constants.swift */,
 				0C7BDA7D1CA942DF0056ADCD /* Helpers.swift */,
+				0CA7C1371CBAA2FB00BEDD65 /* ActivityIndicator.swift */,
 				0C7BDA841CA969BB0056ADCD /* Extensions.swift */,
 				0C999F5B1CB4D80400E3844D /* KingfisherHelper.swift */,
 			);
@@ -516,6 +519,7 @@
 				0C999F5E1CB5028C00E3844D /* FavoriteRecipeTableViewCell.swift in Sources */,
 				0C192F201CB295DB00811CB4 /* RecipeDetailSectionHeaderTableViewCell.swift in Sources */,
 				0C0CD0D31CAD627000F682F9 /* PrepTimeTableViewCell.swift in Sources */,
+				0CA7C1381CBAA2FB00BEDD65 /* ActivityIndicator.swift in Sources */,
 				0C7BD9CD1CA8020E0056ADCD /* FavoritesViewController.swift in Sources */,
 				0C192F271CB392BD00811CB4 /* CategoryTableViewCell.swift in Sources */,
 				0C7BD9E61CA808D00056ADCD /* Recipe.swift in Sources */,

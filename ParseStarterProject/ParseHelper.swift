@@ -91,6 +91,8 @@ class ParseHelper: NSObject {
     }
     
     func updateFavoriteRecipes(vc: FavoritesViewController, ids: [String]) -> Void {
+                
+        vc.beginUpdateView()
         
         let query = PFQuery(className:"Recipe")
         query.whereKey("objectId", containedIn: ids)
@@ -108,6 +110,7 @@ class ParseHelper: NSObject {
                             }
                         }
                     }
+                    vc.endUpdateView()
                 }
             } else {
                 // Log details of the failure

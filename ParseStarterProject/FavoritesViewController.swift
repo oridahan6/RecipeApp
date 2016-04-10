@@ -13,7 +13,10 @@ class FavoritesViewController: UITableViewController {
     let CellIdentifier = "FavoriteRecipeTableViewCell"
     let SegueRecipeViewController = "RecipeViewController"
 
+    var emptyMessageLabel: UILabel?
+    
     var recipeRemoved = false
+    var activityIndicator: ActivityIndicator!
     
     var recipeIds = [String]()
     var recipes = [Recipe]() {
@@ -43,6 +46,9 @@ class FavoritesViewController: UITableViewController {
         
         // Create Edit Button
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: getLocalizedString("edit"), style: .Plain, target: self, action: #selector(FavoritesViewController.editItems(_:)))
+        
+        // Activity Indicator
+        self.activityIndicator = ActivityIndicator(view: self.view)
         
     }
 
@@ -112,15 +118,27 @@ class FavoritesViewController: UITableViewController {
     }
     
     func addEmptyFavoritesLabel() {
-        let emptyMessageLabel: UILabel = UILabel(frame: CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height))
-        emptyMessageLabel.text = getLocalizedString("emptyFavorites")
-        emptyMessageLabel.textColor = UIColor.blackColor()
-        emptyMessageLabel.numberOfLines = 0
-        emptyMessageLabel.textAlignment = NSTextAlignment.Center
-        emptyMessageLabel.font = UIFont(name: "Alef-Regular", size: 20)
-        emptyMessageLabel.sizeToFit()
+        if (self.emptyMessageLabel == nil) {
+            self.emptyMessageLabel = UILabel(frame: CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height))
+            self.emptyMessageLabel!.text = getLocalizedString("emptyFavorites")
+            self.emptyMessageLabel!.textColor = UIColor.blackColor()
+            self.emptyMessageLabel!.numberOfLines = 0
+            self.emptyMessageLabel!.textAlignment = NSTextAlignment.Center
+            self.emptyMessageLabel!.font = UIFont(name: "Alef-Regular", size: 20)
+            self.emptyMessageLabel!.sizeToFit()
+            self.emptyMessageLabel!.tag = 45
+        }
         self.tableView.backgroundView = emptyMessageLabel
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+    }
+    
+    func beginUpdateView() {
+        self.tableView.backgroundView = nil
+        self.activityIndicator.show()
+    }
+    
+    func endUpdateView() {
+        self.activityIndicator.hide()
     }
     
     //--------------------------------------
@@ -135,7 +153,7 @@ class FavoritesViewController: UITableViewController {
         if self.recipes.count > 0 {
             self.tableView.backgroundView = nil
             return recipes.count
-        } else {
+        } else if !self.activityIndicator.isAnimating(){
             self.addEmptyFavoritesLabel()
         }
         return 0;
