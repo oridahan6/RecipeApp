@@ -15,6 +15,10 @@
 "sectionHeaderTitleIngredients" = "מצרכים";
 "sectionHeaderTitleDirections" = "שלבי הכנה";
 
+// Messages
+"emptyFavorites" = "לא הוספו מתכונים למועדפים. נא הוסף\\י מתכונים כדי לראותם במועדפים";
+
+
 // Buttons
 "edit" = "עריכה";
 "done" = "סיום";

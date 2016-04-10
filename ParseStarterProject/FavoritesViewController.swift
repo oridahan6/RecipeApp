@@ -111,6 +111,18 @@ class FavoritesViewController: UITableViewController {
         }
     }
     
+    func addEmptyFavoritesLabel() {
+        let emptyMessageLabel: UILabel = UILabel(frame: CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height))
+        emptyMessageLabel.text = getLocalizedString("emptyFavorites")
+        emptyMessageLabel.textColor = UIColor.blackColor()
+        emptyMessageLabel.numberOfLines = 0
+        emptyMessageLabel.textAlignment = NSTextAlignment.Center
+        emptyMessageLabel.font = UIFont(name: "Alef-Regular", size: 20)
+        emptyMessageLabel.sizeToFit()
+        self.tableView.backgroundView = emptyMessageLabel
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+    }
+    
     //--------------------------------------
     // MARK: - Table view data source
     //--------------------------------------
@@ -120,7 +132,13 @@ class FavoritesViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return recipes.count
+        if self.recipes.count > 0 {
+            self.tableView.backgroundView = nil
+            return recipes.count
+        } else {
+            self.addEmptyFavoritesLabel()
+        }
+        return 0;
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -163,10 +181,6 @@ class FavoritesViewController: UITableViewController {
     // MARK: - Table view delegate
     //--------------------------------------
 
-    override func tableView(tableView: UITableView, willBeginEditingRowAtIndexPath indexPath: NSIndexPath) {
-        print("edit \(indexPath.row)")
-    }
-    
     override func tableView(tableView: UITableView, shouldIndentWhileEditingRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return false
     }
