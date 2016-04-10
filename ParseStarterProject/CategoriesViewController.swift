@@ -14,6 +14,8 @@ class CategoriesViewController: UITableViewController {
     let CellIdentifier = "CategoryTableViewCell"
     let SegueRecipesViewController = "RecipesViewController"
     
+    var activityIndicator: ActivityIndicator!
+    
     var categories = [Category]() {
         didSet {
             tableView.reloadData()
@@ -37,6 +39,9 @@ class CategoriesViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         self.title = getLocalizedString("Categories")
+        
+        // Activity Indicator
+        self.activityIndicator = ActivityIndicator(view: self.view)
         
         ParseHelper().updateCategories(self)
         

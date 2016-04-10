@@ -38,6 +38,8 @@ class ParseHelper: NSObject {
     
     func updateCategories(vc: CategoriesViewController) -> Void {
 
+        vc.activityIndicator.show()
+        
         let query = PFQuery(className:"Categories")
         //        query.whereKey("playerName", equalTo:"Sean Plott")
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
@@ -54,6 +56,7 @@ class ParseHelper: NSObject {
                             }
                         }
                     }
+                    vc.activityIndicator.hide()
                 }
             } else {
                 // Log details of the failure
