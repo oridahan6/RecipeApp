@@ -196,7 +196,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="215"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="mOG-VL-xPj">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder-bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="mOG-VL-xPj">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="215"/>
                                         </imageView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="634-3j-bKj" customClass="RecipeDetails" customModule="Recipes" customModuleProvider="target">
@@ -1088,6 +1088,7 @@
         <image name="chef-icon" width="25" height="22"/>
         <image name="dotted-line" width="325" height="4"/>
         <image name="favorite-btn-bg" width="40" height="40"/>
+        <image name="placeholder-bg.png" width="1250" height="703"/>
         <image name="placeholder.jpg" width="1250" height="703"/>
         <image name="section-circle" width="30" height="30"/>
         <image name="timer-icon" width="25" height="25"/>

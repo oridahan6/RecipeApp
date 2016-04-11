@@ -43,6 +43,7 @@
 		0C999F5C1CB4D80400E3844D /* KingfisherHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C999F5B1CB4D80400E3844D /* KingfisherHelper.swift */; };
 		0C999F5E1CB5028C00E3844D /* FavoriteRecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C999F5D1CB5028C00E3844D /* FavoriteRecipeTableViewCell.swift */; };
 		0CA7C1381CBAA2FB00BEDD65 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA7C1371CBAA2FB00BEDD65 /* ActivityIndicator.swift */; };
+		0CA7C13C1CBB869A00BEDD65 /* placeholder-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CA7C13B1CBB869A00BEDD65 /* placeholder-bg.png */; };
 		0CD15FF01CB1323200C7B828 /* hillelclm-medium-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0CD15FEF1CB1323200C7B828 /* hillelclm-medium-webfont.ttf */; };
 		0CD15FF31CB140F000C7B828 /* Alef-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0CD15FF11CB140F000C7B828 /* Alef-bold.ttf */; };
 		0CD15FF41CB140F000C7B828 /* Alef-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0CD15FF21CB140F000C7B828 /* Alef-regular.ttf */; };
@@ -101,6 +102,7 @@
 		0C999F5B1CB4D80400E3844D /* KingfisherHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KingfisherHelper.swift; sourceTree = "<group>"; };
 		0C999F5D1CB5028C00E3844D /* FavoriteRecipeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteRecipeTableViewCell.swift; sourceTree = "<group>"; };
 		0CA7C1371CBAA2FB00BEDD65 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		0CA7C13B1CBB869A00BEDD65 /* placeholder-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder-bg.png"; sourceTree = "<group>"; };
 		0CD15FEF1CB1323200C7B828 /* hillelclm-medium-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "hillelclm-medium-webfont.ttf"; sourceTree = "<group>"; };
 		0CD15FF11CB140F000C7B828 /* Alef-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Alef-bold.ttf"; sourceTree = "<group>"; };
 		0CD15FF21CB140F000C7B828 /* Alef-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Alef-regular.ttf"; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				0C192F2C1CB39CC000811CB4 /* placeholder.jpg */,
+				0CA7C13B1CBB869A00BEDD65 /* placeholder-bg.png */,
 				0C192F2A1CB39C8500811CB4 /* placeholder-w-text.png */,
 				0C192F111CB27FC500811CB4 /* tableview-bg-568h@2x.png */,
 				0C192F121CB27FC500811CB4 /* tableview-bg-667h@2x.png */,
@@ -434,6 +437,7 @@
 				0C192F171CB27FC500811CB4 /* tableview-bg-568h@2x.png in Resources */,
 				0C192F2B1CB39C8500811CB4 /* placeholder-w-text.png in Resources */,
 				0C192F2D1CB39CC000811CB4 /* placeholder.jpg in Resources */,
+				0CA7C13C1CBB869A00BEDD65 /* placeholder-bg.png in Resources */,
 				81BA81521A49DA1800E65899 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

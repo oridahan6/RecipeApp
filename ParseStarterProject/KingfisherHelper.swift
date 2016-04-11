@@ -28,13 +28,16 @@ class KingfisherHelper {
         activityIndicator.show()
         
         imageView.kf_setImageWithURL(NSURL(string: url)!,
-                                     placeholderImage: UIImage(named: "placeholder.jpg"),
+                                     placeholderImage: UIImage(named: "placeholder-bg.png"),
                                      optionsInfo: nil,
                                      progressBlock: { (receivedSize, totalSize) -> () in
 //                                        print("Download Progress: \(receivedSize)/\(totalSize)")
                                      },
                                      completionHandler: { (image, error, cacheType, imageURL) -> () in
 //                                        print("Downloaded and set!")
+                                        if error != nil || image == nil {
+                                            imageView.image = UIImage(named: "placeholder.jpg")
+                                        }
                                         activityIndicator.hide()
                                      }
         )
