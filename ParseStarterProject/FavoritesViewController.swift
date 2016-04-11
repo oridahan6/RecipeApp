@@ -48,7 +48,7 @@ class FavoritesViewController: UITableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: getLocalizedString("edit"), style: .Plain, target: self, action: #selector(FavoritesViewController.editItems(_:)))
         
         // Activity Indicator
-        self.activityIndicator = ActivityIndicator(view: self.view)
+        self.activityIndicator = ActivityIndicator(largeActivityView: self.view)
         
     }
 

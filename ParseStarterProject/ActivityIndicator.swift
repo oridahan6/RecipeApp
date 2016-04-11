@@ -15,26 +15,50 @@ class ActivityIndicator {
     var insertToView: UIView!
     var HUD: UIView!
     
+    var HUDSize: CGFloat!
+    var isShowLabel: Bool!
+    var HUDColor: UIColor!
+    var elementsColor: UIColor!
+    
     //--------------------------------------
     // MARK: - Init Methods
     //--------------------------------------
 
-    init(view: UIView) {
+    init(view: UIView, HUDSize: CGFloat) {
 
+        self.HUDSize = HUDSize
+        
         self.insertToView = view
         
-        self.buildHUD()
-        
-        self.buildActivityIndicator()
-        
-        self.buildLoadingLabel()
     }
     
+    convenience init(largeActivityView view: UIView) {
+        self.init(view: view, HUDSize: 100.0)
+        self.isShowLabel = true
+        self.HUDColor = self.getYellowColor()
+        self.elementsColor = self.getRedColor()
+        
+        self.buildHUD()
+        self.buildLoadingLabel()
+        self.buildActivityIndicator()
+    }
+
+    convenience init(smallActivityView view: UIView) {
+        self.init(view: view, HUDSize: 40.0)
+        self.isShowLabel = false
+        self.HUDColor = self.getBlackColor()
+        self.elementsColor = self.getGrayColor()
+        
+        self.buildHUD()
+        self.buildActivityIndicator()
+    }
+
     private func buildHUD() {
-        let HUDSize: CGFloat = 100.0
-        let frame = CGRectMake(self.insertToView.bounds.width / 2 - HUDSize / 2, self.insertToView.bounds.height / 2 - HUDSize / 2 - 60, HUDSize, HUDSize)
+        let HUDSize: CGFloat = self.HUDSize
+        let heightPointsToSubstract: CGFloat = self.isShowLabel == true ? 60 : 0
+        let frame = CGRectMake(UIScreen.mainScreen().bounds.width / 2 - HUDSize / 2, self.insertToView.bounds.height / 2 - HUDSize / 2 - heightPointsToSubstract, HUDSize, HUDSize)
         self.HUD = UIView(frame: frame)
-        self.HUD.backgroundColor = UIColor(red:0.95, green:0.72, blue:0.37, alpha:0.95)
+        self.HUD.backgroundColor = self.HUDColor
         
         let maskPath = UIBezierPath(roundedRect: self.HUD.bounds,
                                     byRoundingCorners: .AllCorners,
@@ -47,12 +71,14 @@ class ActivityIndicator {
     }
     
     private func buildActivityIndicator() {
-        let indicatorSize: CGFloat = 40.0
+        let indicatorSize: CGFloat = 0.4 * self.HUDSize
+        let heightPointsToSubstract: CGFloat = self.isShowLabel == true ? 10 : -1
+        let widthPointsToAdd: CGFloat = self.isShowLabel == true ? 3 : 1
         self.activityIndicatorView = NVActivityIndicatorView(
-            frame: CGRectMake(self.HUD.bounds.width / 2 - indicatorSize / 2 + 3, self.HUD.bounds.height / 2 - indicatorSize / 2 - 10, indicatorSize, indicatorSize),
+            frame: CGRectMake(self.HUD.bounds.width / 2 - indicatorSize / 2 + widthPointsToAdd, self.HUD.bounds.height / 2 - indicatorSize / 2 - heightPointsToSubstract, indicatorSize, indicatorSize),
             type: NVActivityIndicatorType.BallRotateChase,
-            color: UIColor(red:0.69, green:0.29, blue:0.29, alpha:1.0),
-            padding: 40
+            color: self.elementsColor,
+            padding: indicatorSize
         )
         self.activityIndicatorView.hidesWhenStopped = true
         
@@ -62,7 +88,7 @@ class ActivityIndicator {
     private func buildLoadingLabel() {
         let loadingLabel: UILabel = UILabel(frame: CGRectMake(self.HUD.bounds.width / 2 - 20, self.HUD.bounds.height - 30, self.HUD.bounds.width, 20))
         loadingLabel.text = getLocalizedString("loading")
-        loadingLabel.textColor = UIColor(red:0.69, green:0.29, blue:0.29, alpha:1.0)
+        loadingLabel.textColor = self.elementsColor
         loadingLabel.numberOfLines = 0
         loadingLabel.textAlignment = NSTextAlignment.Center
         loadingLabel.font = UIFont(name: "Alef-Regular", size: 14)
@@ -71,6 +97,22 @@ class ActivityIndicator {
         self.HUD.addSubview(loadingLabel)
     }
     
+    private func getRedColor() -> UIColor {
+        return UIColor(red:0.69, green:0.29, blue:0.29, alpha:1.0)
+    }
+    
+    private func getYellowColor() -> UIColor {
+        return UIColor(red:0.95, green:0.72, blue:0.37, alpha:0.95)
+    }
+    
+    private func getBlackColor() -> UIColor {
+        return UIColor(red:0.26, green:0.27, blue:0.27, alpha:0.95)
+    }
+
+    private func getGrayColor() -> UIColor {
+        return UIColor(red:0.87, green:0.89, blue:0.91, alpha:1.0)
+    }
+
     //--------------------------------------
     // MARK: - Helper Methods
     //--------------------------------------

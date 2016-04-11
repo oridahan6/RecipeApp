@@ -41,7 +41,7 @@ class CategoriesViewController: UITableViewController {
         self.title = getLocalizedString("Categories")
         
         // Activity Indicator
-        self.activityIndicator = ActivityIndicator(view: self.view)
+        self.activityIndicator = ActivityIndicator(largeActivityView: self.view)
         
         ParseHelper().updateCategories(self)
         
