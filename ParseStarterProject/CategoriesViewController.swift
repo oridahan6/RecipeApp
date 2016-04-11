@@ -117,18 +117,15 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol {
     //--------------------------------------
 
     func clickedOnTheMainButton() {
-        print("Clicked on the main button")
         prompt.dismissPrompt()
     }
     
     func clickedOnTheSecondButton() {
-        print("Clicked on the second button")
         prompt.dismissPrompt()
-        
     }
     
     func promptWasDismissed() {
-        print("Dismissed the prompt")
+
     }
 
 }

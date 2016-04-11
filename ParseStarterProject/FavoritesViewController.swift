@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FavoritesViewController: UITableViewController {
+class FavoritesViewController: UITableViewController, SwiftPromptsProtocol {
 
     let CellIdentifier = "FavoriteRecipeTableViewCell"
     let SegueRecipeViewController = "RecipeViewController"
@@ -16,6 +16,7 @@ class FavoritesViewController: UITableViewController {
     var emptyMessageLabel: UILabel?
     
     var recipeRemoved = false
+    var prompt = SwiftPromptsView()
     var activityIndicator: ActivityIndicator!
     
     var recipeIds = [String]()
@@ -58,7 +59,12 @@ class FavoritesViewController: UITableViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.reloadFavorites()
+        if !Helpers.isInternetConnectionAvailable() {
+            self.buildAlert()
+            self.showAlert()
+        } else {
+            self.reloadFavorites()
+        }
     }
     
     //--------------------------------------
@@ -141,6 +147,19 @@ class FavoritesViewController: UITableViewController {
         self.activityIndicator.hide()
     }
     
+    private func buildAlert() {
+        //Create an instance of SwiftPromptsView and assign its delegate
+        prompt = SwiftPromptHelper.getSwiftPromptView(self.view.bounds)
+        prompt.delegate = self
+        
+        SwiftPromptHelper.buildErrorAlert(prompt)
+        
+    }
+    
+    private func showAlert() {
+        self.view.addSubview(prompt)
+    }
+    
     //--------------------------------------
     // MARK: - Table view data source
     //--------------------------------------
@@ -215,6 +234,22 @@ class FavoritesViewController: UITableViewController {
                 destinationViewController.recipe = recipe
             }
         }
+    }
+    
+    //--------------------------------------
+    // MARK: - SwiftPromptsProtocol delegate methods
+    //--------------------------------------
+    
+    func clickedOnTheMainButton() {
+        prompt.dismissPrompt()
+    }
+    
+    func clickedOnTheSecondButton() {
+        prompt.dismissPrompt()
+    }
+    
+    func promptWasDismissed() {
+        
     }
     
 
