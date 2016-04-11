@@ -44,6 +44,7 @@
 		0C999F5E1CB5028C00E3844D /* FavoriteRecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C999F5D1CB5028C00E3844D /* FavoriteRecipeTableViewCell.swift */; };
 		0CA7C1381CBAA2FB00BEDD65 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA7C1371CBAA2FB00BEDD65 /* ActivityIndicator.swift */; };
 		0CA7C13C1CBB869A00BEDD65 /* placeholder-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CA7C13B1CBB869A00BEDD65 /* placeholder-bg.png */; };
+		0CCC381F1CBBB2BF0055384F /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCC381E1CBBB2BF0055384F /* Reachability.swift */; };
 		0CD15FF01CB1323200C7B828 /* hillelclm-medium-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0CD15FEF1CB1323200C7B828 /* hillelclm-medium-webfont.ttf */; };
 		0CD15FF31CB140F000C7B828 /* Alef-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0CD15FF11CB140F000C7B828 /* Alef-bold.ttf */; };
 		0CD15FF41CB140F000C7B828 /* Alef-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0CD15FF21CB140F000C7B828 /* Alef-regular.ttf */; };
@@ -103,6 +104,7 @@
 		0C999F5D1CB5028C00E3844D /* FavoriteRecipeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteRecipeTableViewCell.swift; sourceTree = "<group>"; };
 		0CA7C1371CBAA2FB00BEDD65 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		0CA7C13B1CBB869A00BEDD65 /* placeholder-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder-bg.png"; sourceTree = "<group>"; };
+		0CCC381E1CBBB2BF0055384F /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		0CD15FEF1CB1323200C7B828 /* hillelclm-medium-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "hillelclm-medium-webfont.ttf"; sourceTree = "<group>"; };
 		0CD15FF11CB140F000C7B828 /* Alef-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Alef-bold.ttf"; sourceTree = "<group>"; };
 		0CD15FF21CB140F000C7B828 /* Alef-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Alef-regular.ttf"; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 				0CA7C1371CBAA2FB00BEDD65 /* ActivityIndicator.swift */,
 				0C7BDA841CA969BB0056ADCD /* Extensions.swift */,
 				0C999F5B1CB4D80400E3844D /* KingfisherHelper.swift */,
+				0CCC381E1CBBB2BF0055384F /* Reachability.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -519,6 +522,7 @@
 				0C7BD9E81CA809AD0056ADCD /* ParseHelper.swift in Sources */,
 				0C192F241CB38D4B00811CB4 /* ParseCategory.swift in Sources */,
 				0C0CD0C91CABD5FB00F682F9 /* FontAwesome.swift in Sources */,
+				0CCC381F1CBBB2BF0055384F /* Reachability.swift in Sources */,
 				0C7BDA781CA90DB70056ADCD /* RecipeTableViewCell.swift in Sources */,
 				0C999F5E1CB5028C00E3844D /* FavoriteRecipeTableViewCell.swift in Sources */,
 				0C192F201CB295DB00811CB4 /* RecipeDetailSectionHeaderTableViewCell.swift in Sources */,

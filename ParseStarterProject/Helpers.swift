@@ -100,6 +100,18 @@ class Helpers {
         return "\(number) " + getLocalizedString(textToConvert + "Plural")
     }
     
+    //--------------------------------------
+    // MARK: - Internet
+    //--------------------------------------
+    class func checkAndAlertUserInternetConnection() {
+        if Reachability.isConnectedToNetwork() == true {
+            print("Internet connection OK")
+        } else {
+            print("Internet connection FAILED")
+        }
+    }
+    
+    
 }
 
 func getLocalizedString(key: String) -> String {
