@@ -36,6 +36,7 @@ class ParseHelper: NSObject {
             } else {
                 // Log details of the failure
                 print("Error: \(error!) \(error!.userInfo)")
+                vc.activityIndicator.hide()
             }
         }
     }

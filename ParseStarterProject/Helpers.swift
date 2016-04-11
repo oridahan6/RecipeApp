@@ -103,14 +103,24 @@ class Helpers {
     //--------------------------------------
     // MARK: - Internet
     //--------------------------------------
-    class func checkAndAlertUserInternetConnection() {
-        if Reachability.isConnectedToNetwork() == true {
-            print("Internet connection OK")
-        } else {
-            print("Internet connection FAILED")
+    class func isInternetConnectionAvailable() -> Bool {
+        if Reachability.isConnectedToNetwork() != true {
+            return false
         }
+        return true
     }
     
+    //--------------------------------------
+    // MARK: - Color
+    //--------------------------------------
+
+    class func getRedColor(alpha: CGFloat = 1.0) -> UIColor {
+        var alphaValue = alpha
+        if alpha > 1 || alpha < 0 {
+            alphaValue = 1
+        }
+        return UIColor(red:0.69, green:0.29, blue:0.29, alpha:alphaValue)
+    }
     
 }
 

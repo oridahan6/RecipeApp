@@ -9,11 +9,12 @@
 import UIKit
 import Kingfisher
 
-class CategoriesViewController: UITableViewController {
+class CategoriesViewController: UITableViewController, SwiftPromptsProtocol {
     
     let CellIdentifier = "CategoryTableViewCell"
     let SegueRecipesViewController = "RecipesViewController"
     
+    var prompt = SwiftPromptsView()
     var activityIndicator: ActivityIndicator!
     
     var categories = [Category]() {
@@ -32,18 +33,17 @@ class CategoriesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
         self.title = getLocalizedString("Categories")
         
-        // Activity Indicator
-        self.activityIndicator = ActivityIndicator(largeActivityView: self.view)
-        
-        ParseHelper().updateCategories(self)
+        if !Helpers.isInternetConnectionAvailable() {
+            self.buildAlert()
+            self.showAlert()
+        } else {
+            // Activity Indicator
+            self.activityIndicator = ActivityIndicator(largeActivityView: self.view)
+            
+            ParseHelper().updateCategories(self)
+        }
         
     }
 
@@ -51,6 +51,10 @@ class CategoriesViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+    //--------------------------------------
+    // MARK: - Navigation
+    //--------------------------------------
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == SegueRecipesViewController {
@@ -91,49 +95,40 @@ class CategoriesViewController: UITableViewController {
         return cell
     }
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    //--------------------------------------
+    // MARK: - Helpers Methods
+    //--------------------------------------
+
+    private func buildAlert() {
+        //Create an instance of SwiftPromptsView and assign its delegate
+        prompt = SwiftPromptHelper.getSwiftPromptView(self.view.bounds)
+        prompt.delegate = self
+        
+        SwiftPromptHelper.buildErrorAlert(prompt)
+        
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    private func showAlert() {
+        self.view.addSubview(prompt)
     }
-    */
+    
+    //--------------------------------------
+    // MARK: - SwiftPromptsProtocol delegate methods
+    //--------------------------------------
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
+    func clickedOnTheMainButton() {
+        print("Clicked on the main button")
+        prompt.dismissPrompt()
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+    
+    func clickedOnTheSecondButton() {
+        print("Clicked on the second button")
+        prompt.dismissPrompt()
+        
     }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    func promptWasDismissed() {
+        print("Dismissed the prompt")
     }
-    */
 
 }

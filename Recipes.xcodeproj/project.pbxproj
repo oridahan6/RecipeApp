@@ -45,6 +45,10 @@
 		0CA7C1381CBAA2FB00BEDD65 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA7C1371CBAA2FB00BEDD65 /* ActivityIndicator.swift */; };
 		0CA7C13C1CBB869A00BEDD65 /* placeholder-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CA7C13B1CBB869A00BEDD65 /* placeholder-bg.png */; };
 		0CCC381F1CBBB2BF0055384F /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCC381E1CBBB2BF0055384F /* Reachability.swift */; };
+		0CCC38241CBBBCB60055384F /* SwiftPrompts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCC38211CBBBCB60055384F /* SwiftPrompts.swift */; };
+		0CCC38251CBBBCB60055384F /* SwiftPromptsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCC38221CBBBCB60055384F /* SwiftPromptsView.swift */; };
+		0CCC38261CBBBCB60055384F /* UIImageEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCC38231CBBBCB60055384F /* UIImageEffects.swift */; };
+		0CCC382C1CBBE20D0055384F /* SwiftPromptHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCC382B1CBBE20D0055384F /* SwiftPromptHelper.swift */; };
 		0CD15FF01CB1323200C7B828 /* hillelclm-medium-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0CD15FEF1CB1323200C7B828 /* hillelclm-medium-webfont.ttf */; };
 		0CD15FF31CB140F000C7B828 /* Alef-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0CD15FF11CB140F000C7B828 /* Alef-bold.ttf */; };
 		0CD15FF41CB140F000C7B828 /* Alef-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0CD15FF21CB140F000C7B828 /* Alef-regular.ttf */; };
@@ -105,6 +109,10 @@
 		0CA7C1371CBAA2FB00BEDD65 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		0CA7C13B1CBB869A00BEDD65 /* placeholder-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder-bg.png"; sourceTree = "<group>"; };
 		0CCC381E1CBBB2BF0055384F /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		0CCC38211CBBBCB60055384F /* SwiftPrompts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftPrompts.swift; sourceTree = "<group>"; };
+		0CCC38221CBBBCB60055384F /* SwiftPromptsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftPromptsView.swift; sourceTree = "<group>"; };
+		0CCC38231CBBBCB60055384F /* UIImageEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageEffects.swift; sourceTree = "<group>"; };
+		0CCC382B1CBBE20D0055384F /* SwiftPromptHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftPromptHelper.swift; sourceTree = "<group>"; };
 		0CD15FEF1CB1323200C7B828 /* hillelclm-medium-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "hillelclm-medium-webfont.ttf"; sourceTree = "<group>"; };
 		0CD15FF11CB140F000C7B828 /* Alef-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Alef-bold.ttf"; sourceTree = "<group>"; };
 		0CD15FF21CB140F000C7B828 /* Alef-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Alef-regular.ttf"; sourceTree = "<group>"; };
@@ -154,6 +162,7 @@
 		0C0CD0BC1CABD09300F682F9 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				0CCC38201CBBBCA10055384F /* SwiftPrompts */,
 				0C0CD0C21CABD5E100F682F9 /* FontAwesomeSwift */,
 			);
 			name = Libraries;
@@ -257,6 +266,7 @@
 				0C7BDA7B1CA931F80056ADCD /* Constants.swift */,
 				0C7BDA7D1CA942DF0056ADCD /* Helpers.swift */,
 				0CA7C1371CBAA2FB00BEDD65 /* ActivityIndicator.swift */,
+				0CCC382B1CBBE20D0055384F /* SwiftPromptHelper.swift */,
 				0C7BDA841CA969BB0056ADCD /* Extensions.swift */,
 				0C999F5B1CB4D80400E3844D /* KingfisherHelper.swift */,
 				0CCC381E1CBBB2BF0055384F /* Reachability.swift */,
@@ -273,6 +283,16 @@
 				0C192F261CB392BD00811CB4 /* CategoryTableViewCell.swift */,
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		0CCC38201CBBBCA10055384F /* SwiftPrompts */ = {
+			isa = PBXGroup;
+			children = (
+				0CCC38211CBBBCB60055384F /* SwiftPrompts.swift */,
+				0CCC38221CBBBCB60055384F /* SwiftPromptsView.swift */,
+				0CCC38231CBBBCB60055384F /* UIImageEffects.swift */,
+			);
+			name = SwiftPrompts;
 			sourceTree = "<group>";
 		};
 		0CD15FEE1CB1320F00C7B828 /* Resources */ = {
@@ -525,18 +545,22 @@
 				0CCC381F1CBBB2BF0055384F /* Reachability.swift in Sources */,
 				0C7BDA781CA90DB70056ADCD /* RecipeTableViewCell.swift in Sources */,
 				0C999F5E1CB5028C00E3844D /* FavoriteRecipeTableViewCell.swift in Sources */,
+				0CCC38261CBBBCB60055384F /* UIImageEffects.swift in Sources */,
 				0C192F201CB295DB00811CB4 /* RecipeDetailSectionHeaderTableViewCell.swift in Sources */,
 				0C0CD0D31CAD627000F682F9 /* PrepTimeTableViewCell.swift in Sources */,
 				0CA7C1381CBAA2FB00BEDD65 /* ActivityIndicator.swift in Sources */,
+				0CCC38251CBBBCB60055384F /* SwiftPromptsView.swift in Sources */,
 				0C7BD9CD1CA8020E0056ADCD /* FavoritesViewController.swift in Sources */,
 				0C192F271CB392BD00811CB4 /* CategoryTableViewCell.swift in Sources */,
 				0C7BD9E61CA808D00056ADCD /* Recipe.swift in Sources */,
+				0CCC382C1CBBE20D0055384F /* SwiftPromptHelper.swift in Sources */,
 				0C0CD0CF1CAD618E00F682F9 /* IngredientTableViewCell.swift in Sources */,
 				0C7BDA7E1CA942DF0056ADCD /* Helpers.swift in Sources */,
 				0C192F221CB38C4B00811CB4 /* Category.swift in Sources */,
 				0C0CD0C71CABD5FB00F682F9 /* Enum.swift in Sources */,
 				0C0CD0CD1CAD614F00F682F9 /* DirectionTableViewCell.swift in Sources */,
 				0C7BDA851CA969BB0056ADCD /* Extensions.swift in Sources */,
+				0CCC38241CBBBCB60055384F /* SwiftPrompts.swift in Sources */,
 				0CD15FF61CB14C8500C7B828 /* RecipeSubtitleTableViewCell.swift in Sources */,
 				0C7BD9CF1CA802780056ADCD /* RecipesViewController.swift in Sources */,
 				0C0CD0CB1CAD016600F682F9 /* RecipeViewController.swift in Sources */,
