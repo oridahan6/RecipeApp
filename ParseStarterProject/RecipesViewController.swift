@@ -97,13 +97,7 @@ class RecipesViewController: UITableViewController, SwiftPromptsProtocol {
         cell.recipeDetailsView.overallTimeLabel.text = recipe.getOverallPreperationTimeText()
         cell.recipeDetailsView.dateAddedLabel.text = recipe.getDateAddedDiff()
         
-        if recipe.isDairy() {
-            cell.recipeDetailsView.typeImageView.image = UIImage(named: "cheese-icon")
-        } else if recipe.isMeat() {
-            cell.recipeDetailsView.typeImageView.image = UIImage(named: "steak-icon")
-        } else if recipe.isVeggie() {
-            cell.recipeDetailsView.typeImageView.image = UIImage(named: "tomato-icon")
-        }
+        cell.recipeDetailsView.typeImageView.image = recipe.getTypeImage()
         
         // update image async
         let imageUrlString = Constants.GDRecipesImagesPath + recipe.imageName

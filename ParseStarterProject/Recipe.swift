@@ -77,6 +77,16 @@ class Recipe: NSObject {
         return getLocalizedString("before") + " " + NSDate().offsetFrom(self.dateAdded)
     }
     
+    func getTypeImage() -> UIImage {
+        var name = "tomato-icon"
+        if self.isDairy() {
+            name = "cheese-icon"
+        } else if self.isMeat() {
+            name = "steak-icon"
+        }
+        return UIImage(named: name)!
+    }
+    
     //--------------------------------------
     // MARK: - Property tests
     //--------------------------------------

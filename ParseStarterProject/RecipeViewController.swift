@@ -290,13 +290,8 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 recipeDetailCell.overallTimeLabel.text = recipe.getOverallPreperationTimeText()
                 recipeDetailCell.dateAdded.text = recipe.getDateAddedDiff()
 
-                if recipe.isDairy() {
-                    recipeDetailCell.typeImageView.image = UIImage(named: "cheese-icon")
-                } else if recipe.isMeat() {
-                    recipeDetailCell.typeImageView.image = UIImage(named: "steak-icon")
-                } else if recipe.isVeggie() {
-                    recipeDetailCell.typeImageView.image = UIImage(named: "tomato-icon")
-                }
+                recipeDetailCell.typeImageView.image = recipe.getTypeImage()
+                
                 return recipeDetailCell
             
             case 1:
