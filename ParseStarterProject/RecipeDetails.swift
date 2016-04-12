@@ -15,6 +15,7 @@ class RecipeDetails: UIView {
     @IBOutlet var levelLabel: UILabel!
     @IBOutlet var overallTimeLabel: UILabel!
     @IBOutlet var typeLabel: UILabel!
+    @IBOutlet var typeImageView: UIImageView!
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

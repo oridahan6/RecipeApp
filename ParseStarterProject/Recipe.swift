@@ -53,7 +53,9 @@ class Recipe: NSObject {
         }
     }
     
+    //--------------------------------------
     // MARK: - Helper Methods
+    //--------------------------------------
     
     func getOverallPreperationTime() -> Int {
         return self.cookTime + self.prepTime
@@ -73,6 +75,22 @@ class Recipe: NSObject {
 
     func getDateAddedDiff() -> String {
         return getLocalizedString("before") + " " + NSDate().offsetFrom(self.dateAdded)
+    }
+    
+    //--------------------------------------
+    // MARK: - Property tests
+    //--------------------------------------
+
+    func isDairy() -> Bool {
+        return self.type == getLocalizedString("Dairy")
+    }
+    
+    func isMeat() -> Bool {
+        return self.type == getLocalizedString("Meat")
+    }
+
+    func isVeggie() -> Bool {
+        return self.type == getLocalizedString("Veggie")
     }
     
 }

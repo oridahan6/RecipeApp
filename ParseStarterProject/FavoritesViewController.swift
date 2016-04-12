@@ -188,6 +188,14 @@ class FavoritesViewController: UITableViewController, SwiftPromptsProtocol {
         cell.recipeDetailsView.levelLabel.text = recipe.level
         cell.recipeDetailsView.overallTimeLabel.text = recipe.getOverallPreperationTimeText()
         
+        if recipe.isDairy() {
+            cell.recipeDetailsView.typeImageView.image = UIImage(named: "cheese-icon")
+        } else if recipe.isMeat() {
+            cell.recipeDetailsView.typeImageView.image = UIImage(named: "steak-icon")
+        } else if recipe.isVeggie() {
+            cell.recipeDetailsView.typeImageView.image = UIImage(named: "tomato-icon")
+        }
+        
         // update image async
         let imageUrlString = Constants.GDRecipesImagesPath + recipe.imageName
         KingfisherHelper.sharedInstance.setImageWithUrl(cell.recipeImageView, url: imageUrlString)

@@ -22,6 +22,11 @@
 "noInternetConnectionMessage" = "אינך מחובר לאינטרנט. אנא בדוק את החיבור לאינטרנט ונסה שנית.";
 "OK" = "בסדר";
 
+// Recipe Details
+"Dairy" = "חלבי";
+"Meat" = "בשרי";
+"Veggie" = "פרווה";
+
 
 // Buttons
 "edit" = "עריכה";
@@ -35,7 +40,6 @@
 
 "recipeSingular" = "מתכון";
 "recipePlural" = "מתכונים";
-
 
 
 // Time

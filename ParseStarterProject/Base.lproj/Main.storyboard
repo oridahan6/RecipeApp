@@ -324,6 +324,7 @@
                                                 <outlet property="levelLabel" destination="uSs-pD-5Qu" id="Xrc-fZ-JdT"/>
                                                 <outlet property="overallTimeLabel" destination="XQy-Jc-AYE" id="D1G-mH-ege"/>
                                                 <outlet property="titleLabel" destination="Dkc-56-g3u" id="SgT-q5-Q2U"/>
+                                                <outlet property="typeImageView" destination="1a7-Gl-miw" id="cBg-cB-hax"/>
                                                 <outlet property="typeLabel" destination="NN1-ro-tDV" id="dok-Wi-caF"/>
                                             </connections>
                                         </view>
@@ -546,6 +547,7 @@
                                                 <outlet property="levelLabel" destination="3qp-v8-cEa" id="m4g-ba-w7T"/>
                                                 <outlet property="overallTimeLabel" destination="ZfN-64-WrK" id="mfe-OV-262"/>
                                                 <outlet property="titleLabel" destination="Spp-X0-ELo" id="BO8-Mh-aA3"/>
+                                                <outlet property="typeImageView" destination="kjf-v7-3Ln" id="Lmb-aw-bLx"/>
                                                 <outlet property="typeLabel" destination="Shs-qh-FTz" id="tuh-n4-KV4"/>
                                             </connections>
                                         </view>
@@ -712,6 +714,7 @@
                                             <outlet property="levelLabel" destination="lFA-1t-bFq" id="lxV-gx-0XB"/>
                                             <outlet property="overallTimeLabel" destination="dvP-TC-DBl" id="PUQ-gr-mMO"/>
                                             <outlet property="titleLabel" destination="Nd9-oz-wfj" id="zyW-T0-OaV"/>
+                                            <outlet property="typeImageView" destination="cis-9e-XCw" id="36A-Ir-KYM"/>
                                             <outlet property="typeLabel" destination="StR-8t-Llh" id="ARZ-No-5pj"/>
                                         </connections>
                                     </tableViewCell>

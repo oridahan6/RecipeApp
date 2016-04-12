@@ -15,6 +15,7 @@ class RecipeDetailSectionHeaderTableViewCell: UITableViewCell {
     @IBOutlet var levelLabel: UILabel!
     @IBOutlet var typeLabel: UILabel!
     @IBOutlet var overallTimeLabel: UILabel!
+    @IBOutlet var typeImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
