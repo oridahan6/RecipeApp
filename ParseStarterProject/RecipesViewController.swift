@@ -50,8 +50,6 @@ class RecipesViewController: UITableViewController, SwiftPromptsProtocol {
             }
         }
 
-        
-        
         // Register Class
         // tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: CellIdentifier)
 
