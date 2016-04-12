@@ -9,12 +9,13 @@
 import UIKit
 import Kingfisher
 
-class RecipesViewController: UITableViewController {
+class RecipesViewController: UITableViewController, SwiftPromptsProtocol {
 
     let CellIdentifier = "RecipeTableViewCell"
     let SegueRecipeViewController = "RecipeViewController"
     
     var catId: Int?
+    var prompt = SwiftPromptsView()
     var activityIndicator: ActivityIndicator!
     
     var recipes = [Recipe]() {
@@ -35,14 +36,21 @@ class RecipesViewController: UITableViewController {
 
         self.title = getLocalizedString("Recipes")
         
-        // Activity Indicator
-        self.activityIndicator = ActivityIndicator(largeActivityView: self.view)
-        
-        if let categoryId = self.catId {
-            ParseHelper().updateRecipesFromCategoryId(self, catId: categoryId)
+        if !Helpers.isInternetConnectionAvailable() {
+            self.buildAlert()
+            self.showAlert()
         } else {
-            ParseHelper().updateRecipes(self)
+            // Activity Indicator
+            self.activityIndicator = ActivityIndicator(largeActivityView: self.view)
+            
+            if let categoryId = self.catId {
+                ParseHelper().updateRecipesFromCategoryId(self, catId: categoryId)
+            } else {
+                ParseHelper().updateRecipes(self)
+            }
         }
+
+        
         
         // Register Class
         // tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: CellIdentifier)
@@ -98,6 +106,39 @@ class RecipesViewController: UITableViewController {
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         
         return cell
+    }
+    
+    //--------------------------------------
+    // MARK: - Helpers Methods
+    //--------------------------------------
+    
+    private func buildAlert() {
+        //Create an instance of SwiftPromptsView and assign its delegate
+        prompt = SwiftPromptHelper.getSwiftPromptView(self.view.bounds)
+        prompt.delegate = self
+        
+        SwiftPromptHelper.buildErrorAlert(prompt)
+        
+    }
+    
+    private func showAlert() {
+        self.view.addSubview(prompt)
+    }
+
+    //--------------------------------------
+    // MARK: - SwiftPromptsProtocol delegate methods
+    //--------------------------------------
+    
+    func clickedOnTheMainButton() {
+        prompt.dismissPrompt()
+    }
+    
+    func clickedOnTheSecondButton() {
+        prompt.dismissPrompt()
+    }
+    
+    func promptWasDismissed() {
+        
     }
 
 }
