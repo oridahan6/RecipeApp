@@ -90,6 +90,7 @@ class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if shouldShowSearchResults {
+            self.handleIfEmptySearch()
             return filteredRecipes.count
         } else {
             return recipes.count

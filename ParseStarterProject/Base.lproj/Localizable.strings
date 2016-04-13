@@ -17,6 +17,7 @@
 
 // Messages
 "emptyFavorites" = "לא הוספו מתכונים למועדפים. נא הוסף\\י מתכונים כדי לראותם במועדפים";
+"emptySearch" = "לא נמצאו מתכונים עבור החיפוש '%@'.";
 "loading" = "טוען...";
 "noInternetConnectionTitle" = "אין חיבור לאינטרנט";
 "noInternetConnectionMessage" = "אינך מחובר לאינטרנט. אנא בדוק את החיבור לאינטרנט ונסה שנית.";

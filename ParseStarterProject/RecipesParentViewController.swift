@@ -16,6 +16,8 @@ class RecipesParentViewController: UITableViewController, UISearchResultsUpdatin
     var filteredRecipes = [Recipe]()
     var shouldShowSearchResults = false
     
+    var emptySearchLabel: UILabel?
+    
     var recipes = [Recipe]() {
         didSet {
             self.recipesUpdated()
@@ -78,6 +80,31 @@ class RecipesParentViewController: UITableViewController, UISearchResultsUpdatin
             return filteredRecipes[index]
         }
         return recipes[index]
+    }
+    
+    func handleIfEmptySearch() {
+        if filteredRecipes.count == 0 {
+            self.addEmptySearchLabel()
+        } else {
+            self.tableView.backgroundView = nil
+        }
+    }
+    
+    func addEmptySearchLabel() {
+        if (self.emptySearchLabel == nil) {
+            self.emptySearchLabel = UILabel(frame: CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height))
+            self.emptySearchLabel!.textColor = UIColor.blackColor()
+            self.emptySearchLabel!.numberOfLines = 0
+            self.emptySearchLabel!.textAlignment = NSTextAlignment.Center
+            self.emptySearchLabel!.font = UIFont(name: "Alef-Regular", size: 20)
+            self.emptySearchLabel!.sizeToFit()
+            self.emptySearchLabel!.tag = 45
+        }
+        if let searchString = searchController.searchBar.text {
+            self.emptySearchLabel!.text = String.localizedStringWithFormat(NSLocalizedString("emptySearch", comment: ""), searchString)
+        }
+        self.tableView.backgroundView = emptySearchLabel
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
     }
     
     //--------------------------------------

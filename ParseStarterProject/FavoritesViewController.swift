@@ -180,6 +180,7 @@ class FavoritesViewController: RecipesParentViewController, SwiftPromptsProtocol
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if shouldShowSearchResults {
+            self.handleIfEmptySearch()
             return filteredRecipes.count
         } else if self.recipes.count > 0 {
             self.tableView.backgroundView = nil
