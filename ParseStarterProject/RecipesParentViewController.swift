@@ -101,7 +101,7 @@ class RecipesParentViewController: UITableViewController, UISearchResultsUpdatin
             self.emptySearchLabel!.tag = 45
         }
         if let searchString = searchController.searchBar.text {
-            self.emptySearchLabel!.text = String.localizedStringWithFormat(NSLocalizedString("emptySearch", comment: ""), searchString)
+            self.emptySearchLabel!.text = String.localizedStringWithFormat(NSLocalizedString("emptySearchRecipes", comment: ""), searchString)
         }
         self.tableView.backgroundView = emptySearchLabel
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
