@@ -67,6 +67,7 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
         
         configureSearchController()
         
+        self.definesPresentationContext = true
     }
 
     override func didReceiveMemoryWarning() {

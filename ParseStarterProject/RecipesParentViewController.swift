@@ -45,6 +45,8 @@ class RecipesParentViewController: UITableViewController, UISearchResultsUpdatin
         navigationItem.rightBarButtonItem = self.searchButton
 
         configureSearchController()
+        
+        self.definesPresentationContext = true
     }
 
     override func didReceiveMemoryWarning() {
