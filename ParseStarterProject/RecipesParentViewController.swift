@@ -28,7 +28,7 @@ class RecipesParentViewController: UITableViewController, UISearchResultsUpdatin
     
     func recipesUpdated() {
         // override this method!!
-        print("do not forget to override recipesUpdated!!!!!")
+        print("do not forget to override recipesUpdated if needed!!!!!")
     }
     
     //--------------------------------------
