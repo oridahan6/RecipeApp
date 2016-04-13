@@ -1,0 +1,141 @@
+//
+//  RecipesParentViewController.swift
+//  Recipes
+//
+//  Created by Ori Dahan on 13/04/2016.
+//  Copyright © 2016 Parse. All rights reserved.
+//
+
+import UIKit
+
+class RecipesParentViewController: UITableViewController, UISearchResultsUpdating, UISearchBarDelegate {
+
+    var searchButton: UIBarButtonItem!
+    var searchController: UISearchController!
+
+    var filteredRecipes = [Recipe]()
+    var shouldShowSearchResults = false
+    
+    var recipes = [Recipe]() {
+        didSet {
+            self.recipesUpdated()
+        }
+    }
+    
+    //--------------------------------------
+    // MARK: - Init Methods
+    //--------------------------------------
+    
+    func recipesUpdated() {
+        // override this method!!
+        print("do not forget to override recipesUpdated!!!!!")
+    }
+    
+    //--------------------------------------
+    // MARK: - Life Cycle Methods
+    //--------------------------------------
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Create Search Button
+        self.searchButton = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: #selector(FavoritesViewController.showSearchBar(_:)))
+        navigationItem.rightBarButtonItem = self.searchButton
+
+        configureSearchController()
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    //--------------------------------------
+    // MARK: - Helpers Methods
+    //--------------------------------------
+
+    func showSearchBar(sender: UIBarButtonItem) {
+        self.navigationItem.rightBarButtonItem = nil
+        self.navigationItem.leftBarButtonItem = nil
+        
+        self.navigationItem.titleView = searchController.searchBar
+    }
+    
+    func configureSearchController() {
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = getLocalizedString("searchByName")
+        searchController.searchBar.setValue(getLocalizedString("cancel"), forKey:"_cancelButtonText")
+        searchController.searchBar.delegate = self
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.showsCancelButton = true
+        searchController.searchBar.sizeToFit()
+    }
+    
+    func getRecipeBasedOnSearch(index: Int) -> Recipe {
+        if shouldShowSearchResults {
+            return filteredRecipes[index]
+        }
+        return recipes[index]
+    }
+    
+    //--------------------------------------
+    // MARK: - UISearchBarDelegate methods
+    //--------------------------------------
+    
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        searchController.searchBar.showsCancelButton = true
+    }
+    
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        shouldShowSearchResults = true
+        tableView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        
+        self.navigationItem.rightBarButtonItem = self.searchButton
+        
+        self.navigationItem.titleView = nil
+        searchController.searchBar.showsCancelButton = true
+        
+        shouldShowSearchResults = false
+        tableView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        if !shouldShowSearchResults {
+            shouldShowSearchResults = true
+            tableView.reloadData()
+        }
+        
+        searchController.searchBar.resignFirstResponder()
+    }
+    
+    //--------------------------------------
+    // MARK: - UISearchResultsUpdating methods
+    //--------------------------------------
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        if let searchString = searchController.searchBar.text where searchString.isEmpty == false {
+            
+            shouldShowSearchResults = true
+            
+            // Filter the data array and get only those countries that match the search text.
+            filteredRecipes = recipes.filter({ (recipe) -> Bool in
+                let recipeTitle: NSString = recipe.title
+                
+                return (recipeTitle.rangeOfString(searchString, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
+            })
+            
+            // Reload the tableview.
+            tableView.reloadData()
+        } else {
+            shouldShowSearchResults = false
+            tableView.reloadData()
+        }
+    }
+
+
+}

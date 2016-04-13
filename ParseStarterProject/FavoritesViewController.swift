@@ -8,12 +8,11 @@
 
 import UIKit
 
-class FavoritesViewController: UITableViewController, SwiftPromptsProtocol, UISearchResultsUpdating, UISearchBarDelegate {
+class FavoritesViewController: RecipesParentViewController, SwiftPromptsProtocol {
 
     let CellIdentifier = "FavoriteRecipeTableViewCell"
     let SegueRecipeViewController = "RecipeViewController"
 
-    var searchButton: UIBarButtonItem!
     var editButton: UIBarButtonItem!
     
     var emptyMessageLabel: UILabel?
@@ -22,21 +21,11 @@ class FavoritesViewController: UITableViewController, SwiftPromptsProtocol, UISe
     var prompt = SwiftPromptsView()
     var activityIndicator: ActivityIndicator!
     
-    var searchController: UISearchController!
-    
-    var filteredRecipes = [Recipe]()
-    var shouldShowSearchResults = false
-    
     var recipeIds = [String]()
-    var recipes = [Recipe]() {
-        didSet {
-            if !self.recipeRemoved {
-                tableView.reloadData()
-            }
-            self.recipeRemoved = false
-            self.updateRecipeIds()
-        }
-    }
+
+    //--------------------------------------
+    // MARK: - Init Methods
+    //--------------------------------------
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -44,6 +33,18 @@ class FavoritesViewController: UITableViewController, SwiftPromptsProtocol, UISe
         // Initialize Tab Bar Item
         tabBarItem = UITabBarItem(title: getLocalizedString("Favorites"), image: UIImage.fontAwesomeIconWithName(FontAwesome.Heart, textColor: UIColor.grayColor(), size: CGSizeMake(30, 30)), tag: 1)
     }
+    
+    override func recipesUpdated() {
+        if !self.recipeRemoved {
+            tableView.reloadData()
+        }
+        self.recipeRemoved = false
+        self.updateRecipeIds()
+    }
+    
+    //--------------------------------------
+    // MARK: - Life Cycle Methods
+    //--------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,14 +58,9 @@ class FavoritesViewController: UITableViewController, SwiftPromptsProtocol, UISe
         self.editButton = UIBarButtonItem(title: getLocalizedString("edit"), style: .Plain, target: self, action: #selector(FavoritesViewController.editItems(_:)))
         navigationItem.leftBarButtonItem = self.editButton
 
-        // Create Search Button
-        self.searchButton = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: #selector(FavoritesViewController.showSearchBar(_:)))
-        navigationItem.rightBarButtonItem = self.searchButton
-
         // Activity Indicator
         self.activityIndicator = ActivityIndicator(largeActivityView: self.view)
         
-        configureSearchController()
     }
 
     override func didReceiveMemoryWarning() {
@@ -161,25 +157,6 @@ class FavoritesViewController: UITableViewController, SwiftPromptsProtocol, UISe
         self.activityIndicator.hide()
     }
     
-    func showSearchBar(sender: UIBarButtonItem) {
-        self.navigationItem.rightBarButtonItem = nil
-        self.navigationItem.leftBarButtonItem = nil
-        
-        self.navigationItem.titleView = searchController.searchBar
-    }
-    
-    func configureSearchController() {
-        searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = getLocalizedString("searchByName")
-        searchController.searchBar.setValue(getLocalizedString("cancel"), forKey:"_cancelButtonText")
-        searchController.searchBar.delegate = self
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.showsCancelButton = true
-        searchController.searchBar.sizeToFit()
-    }
-    
     private func buildAlert() {
         //Create an instance of SwiftPromptsView and assign its delegate
         prompt = SwiftPromptHelper.getSwiftPromptView(self.view.bounds)
@@ -216,13 +193,7 @@ class FavoritesViewController: UITableViewController, SwiftPromptsProtocol, UISe
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as! FavoriteRecipeTableViewCell
         
-        var recipe: Recipe!
-        
-        if shouldShowSearchResults {
-            recipe = filteredRecipes[indexPath.row]
-        } else {
-            recipe = recipes[indexPath.row]
-        }
+        let recipe = self.getRecipeBasedOnSearch(indexPath.row)
         
         cell.recipeDetailsView.titleLabel.text = recipe.title
         cell.recipeDetailsView.typeLabel.text = recipe.type
@@ -272,15 +243,7 @@ class FavoritesViewController: UITableViewController, SwiftPromptsProtocol, UISe
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == SegueRecipeViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
-                
-                var recipe: Recipe!
-                
-                if shouldShowSearchResults {
-                    recipe = filteredRecipes[indexPath.row]
-                } else {
-                    recipe = recipes[indexPath.row]
-                }
-                
+                let recipe = self.getRecipeBasedOnSearch(indexPath.row)
                 let destinationViewController = segue.destinationViewController as! RecipeViewController
                 destinationViewController.recipe = recipe
             }
@@ -290,61 +253,12 @@ class FavoritesViewController: UITableViewController, SwiftPromptsProtocol, UISe
     //--------------------------------------
     // MARK: - UISearchBarDelegate methods
     //--------------------------------------
-
-    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-        searchController.searchBar.showsCancelButton = true
-    }
     
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-        shouldShowSearchResults = true
-        tableView.reloadData()
-    }
-    
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-
-        self.navigationItem.rightBarButtonItem = self.searchButton
+    override func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        super.searchBarCancelButtonClicked(searchBar)
         self.navigationItem.leftBarButtonItem = self.editButton
-        
-        self.navigationItem.titleView = nil
-        searchController.searchBar.showsCancelButton = true
-        
-        shouldShowSearchResults = false
-        tableView.reloadData()
     }
-    
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        if !shouldShowSearchResults {
-            shouldShowSearchResults = true
-            tableView.reloadData()
-        }
-        
-        searchController.searchBar.resignFirstResponder()
-    }
-    
-    //--------------------------------------
-    // MARK: - UISearchResultsUpdating methods
-    //--------------------------------------
 
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
-        if let searchString = searchController.searchBar.text where searchString.isEmpty == false {
-        
-            shouldShowSearchResults = true
-            
-            // Filter the data array and get only those countries that match the search text.
-            filteredRecipes = recipes.filter({ (recipe) -> Bool in
-                let recipeTitle: NSString = recipe.title
-                
-                return (recipeTitle.rangeOfString(searchString, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
-            })
-            
-            // Reload the tableview.
-            tableView.reloadData()
-        } else {
-            shouldShowSearchResults = false
-            tableView.reloadData()
-        }
-    }
-        
     //--------------------------------------
     // MARK: - SwiftPromptsProtocol delegate methods
     //--------------------------------------
