@@ -22,6 +22,10 @@
 "noInternetConnectionMessage" = "אינך מחובר לאינטרנט. אנא בדוק את החיבור לאינטרנט ונסה שנית.";
 "OK" = "בסדר";
 
+// Search
+"searchByName" = "חפש\\י לפי שם";
+"cancel" = "ביטול";
+
 // Recipe Details
 "Dairy" = "חלבי";
 "Meat" = "בשרי";
