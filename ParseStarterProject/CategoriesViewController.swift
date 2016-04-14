@@ -104,6 +104,7 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        tableView.backgroundView = nil
         if shouldShowSearchResults {
             self.handleIfEmptySearch()
             return filteredCategories.count

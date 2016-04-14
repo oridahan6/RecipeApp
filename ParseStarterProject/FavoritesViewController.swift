@@ -179,11 +179,11 @@ class FavoritesViewController: RecipesParentViewController, SwiftPromptsProtocol
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        tableView.backgroundView = nil
         if shouldShowSearchResults {
             self.handleIfEmptySearch()
             return filteredRecipes.count
         } else if self.recipes.count > 0 {
-            self.tableView.backgroundView = nil
             return recipes.count
         } else if !self.activityIndicator.isAnimating(){
             self.addEmptyFavoritesLabel()
