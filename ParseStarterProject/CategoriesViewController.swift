@@ -67,7 +67,8 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
         
         configureSearchController()
         
-        self.definesPresentationContext = true
+//        self.definesPresentationContext = true
+//        self.navigationController?.definesPresentationContext = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -85,6 +86,7 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
                 let category = self.getCategoryBasedOnSearch(indexPath.row)
                 let destinationViewController = segue.destinationViewController as! RecipesViewController
                 destinationViewController.catId = category.catId
+                searchController.searchBar.resignFirstResponder()
             }
         }
     }
@@ -131,6 +133,8 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
         self.navigationItem.leftBarButtonItem = nil
         
         self.navigationItem.titleView = searchController.searchBar
+        
+        searchController.searchBar.becomeFirstResponder()
     }
     
     func configureSearchController() {
@@ -146,7 +150,7 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
     }
 
     func handleIfEmptySearch() {
-        if filteredCategories.count == 0 {
+        if searchController.searchBar.text?.isEmpty == false && filteredCategories.count == 0 {
             self.addEmptySearchLabel()
         } else {
             self.tableView.backgroundView = nil
@@ -262,4 +266,13 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
 
     }
 
+    //--------------------------------------
+    // MARK: - UIScrollViewDelegate Methods
+    //--------------------------------------
+
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        if shouldShowSearchResults || searchController.active {
+            searchController.searchBar.resignFirstResponder()
+        }
+    }
 }

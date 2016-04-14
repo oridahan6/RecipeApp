@@ -59,10 +59,12 @@ class RecipesParentViewController: UITableViewController, UISearchResultsUpdatin
     //--------------------------------------
 
     func showSearchBar(sender: UIBarButtonItem) {
+        self.navigationItem.setHidesBackButton(true, animated: true)
         self.navigationItem.rightBarButtonItem = nil
         self.navigationItem.leftBarButtonItem = nil
         
         self.navigationItem.titleView = searchController.searchBar
+        searchController.searchBar.becomeFirstResponder()
     }
     
     func configureSearchController() {
@@ -85,7 +87,7 @@ class RecipesParentViewController: UITableViewController, UISearchResultsUpdatin
     }
     
     func handleIfEmptySearch() {
-        if filteredRecipes.count == 0 {
+        if searchController.searchBar.text?.isEmpty == false && filteredRecipes.count == 0 {
             self.addEmptySearchLabel()
         } else {
             self.tableView.backgroundView = nil
@@ -125,6 +127,7 @@ class RecipesParentViewController: UITableViewController, UISearchResultsUpdatin
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         
         self.navigationItem.rightBarButtonItem = self.searchButton
+        self.navigationItem.setHidesBackButton(false, animated: true)
         
         self.navigationItem.titleView = nil
         searchController.searchBar.showsCancelButton = true
