@@ -67,8 +67,11 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
         
         configureSearchController()
         
-//        self.definesPresentationContext = true
-//        self.navigationController?.definesPresentationContext = true
+        self.definesPresentationContext = true
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.definesPresentationContext = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -87,6 +90,7 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
                 let destinationViewController = segue.destinationViewController as! RecipesViewController
                 destinationViewController.catId = category.catId
                 searchController.searchBar.resignFirstResponder()
+                self.definesPresentationContext = false
             }
         }
     }

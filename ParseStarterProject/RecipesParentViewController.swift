@@ -169,5 +169,14 @@ class RecipesParentViewController: UITableViewController, UISearchResultsUpdatin
         }
     }
 
+    //--------------------------------------
+    // MARK: - UIScrollViewDelegate Methods
+    //--------------------------------------
+    
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        if shouldShowSearchResults || searchController.active {
+            searchController.searchBar.resignFirstResponder()
+        }
+    }
 
 }
