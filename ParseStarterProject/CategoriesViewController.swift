@@ -105,7 +105,7 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         tableView.backgroundView = nil
-        if shouldShowSearchResults {
+        if isShowSearchResults() {
             self.handleIfEmptySearch()
             return filteredCategories.count
         }
@@ -150,6 +150,21 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
         searchController.searchBar.setValue(getLocalizedString("cancel"), forKey:"_cancelButtonText")
         searchController.searchBar.delegate = self
         searchController.hidesNavigationBarDuringPresentation = false
+
+        // enable search button even when empty search string
+        var searchBarTextField: UITextField!
+        for subview in searchController.searchBar.subviews {
+            for view2 in subview.subviews {
+                if view2.isKindOfClass(UITextField) {
+                    searchBarTextField = view2 as! UITextField
+                    break
+                }
+            }
+        }
+        if let txtField = searchBarTextField {
+            txtField.enablesReturnKeyAutomatically = false;
+        }
+        
         searchController.searchBar.showsCancelButton = true
         searchController.searchBar.sizeToFit()
     }
@@ -180,10 +195,17 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
     }
 
     func getCategoryBasedOnSearch(index: Int) -> Category {
-        if shouldShowSearchResults {
+        if isShowSearchResults() {
             return filteredCategories[index]
         }
         return categories[index]
+    }
+    
+    private func isShowSearchResults() -> Bool {
+        if searchController.searchBar.text?.isEmpty == true {
+            return false
+        }
+        return shouldShowSearchResults
     }
     
     private func buildAlert() {
@@ -275,9 +297,20 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
     // MARK: - UIScrollViewDelegate Methods
     //--------------------------------------
 
-    override func scrollViewDidScroll(scrollView: UIScrollView) {
-        if shouldShowSearchResults || searchController.active {
+    override func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        if searchController.searchBar.isFirstResponder() && (shouldShowSearchResults || searchController.active) {
             searchController.searchBar.resignFirstResponder()
+        }
+    }
+    
+    //--------------------------------------
+    // MARK: - deinitialization
+    //--------------------------------------
+
+    deinit {
+        if let superView = searchController.view.superview
+        {
+            superView.removeFromSuperview()
         }
     }
 }
