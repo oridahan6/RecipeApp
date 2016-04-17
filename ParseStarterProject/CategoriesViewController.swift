@@ -88,7 +88,7 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
             if let indexPath = tableView.indexPathForSelectedRow {
                 let category = self.getCategoryBasedOnSearch(indexPath.row)
                 let destinationViewController = segue.destinationViewController as! RecipesViewController
-                destinationViewController.catId = category.catId
+                destinationViewController.category = category
                 searchController.searchBar.resignFirstResponder()
                 self.definesPresentationContext = false
             }

@@ -14,7 +14,7 @@ class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
     let CellIdentifier = "RecipeTableViewCell"
     let SegueRecipeViewController = "RecipeViewController"
     
-    var catId: Int?
+    var category: Category?
     var prompt = SwiftPromptsView()
     var activityIndicator: ActivityIndicator!
     
@@ -40,8 +40,6 @@ class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = getLocalizedString("Recipes")
-        
         if !Helpers.isInternetConnectionAvailable() {
             self.buildAlert()
             self.showAlert()
@@ -49,9 +47,11 @@ class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
             // Activity Indicator
             self.activityIndicator = ActivityIndicator(largeActivityView: self.view)
             
-            if let categoryId = self.catId {
-                ParseHelper().updateRecipesFromCategoryId(self, catId: categoryId)
+            if let category = self.category {
+                self.title = category.name
+                ParseHelper().updateRecipesFromCategoryId(self, catId: category.catId)
             } else {
+                self.title = getLocalizedString("Recipes")
                 ParseHelper().updateRecipes(self)
             }
         }

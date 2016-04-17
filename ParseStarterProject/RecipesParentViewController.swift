@@ -201,4 +201,15 @@ class RecipesParentViewController: UITableViewController, UISearchResultsUpdatin
         }
     }
     
+    //--------------------------------------
+    // MARK: - deinitialization
+    //--------------------------------------
+    
+    deinit {
+        if let superView = searchController.view.superview
+        {
+            superView.removeFromSuperview()
+        }
+    }
+    
 }
