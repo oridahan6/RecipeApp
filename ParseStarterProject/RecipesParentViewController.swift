@@ -76,11 +76,26 @@ class RecipesParentViewController: UITableViewController, UISearchResultsUpdatin
         searchController.searchBar.delegate = self
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.showsCancelButton = true
+        
+        // enable search button even when empty search string
+        var searchBarTextField: UITextField!
+        for subview in searchController.searchBar.subviews {
+            for view2 in subview.subviews {
+                if view2.isKindOfClass(UITextField) {
+                    searchBarTextField = view2 as! UITextField
+                    break
+                }
+            }
+        }
+        if let txtField = searchBarTextField {
+            txtField.enablesReturnKeyAutomatically = false;
+        }
+
         searchController.searchBar.sizeToFit()
     }
     
     func getRecipeBasedOnSearch(index: Int) -> Recipe {
-        if shouldShowSearchResults {
+        if isShowSearchResults() {
             return filteredRecipes[index]
         }
         return recipes[index]
@@ -109,6 +124,13 @@ class RecipesParentViewController: UITableViewController, UISearchResultsUpdatin
         }
         self.tableView.backgroundView = emptySearchLabel
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+    }
+    
+    func isShowSearchResults() -> Bool {
+        if searchController.searchBar.text?.isEmpty == true {
+            return false
+        }
+        return shouldShowSearchResults
     }
     
     //--------------------------------------
@@ -173,10 +195,10 @@ class RecipesParentViewController: UITableViewController, UISearchResultsUpdatin
     // MARK: - UIScrollViewDelegate Methods
     //--------------------------------------
     
-    override func scrollViewDidScroll(scrollView: UIScrollView) {
-        if shouldShowSearchResults || searchController.active {
+    override func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        if searchController.searchBar.isFirstResponder() && (shouldShowSearchResults || searchController.active) {
             searchController.searchBar.resignFirstResponder()
         }
     }
-
+    
 }
