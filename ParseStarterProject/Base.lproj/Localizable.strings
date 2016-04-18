@@ -6,10 +6,12 @@
   Copyright © 2016 Parse. All rights reserved.
 */
 
-// Titles
+// Tab Titles
 "Recipes" = "מתכונים";
 "Favorites" = "מועדפים";
 "Categories" = "קטגוריות";
+"About" = "אודות";
+
 
 "sectionHeaderTitleTime" = "זמן הכנה כולל";
 "sectionHeaderTitleIngredients" = "מצרכים";
