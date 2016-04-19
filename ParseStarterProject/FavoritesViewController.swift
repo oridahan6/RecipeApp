@@ -23,17 +23,6 @@ class FavoritesViewController: RecipesParentViewController, SwiftPromptsProtocol
     
     var recipeIds = [String]()
 
-    //--------------------------------------
-    // MARK: - Init Methods
-    //--------------------------------------
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        // Initialize Tab Bar Item
-        tabBarItem = UITabBarItem(title: getLocalizedString("Favorites"), image: UIImage.fontAwesomeIconWithName(FontAwesome.Heart, textColor: UIColor.grayColor(), size: CGSizeMake(30, 30)), tag: 1)
-    }
-    
     override func recipesUpdated() {
         if !self.recipeRemoved {
             tableView.reloadData()

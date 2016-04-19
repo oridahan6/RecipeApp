@@ -14,17 +14,6 @@ class AboutViewController: UIViewController {
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var authorImageView: UIImageView!
     
-    //--------------------------------------
-    // MARK: - Init Methods
-    //--------------------------------------
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        // Initialize Tab Bar Item
-        tabBarItem = UITabBarItem(title: getLocalizedString("About"), image: UIImage.fontAwesomeIconWithName(FontAwesome.Info, textColor: UIColor.grayColor(), size: CGSizeMake(35, 35)), tag: 3)
-    }
-    
     @IBAction func icon8Clicked(sender: AnyObject) {
         if let url = NSURL(string: "https://icons8.com/") {
             UIApplication.sharedApplication().openURL(url)

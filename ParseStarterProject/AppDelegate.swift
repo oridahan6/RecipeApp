@@ -61,6 +61,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Set tab bar items font
         UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Alef-Regular", size: 10)!], forState: UIControlState.Normal)
+
+        // Set tab bar items icons and text
+        if let tabBarController = self.window?.rootViewController as? UITabBarController {
+            let tabBar = tabBarController.tabBar
+            if let tabBarItems = tabBar.items {
+                let tabBarItem1 = tabBarItems[0]
+                tabBarItem1.title = getLocalizedString("categories")
+                tabBarItem1.image = UIImage.fontAwesomeIconWithName(FontAwesome.ThList, textColor: UIColor.grayColor(), size: CGSizeMake(30, 30))
+
+                let tabBarItem2 = tabBarItems[1]
+                tabBarItem2.title = getLocalizedString("Favorites")
+                tabBarItem2.image = UIImage.fontAwesomeIconWithName(FontAwesome.Heart, textColor: UIColor.grayColor(), size: CGSizeMake(30, 30))
+
+                let tabBarItem3 = tabBarItems[2]
+                tabBarItem3.title = getLocalizedString("Recipes")
+                tabBarItem3.image = UIImage.fontAwesomeIconWithName(FontAwesome.Cutlery, textColor: UIColor.grayColor(), size: CGSizeMake(30, 30))
+
+                let tabBarItem4 = tabBarItems[3]
+                tabBarItem4.title = getLocalizedString("About")
+                tabBarItem4.image = UIImage.fontAwesomeIconWithName(FontAwesome.Info, textColor: UIColor.grayColor(), size: CGSizeMake(35, 35))
+            }
+        }
+        
     }
     
     //--------------------------------------

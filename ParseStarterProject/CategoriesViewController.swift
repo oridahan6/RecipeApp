@@ -30,17 +30,6 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
             tableView.reloadData()
         }
     }
-
-    //--------------------------------------
-    // MARK: - Init Methods
-    //--------------------------------------
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        // Initialize Tab Bar Item
-        tabBarItem = UITabBarItem(title: getLocalizedString("Categories"), image: UIImage.fontAwesomeIconWithName(FontAwesome.ThList, textColor: UIColor.grayColor(), size: CGSizeMake(30, 30)), tag: 0)
-    }
     
     //--------------------------------------
     // MARK: - Life Cycle Methods
