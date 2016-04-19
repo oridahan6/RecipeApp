@@ -49,9 +49,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func customizeNavBar() {
-        // Set Navigation bar background image
-        let navBgImage:UIImage = UIImage(named: "navbar.png")!
-        UINavigationBar.appearance().setBackgroundImage(navBgImage, forBarMetrics: .Default)
+        // Set Navigation bar background color
+        UINavigationBar.appearance().barTintColor = Helpers.getRedColor()
+        UINavigationBar.appearance().backgroundColor = Helpers.getRedColor()
         
         // Set Navigation bar Title font & color
         UINavigationBar.appearance().titleTextAttributes = ([NSFontAttributeName: UIFont(name: "Alef-Bold", size: 20)! ,NSForegroundColorAttributeName:UIColor.whiteColor()])
@@ -64,33 +64,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func customizeTabBar() {
-        // Set Tab bar tint color
-        UITabBar.appearance().tintColor = UIColor(red:0.682, green:0.29, blue:0.302, alpha:1)
+        // Set Tab bar color
+        // SPLIT TEST: color - f2e1d2
+        UITabBar.appearance().barTintColor = Helpers.uicolorFromHex(0xf2f0ea)
         
-        // Set tab bar items font
-        UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Alef-Regular", size: 10)!], forState: UIControlState.Normal)
+        // Set Tab bar selected item color
+        UITabBar.appearance().tintColor = Helpers.getRedColor()
+
+        // Set tab bar selected/unselected text color and font
+        let font = UIFont(name: "Alef-Regular", size: 10)!
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: self.getUnselectedTabBarItemColor(), NSFontAttributeName: font], forState:.Normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: Helpers.getRedColor(), NSFontAttributeName: font], forState:.Selected)
         
         // Set tab bar items icons and text
         if let tabBarController = self.window?.rootViewController as? UITabBarController {
             let tabBar = tabBarController.tabBar
             if let tabBarItems = tabBar.items {
-                let tabBarItem1 = tabBarItems[0]
-                tabBarItem1.title = getLocalizedString("categories")
-                tabBarItem1.image = UIImage.fontAwesomeIconWithName(FontAwesome.ThList, textColor: UIColor.grayColor(), size: CGSizeMake(30, 30))
-                
-                let tabBarItem2 = tabBarItems[1]
-                tabBarItem2.title = getLocalizedString("Favorites")
-                tabBarItem2.image = UIImage.fontAwesomeIconWithName(FontAwesome.Heart, textColor: UIColor.grayColor(), size: CGSizeMake(30, 30))
-                
-                let tabBarItem3 = tabBarItems[2]
-                tabBarItem3.title = getLocalizedString("Recipes")
-                tabBarItem3.image = UIImage.fontAwesomeIconWithName(FontAwesome.Cutlery, textColor: UIColor.grayColor(), size: CGSizeMake(30, 30))
-                
-                let tabBarItem4 = tabBarItems[3]
-                tabBarItem4.title = getLocalizedString("About")
-                tabBarItem4.image = UIImage.fontAwesomeIconWithName(FontAwesome.Info, textColor: UIColor.grayColor(), size: CGSizeMake(35, 35))
+                self.setTabBarItemApperance(tabBarItems[0], title: "categories", icon: FontAwesome.ThList)
+                self.setTabBarItemApperance(tabBarItems[1], title: "Favorites", icon: FontAwesome.Heart)
+                self.setTabBarItemApperance(tabBarItems[2], title: "Recipes", icon: FontAwesome.Cutlery)
+                self.setTabBarItemApperance(tabBarItems[3], title: "About", icon: FontAwesome.Info, size: CGSizeMake(35, 35))
             }
         }
+    }
+    
+    func setTabBarItemApperance(tabBarItem: UITabBarItem, title: String, icon: FontAwesome, size: CGSize = CGSizeMake(30, 30)) {
+
+        tabBarItem.title = getLocalizedString(title)
+        tabBarItem.image = UIImage.fontAwesomeIconWithName(icon, textColor: UIColor.blackColor(), size: size)
+        
+        // Set unselected tab bar image color
+        if let image = tabBarItem.image {
+            tabBarItem.image = image.imageWithColor(self.getUnselectedTabBarItemColor()).imageWithRenderingMode(.AlwaysOriginal)
+        }
+
+    }
+    
+    func getUnselectedTabBarItemColor() -> UIColor {
+        return Helpers.uicolorFromHex(0x42413c)
     }
     
     //--------------------------------------

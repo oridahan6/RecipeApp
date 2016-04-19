@@ -31,6 +31,7 @@
 		0C1F4C891CBE6E72002B0631 /* RecipesParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1F4C881CBE6E72002B0631 /* RecipesParentViewController.swift */; };
 		0C47CF701CC3FA6600F26623 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C47CF6F1CC3FA6600F26623 /* AboutViewController.swift */; };
 		0C47CF741CC49EB100F26623 /* Yochi.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C47CF731CC49EB100F26623 /* Yochi.jpg */; };
+		0C47CF761CC62DC900F26623 /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C47CF751CC62DC900F26623 /* UIKitExtensions.swift */; };
 		0C7BD9CB1CA7F7120056ADCD /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7BD9CA1CA7F7120056ADCD /* CategoriesViewController.swift */; };
 		0C7BD9CD1CA8020E0056ADCD /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7BD9CC1CA8020E0056ADCD /* FavoritesViewController.swift */; };
 		0C7BD9CF1CA802780056ADCD /* RecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7BD9CE1CA802780056ADCD /* RecipesViewController.swift */; };
@@ -42,7 +43,7 @@
 		0C7BDA7C1CA931F80056ADCD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7BDA7B1CA931F80056ADCD /* Constants.swift */; };
 		0C7BDA7E1CA942DF0056ADCD /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7BDA7D1CA942DF0056ADCD /* Helpers.swift */; };
 		0C7BDA811CA95E260056ADCD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C7BDA831CA95E260056ADCD /* Localizable.strings */; };
-		0C7BDA851CA969BB0056ADCD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7BDA841CA969BB0056ADCD /* Extensions.swift */; };
+		0C7BDA851CA969BB0056ADCD /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7BDA841CA969BB0056ADCD /* FoundationExtensions.swift */; };
 		0C999F5C1CB4D80400E3844D /* KingfisherHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C999F5B1CB4D80400E3844D /* KingfisherHelper.swift */; };
 		0C999F5E1CB5028C00E3844D /* FavoriteRecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C999F5D1CB5028C00E3844D /* FavoriteRecipeTableViewCell.swift */; };
 		0CA7C1381CBAA2FB00BEDD65 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA7C1371CBAA2FB00BEDD65 /* ActivityIndicator.swift */; };
@@ -98,6 +99,7 @@
 		0C1F4C881CBE6E72002B0631 /* RecipesParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipesParentViewController.swift; sourceTree = "<group>"; };
 		0C47CF6F1CC3FA6600F26623 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		0C47CF731CC49EB100F26623 /* Yochi.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Yochi.jpg; sourceTree = "<group>"; };
+		0C47CF751CC62DC900F26623 /* UIKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitExtensions.swift; sourceTree = "<group>"; };
 		0C7BD9CA1CA7F7120056ADCD /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		0C7BD9CC1CA8020E0056ADCD /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		0C7BD9CE1CA802780056ADCD /* RecipesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipesViewController.swift; sourceTree = "<group>"; };
@@ -109,7 +111,7 @@
 		0C7BDA7B1CA931F80056ADCD /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0C7BDA7D1CA942DF0056ADCD /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Helpers.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0C7BDA821CA95E260056ADCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
-		0C7BDA841CA969BB0056ADCD /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Extensions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0C7BDA841CA969BB0056ADCD /* FoundationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FoundationExtensions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0C999F5B1CB4D80400E3844D /* KingfisherHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KingfisherHelper.swift; sourceTree = "<group>"; };
 		0C999F5D1CB5028C00E3844D /* FavoriteRecipeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteRecipeTableViewCell.swift; sourceTree = "<group>"; };
 		0CA7C1371CBAA2FB00BEDD65 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
@@ -276,7 +278,8 @@
 				0C7BDA7D1CA942DF0056ADCD /* Helpers.swift */,
 				0CA7C1371CBAA2FB00BEDD65 /* ActivityIndicator.swift */,
 				0CCC382B1CBBE20D0055384F /* SwiftPromptHelper.swift */,
-				0C7BDA841CA969BB0056ADCD /* Extensions.swift */,
+				0C7BDA841CA969BB0056ADCD /* FoundationExtensions.swift */,
+				0C47CF751CC62DC900F26623 /* UIKitExtensions.swift */,
 				0C999F5B1CB4D80400E3844D /* KingfisherHelper.swift */,
 				0CCC381E1CBBB2BF0055384F /* Reachability.swift */,
 			);
@@ -570,10 +573,11 @@
 				0C192F221CB38C4B00811CB4 /* Category.swift in Sources */,
 				0C0CD0C71CABD5FB00F682F9 /* Enum.swift in Sources */,
 				0C0CD0CD1CAD614F00F682F9 /* DirectionTableViewCell.swift in Sources */,
-				0C7BDA851CA969BB0056ADCD /* Extensions.swift in Sources */,
+				0C7BDA851CA969BB0056ADCD /* FoundationExtensions.swift in Sources */,
 				0CCC38241CBBBCB60055384F /* SwiftPrompts.swift in Sources */,
 				0CD15FF61CB14C8500C7B828 /* RecipeSubtitleTableViewCell.swift in Sources */,
 				0C7BD9CF1CA802780056ADCD /* RecipesViewController.swift in Sources */,
+				0C47CF761CC62DC900F26623 /* UIKitExtensions.swift in Sources */,
 				0C47CF701CC3FA6600F26623 /* AboutViewController.swift in Sources */,
 				0C0CD0CB1CAD016600F682F9 /* RecipeViewController.swift in Sources */,
 				0C7BD9CB1CA7F7120056ADCD /* CategoriesViewController.swift in Sources */,

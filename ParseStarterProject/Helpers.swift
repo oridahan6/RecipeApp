@@ -114,12 +114,22 @@ class Helpers {
     // MARK: - Color
     //--------------------------------------
 
-    class func getRedColor(alpha: CGFloat = 1.0) -> UIColor {
+    class func uicolorFromHex(rgbValue:UInt32, alpha: CGFloat = 1.0) -> UIColor {
+        
         var alphaValue = alpha
         if alpha > 1 || alpha < 0 {
             alphaValue = 1
         }
-        return UIColor(red:0.69, green:0.29, blue:0.29, alpha:alphaValue)
+        
+        let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
+        let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
+        let blue = CGFloat(rgbValue & 0xFF)/256.0
+        
+        return UIColor(red:red, green:green, blue:blue, alpha:alphaValue)
+    }
+    
+    class func getRedColor(alpha: CGFloat = 1.0) -> UIColor {
+        return self.uicolorFromHex(0xA73535, alpha: alpha)
     }
     
 }
