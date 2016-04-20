@@ -32,14 +32,16 @@ class ActivityIndicator {
         
     }
     
-    convenience init(largeActivityView view: UIView) {
+    convenience init(largeActivityView view: UIView, isShowLabel: Bool = true) {
         self.init(view: view, HUDSize: 100.0)
-        self.isShowLabel = true
+        self.isShowLabel = isShowLabel
         self.HUDColor = Helpers.getRedColor(0.95)
         self.elementsColor = Helpers.getNudeColor()
         
         self.buildHUD()
-        self.buildLoadingLabel()
+        if isShowLabel {
+            self.buildLoadingLabel()
+        }
         self.buildActivityIndicator()
     }
 

@@ -44,7 +44,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SwiftPromptsPr
         passwordTextField.delegate = self
         
         // Activity Indicator
-        self.activityIndicator = ActivityIndicator(largeActivityView: self.view)
+        self.activityIndicator = ActivityIndicator(largeActivityView: self.view, isShowLabel: false)
     }
 
     override func didReceiveMemoryWarning() {
