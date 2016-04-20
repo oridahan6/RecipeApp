@@ -11,6 +11,10 @@ import Parse
 
 class ParseHelper: NSObject {
 
+    //--------------------------------------
+    // MARK: - get data methods
+    //--------------------------------------
+
     func updateRecipes(vc: RecipesViewController) -> Void {
         
         vc.activityIndicator.show()
@@ -131,5 +135,33 @@ class ParseHelper: NSObject {
         
     }
 
+    //--------------------------------------
+    // MARK: - user methods
+    //--------------------------------------
 
+    class func login(username: String, password: String) {
+        PFUser.logInWithUsernameInBackground(username, password: password) {
+            (user: PFUser?, error: NSError?) -> Void in
+            if user != nil {
+                // Do stuff after successful login.
+                print("success")
+                print(user)
+            } else {
+                // The login failed. Check error to see why.
+                print(error!)
+            }
+        }
+
+    }
+    
+    class func currentUser() -> PFUser? {
+        if let user = PFUser.currentUser() {
+            return user
+        }
+        return nil
+    }
+    
+    class func logOut() {
+        PFUser.logOut()
+    }
 }

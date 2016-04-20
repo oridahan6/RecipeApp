@@ -8,6 +8,7 @@
     <customFonts key="customFonts">
         <mutableArray key="Alef-bold.ttf">
             <string>Alef-Bold</string>
+            <string>Alef-Bold</string>
         </mutableArray>
         <mutableArray key="Alef-regular.ttf">
             <string>Alef-Regular</string>
@@ -29,8 +30,11 @@
             <string>Alef-Regular</string>
             <string>Alef-Regular</string>
             <string>Alef-Regular</string>
+            <string>Alef-Regular</string>
+            <string>Alef-Regular</string>
         </mutableArray>
         <mutableArray key="hillelclm-medium-webfont.ttf">
+            <string>HillelCLM-Medium</string>
             <string>HillelCLM-Medium</string>
             <string>HillelCLM-Medium</string>
             <string>HillelCLM-Medium</string>
@@ -630,7 +634,7 @@
                                                     <constraint firstAttribute="height" priority="250" constant="232" id="LN4-g1-D6G"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Alef-Regular" family="Alef" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="default">
                                                     <mask key="constraints">
@@ -645,7 +649,7 @@
                                                     <constraint firstAttribute="height" constant="26" id="Ysr-fs-ujg"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="יוכבד דהן" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Vl-FS-5ah">
@@ -655,7 +659,7 @@
                                                     <constraint firstAttribute="width" constant="78" id="qS6-K0-TbS"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Alef-Regular" family="Alef" pointSize="20"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="פותח ע&quot;י אורי דהן" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="49s-Xu-8og">
@@ -665,7 +669,7 @@
                                                     <constraint firstAttribute="width" constant="145" id="w2a-iB-fOf"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Alef-Regular" family="Alef" pointSize="20"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="תודות" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Es-o1-FPH">
@@ -675,7 +679,7 @@
                                                     <constraint firstAttribute="height" constant="28" id="tuH-ZF-BYd"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Alef-Bold" family="Alef" pointSize="20"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DK4-Kh-LMl">
@@ -740,11 +744,129 @@
                         <outlet property="aboutLabel" destination="0Kk-nD-nIs" id="ipI-0W-C4u"/>
                         <outlet property="authorImageView" destination="Dtp-tA-4pq" id="Ph3-9T-hK5"/>
                         <outlet property="scrollView" destination="0SC-ai-Jf4" id="6hp-ci-c0i"/>
+                        <segue destination="aPX-4i-HOI" kind="show" identifier="LoginViewController" id="dVr-ZX-sG8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VOx-SS-LIk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1456" y="1470"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="KaE-We-uxE">
+            <objects>
+                <viewController id="aPX-4i-HOI" customClass="LoginViewController" customModule="Recipes" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="585-F1-jHL"/>
+                        <viewControllerLayoutGuide type="bottom" id="5oO-jg-dAF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WsZ-t9-mSF">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="שם משתמש" textAlignment="right" adjustsFontSizeToFit="NO" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="SyO-E1-l9S" customClass="HoshiTextField" customModule="Recipes" customModuleProvider="target">
+                                <rect key="frame" x="20" y="265" width="560" height="51"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="51" id="e2h-Mk-FH7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Alef-Regular" family="Alef" pointSize="27"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                        <color key="value" red="0.96470588239999999" green="0.72941176470000002" blue="0.44705882349999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                        <color key="value" red="0.66666666666666663" green="0.27843137254901962" blue="0.27450980392156865" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="סיסמא" textAlignment="right" adjustsFontSizeToFit="NO" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="p1D-xD-dOs" customClass="HoshiTextField" customModule="Recipes" customModuleProvider="target">
+                                <rect key="frame" x="20" y="332" width="560" height="51"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="51" id="RjT-rJ-ClX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Alef-Regular" family="Alef" pointSize="27"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                        <color key="value" red="0.96470588239999999" green="0.72941176470000002" blue="0.44705882349999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                        <color key="value" red="0.66666666669999997" green="0.2784313725" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="התחבר\י" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J94-jH-5bM">
+                                <rect key="frame" x="246" y="212" width="110" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="8Fg-Tz-5GJ"/>
+                                    <constraint firstAttribute="width" constant="110" id="Xrt-T4-bbe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HillelCLM-Medium" family="Hillel CLM" pointSize="32"/>
+                                <color key="textColor" red="0.66666666669999997" green="0.2784313725" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chef-login" translatesAutoresizingMaskIntoConstraints="NO" id="4k4-DT-SdQ">
+                                <rect key="frame" x="245" y="86" width="110" height="110"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="110" id="C2J-PJ-aKa"/>
+                                    <constraint firstAttribute="height" constant="110" id="SNX-40-qaj"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2jl-ol-sbs">
+                                <rect key="frame" x="161" y="451" width="280" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="3ab-sC-BXk"/>
+                                    <constraint firstAttribute="width" constant="280" id="Q3B-RK-APo"/>
+                                </constraints>
+                                <state key="normal" image="login-button"/>
+                                <connections>
+                                    <action selector="login:" destination="aPX-4i-HOI" eventType="touchUpInside" id="EgW-Oe-Drn"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="כניסה" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ksH-Sk-Nty">
+                                <rect key="frame" x="277" y="463" width="48" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="6Nf-G6-W2j"/>
+                                    <constraint firstAttribute="height" constant="26" id="di2-cW-3Qi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Alef-Bold" family="Alef" pointSize="19"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.94901960780000005" green="0.94117647059999998" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="J94-jH-5bM" firstAttribute="top" secondItem="4k4-DT-SdQ" secondAttribute="bottom" constant="16" id="1zX-ZZ-pBj"/>
+                            <constraint firstItem="J94-jH-5bM" firstAttribute="centerX" secondItem="WsZ-t9-mSF" secondAttribute="centerX" constant="1" id="21U-Ui-ISs"/>
+                            <constraint firstItem="4k4-DT-SdQ" firstAttribute="centerX" secondItem="WsZ-t9-mSF" secondAttribute="centerX" id="28n-e5-lMw"/>
+                            <constraint firstItem="ksH-Sk-Nty" firstAttribute="top" secondItem="p1D-xD-dOs" secondAttribute="bottom" constant="80" id="2gI-wj-NhU"/>
+                            <constraint firstAttribute="trailing" secondItem="SyO-E1-l9S" secondAttribute="trailing" constant="20" id="5am-bT-ox1"/>
+                            <constraint firstItem="p1D-xD-dOs" firstAttribute="top" secondItem="SyO-E1-l9S" secondAttribute="bottom" constant="16" id="Bic-Qy-dv8"/>
+                            <constraint firstAttribute="trailing" secondItem="p1D-xD-dOs" secondAttribute="trailing" constant="20" id="Jpq-3q-jgT"/>
+                            <constraint firstItem="p1D-xD-dOs" firstAttribute="leading" secondItem="WsZ-t9-mSF" secondAttribute="leading" constant="20" id="Nw6-y3-Z4F"/>
+                            <constraint firstItem="2jl-ol-sbs" firstAttribute="centerX" secondItem="WsZ-t9-mSF" secondAttribute="centerX" constant="1" id="S6a-b0-kwP"/>
+                            <constraint firstItem="4k4-DT-SdQ" firstAttribute="top" secondItem="585-F1-jHL" secondAttribute="bottom" constant="22" id="SBR-Lh-S6y"/>
+                            <constraint firstItem="SyO-E1-l9S" firstAttribute="top" secondItem="J94-jH-5bM" secondAttribute="bottom" constant="20" id="cBo-Jx-U4B"/>
+                            <constraint firstItem="SyO-E1-l9S" firstAttribute="leading" secondItem="WsZ-t9-mSF" secondAttribute="leading" constant="20" id="dqd-Jt-xUa"/>
+                            <constraint firstItem="ksH-Sk-Nty" firstAttribute="centerX" secondItem="WsZ-t9-mSF" secondAttribute="centerX" constant="1" id="fFs-bU-p7I"/>
+                            <constraint firstItem="2jl-ol-sbs" firstAttribute="top" secondItem="p1D-xD-dOs" secondAttribute="bottom" constant="68" id="hka-yK-sLy"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="buttonLabel" destination="ksH-Sk-Nty" id="n6K-Er-ylc"/>
+                        <outlet property="passwordTextField" destination="p1D-xD-dOs" id="XVW-Jb-CEu"/>
+                        <outlet property="usernameTextField" destination="SyO-E1-l9S" id="y1s-qw-JMR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p7h-u7-R7j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2199" y="1470"/>
         </scene>
         <!--Recipe View Controller-->
         <scene sceneID="3Qr-nh-Fqx">
@@ -1271,8 +1393,10 @@
         <image name="Yochi.jpg" width="686" height="686"/>
         <image name="cheese-icon" width="25" height="21"/>
         <image name="chef-icon" width="18" height="18"/>
+        <image name="chef-login" width="110" height="110"/>
         <image name="dotted-line" width="325" height="4"/>
         <image name="favorite-btn-bg" width="40" height="40"/>
+        <image name="login-button" width="280" height="50"/>
         <image name="placeholder-bg.png" width="1250" height="703"/>
         <image name="placeholder.jpg" width="1250" height="703"/>
         <image name="section-circle" width="30" height="30"/>

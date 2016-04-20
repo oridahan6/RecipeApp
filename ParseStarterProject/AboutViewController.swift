@@ -10,6 +10,8 @@ import UIKit
 
 class AboutViewController: UIViewController {
 
+    let SegueLoginViewController = "LoginViewController"
+
     @IBOutlet var aboutLabel: UILabel!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var authorImageView: UIImageView!
@@ -33,11 +35,21 @@ class AboutViewController: UIViewController {
         self.authorImageView.clipsToBounds = true
         
         self.aboutLabel.text = "שהיו של קיקרו, Lorem Ipsum תמתוך Lorem Ipsum ודרךציטוטים של המילה מתוך הספרות הקלאסית, הוא גילה מקור בלתי ניתן לערעור ציטוטים של המילה מתוך הספרות הקלאסית, הוא גילה מקור בלתי ניתן לערעור ציטוטים של המילה מתוך הספרות הקלאסית, הוא גילה מקור בלתי ניתן לערעור. Lorem Ipsum מגיע מתוך מקטע 1.10.32 ו- 1.10.33 של \"de Finibus Bonorum et Malorum\" (הקיצוניות של הטוב והרע) שנכתב על ידי קיקרו ב-45 לפני הספירה. ספר זה הוא מאמר על תאוריית האתיקה, שהיה מאוד מפורסם בתקופת הרנסנס. השורה הראשונה של \"Lorem ipsum dolor sit amet\", שמופיעה בטקסטים של Lorem Ipsum, באה משורה במקטע 1.10.32"
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(AboutViewController.doubleTapped))
+        tap.numberOfTapsRequired = 2
+        self.authorImageView.userInteractionEnabled = true
+        self.authorImageView.addGestureRecognizer(tap)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    func doubleTapped() {
+        // do something cool here
+        self.performSegueWithIdentifier(SegueLoginViewController, sender: nil)
     }
     
 
