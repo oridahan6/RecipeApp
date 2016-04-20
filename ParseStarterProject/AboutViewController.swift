@@ -8,10 +8,12 @@
 
 import UIKit
 
-class AboutViewController: UIViewController {
+class AboutViewController: UIViewController, SwiftPromptsProtocol {
 
     let SegueLoginViewController = "LoginViewController"
 
+    var prompt = SwiftPromptsView()
+    
     @IBOutlet var aboutLabel: UILabel!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var authorImageView: UIImageView!
@@ -48,11 +50,44 @@ class AboutViewController: UIViewController {
     }
 
     func doubleTapped() {
-        // do something cool here
-        self.performSegueWithIdentifier(SegueLoginViewController, sender: nil)
+
+        if let user = ParseHelper.currentUser() {
+            self.showAlert()
+        } else {
+            self.performSegueWithIdentifier(SegueLoginViewController, sender: nil)
+        }
+
+    }
+
+    //--------------------------------------
+    // MARK: - Helper methods
+    //--------------------------------------
+    
+    func showAlert() {
+        //Create an instance of SwiftPromptsView and assign its delegate
+        prompt = SwiftPromptsView(frame: self.view.frame)
+        prompt.delegate = self
+        
+        SwiftPromptHelper.buildSuccessAlert(prompt, type: "alreadyLoggedIn")
+        self.view.addSubview(prompt)
+    }
+
+    //--------------------------------------
+    // MARK: - SwiftPromptsProtocol delegate methods
+    //--------------------------------------
+    
+    func clickedOnTheMainButton() {
+        prompt.dismissPrompt()
     }
     
-
+    func clickedOnTheSecondButton() {
+        prompt.dismissPrompt()
+    }
+    
+    func promptWasDismissed() {
+        
+    }
+    
     /*
     // MARK: - Navigation
 

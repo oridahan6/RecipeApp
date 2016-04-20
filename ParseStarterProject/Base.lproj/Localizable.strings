@@ -26,6 +26,11 @@
 "wrongUsernamePasswordMessage" = "שם המשתמש והסיסמא לא תואמים, נא נסה\\י שנית.";
 "generalErrorTitle" = "אופס...";
 "generalErrorMessage" = "קרתה שגיאה, אנא נסה\\י שנית מאוחר יותר.";
+"alreadyLoggedInTitle" = "אופס...";
+"alreadyLoggedInMessage" = "את\\ה כבר מחובר\\ת, לחץ\\י \"בסדר\" כדי להמשיך.";
+"emptyUsernamePasswordTitle" = "אופס...";
+"emptyUsernamePasswordMessage" = "שם מהמשתמש או הסיסמא חסרים.";
+
 "OK" = "בסדר";
 
 

@@ -153,7 +153,7 @@ class ParseHelper: NSObject {
                 if let error = error {
                     print(error)
                     vc.activityIndicator.hide()
-                    vc.showErrorAlert(error)
+                    vc.showErrorAlert(error.code)
                 }
             }
         }
