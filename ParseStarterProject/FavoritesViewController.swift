@@ -50,6 +50,8 @@ class FavoritesViewController: RecipesParentViewController, SwiftPromptsProtocol
         // Activity Indicator
         self.activityIndicator = ActivityIndicator(largeActivityView: self.view)
         
+        // Hack for placing the hud in the correct place
+        Helpers.hackForPlacingHUD(self.activityIndicator.HUD)
     }
 
     override func didReceiveMemoryWarning() {
@@ -151,7 +153,7 @@ class FavoritesViewController: RecipesParentViewController, SwiftPromptsProtocol
         prompt = SwiftPromptHelper.getSwiftPromptView(self.view.bounds)
         prompt.delegate = self
         
-        SwiftPromptHelper.buildErrorAlert(prompt)
+        SwiftPromptHelper.buildErrorAlert(prompt, type: "noInternetConnection")
         
     }
     

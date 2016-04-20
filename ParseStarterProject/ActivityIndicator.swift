@@ -35,8 +35,8 @@ class ActivityIndicator {
     convenience init(largeActivityView view: UIView) {
         self.init(view: view, HUDSize: 100.0)
         self.isShowLabel = true
-        self.HUDColor = self.getYellowColor()
-        self.elementsColor = self.getRedColor()
+        self.HUDColor = Helpers.getRedColor(0.95)
+        self.elementsColor = Helpers.getNudeColor()
         
         self.buildHUD()
         self.buildLoadingLabel()
@@ -55,8 +55,7 @@ class ActivityIndicator {
 
     private func buildHUD() {
         let HUDSize: CGFloat = self.HUDSize
-        let heightPointsToSubstract: CGFloat = self.isShowLabel == true ? 60 : 0
-        let frame = CGRectMake(UIScreen.mainScreen().bounds.width / 2 - HUDSize / 2, self.insertToView.bounds.height / 2 - HUDSize / 2 - heightPointsToSubstract, HUDSize, HUDSize)
+        let frame = CGRectMake(UIScreen.mainScreen().bounds.width / 2 - HUDSize / 2, self.insertToView.bounds.height / 2 - HUDSize / 2, HUDSize, HUDSize)
         self.HUD = UIView(frame: frame)
         self.HUD.backgroundColor = self.HUDColor
         
@@ -95,14 +94,6 @@ class ActivityIndicator {
         loadingLabel.sizeToFit()
         
         self.HUD.addSubview(loadingLabel)
-    }
-    
-    private func getRedColor() -> UIColor {
-        return UIColor(red:0.69, green:0.29, blue:0.29, alpha:1.0)
-    }
-    
-    private func getYellowColor() -> UIColor {
-        return UIColor(red:0.95, green:0.72, blue:0.37, alpha:0.95)
     }
     
     private func getBlackColor() -> UIColor {

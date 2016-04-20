@@ -14,27 +14,39 @@ class SwiftPromptHelper {
         return SwiftPromptsView(frame: self.getPromptFrame(frame))
     }
     
-    class func buildErrorAlert(prompt: SwiftPromptsView) {
+    class func buildErrorAlert(prompt: SwiftPromptsView, type: String) {
+        self.buildAlert(prompt, color: Helpers.getRedColor(), type: type)
+    }
+    
+    class func buildSuccessAlert(prompt: SwiftPromptsView, type: String) {
+        self.buildAlert(prompt, color: Helpers.getGreenColor(), type: type)
+    }
+    
+    class func buildAlert(prompt: SwiftPromptsView, color: UIColor, type: String) {
+//        let transparencyColor = color.colorWithAlphaComponent(0.9)
+        
         //Set the properties for the background
         prompt.setBlurringLevel(5.0)
-        prompt.setColorWithTransparency(UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.9))
+        prompt.setColorWithTransparency(Helpers.getNudeColor(0.9))
         
         //Set the properties of the prompt
-        prompt.setPromptHeader(getLocalizedString("noInternetConnectionTitle"))
-        prompt.setPromptContentText(getLocalizedString("noInternetConnectionMessage"))
+        prompt.setPromptHeader(getLocalizedString(type + "Title"))
+        prompt.setPromptContentText(getLocalizedString(type + "Message"))
         prompt.setPromptTopLineVisibility(true)
         prompt.setPromptBottomLineVisibility(false)
         prompt.setPromptBottomBarVisibility(true)
         prompt.setPromptDismissIconVisibility(false)
         prompt.setPromptOutlineVisibility(true)
-        prompt.setPromptHeaderTxtColor(Helpers.getRedColor())
-        prompt.setPromptOutlineColor(Helpers.getRedColor())
+        prompt.setPromptHeaderTxtColor(color)
+        prompt.setPromptOutlineColor(color)
         //        prompt.setPromptDismissIconColor(UIColor(red: 133.0/255.0, green: 133.0/255.0, blue: 133.0/255.0, alpha: 1.0))
-        prompt.setPromptTopLineColor(Helpers.getRedColor())
-        prompt.setPromptBackgroundColor(UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.67))
-        prompt.setPromptBottomBarColor(Helpers.getRedColor())
-        prompt.setMainButtonColor(UIColor.whiteColor())
+        prompt.setPromptContentTxtColor(UIColor.blackColor())
+        prompt.setPromptTopLineColor(color)
+        prompt.setPromptBackgroundColor(Helpers.getNudeColor(0.67))
+        prompt.setPromptBottomBarColor(color)
+        prompt.setMainButtonColor(Helpers.getNudeColor())
         prompt.setMainButtonText(getLocalizedString("OK"))
+
     }
     
     class func getPromptFrame(frame: CGRect) -> CGRect {

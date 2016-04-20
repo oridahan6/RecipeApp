@@ -17,14 +17,23 @@
 "sectionHeaderTitleIngredients" = "מצרכים";
 "sectionHeaderTitleDirections" = "שלבי הכנה";
 
+// Alerts
+"noInternetConnectionTitle" = "אין חיבור לאינטרנט";
+"noInternetConnectionMessage" = "אינך מחובר לאינטרנט. אנא בדוק את החיבור לאינטרנט ונסה שנית.";
+"loginSuccessTitle" = "התחברת בהצלחה";
+"loginSuccessMessage" = "לחץ\\י על \"בסדר\" על מנת להמשיך";
+"wrongUsernamePasswordTitle" = "אופס...";
+"wrongUsernamePasswordMessage" = "שם המשתמש והסיסמא לא תואמים, נא נסה\\י שנית.";
+"generalErrorTitle" = "אופס...";
+"generalErrorMessage" = "קרתה שגיאה, אנא נסה\\י שנית מאוחר יותר.";
+"OK" = "בסדר";
+
+
 // Messages
 "emptyFavorites" = "לא הוספו מתכונים למועדפים. נא הוסף\\י מתכונים כדי לראותם במועדפים";
 "emptySearchRecipes" = "לא נמצאו מתכונים עבור החיפוש '%@'.";
 "emptySearchCategories" = "לא נמצאו קטגוריות עבור החיפוש '%@'.";
 "loading" = "טוען...";
-"noInternetConnectionTitle" = "אין חיבור לאינטרנט";
-"noInternetConnectionMessage" = "אינך מחובר לאינטרנט. אנא בדוק את החיבור לאינטרנט ונסה שנית.";
-"OK" = "בסדר";
 
 // Search
 "searchByName" = "חפש\\י לפי שם";

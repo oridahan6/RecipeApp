@@ -8,7 +8,10 @@
 
 import UIKit
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController, UITextFieldDelegate, SwiftPromptsProtocol {
+
+    var prompt = SwiftPromptsView()
+    var activityIndicator: ActivityIndicator!
 
     @IBOutlet var usernameTextField: HoshiTextField!
     @IBOutlet var passwordTextField: HoshiTextField!
@@ -23,16 +26,25 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         // handle empty values
         
         if let username = self.usernameTextField.text, let password = self.passwordTextField.text {
-            ParseHelper.login(username, password: password)
+            ParseHelper.login(username, password: password, vc: self)
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print(ParseHelper.currentUser())
+        
+        ParseHelper.logOut()
+        
+        print(ParseHelper.currentUser())
+        
         buttonLabel.text = getLocalizedString("enter")
         usernameTextField.delegate = self
         passwordTextField.delegate = self
+        
+        // Activity Indicator
+        self.activityIndicator = ActivityIndicator(largeActivityView: self.view)
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,6 +69,53 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    //--------------------------------------
+    // MARK: - Helper methods
+    //--------------------------------------
+
+    func showSuccessAlert() {
+        //Create an instance of SwiftPromptsView and assign its delegate
+        prompt = SwiftPromptsView(frame: self.view.frame)
+        prompt.delegate = self
+        
+        SwiftPromptHelper.buildSuccessAlert(prompt, type: "loginSuccess")
+        self.view.addSubview(prompt)
+    }
+
+    func showErrorAlert(error: NSError) {
+        var propmptType = ""
+        switch error.code {
+        case 101:
+            propmptType = "wrongUsernamePassword"
+        default:
+            propmptType = "generalError"
+        }
+        
+        //Create an instance of SwiftPromptsView and assign its delegate
+        prompt = SwiftPromptsView(frame: self.view.frame)
+        prompt.delegate = self
+        
+        SwiftPromptHelper.buildErrorAlert(prompt, type: propmptType)
+        self.view.addSubview(prompt)
+    }
+    
+    //--------------------------------------
+    // MARK: - SwiftPromptsProtocol delegate methods
+    //--------------------------------------
+    
+    func clickedOnTheMainButton() {
+        prompt.dismissPrompt()
+        print(ParseHelper.currentUser())
+    }
+    
+    func clickedOnTheSecondButton() {
+        prompt.dismissPrompt()
+    }
+    
+    func promptWasDismissed() {
+        
+    }
+
     /*
     // MARK: - Navigation
 

@@ -139,16 +139,22 @@ class ParseHelper: NSObject {
     // MARK: - user methods
     //--------------------------------------
 
-    class func login(username: String, password: String) {
+    class func login(username: String, password: String, vc: LoginViewController) {
+        
+        vc.activityIndicator.show()
+        
         PFUser.logInWithUsernameInBackground(username, password: password) {
             (user: PFUser?, error: NSError?) -> Void in
             if user != nil {
-                // Do stuff after successful login.
-                print("success")
-                print(user)
+                vc.activityIndicator.hide()
+
+                vc.showSuccessAlert()
             } else {
-                // The login failed. Check error to see why.
-                print(error!)
+                if let error = error {
+                    print(error)
+                    vc.activityIndicator.hide()
+                    vc.showErrorAlert(error)
+                }
             }
         }
 

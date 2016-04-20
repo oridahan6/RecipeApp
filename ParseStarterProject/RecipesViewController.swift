@@ -35,6 +35,9 @@ class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
         } else {
             // Activity Indicator
             self.activityIndicator = ActivityIndicator(largeActivityView: self.view)
+
+            // Hack for placing the hud in the correct place
+            Helpers.hackForPlacingHUD(self.activityIndicator.HUD)
             
             if let category = self.category {
                 self.title = category.name
@@ -117,7 +120,7 @@ class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
         prompt = SwiftPromptHelper.getSwiftPromptView(self.view.bounds)
         prompt.delegate = self
         
-        SwiftPromptHelper.buildErrorAlert(prompt)
+        SwiftPromptHelper.buildErrorAlert(prompt, type: "noInternetConnection")
         
     }
     

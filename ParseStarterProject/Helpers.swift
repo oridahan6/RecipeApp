@@ -131,7 +131,24 @@ class Helpers {
     class func getRedColor(alpha: CGFloat = 1.0) -> UIColor {
         return self.uicolorFromHex(0xA73535, alpha: alpha)
     }
+
+    class func getGreenColor(alpha: CGFloat = 1.0) -> UIColor {
+        return self.uicolorFromHex(0x55AA6D, alpha: alpha)
+    }
     
+    class func getNudeColor(alpha: CGFloat = 1.0) -> UIColor {
+        return self.uicolorFromHex(0xF2F0EA, alpha: alpha)
+    }
+    
+    //--------------------------------------
+    // MARK: - Hacks
+    //--------------------------------------
+
+    class func hackForPlacingHUD(HUD: UIView) {
+        let frame = HUD.frame
+        HUD.frame = CGRectMake(frame.origin.x, frame.origin.y - 60, frame.size.width, frame.size.height)
+    }
+
 }
 
 func getLocalizedString(key: String) -> String {
