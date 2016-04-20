@@ -18,6 +18,8 @@ class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
     var prompt = SwiftPromptsView()
     var activityIndicator: ActivityIndicator!
     
+    var addButton: UIBarButtonItem!
+    
     override func recipesUpdated() {
         self.tableView.reloadData()
     }
@@ -56,6 +58,10 @@ class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.handleAddButton()
     }
     
     //--------------------------------------
@@ -114,6 +120,25 @@ class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
     //--------------------------------------
     // MARK: - Helpers Methods
     //--------------------------------------
+    
+    func showAddRecipeView(sender: UIBarButtonItem) {
+        
+    }
+    
+    func handleAddButton() {
+        // Create add recipe button
+        if let user = ParseHelper.currentUser() {
+            let parseUser = ParseUser(user: user)
+            if parseUser.isAdmin() {
+                if self.addButton == nil {
+                    self.addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(RecipesViewController.showAddRecipeView(_:)))
+                }
+                navigationItem.leftBarButtonItem = self.addButton
+            }
+        } else {
+            navigationItem.leftBarButtonItem = nil
+        }
+    }
     
     private func buildAlert() {
         //Create an instance of SwiftPromptsView and assign its delegate

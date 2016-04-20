@@ -51,7 +51,7 @@ class AboutViewController: UIViewController, SwiftPromptsProtocol {
 
     func doubleTapped() {
 
-        if let user = ParseHelper.currentUser() {
+        if ParseHelper.currentUser() != nil {
             self.showAlert()
         } else {
             self.performSegueWithIdentifier(SegueLoginViewController, sender: nil)
