@@ -1504,46 +1504,44 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="לחץ לבחירה" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FPj-N4-MzP">
-                                            <rect key="frame" x="352" y="8" width="83" height="24"/>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="לחץ לבחירה" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qp2-vs-dL5">
+                                            <rect key="frame" x="338" y="38" width="97" height="20"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="83" id="1Pc-eo-irk"/>
-                                                <constraint firstAttribute="height" constant="24" id="z2h-Gx-6uR"/>
+                                                <constraint firstAttribute="height" constant="20" id="MfU-xW-3hr"/>
+                                                <constraint firstAttribute="width" constant="97" id="Xt2-ZN-cyq"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="Alef-Regular" family="Alef" pointSize="15"/>
-                                            <color key="textColor" red="0.67606169869999999" green="0.67606169869999999" blue="0.67606169869999999" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="לחץ לבחירה" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kSa-Lr-w1J">
-                                            <rect key="frame" x="352" y="35" width="83" height="24"/>
+                                            <fontDescription key="fontDescription" name="Alef-Regular" family="Alef" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="לחץ לבחירה" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Oa-ot-QVk">
+                                            <rect key="frame" x="338" y="11" width="97" height="20"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="24" id="8Fx-Il-3Z7"/>
-                                                <constraint firstAttribute="width" constant="83" id="vf1-tC-o17"/>
+                                                <constraint firstAttribute="width" constant="97" id="HjG-RU-d1e"/>
+                                                <constraint firstAttribute="height" constant="20" id="M0s-2D-WNY"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="Alef-Regular" family="Alef" pointSize="15"/>
-                                            <color key="textColor" red="0.67606169869999999" green="0.67606169869999999" blue="0.67606169869999999" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                            <fontDescription key="fontDescription" name="Alef-Regular" family="Alef" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="mqs-je-kyM" firstAttribute="top" secondItem="7ul-Zw-Q8T" secondAttribute="bottom" constant="9" id="0Tr-JK-rwM"/>
                                         <constraint firstItem="7ul-Zw-Q8T" firstAttribute="top" secondItem="3kc-uv-Udu" secondAttribute="top" constant="8" id="7Wd-6B-4Qu"/>
                                         <constraint firstItem="YGA-0K-seX" firstAttribute="top" secondItem="3kc-uv-Udu" secondAttribute="top" constant="8" id="8gS-V1-u7I"/>
-                                        <constraint firstItem="YGA-0K-seX" firstAttribute="leading" secondItem="FPj-N4-MzP" secondAttribute="trailing" constant="20" id="JsH-cl-h7X"/>
+                                        <constraint firstItem="qp2-vs-dL5" firstAttribute="top" secondItem="6Oa-ot-QVk" secondAttribute="bottom" constant="7" id="B19-pw-4bi"/>
                                         <constraint firstAttribute="trailing" secondItem="mqs-je-kyM" secondAttribute="trailing" constant="46" id="NlL-QU-fcp"/>
                                         <constraint firstItem="mqs-je-kyM" firstAttribute="leading" secondItem="Phg-PR-nRN" secondAttribute="trailing" constant="8" id="XtM-BK-DoZ"/>
                                         <constraint firstItem="7ul-Zw-Q8T" firstAttribute="leading" secondItem="YGA-0K-seX" secondAttribute="trailing" constant="8" id="dIk-CS-MlJ"/>
-                                        <constraint firstItem="Phg-PR-nRN" firstAttribute="leading" secondItem="kSa-Lr-w1J" secondAttribute="trailing" constant="8" id="k2o-Ez-Nne"/>
-                                        <constraint firstItem="FPj-N4-MzP" firstAttribute="top" secondItem="3kc-uv-Udu" secondAttribute="top" constant="8" id="mPz-bx-PLW"/>
+                                        <constraint firstItem="Phg-PR-nRN" firstAttribute="leading" secondItem="qp2-vs-dL5" secondAttribute="trailing" constant="8" id="goO-90-AIK"/>
+                                        <constraint firstItem="6Oa-ot-QVk" firstAttribute="top" secondItem="3kc-uv-Udu" secondAttribute="top" constant="11" id="q5r-fE-OfT"/>
                                         <constraint firstItem="Phg-PR-nRN" firstAttribute="top" secondItem="YGA-0K-seX" secondAttribute="bottom" constant="3" id="qeD-HN-qqe"/>
                                         <constraint firstAttribute="trailing" secondItem="7ul-Zw-Q8T" secondAttribute="trailing" constant="46" id="uwv-XM-fCo"/>
-                                        <constraint firstItem="kSa-Lr-w1J" firstAttribute="top" secondItem="FPj-N4-MzP" secondAttribute="bottom" constant="3" id="zwp-lZ-OrX"/>
+                                        <constraint firstItem="YGA-0K-seX" firstAttribute="leading" secondItem="6Oa-ot-QVk" secondAttribute="trailing" constant="20" id="yQe-Lv-9xZ"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.98823529409999999" green="0.98823529409999999" blue="0.98823529409999999" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <outlet property="levelLabel" destination="FPj-N4-MzP" id="j6x-UG-N6I"/>
-                                    <outlet property="typeLabel" destination="kSa-Lr-w1J" id="Mro-4d-IwI"/>
+                                    <outlet property="levelTextField" destination="6Oa-ot-QVk" id="EGJ-ir-Pts"/>
+                                    <outlet property="typeTextField" destination="qp2-vs-dL5" id="54k-dT-X3y"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

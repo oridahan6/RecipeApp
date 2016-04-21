@@ -14,6 +14,8 @@
 
 "addRecipe" = "הוספת מתכון";
 
+
+// Table Headers
 "sectionHeaderTitleTime" = "זמן הכנה כולל";
 "sectionHeaderTitleIngredients" = "מצרכים";
 "sectionHeaderTitleDirections" = "שלבי הכנה";
@@ -51,6 +53,10 @@
 "Dairy" = "חלבי";
 "Meat" = "בשרי";
 "Veggie" = "פרווה";
+
+"levelBegginer" = "מתחיל";
+"levelIntermediate" = "בינוני";
+"levelAdvanced" = "מתקדם";
 
 
 // Buttons

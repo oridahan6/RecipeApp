@@ -8,19 +8,25 @@
 
 import UIKit
 
-class GeneralInfoTableViewCell: UITableViewCell {
+class GeneralInfoTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
 
-    @IBOutlet var levelLabel: UILabel!
-    @IBOutlet var typeLabel: UILabel!
+    @IBOutlet var levelTextField: UITextField!
+    @IBOutlet var typeTextField: UITextField!
+    
+    var levelOptions = [getLocalizedString("levelBegginer"), getLocalizedString("levelIntermediate"), getLocalizedString("levelAdvanced")]
+    var typeOptions = [getLocalizedString("Dairy"), getLocalizedString("Veggie"), getLocalizedString("Meat")]
+    
+    let levelPickerView = UIPickerView()
+    let typePickerView = UIPickerView()
+    
+    var activeTextField:UITextField?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
-        let levelTap = UITapGestureRecognizer(target: self, action: #selector(GeneralInfoTableViewCell.levelLabelTapped))
-        self.levelLabel.addGestureRecognizer(levelTap)
-        let typeTap = UITapGestureRecognizer(target: self, action: #selector(GeneralInfoTableViewCell.typeLabelTapped))
-        self.typeLabel.addGestureRecognizer(typeTap)
+        self.createPickerForTextField(levelTextField, pickerView: levelPickerView)
+        self.createPickerForTextField(typeTextField, pickerView: typePickerView)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -29,16 +35,97 @@ class GeneralInfoTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.endEditing(true)
+    }
+    
+    //--------------------------------------
+    // MARK: - UIPickerViewDataSource methods
+    //--------------------------------------
+
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if pickerView == typePickerView {
+            return typeOptions.count
+        } else if pickerView == levelPickerView {
+            return levelOptions.count
+        }
+        return 0
+    }
+    
+    //--------------------------------------
+    // MARK: - UIPickerViewDelegate methods
+    //--------------------------------------
+
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerView == typePickerView {
+            return typeOptions[row]
+        } else if pickerView == levelPickerView {
+            return levelOptions[row]
+        }
+        return ""
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView == typePickerView {
+            typeTextField.text = typeOptions[row]
+        } else if pickerView == levelPickerView {
+            levelTextField.text = levelOptions[row]
+        }
+    }
+    
     //--------------------------------------
     // MARK: - Helpers
     //--------------------------------------
 
-    func levelLabelTapped(sender: UITapGestureRecognizer? = nil) {
-        print("level")
+    func canclePicker(sender: UIBarButtonItem) {
+        activeTextField?.resignFirstResponder()
     }
-
-    func typeLabelTapped(sender: UITapGestureRecognizer? = nil) {
-        print("type")
+    
+    func donePicker(sender: UIBarButtonItem) {
+        activeTextField?.resignFirstResponder()
+    }
+    
+    func createPickerForTextField(textField: UITextField, pickerView: UIPickerView) {
+        textField.delegate = self
+        pickerView.delegate = self
+        let toolBar = UIToolbar()
+        toolBar.barStyle = UIBarStyle.Default
+        toolBar.translucent = true
+        toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
+        toolBar.sizeToFit()
+        
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: #selector(GeneralInfoTableViewCell.donePicker))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: #selector(GeneralInfoTableViewCell.canclePicker))
+        
+        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        toolBar.userInteractionEnabled = true
+        
+        textField.inputView = pickerView
+        textField.inputAccessoryView = toolBar
+    }
+    
+    //--------------------------------------
+    // MARK: - Text Field Delegate
+    //--------------------------------------
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) { // became first responder
+        activeTextField = textField
+        if textField == typeTextField {
+            typeTextField.text = self.typeOptions[self.typePickerView.selectedRowInComponent(0)]
+        } else if textField == levelTextField {
+            levelTextField.text = self.levelOptions[self.levelPickerView.selectedRowInComponent(0)]
+        }
     }
 
 }

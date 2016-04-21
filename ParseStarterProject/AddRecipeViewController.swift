@@ -61,8 +61,6 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
         } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCellWithIdentifier(GeneralInfoTableViewCellIdentifier, forIndexPath: indexPath) as! GeneralInfoTableViewCell
             cell.backgroundColor = .clearColor()
-            cell.levelLabel.layer.addBorder(UIRectEdge.Bottom, color: UIColor.blackColor(), thickness: 1)
-            cell.typeLabel.layer.addBorder(UIRectEdge.Bottom, color: UIColor.blackColor(), thickness: 1)
             return cell
         }
         return UITableViewCell()
