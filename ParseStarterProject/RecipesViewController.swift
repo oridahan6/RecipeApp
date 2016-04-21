@@ -13,6 +13,7 @@ class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
 
     let CellIdentifier = "RecipeTableViewCell"
     let SegueRecipeViewController = "RecipeViewController"
+    let SegueAddRecipeViewController = "AddRecipeViewController"
     
     var category: Category?
     var prompt = SwiftPromptsView()
@@ -122,7 +123,7 @@ class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
     //--------------------------------------
     
     func showAddRecipeView(sender: UIBarButtonItem) {
-        
+        self.performSegueWithIdentifier(SegueAddRecipeViewController, sender: nil)
     }
     
     func handleAddButton() {

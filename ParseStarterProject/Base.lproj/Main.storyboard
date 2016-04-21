@@ -44,6 +44,7 @@
             <string>HillelCLM-Medium</string>
             <string>HillelCLM-Medium</string>
             <string>HillelCLM-Medium</string>
+            <string>HillelCLM-Medium</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -598,6 +599,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="HVf-jp-ydm"/>
+                    <connections>
+                        <segue destination="cyq-wd-3bd" kind="show" identifier="AddRecipeViewController" id="QdH-Me-Cy7"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O7z-8C-cTZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1350,6 +1354,74 @@
             </objects>
             <point key="canvasLocation" x="2302" y="-33"/>
         </scene>
+        <!--Add Recipe View Controller-->
+        <scene sceneID="2sC-lQ-mIB">
+            <objects>
+                <tableViewController id="cyq-wd-3bd" customClass="AddRecipeViewController" customModule="Recipes" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="eOd-vY-vM9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.94901960780000005" green="0.94117647059999998" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TitleTableViewCell" id="diD-bX-xRS" customClass="SectionHeaderTitleTableViewCell" customModule="Recipes" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="diD-bX-xRS" id="Blz-M0-hxW">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="שם מתכון" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mLm-em-dhR">
+                                            <rect key="frame" x="8" y="7" width="584" height="30"/>
+                                            <fontDescription key="fontDescription" name="HillelCLM-Medium" family="Hillel CLM" pointSize="22"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="mLm-em-dhR" secondAttribute="trailing" constant="8" id="9V2-pc-gCv"/>
+                                        <constraint firstAttribute="bottom" secondItem="mLm-em-dhR" secondAttribute="bottom" constant="7" id="KIW-NA-5e3"/>
+                                        <constraint firstItem="mLm-em-dhR" firstAttribute="leading" secondItem="Blz-M0-hxW" secondAttribute="leading" constant="8" id="Kaa-pj-aRO"/>
+                                        <constraint firstItem="mLm-em-dhR" firstAttribute="top" secondItem="Blz-M0-hxW" secondAttribute="top" constant="7" id="cyj-DN-RQa"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.9882352941176471" green="0.9882352941176471" blue="0.9882352941176471" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="titleTextField" destination="mLm-em-dhR" id="5tl-V6-cbv"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ImageAddTableViewCell" rowHeight="215" id="n4l-XC-mZ5" customClass="ImageAddTableViewCell" customModule="Recipes" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="136" width="600" height="215"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="n4l-XC-mZ5" id="S23-Jz-2se">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="215"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="RTr-4z-DsO">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="215"/>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="RTr-4z-DsO" secondAttribute="trailing" id="0fh-Kp-NXl"/>
+                                        <constraint firstItem="RTr-4z-DsO" firstAttribute="top" secondItem="S23-Jz-2se" secondAttribute="top" id="Mqc-xy-KXW"/>
+                                        <constraint firstAttribute="bottom" secondItem="RTr-4z-DsO" secondAttribute="bottom" id="bfe-XB-2In"/>
+                                        <constraint firstItem="RTr-4z-DsO" firstAttribute="leading" secondItem="S23-Jz-2se" secondAttribute="leading" id="pep-VK-H6e"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.98823529409999999" green="0.98823529409999999" blue="0.98823529409999999" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="uploadImageView" destination="RTr-4z-DsO" id="LCy-3y-2II"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="cyq-wd-3bd" id="BqT-Ic-0zc"/>
+                            <outlet property="delegate" destination="cyq-wd-3bd" id="dhc-Aa-wZ5"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W9e-8h-mJG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2302" y="705"/>
+        </scene>
         <!--Item-->
         <scene sceneID="Ify-Ec-r8K">
             <objects>
@@ -1403,7 +1475,7 @@
         <image name="timer-icon" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="IKU-OY-FgG"/>
         <segue reference="wJ4-wP-M5I"/>
+        <segue reference="BbG-em-Haw"/>
     </inferredMetricsTieBreakers>
 </document>
