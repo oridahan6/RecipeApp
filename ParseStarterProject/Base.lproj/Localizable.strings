@@ -17,6 +17,8 @@
 "sectionHeaderTitleTime" = "זמן הכנה כולל";
 "sectionHeaderTitleIngredients" = "מצרכים";
 "sectionHeaderTitleDirections" = "שלבי הכנה";
+"sectionHeaderTitleGeneralInfo" = "מידע כללי";
+
 
 // Alerts
 "noInternetConnectionTitle" = "אין חיבור לאינטרנט";

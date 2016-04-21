@@ -19,6 +19,8 @@
 		0C151EA71CC7CA7F00631614 /* AddRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C151EA61CC7CA7F00631614 /* AddRecipeViewController.swift */; };
 		0C151EAA1CC7CE7D00631614 /* SectionHeaderTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C151EA91CC7CE7D00631614 /* SectionHeaderTitleTableViewCell.swift */; };
 		0C151EAC1CC8AB2900631614 /* ImageAddTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C151EAB1CC8AB2900631614 /* ImageAddTableViewCell.swift */; };
+		0C151EB01CC8BEA900631614 /* AddRecipeSectionHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C151EAF1CC8BEA900631614 /* AddRecipeSectionHeaderTableViewCell.swift */; };
+		0C151EB21CC8CA6100631614 /* GeneralInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C151EB11CC8CA6100631614 /* GeneralInfoTableViewCell.swift */; };
 		0C192F171CB27FC500811CB4 /* tableview-bg-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C192F111CB27FC500811CB4 /* tableview-bg-568h@2x.png */; };
 		0C192F191CB27FC500811CB4 /* tableview-bg-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C192F131CB27FC500811CB4 /* tableview-bg-736h@3x.png */; };
 		0C192F1A1CB27FC500811CB4 /* tableview-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C192F141CB27FC500811CB4 /* tableview-bg.png */; };
@@ -103,6 +105,8 @@
 		0C151EA61CC7CA7F00631614 /* AddRecipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRecipeViewController.swift; sourceTree = "<group>"; };
 		0C151EA91CC7CE7D00631614 /* SectionHeaderTitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeaderTitleTableViewCell.swift; sourceTree = "<group>"; };
 		0C151EAB1CC8AB2900631614 /* ImageAddTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageAddTableViewCell.swift; sourceTree = "<group>"; };
+		0C151EAF1CC8BEA900631614 /* AddRecipeSectionHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRecipeSectionHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		0C151EB11CC8CA6100631614 /* GeneralInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralInfoTableViewCell.swift; sourceTree = "<group>"; };
 		0C192F111CB27FC500811CB4 /* tableview-bg-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tableview-bg-568h@2x.png"; sourceTree = "<group>"; };
 		0C192F131CB27FC500811CB4 /* tableview-bg-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tableview-bg-736h@3x.png"; sourceTree = "<group>"; };
 		0C192F141CB27FC500811CB4 /* tableview-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tableview-bg.png"; sourceTree = "<group>"; };
@@ -224,6 +228,8 @@
 		0C151EA81CC7CE0F00631614 /* AddRecipeCells */ = {
 			isa = PBXGroup;
 			children = (
+				0C151EB11CC8CA6100631614 /* GeneralInfoTableViewCell.swift */,
+				0C151EAF1CC8BEA900631614 /* AddRecipeSectionHeaderTableViewCell.swift */,
 				0C151EAB1CC8AB2900631614 /* ImageAddTableViewCell.swift */,
 				0C151EA91CC7CE7D00631614 /* SectionHeaderTitleTableViewCell.swift */,
 			);
@@ -634,6 +640,7 @@
 				0C47CF941CC66E1000F26623 /* YoshikoTextField.swift in Sources */,
 				0CCC38261CBBBCB60055384F /* UIImageEffects.swift in Sources */,
 				0C192F201CB295DB00811CB4 /* RecipeDetailSectionHeaderTableViewCell.swift in Sources */,
+				0C151EB21CC8CA6100631614 /* GeneralInfoTableViewCell.swift in Sources */,
 				0C151EAA1CC7CE7D00631614 /* SectionHeaderTitleTableViewCell.swift in Sources */,
 				0C0CD0D31CAD627000F682F9 /* PrepTimeTableViewCell.swift in Sources */,
 				0CA7C1381CBAA2FB00BEDD65 /* ActivityIndicator.swift in Sources */,
@@ -651,6 +658,7 @@
 				0C192F221CB38C4B00811CB4 /* Category.swift in Sources */,
 				0C0CD0C71CABD5FB00F682F9 /* Enum.swift in Sources */,
 				0C47CF901CC66E1000F26623 /* MadokaTextField.swift in Sources */,
+				0C151EB01CC8BEA900631614 /* AddRecipeSectionHeaderTableViewCell.swift in Sources */,
 				0C0CD0CD1CAD614F00F682F9 /* DirectionTableViewCell.swift in Sources */,
 				0C151EA71CC7CA7F00631614 /* AddRecipeViewController.swift in Sources */,
 				0C7BDA851CA969BB0056ADCD /* FoundationExtensions.swift in Sources */,
