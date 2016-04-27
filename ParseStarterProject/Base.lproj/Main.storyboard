@@ -36,6 +36,10 @@
             <string>Alef-Regular</string>
             <string>Alef-Regular</string>
             <string>Alef-Regular</string>
+            <string>Alef-Regular</string>
+            <string>Alef-Regular</string>
+            <string>Alef-Regular</string>
+            <string>Alef-Regular</string>
         </mutableArray>
         <mutableArray key="hillelclm-medium-webfont.ttf">
             <string>HillelCLM-Medium</string>
@@ -1544,6 +1548,87 @@
                                     <outlet property="typeTextField" destination="qp2-vs-dL5" id="54k-dT-X3y"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TotalTimeTableViewCell" rowHeight="65" id="X1m-4c-eef" customClass="TotalTimeTableViewCell" customModule="Recipes" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="462" width="600" height="65"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="X1m-4c-eef" id="XLf-ZP-ZyC">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="prep-icon" translatesAutoresizingMaskIntoConstraints="NO" id="lTM-Da-NCd">
+                                            <rect key="frame" x="534" y="8" width="20" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="20" id="VER-GS-f0C"/>
+                                                <constraint firstAttribute="height" constant="20" id="x4x-HY-CWy"/>
+                                            </constraints>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cook-icon" translatesAutoresizingMaskIntoConstraints="NO" id="U6u-fc-pui">
+                                            <rect key="frame" x="534" y="37" width="20" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="20" id="e7v-QQ-PVy"/>
+                                                <constraint firstAttribute="height" constant="20" id="jeD-1d-O7o"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="זמן הכנה:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I6E-fF-rzY">
+                                            <rect key="frame" x="458" y="8" width="67" height="24"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="67" id="QKM-Nq-gyu"/>
+                                                <constraint firstAttribute="height" constant="24" id="t4Y-rJ-pAk"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Alef-Regular" family="Alef" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="זמן בישול:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XAl-De-Twh">
+                                            <rect key="frame" x="452" y="35" width="73" height="24"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="24" id="LTY-TU-zqV"/>
+                                                <constraint firstAttribute="width" constant="73" id="aZj-sw-KN9"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Alef-Regular" family="Alef" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="לחץ לבחירה" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4cr-HB-Q4B">
+                                            <rect key="frame" x="275" y="38" width="169" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="169" id="bBZ-cU-X7Z"/>
+                                                <constraint firstAttribute="height" constant="20" id="jZP-6r-5C7"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Alef-Regular" family="Alef" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="לחץ לבחירה" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cIV-E1-jpK">
+                                            <rect key="frame" x="275" y="10" width="169" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="169" id="XXx-Hl-Nwq"/>
+                                                <constraint firstAttribute="height" constant="20" id="cr4-rH-RWg"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Alef-Regular" family="Alef" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="lTM-Da-NCd" secondAttribute="trailing" constant="46" id="2fa-oh-dLQ"/>
+                                        <constraint firstItem="XAl-De-Twh" firstAttribute="leading" secondItem="4cr-HB-Q4B" secondAttribute="trailing" constant="8" id="BRR-V3-wxe"/>
+                                        <constraint firstItem="cIV-E1-jpK" firstAttribute="top" secondItem="XLf-ZP-ZyC" secondAttribute="top" constant="10" id="Dk4-jC-Ejg"/>
+                                        <constraint firstItem="lTM-Da-NCd" firstAttribute="leading" secondItem="I6E-fF-rzY" secondAttribute="trailing" constant="9" id="FaZ-yF-xUg"/>
+                                        <constraint firstItem="U6u-fc-pui" firstAttribute="leading" secondItem="XAl-De-Twh" secondAttribute="trailing" constant="9" id="Gmz-zg-C25"/>
+                                        <constraint firstItem="lTM-Da-NCd" firstAttribute="top" secondItem="XLf-ZP-ZyC" secondAttribute="top" constant="8" id="UvT-Vl-6vp"/>
+                                        <constraint firstItem="I6E-fF-rzY" firstAttribute="top" secondItem="XLf-ZP-ZyC" secondAttribute="top" constant="8" id="ZPH-bH-f6J"/>
+                                        <constraint firstItem="XAl-De-Twh" firstAttribute="top" secondItem="I6E-fF-rzY" secondAttribute="bottom" constant="3" id="aEk-0a-bNR"/>
+                                        <constraint firstItem="4cr-HB-Q4B" firstAttribute="top" secondItem="cIV-E1-jpK" secondAttribute="bottom" constant="8" id="cxg-ce-DTY"/>
+                                        <constraint firstAttribute="trailing" secondItem="U6u-fc-pui" secondAttribute="trailing" constant="46" id="jrJ-34-0T8"/>
+                                        <constraint firstItem="I6E-fF-rzY" firstAttribute="leading" secondItem="cIV-E1-jpK" secondAttribute="trailing" constant="14" id="kFp-TN-zRs"/>
+                                        <constraint firstItem="U6u-fc-pui" firstAttribute="top" secondItem="lTM-Da-NCd" secondAttribute="bottom" constant="9" id="qAN-eo-Rnd"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.98823529409999999" green="0.98823529409999999" blue="0.98823529409999999" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="cookTimeTextField" destination="4cr-HB-Q4B" id="b5w-Si-rEq"/>
+                                    <outlet property="prepTimeTextField" destination="cIV-E1-jpK" id="lUG-nZ-LOc"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="cyq-wd-3bd" id="BqT-Ic-0zc"/>
@@ -1599,11 +1684,13 @@
         <image name="cheese-icon" width="25" height="21"/>
         <image name="chef-icon" width="18" height="18"/>
         <image name="chef-login" width="110" height="110"/>
+        <image name="cook-icon" width="20" height="20"/>
         <image name="dotted-line" width="325" height="4"/>
         <image name="favorite-btn-bg" width="40" height="40"/>
         <image name="login-button" width="280" height="50"/>
         <image name="placeholder-bg.png" width="1250" height="703"/>
         <image name="placeholder.jpg" width="1250" height="703"/>
+        <image name="prep-icon" width="20" height="19"/>
         <image name="section-circle" width="30" height="30"/>
         <image name="timer-icon" width="25" height="25"/>
     </resources>

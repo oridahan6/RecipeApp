@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C070DAD1CD0E29C0060CC8C /* TotalTimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C070DAC1CD0E29C0060CC8C /* TotalTimeTableViewCell.swift */; };
 		0C0CD0C71CABD5FB00F682F9 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0CD0C31CABD5FB00F682F9 /* Enum.swift */; };
 		0C0CD0C81CABD5FB00F682F9 /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0C0CD0C51CABD5FB00F682F9 /* FontAwesome.otf */; };
 		0C0CD0C91CABD5FB00F682F9 /* FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0CD0C61CABD5FB00F682F9 /* FontAwesome.swift */; };
@@ -92,6 +93,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C070DAC1CD0E29C0060CC8C /* TotalTimeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TotalTimeTableViewCell.swift; sourceTree = "<group>"; };
 		0C0CD0C31CABD5FB00F682F9 /* Enum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		0C0CD0C41CABD5FB00F682F9 /* FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontAwesome.h; sourceTree = "<group>"; };
 		0C0CD0C51CABD5FB00F682F9 /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 		0C151EA81CC7CE0F00631614 /* AddRecipeCells */ = {
 			isa = PBXGroup;
 			children = (
+				0C070DAC1CD0E29C0060CC8C /* TotalTimeTableViewCell.swift */,
 				0C151EB11CC8CA6100631614 /* GeneralInfoTableViewCell.swift */,
 				0C151EAF1CC8BEA900631614 /* AddRecipeSectionHeaderTableViewCell.swift */,
 				0C151EAB1CC8AB2900631614 /* ImageAddTableViewCell.swift */,
@@ -630,6 +633,7 @@
 				0C999F5C1CB4D80400E3844D /* KingfisherHelper.swift in Sources */,
 				0C151EA11CC7978E00631614 /* ParseUser.swift in Sources */,
 				0C1F4C891CBE6E72002B0631 /* RecipesParentViewController.swift in Sources */,
+				0C070DAD1CD0E29C0060CC8C /* TotalTimeTableViewCell.swift in Sources */,
 				0C7BD9E81CA809AD0056ADCD /* ParseHelper.swift in Sources */,
 				0C192F241CB38D4B00811CB4 /* ParseCategory.swift in Sources */,
 				0C0CD0C91CABD5FB00F682F9 /* FontAwesome.swift in Sources */,

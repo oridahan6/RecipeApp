@@ -14,13 +14,16 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
     let ImageAddTableViewCellIdentifier = "ImageAddTableViewCell"
     let AddRecipeSectionHeaderTableViewCellIdentifier = "AddRecipeSectionHeaderTableViewCell"
     let GeneralInfoTableViewCellIdentifier = "GeneralInfoTableViewCell"
-    
+    let TotalTimeTableViewCellIdentifier = "TotalTimeTableViewCell"
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.title = getLocalizedString("addRecipe")
         
+        // Make sections headers static and not floating
+        self.stopSectionsHeadersFromFloating()
+
         // set table view background image
         self.view.backgroundColor = UIColor(patternImage: Helpers().getDeviceSpecificBGImage("tableview-bg"))
 
@@ -34,7 +37,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -54,16 +57,23 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
+        
+        switch indexPath.section {
+        case 0:
             let cell = tableView.dequeueReusableCellWithIdentifier(ImageAddTableViewCellIdentifier, forIndexPath: indexPath) as! ImageAddTableViewCell
             cell.parentController = self
             return cell
-        } else if indexPath.section == 1 {
+        case 1:
             let cell = tableView.dequeueReusableCellWithIdentifier(GeneralInfoTableViewCellIdentifier, forIndexPath: indexPath) as! GeneralInfoTableViewCell
             cell.backgroundColor = .clearColor()
             return cell
+        case 2:
+            let cell = tableView.dequeueReusableCellWithIdentifier(TotalTimeTableViewCellIdentifier, forIndexPath: indexPath) as! TotalTimeTableViewCell
+            cell.backgroundColor = .clearColor()
+            return cell
+        default:
+            return UITableViewCell()
         }
-        return UITableViewCell()
     }
 
     //--------------------------------------
@@ -73,7 +83,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return 215
-        } else if indexPath.section == 1 {
+        } else if indexPath.section == 1 || indexPath.section == 2 {
             return 65.0
         }
         return UITableViewAutomaticDimension
@@ -98,6 +108,12 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
             self.setSectionHeaderElements(cell, FAIconName: FontAwesome.Info, title: "sectionHeaderTitleGeneralInfo")
             
             return cell.contentView
+        case 2:
+            let cell = tableView.dequeueReusableCellWithIdentifier(AddRecipeSectionHeaderTableViewCellIdentifier) as! AddRecipeSectionHeaderTableViewCell
+            
+            self.setSectionHeaderElements(cell, FAIconName: FontAwesome.ClockO, title: "sectionHeaderTitleTime")
+            
+            return cell.contentView
         default:
             let dummyViewHeight: CGFloat = 45
             let dummyView: UIView = UIView(frame: CGRectMake(0, 0, tableView.bounds.size.width, dummyViewHeight))
@@ -113,6 +129,14 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
         cell.sectionImageView.image = UIImage.fontAwesomeIconWithName(FAIconName, textColor: UIColor.blackColor(), size: CGSizeMake(20, 20))
         cell.titleLabel.text = getLocalizedString(title)
     }
+    
+    private func stopSectionsHeadersFromFloating() {
+        let dummyViewHeight: CGFloat = 60
+        let dummyView: UIView = UIView(frame: CGRectMake(0, 0, tableView.bounds.size.width, dummyViewHeight))
+        tableView.tableHeaderView = dummyView
+        tableView.contentInset = UIEdgeInsetsMake(-dummyViewHeight, 0, 0, 0)
+    }
+
     
     //--------------------------------------
     // MARK: - Text Field Delegate

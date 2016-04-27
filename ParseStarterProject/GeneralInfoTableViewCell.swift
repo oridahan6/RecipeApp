@@ -81,7 +81,7 @@ class GeneralInfoTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPicke
     // MARK: - Helpers
     //--------------------------------------
 
-    func canclePicker(sender: UIBarButtonItem) {
+    func cancelPicker(sender: UIBarButtonItem) {
         activeTextField?.resignFirstResponder()
     }
     
@@ -95,13 +95,13 @@ class GeneralInfoTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPicke
         let toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.Default
         toolBar.translucent = true
-        toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
+        toolBar.tintColor = Helpers.getRedColor()
         toolBar.sizeToFit()
         
         
         let doneButton = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: #selector(GeneralInfoTableViewCell.donePicker))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: #selector(GeneralInfoTableViewCell.canclePicker))
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: #selector(GeneralInfoTableViewCell.cancelPicker))
         
         toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         toolBar.userInteractionEnabled = true
