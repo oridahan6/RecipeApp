@@ -15,7 +15,12 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
     let AddRecipeSectionHeaderTableViewCellIdentifier = "AddRecipeSectionHeaderTableViewCell"
     let GeneralInfoTableViewCellIdentifier = "GeneralInfoTableViewCell"
     let TotalTimeTableViewCellIdentifier = "TotalTimeTableViewCell"
+    let AddIngredientSectionTableViewCellIdentifier = "AddIngredientSectionTableViewCell"
+    let AddIngredientTableViewCellIdentifier = "AddIngredientTableViewCell"
+    let AddRecipeButtonsTableViewCellIdentifier = "AddRecipeButtonsTableViewCell"
 
+    var ingredientsArray: [String] = ["ingredient"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,7 +42,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -49,7 +54,9 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
         case 2:
             return 1
         case 3:
-            return 1
+            return self.ingredientsArray.count + 1
+        case 4:
+            return 2
         default:
             return 0
         }
@@ -71,6 +78,23 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
             let cell = tableView.dequeueReusableCellWithIdentifier(TotalTimeTableViewCellIdentifier, forIndexPath: indexPath) as! TotalTimeTableViewCell
             cell.backgroundColor = .clearColor()
             return cell
+        case 3:
+            if indexPath.row == self.ingredientsArray.count {
+                let cell = tableView.dequeueReusableCellWithIdentifier(AddRecipeButtonsTableViewCellIdentifier, forIndexPath: indexPath) as! AddRecipeButtonsTableViewCell
+                cell.tableViewController = self
+                cell.backgroundColor = .clearColor()
+                return cell
+            } else {
+                if self.ingredientsArray[indexPath.row] == "section" {
+                    let cell = tableView.dequeueReusableCellWithIdentifier(AddIngredientSectionTableViewCellIdentifier, forIndexPath: indexPath) as! AddIngredientSectionTableViewCell
+                    cell.backgroundColor = .clearColor()
+                    return cell
+                } else {
+                    let cell = tableView.dequeueReusableCellWithIdentifier(AddIngredientTableViewCellIdentifier, forIndexPath: indexPath) as! AddIngredientTableViewCell
+                    cell.backgroundColor = .clearColor()
+                    return cell
+                }
+            }
         default:
             return UITableViewCell()
         }
@@ -112,6 +136,13 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
             let cell = tableView.dequeueReusableCellWithIdentifier(AddRecipeSectionHeaderTableViewCellIdentifier) as! AddRecipeSectionHeaderTableViewCell
             
             self.setSectionHeaderElements(cell, FAIconName: FontAwesome.ClockO, title: "sectionHeaderTitleTime")
+            
+            return cell.contentView
+            
+        case 3:
+            let cell = tableView.dequeueReusableCellWithIdentifier(AddRecipeSectionHeaderTableViewCellIdentifier) as! AddRecipeSectionHeaderTableViewCell
+            
+            self.setSectionHeaderElements(cell, FAIconName: FontAwesome.ShoppingBasket, title: "sectionHeaderTitleIngredients")
             
             return cell.contentView
         default:
