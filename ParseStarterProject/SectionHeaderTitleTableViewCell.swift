@@ -12,6 +12,8 @@ class SectionHeaderTitleTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     @IBOutlet var titleTextField: UITextField!
     
+    var tableViewController: AddRecipeViewController!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -30,6 +32,11 @@ class SectionHeaderTitleTableViewCell: UITableViewCell, UITextFieldDelegate {
     //--------------------------------------
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        if let text = textField.text {
+            self.tableViewController.recipeTitle = text
+        }
+        
         textField.resignFirstResponder()
         return true
     }

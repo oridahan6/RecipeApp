@@ -24,6 +24,14 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
     var ingredientsArray: [String] = ["ingredient"]
     var directionsArray: [String] = ["direction"]
     
+    // Submit parameters
+    var recipeTitle: String!
+    var recipeImage: UIImage!
+    var recipeLevel: String!
+    var recipeType: String!
+    var recipePrepTime: Int!
+    var recipeCookTime: Int!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -76,10 +84,12 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
         case 1:
             let cell = tableView.dequeueReusableCellWithIdentifier(GeneralInfoTableViewCellIdentifier, forIndexPath: indexPath) as! GeneralInfoTableViewCell
             cell.backgroundColor = .clearColor()
+            cell.tableViewController = self
             return cell
         case 2:
             let cell = tableView.dequeueReusableCellWithIdentifier(TotalTimeTableViewCellIdentifier, forIndexPath: indexPath) as! TotalTimeTableViewCell
             cell.backgroundColor = .clearColor()
+            cell.tableViewController = self
             return cell
         case 3:
             if indexPath.row == self.ingredientsArray.count {
@@ -151,6 +161,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
         switch section {
         case 0:
             let cell = tableView.dequeueReusableCellWithIdentifier(TitleTableViewCellIdentifier) as! SectionHeaderTitleTableViewCell
+            cell.tableViewController = self
             let view = UIView(frame: cell.frame)
             cell.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
             view.addSubview(cell)

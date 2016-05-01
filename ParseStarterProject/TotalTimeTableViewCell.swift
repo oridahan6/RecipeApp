@@ -20,6 +20,11 @@ class TotalTimeTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerV
     let cookTimePickerView = UIPickerView()
 
     var activeTextField:UITextField?
+    var activePickerView:UIPickerView?
+    var tableViewController: AddRecipeViewController!
+
+    var currentPrepTime = 0
+    var currentCookTime = 0
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -45,10 +50,32 @@ class TotalTimeTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerV
     
     func cancelPicker(sender: UIBarButtonItem) {
         activeTextField?.resignFirstResponder()
+        var hours = 0
+        var minutes = 0
+        if activePickerView == prepTimePickerView {
+            hours = self.currentPrepTime / 60
+            minutes = self.currentPrepTime - hours * (60)
+            self.tableViewController.recipePrepTime = self.currentPrepTime
+        } else {
+            hours = self.currentCookTime / 60
+            minutes = self.currentCookTime - hours * (60)
+            self.tableViewController.recipeCookTime = self.currentCookTime
+        }
+        activeTextField?.text = self.getTextFromHoursAndMinutes(hours, minutes: minutes)
     }
     
     func donePicker(sender: UIBarButtonItem) {
         activeTextField?.resignFirstResponder()
+        if let pickerView = self.activePickerView {
+            let time = self.getTimeFromPickerView(pickerView)
+            if activePickerView == prepTimePickerView {
+                self.tableViewController.recipePrepTime = time
+                self.currentPrepTime = time
+            } else {
+                self.tableViewController.recipeCookTime = time
+                self.currentCookTime = time
+            }
+        }
     }
     
     func createPickerForTextField(textField: UITextField, pickerView: UIPickerView) {
@@ -94,6 +121,27 @@ class TotalTimeTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerV
         pickerView.addSubview(minLabel)
     }
 
+    func getTimeFromPickerView(pickerView: UIPickerView) -> Int {
+        let hours = hoursOptions[pickerView.selectedRowInComponent(1)]
+        let minutes = minutesOptions[pickerView.selectedRowInComponent(0)]
+        
+        return 60*hours + minutes
+    }
+    
+    func getTimeFromHoursSelection(pickerView: UIPickerView, selectedRow: Int) -> Int {
+        let hours = hoursOptions[selectedRow]
+        let minutes = minutesOptions[pickerView.selectedRowInComponent(0)]
+
+        return 60*hours + minutes
+    }
+    
+    func getTimeFromMinutesSelection(pickerView: UIPickerView, selectedRow: Int) -> Int {
+        let hours = hoursOptions[pickerView.selectedRowInComponent(1)]
+        let minutes = minutesOptions[selectedRow]
+
+        return 60*hours + minutes
+    }
+    
     func getTextFromHoursSelection(pickerView: UIPickerView, selectedRow: Int) -> String {
         let hours = hoursOptions[selectedRow]
         let minutes = minutesOptions[pickerView.selectedRowInComponent(0)]
@@ -179,8 +227,19 @@ class TotalTimeTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerV
         var currentTextField: UITextField!
         if pickerView == prepTimePickerView {
             currentTextField = prepTimeTextField
+            if component == 0 {
+                self.tableViewController.recipePrepTime = self.getTimeFromMinutesSelection(pickerView, selectedRow: row)
+            } else {
+                self.tableViewController.recipePrepTime = self.getTimeFromHoursSelection(pickerView, selectedRow: row)
+            }
+
         } else if pickerView == cookTimePickerView {
             currentTextField = cookTimeTextField
+            if component == 0 {
+                self.tableViewController.recipeCookTime = self.getTimeFromMinutesSelection(pickerView, selectedRow: row)
+            } else {
+                self.tableViewController.recipeCookTime = self.getTimeFromHoursSelection(pickerView, selectedRow: row)
+            }
         }
         
         if component == 0 {
@@ -204,9 +263,11 @@ class TotalTimeTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerV
         activeTextField = textField
         
         if textField == prepTimeTextField {
+            activePickerView = self.prepTimePickerView
             self.prepTimePickerView.selectRow(15, inComponent: 0, animated: true)
             self.prepTimeTextField.text = getTextFromHoursAndMinutes(self.prepTimePickerView.selectedRowInComponent(1), minutes: self.prepTimePickerView.selectedRowInComponent(0))
         } else if textField == cookTimeTextField {
+            activePickerView = self.cookTimePickerView
             self.cookTimePickerView.selectRow(15, inComponent: 0, animated: true)
             self.cookTimeTextField.text = getTextFromHoursAndMinutes(self.cookTimePickerView.selectedRowInComponent(1), minutes: self.cookTimePickerView.selectedRowInComponent(0))
         }

@@ -10,7 +10,7 @@ import UIKit
 
 class ImageAddTableViewCell: UITableViewCell, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
-    var parentController: UITableViewController!
+    var parentController: AddRecipeViewController!
     
     @IBOutlet var uploadImageView: UIImageView!
     
@@ -60,6 +60,7 @@ class ImageAddTableViewCell: UITableViewCell, UINavigationControllerDelegate, UI
         }
         
         self.uploadImageView.image = newImage
+        self.parentController.recipeImage = newImage
         
         parentController.dismissViewControllerAnimated(true, completion: nil)
     }

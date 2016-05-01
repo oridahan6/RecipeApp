@@ -20,7 +20,8 @@ class GeneralInfoTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPicke
     let typePickerView = UIPickerView()
     
     var activeTextField:UITextField?
-    
+    var tableViewController: AddRecipeViewController!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -71,9 +72,13 @@ class GeneralInfoTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPicke
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == typePickerView {
-            typeTextField.text = typeOptions[row]
+            let selectedType = typeOptions[row]
+            typeTextField.text = selectedType
+            self.tableViewController.recipeType = selectedType
         } else if pickerView == levelPickerView {
-            levelTextField.text = levelOptions[row]
+            let selectedLevel = levelOptions[row]
+            levelTextField.text = selectedLevel
+            self.tableViewController.recipeLevel = selectedLevel
         }
     }
     
