@@ -10,20 +10,17 @@ import UIKit
 
 class AddRecipeButtonsTableViewCell: UITableViewCell {
 
+    @IBOutlet var addTextButton: UIButton!
+    @IBOutlet var addSectionButton: UIButton!
+    
     var tableViewController: AddRecipeViewController!
     
     @IBAction func addLine(sender: AnyObject) {
-        self.tableViewController.tableView.beginUpdates()
-        self.tableViewController.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: self.tableViewController.ingredientsArray.count, inSection: 3)], withRowAnimation: UITableViewRowAnimation.Fade)
-        self.tableViewController.ingredientsArray.append("ingredient")
-        self.tableViewController.tableView.endUpdates()
+        self.addLineBySection(sender.tag)
     }
     
     @IBAction func addSubSection(sender: AnyObject) {
-        self.tableViewController.tableView.beginUpdates()
-        self.tableViewController.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: self.tableViewController.ingredientsArray.count, inSection: 3)], withRowAnimation: UITableViewRowAnimation.Fade)
-        self.tableViewController.ingredientsArray.append("section")
-        self.tableViewController.tableView.endUpdates()
+        self.addLineBySection(sender.tag, addSection: true)
     }
     
     override func awakeFromNib() {
@@ -36,5 +33,23 @@ class AddRecipeButtonsTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    //--------------------------------------
+    // MARK: - helpers
+    //--------------------------------------
 
+    func addLineBySection(section: Int, addSection: Bool = false) {
+        self.tableViewController.tableView.beginUpdates()
+
+        var count = 0
+        if section == 3 {
+            count = self.tableViewController.ingredientsArray.count
+            self.tableViewController.ingredientsArray.append(addSection ? "section" : "ingredient")
+        } else if section == 4 {
+            count = self.tableViewController.directionsArray.count
+            self.tableViewController.directionsArray.append(addSection ? "section" : "direction")
+        }
+        self.tableViewController.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: count, inSection: section)], withRowAnimation: UITableViewRowAnimation.Fade)
+        self.tableViewController.tableView.endUpdates()
+    }
 }

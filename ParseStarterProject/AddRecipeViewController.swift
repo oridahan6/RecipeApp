@@ -17,9 +17,12 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
     let TotalTimeTableViewCellIdentifier = "TotalTimeTableViewCell"
     let AddIngredientSectionTableViewCellIdentifier = "AddIngredientSectionTableViewCell"
     let AddIngredientTableViewCellIdentifier = "AddIngredientTableViewCell"
+    let AddDirectionSectionTableViewCellIdentifier = "AddDirectionSectionTableViewCell"
+    let AddDirectionTableViewCellIdentifier = "AddDirectionTableViewCell"
     let AddRecipeButtonsTableViewCellIdentifier = "AddRecipeButtonsTableViewCell"
 
     var ingredientsArray: [String] = ["ingredient"]
+    var directionsArray: [String] = ["direction"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +45,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 4
+        return 5
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -56,7 +59,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
         case 3:
             return self.ingredientsArray.count + 1
         case 4:
-            return 2
+            return self.directionsArray.count + 1
         default:
             return 0
         }
@@ -82,6 +85,10 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
             if indexPath.row == self.ingredientsArray.count {
                 let cell = tableView.dequeueReusableCellWithIdentifier(AddRecipeButtonsTableViewCellIdentifier, forIndexPath: indexPath) as! AddRecipeButtonsTableViewCell
                 cell.tableViewController = self
+                cell.addTextButton.setTitle(getLocalizedString("addIngredient"), forState: .Normal)
+                cell.addSectionButton.setTitle(getLocalizedString("addSection"), forState: .Normal)
+                cell.addTextButton.tag = indexPath.section
+                cell.addSectionButton.tag = indexPath.section
                 cell.backgroundColor = .clearColor()
                 return cell
             } else {
@@ -91,6 +98,28 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
                     return cell
                 } else {
                     let cell = tableView.dequeueReusableCellWithIdentifier(AddIngredientTableViewCellIdentifier, forIndexPath: indexPath) as! AddIngredientTableViewCell
+                    cell.backgroundColor = .clearColor()
+                    return cell
+                }
+            }
+            
+        case 4:
+            if indexPath.row == self.directionsArray.count {
+                let cell = tableView.dequeueReusableCellWithIdentifier(AddRecipeButtonsTableViewCellIdentifier, forIndexPath: indexPath) as! AddRecipeButtonsTableViewCell
+                cell.tableViewController = self
+                cell.addTextButton.setTitle(getLocalizedString("addDirection"), forState: .Normal)
+                cell.addSectionButton.setTitle(getLocalizedString("addSection"), forState: .Normal)
+                cell.addTextButton.tag = indexPath.section
+                cell.addSectionButton.tag = indexPath.section
+                cell.backgroundColor = .clearColor()
+                return cell
+            } else {
+                if self.directionsArray[indexPath.row] == "section" {
+                    let cell = tableView.dequeueReusableCellWithIdentifier(AddDirectionSectionTableViewCellIdentifier, forIndexPath: indexPath) as! AddDirectionSectionTableViewCell
+                    cell.backgroundColor = .clearColor()
+                    return cell
+                } else {
+                    let cell = tableView.dequeueReusableCellWithIdentifier(AddDirectionTableViewCellIdentifier, forIndexPath: indexPath) as! AddDirectionTableViewCell
                     cell.backgroundColor = .clearColor()
                     return cell
                 }
@@ -143,6 +172,13 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
             let cell = tableView.dequeueReusableCellWithIdentifier(AddRecipeSectionHeaderTableViewCellIdentifier) as! AddRecipeSectionHeaderTableViewCell
             
             self.setSectionHeaderElements(cell, FAIconName: FontAwesome.ShoppingBasket, title: "sectionHeaderTitleIngredients")
+            
+            return cell.contentView
+            
+        case 4:
+            let cell = tableView.dequeueReusableCellWithIdentifier(AddRecipeSectionHeaderTableViewCellIdentifier) as! AddRecipeSectionHeaderTableViewCell
+            
+            self.setSectionHeaderElements(cell, FAIconName: FontAwesome.FileTextO, title: "sectionHeaderTitleDirections")
             
             return cell.contentView
         default:

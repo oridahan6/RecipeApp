@@ -68,6 +68,8 @@
 		0C7BDA851CA969BB0056ADCD /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7BDA841CA969BB0056ADCD /* FoundationExtensions.swift */; };
 		0C999F5C1CB4D80400E3844D /* KingfisherHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C999F5B1CB4D80400E3844D /* KingfisherHelper.swift */; };
 		0C999F5E1CB5028C00E3844D /* FavoriteRecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C999F5D1CB5028C00E3844D /* FavoriteRecipeTableViewCell.swift */; };
+		0C9B154E1CD5CCD6009412AE /* AddDirectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B154D1CD5CCD6009412AE /* AddDirectionTableViewCell.swift */; };
+		0C9B15501CD5CD45009412AE /* AddDirectionSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B154F1CD5CD45009412AE /* AddDirectionSectionTableViewCell.swift */; };
 		0CA7C1381CBAA2FB00BEDD65 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA7C1371CBAA2FB00BEDD65 /* ActivityIndicator.swift */; };
 		0CA7C13C1CBB869A00BEDD65 /* placeholder-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CA7C13B1CBB869A00BEDD65 /* placeholder-bg.png */; };
 		0CCC381F1CBBB2BF0055384F /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCC381E1CBBB2BF0055384F /* Reachability.swift */; };
@@ -159,6 +161,8 @@
 		0C7BDA841CA969BB0056ADCD /* FoundationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FoundationExtensions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0C999F5B1CB4D80400E3844D /* KingfisherHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KingfisherHelper.swift; sourceTree = "<group>"; };
 		0C999F5D1CB5028C00E3844D /* FavoriteRecipeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteRecipeTableViewCell.swift; sourceTree = "<group>"; };
+		0C9B154D1CD5CCD6009412AE /* AddDirectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDirectionTableViewCell.swift; sourceTree = "<group>"; };
+		0C9B154F1CD5CD45009412AE /* AddDirectionSectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDirectionSectionTableViewCell.swift; sourceTree = "<group>"; };
 		0CA7C1371CBAA2FB00BEDD65 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		0CA7C13B1CBB869A00BEDD65 /* placeholder-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder-bg.png"; sourceTree = "<group>"; };
 		0CCC381E1CBBB2BF0055384F /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -236,6 +240,8 @@
 		0C151EA81CC7CE0F00631614 /* AddRecipeCells */ = {
 			isa = PBXGroup;
 			children = (
+				0C9B154D1CD5CCD6009412AE /* AddDirectionTableViewCell.swift */,
+				0C9B154F1CD5CD45009412AE /* AddDirectionSectionTableViewCell.swift */,
 				0C070DB01CD10EF90060CC8C /* AddRecipeButtonsTableViewCell.swift */,
 				0C070DB21CD11ED80060CC8C /* AddIngredientSectionTableViewCell.swift */,
 				0C070DAE1CD10CFD0060CC8C /* AddIngredientTableViewCell.swift */,
@@ -635,6 +641,7 @@
 				0C47CF921CC66E1000F26623 /* TextFieldsEffects.swift in Sources */,
 				81BA814D1A49DA1800E65899 /* ViewController.swift in Sources */,
 				0C0CD0D11CAD61CC00F682F9 /* SectionHeaderTableViewCell.swift in Sources */,
+				0C9B15501CD5CD45009412AE /* AddDirectionSectionTableViewCell.swift in Sources */,
 				0C47CF911CC66E1000F26623 /* MinoruTextField.swift in Sources */,
 				0C7BDA7C1CA931F80056ADCD /* Constants.swift in Sources */,
 				81BA814B1A49DA1800E65899 /* AppDelegate.swift in Sources */,
@@ -656,6 +663,7 @@
 				0C192F201CB295DB00811CB4 /* RecipeDetailSectionHeaderTableViewCell.swift in Sources */,
 				0C151EB21CC8CA6100631614 /* GeneralInfoTableViewCell.swift in Sources */,
 				0C151EAA1CC7CE7D00631614 /* SectionHeaderTitleTableViewCell.swift in Sources */,
+				0C9B154E1CD5CCD6009412AE /* AddDirectionTableViewCell.swift in Sources */,
 				0C0CD0D31CAD627000F682F9 /* PrepTimeTableViewCell.swift in Sources */,
 				0CA7C1381CBAA2FB00BEDD65 /* ActivityIndicator.swift in Sources */,
 				0C070DB31CD11ED80060CC8C /* AddIngredientSectionTableViewCell.swift in Sources */,

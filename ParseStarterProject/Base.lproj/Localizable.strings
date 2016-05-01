@@ -64,6 +64,10 @@
 "done" = "סיום";
 "enter" = "כניסה";
 
+"addDirection" = "הוסף שלב";
+"addSection" = "הוסף כותרת";
+"addIngredient" = "הוסף מצרך";
+
 // General
 "before" = "לפני";
 
