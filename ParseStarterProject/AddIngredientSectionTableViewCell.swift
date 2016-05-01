@@ -8,11 +8,15 @@
 
 import UIKit
 
-class AddIngredientSectionTableViewCell: UITableViewCell {
+class AddIngredientSectionTableViewCell: UITableViewCell, UITextFieldDelegate {
 
+    @IBOutlet var ingredientSectionTextField: UITextField!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        self.ingredientSectionTextField.delegate = self
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -20,5 +24,15 @@ class AddIngredientSectionTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    //--------------------------------------
+    // MARK: - Text Field Delegate
+    //--------------------------------------
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+
 
 }
