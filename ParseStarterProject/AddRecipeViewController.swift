@@ -24,6 +24,9 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
     var ingredientsArray: [String] = ["ingredient"]
     var directionsArray: [String] = ["direction"]
     
+    var ingredientsEndPositionPerSection = ["general": 0]
+    var currentIngredientSection = "general"
+    
     // Submit parameters
     var recipeTitle: String!
     var recipeImage: UIImage!
@@ -31,6 +34,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
     var recipeType: String!
     var recipePrepTime: Int!
     var recipeCookTime: Int!
+    var recipeIngredients: [String: [String]] = ["general": []]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +46,6 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
 
         // set table view background image
         self.view.backgroundColor = UIColor(patternImage: Helpers().getDeviceSpecificBGImage("tableview-bg"))
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -105,10 +108,12 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
                 if self.ingredientsArray[indexPath.row] == "section" {
                     let cell = tableView.dequeueReusableCellWithIdentifier(AddIngredientSectionTableViewCellIdentifier, forIndexPath: indexPath) as! AddIngredientSectionTableViewCell
                     cell.backgroundColor = .clearColor()
+                    cell.tableViewController = self
                     return cell
                 } else {
                     let cell = tableView.dequeueReusableCellWithIdentifier(AddIngredientTableViewCellIdentifier, forIndexPath: indexPath) as! AddIngredientTableViewCell
                     cell.backgroundColor = .clearColor()
+                    cell.tableViewController = self
                     return cell
                 }
             }
