@@ -46,6 +46,8 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
 
         // set table view background image
         self.view.backgroundColor = UIColor(patternImage: Helpers().getDeviceSpecificBGImage("tableview-bg"))
+
+        self.editing = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -144,6 +146,42 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
         }
     }
 
+    override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        return UITableViewCellEditingStyle.None
+    }
+    
+    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        if indexPath.section == 3 && indexPath.row != self.ingredientsArray.count {
+            return true
+        }
+        return false
+    }
+    
+    override func tableView(tableView: UITableView, shouldIndentWhileEditingRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return false
+    }
+    
+    override func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
+        
+
+//        print("moveRowAtIndexPath")
+//        print("sourceIndexPath")
+//        print(sourceIndexPath)
+//        print("destinationIndexPath")
+//        print(destinationIndexPath)
+        
+        
+    }
+    
+    override func tableView(tableView: UITableView, targetIndexPathForMoveFromRowAtIndexPath sourceIndexPath: NSIndexPath, toProposedIndexPath proposedDestinationIndexPath: NSIndexPath) -> NSIndexPath {
+        if proposedDestinationIndexPath.section != 3 {
+            return sourceIndexPath
+        } else if proposedDestinationIndexPath.row == self.ingredientsArray.count {
+            return sourceIndexPath
+        }
+        return proposedDestinationIndexPath
+    }
+    
     //--------------------------------------
     // MARK: - Table view delegate
     //--------------------------------------
@@ -153,6 +191,8 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
             return 215
         } else if indexPath.section == 1 || indexPath.section == 2 {
             return 65.0
+        } else if indexPath.section == 3 && indexPath.row < self.ingredientsArray.count {
+            return 38.0
         }
         return UITableViewAutomaticDimension
     }

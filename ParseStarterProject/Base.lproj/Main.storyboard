@@ -1532,15 +1532,15 @@
                                     <outlet property="directionSectionTextField" destination="VoJ-tD-A0B" id="mJM-Id-BUH"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AddIngredientTableViewCell" rowHeight="44" id="non-rZ-VYh" customClass="AddIngredientTableViewCell" customModule="Recipes" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="485" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AddIngredientTableViewCell" rowHeight="38" id="non-rZ-VYh" customClass="AddIngredientTableViewCell" customModule="Recipes" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="485" width="600" height="38"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="non-rZ-VYh" id="E2i-91-uHJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="38"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="right" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Ud-D2-Ggn">
-                                            <rect key="frame" x="503" y="0.0" width="51" height="30"/>
+                                            <rect key="frame" x="503" y="4" width="51" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="1Vd-Ia-uCh"/>
                                                 <constraint firstAttribute="width" constant="51" id="3Pu-E8-br4"/>
@@ -1549,7 +1549,7 @@
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="right" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V9O-c6-znL">
-                                            <rect key="frame" x="17" y="0.0" width="470" height="30"/>
+                                            <rect key="frame" x="17" y="4" width="470" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="SZF-22-cKt"/>
                                             </constraints>
@@ -1558,9 +1558,9 @@
                                         </textField>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="6Ud-D2-Ggn" firstAttribute="top" secondItem="E2i-91-uHJ" secondAttribute="top" id="ML6-6S-Db8"/>
+                                        <constraint firstItem="6Ud-D2-Ggn" firstAttribute="top" secondItem="E2i-91-uHJ" secondAttribute="top" constant="4" id="ML6-6S-Db8"/>
                                         <constraint firstItem="V9O-c6-znL" firstAttribute="leading" secondItem="E2i-91-uHJ" secondAttribute="leading" constant="17" id="SgQ-Se-jXb"/>
-                                        <constraint firstItem="V9O-c6-znL" firstAttribute="top" secondItem="E2i-91-uHJ" secondAttribute="top" id="jr2-C2-H7A"/>
+                                        <constraint firstItem="V9O-c6-znL" firstAttribute="top" secondItem="E2i-91-uHJ" secondAttribute="top" constant="4" id="jr2-C2-H7A"/>
                                         <constraint firstAttribute="trailing" secondItem="6Ud-D2-Ggn" secondAttribute="trailing" constant="46" id="kkD-Ec-a4G"/>
                                         <constraint firstItem="6Ud-D2-Ggn" firstAttribute="leading" secondItem="V9O-c6-znL" secondAttribute="trailing" constant="16" id="sqh-FY-88c"/>
                                     </constraints>
@@ -1572,7 +1572,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AddIngredientSectionTableViewCell" rowHeight="44" id="krI-er-rbe" customClass="AddIngredientSectionTableViewCell" customModule="Recipes" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="529" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="523" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="krI-er-rbe" id="MbE-Cl-Pua">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -1605,7 +1605,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="GeneralInfoTableViewCell" rowHeight="65" id="XIg-T7-wWI" customClass="GeneralInfoTableViewCell" customModule="Recipes" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="573" width="600" height="65"/>
+                                <rect key="frame" x="0.0" y="567" width="600" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XIg-T7-wWI" id="3kc-uv-Udu">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
@@ -1686,7 +1686,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TotalTimeTableViewCell" rowHeight="65" id="X1m-4c-eef" customClass="TotalTimeTableViewCell" customModule="Recipes" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="638" width="600" height="65"/>
+                                <rect key="frame" x="0.0" y="632" width="600" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="X1m-4c-eef" id="XLf-ZP-ZyC">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
@@ -1767,7 +1767,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AddRecipeButtonsTableViewCell" rowHeight="44" id="l98-ut-cwt" customClass="AddRecipeButtonsTableViewCell" customModule="Recipes" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="703" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="697" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="l98-ut-cwt" id="n5j-IG-Njd">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
