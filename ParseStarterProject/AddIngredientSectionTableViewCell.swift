@@ -42,8 +42,16 @@ class AddIngredientSectionTableViewCell: UITableViewCell, UITextFieldDelegate {
             if let cell = textField.superview?.superview as? AddIngredientSectionTableViewCell {
                 if let indexPath = self.tableViewController.tableView.indexPathForCell(cell) {
                     let currentRow = indexPath.row
-                    self.tableViewController.ingredientsEndPositionPerSection[self.tableViewController.currentIngredientSection] = currentRow - 1
-                    self.tableViewController.ingredientsEndPositionPerSection[sectionText] = currentRow + 1
+                    // set previous section
+                    var previousIngredientsEndPositionPerSection = self.tableViewController.ingredientsEndPositionPerSection[self.tableViewController.currentIngredientSection]
+                    previousIngredientsEndPositionPerSection![1] = currentRow - 1
+                    self.tableViewController.ingredientsEndPositionPerSection[self.tableViewController.currentIngredientSection] = previousIngredientsEndPositionPerSection
+                    // set new section
+                    var newIngredientsEndPositionPerSection: [Int] = []
+                    newIngredientsEndPositionPerSection.append(currentRow + 1)
+                    newIngredientsEndPositionPerSection.append(currentRow + 1)
+                    self.tableViewController.ingredientsEndPositionPerSection[sectionText] = newIngredientsEndPositionPerSection
+                    
                 }
             }
             self.tableViewController.currentIngredientSection = sectionText

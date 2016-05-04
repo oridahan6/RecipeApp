@@ -30,56 +30,6 @@ class AddIngredientTableViewCell: UITableViewCell, UITextFieldDelegate {
         // Configure the view for the selected state
     }
     
-    /*
-    override func layoutSubviews() {
-        
-        super.layoutSubviews()
-     
-        self.contentView.frame = CGRectMake(32,
-                                            self.contentView.frame.origin.y,
-                                            self.contentView.frame.size.width + 8,
-                                            self.contentView.frame.size.height);
-        
-        
-        var subviews: [UIView] = []
-        subviews += self.subviews
-        for view in self.subviews {
-            let firstLevelView = view
-            if firstLevelView.subviews.count > 0 {
-                subviews += firstLevelView.subviews
-            }
-        }
-        
-        for view in subviews {
-//            print(view.classForCoder.description())
-            if view.classForCoder.description() == "UITableViewCellReorderControl" {
-                let reorderControl = view
-                let resizedReorderControl = UIView(frame: CGRectMake(0, 0, CGRectGetMaxX(reorderControl.frame), CGRectGetMaxY(reorderControl.frame)))
-
-                resizedReorderControl.addSubview(reorderControl)
-                self.addSubview(resizedReorderControl)
-                
-                let moveLeft: CGSize = CGSizeMake(resizedReorderControl.frame.size.width - reorderControl.frame.size.width, resizedReorderControl.frame.size.height - reorderControl.frame.size.height);
-                transform = CGAffineTransformIdentity;
-                transform = CGAffineTransformTranslate(transform, -moveLeft.width, -moveLeft.height);
-                
-//
-//                let sizeDifference = CGSizeMake(resizedReorderControl.frame.size.width - reorderControl.frame.size.width, resizedReorderControl.frame.size.height - reorderControl.frame.size.height)
-//                let transformRatio = CGSizeMake(resizedReorderControl.frame.size.width / reorderControl.frame.size.width, resizedReorderControl.frame.size.height / reorderControl.frame.size.height)
-//                
-//                var transform = CGAffineTransformIdentity
-//                
-//                transform = CGAffineTransformScale(transform, transformRatio.width, transformRatio.height)
-//                transform = CGAffineTransformTranslate(transform, -sizeDifference.width / 2, -sizeDifference.height / 2)
-//                
-//                resizedReorderControl.transform = transform
-            }
-        }
-        
-        
-    }
-     */
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -137,11 +87,11 @@ class AddIngredientTableViewCell: UITableViewCell, UITextFieldDelegate {
                     
 //                    print("generalIngredientsArray[0]")
 //                    print(generalIngredientsArray[0])
-                    if let currentSectionRow = self.tableViewController.ingredientsEndPositionPerSection[currentIngredientSection] {
-                        print("currentSectionRow")
-                        print(currentSectionRow)
+                    if let currentSectionIndexes = self.tableViewController.ingredientsEndPositionPerSection[currentIngredientSection] {
+                        print("currentSectionIndexes")
+                        print(currentSectionIndexes)
 
-                        let currentIndex = currentRow - currentSectionRow
+                        let currentIndex = currentRow - currentSectionIndexes[0]
                         
                         print("currentIndex")
                         print(currentIndex)
@@ -151,6 +101,16 @@ class AddIngredientTableViewCell: UITableViewCell, UITextFieldDelegate {
                             print("in append")
                             ingredientsArray.append(ingredientText)
 //                            self.tableViewController.ingredientsEndPositionPerSection[currentIngredientSection] = currentSectionRow + 1
+                            if var currentSectionIndexes = self.tableViewController.ingredientsEndPositionPerSection[self.tableViewController.currentIngredientSection] {
+                                print("currentSectionIndexes before adding line")
+                                print(currentSectionIndexes)
+                                currentSectionIndexes[1] = currentRow
+                                print("currentSectionIndexes after adding line")
+                                print(currentSectionIndexes)
+                                self.tableViewController.ingredientsEndPositionPerSection[self.tableViewController.currentIngredientSection] = currentSectionIndexes
+                                print("ingredientsEndPositionPerSection after adding a line")
+                                print(self.tableViewController.ingredientsEndPositionPerSection[self.tableViewController.currentIngredientSection])
+                            }
                         } else {
                             print("in replace")
                             ingredientsArray[currentIndex] = ingredientText
@@ -165,6 +125,59 @@ class AddIngredientTableViewCell: UITableViewCell, UITextFieldDelegate {
         
         print("self.tableViewController.recipeIngredients")
         print(self.tableViewController.recipeIngredients)
+        print("ingredientsEndPositionPerSection")
+        print(self.tableViewController.ingredientsEndPositionPerSection[self.tableViewController.currentIngredientSection])
         
     }
+
+    /*
+     override func layoutSubviews() {
+     
+     super.layoutSubviews()
+     
+     self.contentView.frame = CGRectMake(32,
+     self.contentView.frame.origin.y,
+     self.contentView.frame.size.width + 8,
+     self.contentView.frame.size.height);
+     
+     
+     var subviews: [UIView] = []
+     subviews += self.subviews
+     for view in self.subviews {
+     let firstLevelView = view
+     if firstLevelView.subviews.count > 0 {
+     subviews += firstLevelView.subviews
+     }
+     }
+     
+     for view in subviews {
+     //            print(view.classForCoder.description())
+     if view.classForCoder.description() == "UITableViewCellReorderControl" {
+     let reorderControl = view
+     let resizedReorderControl = UIView(frame: CGRectMake(0, 0, CGRectGetMaxX(reorderControl.frame), CGRectGetMaxY(reorderControl.frame)))
+     
+     resizedReorderControl.addSubview(reorderControl)
+     self.addSubview(resizedReorderControl)
+     
+     let moveLeft: CGSize = CGSizeMake(resizedReorderControl.frame.size.width - reorderControl.frame.size.width, resizedReorderControl.frame.size.height - reorderControl.frame.size.height);
+     transform = CGAffineTransformIdentity;
+     transform = CGAffineTransformTranslate(transform, -moveLeft.width, -moveLeft.height);
+     
+     //
+     //                let sizeDifference = CGSizeMake(resizedReorderControl.frame.size.width - reorderControl.frame.size.width, resizedReorderControl.frame.size.height - reorderControl.frame.size.height)
+     //                let transformRatio = CGSizeMake(resizedReorderControl.frame.size.width / reorderControl.frame.size.width, resizedReorderControl.frame.size.height / reorderControl.frame.size.height)
+     //
+     //                var transform = CGAffineTransformIdentity
+     //
+     //                transform = CGAffineTransformScale(transform, transformRatio.width, transformRatio.height)
+     //                transform = CGAffineTransformTranslate(transform, -sizeDifference.width / 2, -sizeDifference.height / 2)
+     //
+     //                resizedReorderControl.transform = transform
+     }
+     }
+     
+     
+     }
+     */
+
 }

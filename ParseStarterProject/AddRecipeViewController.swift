@@ -24,7 +24,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
     var ingredientsArray: [String] = ["ingredient"]
     var directionsArray: [String] = ["direction"]
     
-    var ingredientsEndPositionPerSection = ["general": 0]
+    var ingredientsEndPositionPerSection = ["general": [0,0]]
     var currentIngredientSection = "general"
     
     // Submit parameters
@@ -164,12 +164,69 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
     override func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
         
 
-//        print("moveRowAtIndexPath")
-//        print("sourceIndexPath")
-//        print(sourceIndexPath)
-//        print("destinationIndexPath")
-//        print(destinationIndexPath)
+        print("moveRowAtIndexPath")
+        print("sourceIndexPath")
+        print(sourceIndexPath)
+        print("destinationIndexPath")
+        print(destinationIndexPath)
         
+        print("self.recipeIngredients")
+        print(self.recipeIngredients)
+        
+        print("self.ingredientsEndPositionPerSection")
+        print(self.ingredientsEndPositionPerSection)
+        
+        var sourceSection = ""
+        
+        for (sectionName, indexesArray) in self.ingredientsEndPositionPerSection {
+            if sourceIndexPath.row <= indexesArray[1] && sourceIndexPath.row >= indexesArray[0] {
+                sourceSection = sectionName
+            }
+        }
+        
+        print("sourceSection")
+        print(sourceSection)
+        
+        
+        if var currentSection = self.recipeIngredients[sourceSection] {
+            
+            if let indexes = self.ingredientsEndPositionPerSection[sourceSection] {
+            
+                print("currentSection before")
+                print(currentSection)
+                
+                let currentSourceIndex = sourceIndexPath.row - indexes[0]
+                
+                print("currentSourceIndex")
+                print(currentSourceIndex)
+
+                let currentDestIndex = destinationIndexPath.row - indexes[0]
+                
+                print("currentDestIndex")
+                print(currentDestIndex)
+                
+                let currentIngredient = currentSection[currentSourceIndex]
+                
+                print("currentIngredient")
+                print(currentIngredient)
+                
+                currentSection.removeAtIndex(currentSourceIndex)
+                
+                print("currentSection after remove")
+                print(currentSection)
+
+                currentSection.insert(currentIngredient, atIndex: currentDestIndex)
+
+                print("currentSection after insert")
+                print(currentSection)
+                
+                self.recipeIngredients[sourceSection] = currentSection
+            }
+
+        }
+        
+        print("self.recipeIngredients ater moving")
+        print(self.recipeIngredients)
         
     }
     
