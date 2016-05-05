@@ -35,6 +35,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
     var recipePrepTime: Int!
     var recipeCookTime: Int!
     var recipeIngredients: [String: [String]] = ["general": []]
+    var recipeDirections: [String: [String]] = ["general": []]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -134,10 +135,12 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
                 if self.directionsArray[indexPath.row] == "section" {
                     let cell = tableView.dequeueReusableCellWithIdentifier(AddDirectionSectionTableViewCellIdentifier, forIndexPath: indexPath) as! AddDirectionSectionTableViewCell
                     cell.backgroundColor = .clearColor()
+                    cell.tableViewController = self
                     return cell
                 } else {
                     let cell = tableView.dequeueReusableCellWithIdentifier(AddDirectionTableViewCellIdentifier, forIndexPath: indexPath) as! AddDirectionTableViewCell
                     cell.backgroundColor = .clearColor()
+                    cell.tableViewController = self
                     return cell
                 }
             }
@@ -151,7 +154,8 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
     }
     
     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        if indexPath.section == 3 && indexPath.row != self.ingredientsArray.count {
+        if  indexPath.section == 3 && indexPath.row != self.ingredientsArray.count ||
+            indexPath.section == 4 && indexPath.row != self.directionsArray.count {
             return true
         }
         return false

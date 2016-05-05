@@ -12,6 +12,8 @@ class AddDirectionSectionTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     @IBOutlet var directionSectionTextField: UITextField!
     
+    var tableViewController: AddRecipeViewController!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
