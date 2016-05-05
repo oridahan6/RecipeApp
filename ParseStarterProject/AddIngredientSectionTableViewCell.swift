@@ -56,14 +56,6 @@ class AddIngredientSectionTableViewCell: UITableViewCell, UITextFieldDelegate {
             }
             self.tableViewController.currentIngredientSection = sectionText
         }
-        
-        print("self.tableViewController.recipeIngredients")
-        print(self.tableViewController.recipeIngredients)
-        print("ingredientsEndPositionPerSection")
-        print(self.tableViewController.ingredientsEndPositionPerSection)
-        print("currentIngredientSection")
-        print(self.tableViewController.currentIngredientSection)
-        
     }
     
 }

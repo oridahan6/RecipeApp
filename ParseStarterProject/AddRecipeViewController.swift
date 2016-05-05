@@ -241,14 +241,6 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
                 }
             }
         }
-        
-            
-        
-        print("self.recipeIngredients ater moving")
-        print(self.recipeIngredients)
-        print("self.ingredientsEndPositionPerSection ater moving")
-        print(self.ingredientsEndPositionPerSection)
-        
     }
     
     override func tableView(tableView: UITableView, targetIndexPathForMoveFromRowAtIndexPath sourceIndexPath: NSIndexPath, toProposedIndexPath proposedDestinationIndexPath: NSIndexPath) -> NSIndexPath {

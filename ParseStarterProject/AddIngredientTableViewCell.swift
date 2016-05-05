@@ -60,7 +60,6 @@ class AddIngredientTableViewCell: UITableViewCell, UITextFieldDelegate {
         var ingredientText = ""
         
         if let cell = textField.superview?.superview as? AddIngredientTableViewCell {
-            //            print(cell.contentView)
             for (index, currentTextField) in cell.contentView.subviews.enumerate() {
                 if let currentTextField = currentTextField as? UITextField {
                     if let text = currentTextField.text {
@@ -72,65 +71,32 @@ class AddIngredientTableViewCell: UITableViewCell, UITextFieldDelegate {
                 }
             }
             
-            print("ingredientText")
-            print(ingredientText)
-            
             let currentIngredientSection = self.tableViewController.currentIngredientSection
             
             if let indexPath = self.tableViewController.tableView.indexPathForCell(cell) {
                 let currentRow = indexPath.row
                 if var ingredientsArray = self.tableViewController.recipeIngredients[currentIngredientSection] {
-                    print("currentRow")
-                    print(currentRow)
-                    print("array count")
-                    print(ingredientsArray.count)
-                    
-//                    print("generalIngredientsArray[0]")
-//                    print(generalIngredientsArray[0])
                     if let currentSectionIndexes = self.tableViewController.ingredientsEndPositionPerSection[currentIngredientSection] {
-                        print("currentSectionIndexes")
-                        print(currentSectionIndexes)
 
                         let currentIndex = currentRow - currentSectionIndexes[0]
                         
-                        print("currentIndex")
-                        print(currentIndex)
-
-                        
                         if ingredientsArray.count <= currentIndex {
-                            print("in append")
                             ingredientsArray.append(ingredientText)
-//                            self.tableViewController.ingredientsEndPositionPerSection[currentIngredientSection] = currentSectionRow + 1
                             if var currentSectionIndexes = self.tableViewController.ingredientsEndPositionPerSection[self.tableViewController.currentIngredientSection] {
-                                print("currentSectionIndexes before adding line")
-                                print(currentSectionIndexes)
                                 currentSectionIndexes[1] = currentRow
-                                print("currentSectionIndexes after adding line")
-                                print(currentSectionIndexes)
                                 self.tableViewController.ingredientsEndPositionPerSection[self.tableViewController.currentIngredientSection] = currentSectionIndexes
-                                print("ingredientsEndPositionPerSection after adding a line")
-                                print(self.tableViewController.ingredientsEndPositionPerSection[self.tableViewController.currentIngredientSection])
                             }
                         } else {
-                            print("in replace")
                             ingredientsArray[currentIndex] = ingredientText
                         }
-                        print("ingredientsArray")
-                        print(ingredientsArray)
                         self.tableViewController.recipeIngredients[self.tableViewController.currentIngredientSection] = ingredientsArray
                     }
                 }
             }
         }
-        
-        print("self.tableViewController.recipeIngredients")
-        print(self.tableViewController.recipeIngredients)
-        print("ingredientsEndPositionPerSection")
-        print(self.tableViewController.ingredientsEndPositionPerSection[self.tableViewController.currentIngredientSection])
-        
     }
 
-    /*
+    /* move reorder control to left size
      override func layoutSubviews() {
      
      super.layoutSubviews()
