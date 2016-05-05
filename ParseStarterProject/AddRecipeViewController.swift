@@ -167,96 +167,130 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
     
     override func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
         
-        var sourceSectionName = ""
-        var destSectionName = ""
+        if sourceIndexPath.section == 3 {
         
-        for (sectionName, indexesArray) in self.ingredientsEndPositionPerSection {
-            if sourceIndexPath.row <= indexesArray[1] && sourceIndexPath.row >= indexesArray[0] {
-                sourceSectionName = sectionName
-            }
+            var sourceSectionName = ""
+            var destSectionName = ""
             
-            if destinationIndexPath.row <= indexesArray[1] && destinationIndexPath.row >= indexesArray[0] {
-                destSectionName = sectionName
-            }
-        }
-
-        if destSectionName == "" {
             for (sectionName, indexesArray) in self.ingredientsEndPositionPerSection {
-                if destinationIndexPath.row == indexesArray[1] + 1 && sectionName != sourceSectionName ||
-                    destinationIndexPath.row == indexesArray[0] - 1 && sectionName != sourceSectionName {
+                if sourceIndexPath.row <= indexesArray[1] && sourceIndexPath.row >= indexesArray[0] {
+                    sourceSectionName = sectionName
+                }
+                
+                if destinationIndexPath.row <= indexesArray[1] && destinationIndexPath.row >= indexesArray[0] {
                     destSectionName = sectionName
                 }
             }
-        }
-        
-        if var sourceSection = self.recipeIngredients[sourceSectionName], var destSection = self.recipeIngredients[destSectionName] {
-            if var sourceIndexes = self.ingredientsEndPositionPerSection[sourceSectionName], var destIndexes = self.ingredientsEndPositionPerSection[destSectionName]  {
-                if sourceSectionName == destSectionName {
+
+            if destSectionName == "" {
+                for (sectionName, indexesArray) in self.ingredientsEndPositionPerSection {
+                    if destinationIndexPath.row == indexesArray[1] + 1 && sectionName != sourceSectionName ||
+                        destinationIndexPath.row == indexesArray[0] - 1 && sectionName != sourceSectionName {
+                        destSectionName = sectionName
+                    }
+                }
+            }
+            
+            if var sourceSection = self.recipeIngredients[sourceSectionName], var destSection = self.recipeIngredients[destSectionName] {
+                if var sourceIndexes = self.ingredientsEndPositionPerSection[sourceSectionName], var destIndexes = self.ingredientsEndPositionPerSection[destSectionName]  {
+                    if sourceSectionName == destSectionName {
+                        
+                        let sourceSectionIndex = sourceIndexPath.row - sourceIndexes[0]
+                        let destSectionIndex = destinationIndexPath.row - sourceIndexes[0]
+                        
+                        if !sourceSection.isEmpty {
+                        
+                            let currentIngredient = sourceSection[sourceSectionIndex]
+
+                            sourceSection.removeAtIndex(sourceSectionIndex)
+                            sourceSection.insert(currentIngredient, atIndex: destSectionIndex)
+            
+                            self.recipeIngredients[sourceSectionName] = sourceSection
+                        }
                     
-                    let sourceSectionIndex = sourceIndexPath.row - sourceIndexes[0]
-                    let destSectionIndex = destinationIndexPath.row - sourceIndexes[0]
-                    
-                    if !sourceSection.isEmpty {
-                    
+                    } else {
+                        // move between sections
+                        let sourceSectionIndex = sourceIndexPath.row - sourceIndexes[0]
                         let currentIngredient = sourceSection[sourceSectionIndex]
-
+                        
                         sourceSection.removeAtIndex(sourceSectionIndex)
-                        sourceSection.insert(currentIngredient, atIndex: destSectionIndex)
-        
+                        
+                        if sourceSectionIndex == 0 && destinationIndexPath.row < sourceIndexPath.row {
+                            sourceIndexes[0] += 1
+                        } else if sourceSectionIndex == 0 && destinationIndexPath.row > sourceIndexPath.row {
+                            sourceIndexes[1] -= 1
+                        } else if destinationIndexPath.row < sourceIndexPath.row {
+                            sourceIndexes[0] += 1
+                        } else if destinationIndexPath.row > sourceIndexPath.row {
+                            sourceIndexes[1] -= 1
+                        }
+                        
+                        var destSectionIndex = max(destinationIndexPath.row - destIndexes[0], 0)
+                        
+                        if destSectionIndex != 0 && destinationIndexPath.row > sourceIndexPath.row {
+                            destSectionIndex += 1
+                        }
+                        
+                        destSection.insert(currentIngredient, atIndex: destSectionIndex)
+                        
+                        if destSectionIndex == 0 && destinationIndexPath.row > sourceIndexPath.row {
+                            destIndexes[0] -= 1
+                        } else if destSectionIndex == 0 && destinationIndexPath.row < sourceIndexPath.row {
+                            destIndexes[1] += 1
+                        } else if destinationIndexPath.row > sourceIndexPath.row {
+                            destIndexes[0] -= 1
+                        } else if destinationIndexPath.row < sourceIndexPath.row {
+                            destIndexes[1] += 1
+                        }
+                        
                         self.recipeIngredients[sourceSectionName] = sourceSection
-                    }
-                
-                } else {
-                    // move between sections
-                    let sourceSectionIndex = sourceIndexPath.row - sourceIndexes[0]
-                    let currentIngredient = sourceSection[sourceSectionIndex]
-                    
-                    sourceSection.removeAtIndex(sourceSectionIndex)
-                    
-                    if sourceSectionIndex == 0 && destinationIndexPath.row < sourceIndexPath.row {
-                        sourceIndexes[0] += 1
-                    } else if sourceSectionIndex == 0 && destinationIndexPath.row > sourceIndexPath.row {
-                        sourceIndexes[1] -= 1
-                    } else if destinationIndexPath.row < sourceIndexPath.row {
-                        sourceIndexes[0] += 1
-                    } else if destinationIndexPath.row > sourceIndexPath.row {
-                        sourceIndexes[1] -= 1
-                    }
-                    
-                    var destSectionIndex = max(destinationIndexPath.row - destIndexes[0], 0)
-                    
-                    if destSectionIndex != 0 && destinationIndexPath.row > sourceIndexPath.row {
-                        destSectionIndex += 1
-                    }
-                    
-                    destSection.insert(currentIngredient, atIndex: destSectionIndex)
-                    
-                    if destSectionIndex == 0 && destinationIndexPath.row > sourceIndexPath.row {
-                        destIndexes[0] -= 1
-                    } else if destSectionIndex == 0 && destinationIndexPath.row < sourceIndexPath.row {
-                        destIndexes[1] += 1
-                    } else if destinationIndexPath.row > sourceIndexPath.row {
-                        destIndexes[0] -= 1
-                    } else if destinationIndexPath.row < sourceIndexPath.row {
-                        destIndexes[1] += 1
-                    }
-                    
-                    self.recipeIngredients[sourceSectionName] = sourceSection
-                    self.ingredientsEndPositionPerSection[sourceSectionName] = sourceIndexes
-                    self.recipeIngredients[destSectionName] = destSection
-                    self.ingredientsEndPositionPerSection[destSectionName] = destIndexes
+                        self.ingredientsEndPositionPerSection[sourceSectionName] = sourceIndexes
+                        self.recipeIngredients[destSectionName] = destSection
+                        self.ingredientsEndPositionPerSection[destSectionName] = destIndexes
 
+                    }
+                }
+            }
+        } else if sourceIndexPath.section == 4 {
+            
+            let sectionName = "general"
+            if var sourceSection = self.recipeDirections[sectionName] {
+                if !sourceSection.isEmpty {
+                    
+                    let currentDirection = sourceSection[sourceIndexPath.row]
+                    
+                    sourceSection.removeAtIndex(sourceIndexPath.row)
+                    sourceSection.insert(currentDirection, atIndex: destinationIndexPath.row)
+
+                    self.recipeDirections[sectionName] = sourceSection
                 }
             }
         }
     }
     
     override func tableView(tableView: UITableView, targetIndexPathForMoveFromRowAtIndexPath sourceIndexPath: NSIndexPath, toProposedIndexPath proposedDestinationIndexPath: NSIndexPath) -> NSIndexPath {
-        if proposedDestinationIndexPath.section != 3 {
-            return sourceIndexPath
-        } else if proposedDestinationIndexPath.row == self.ingredientsArray.count {
+        
+        if sourceIndexPath.section != proposedDestinationIndexPath.section {
             return sourceIndexPath
         }
+        
+        if sourceIndexPath.section == 3 {
+            if proposedDestinationIndexPath.section != 3 || proposedDestinationIndexPath.row == self.ingredientsArray.count {
+                return sourceIndexPath
+            }
+        }
+        
+        if sourceIndexPath.section == 4 {
+            if proposedDestinationIndexPath.section != 4 || proposedDestinationIndexPath.row == self.directionsArray.count {
+                return sourceIndexPath
+            }
+        }
+
+//        if proposedDestinationIndexPath.section != 3 && proposedDestinationIndexPath.section != 4 {
+//            return sourceIndexPath
+//        } else if proposedDestinationIndexPath.row == self.ingredientsArray.count {
+//            return sourceIndexPath
+//        }
         return proposedDestinationIndexPath
     }
     

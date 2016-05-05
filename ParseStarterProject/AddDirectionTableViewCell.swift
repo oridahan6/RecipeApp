@@ -62,9 +62,6 @@ class AddDirectionTableViewCell: UITableViewCell, UITextFieldDelegate {
     func updateDirectionsArray(textField: UITextField) {
         
         if let directionText = textField.text, let cell = textField.superview?.superview as? AddDirectionTableViewCell {
-            
-            print(cell)
-            
             if let indexPath = self.tableViewController.tableView.indexPathForCell(cell) {
                 let currentRow = indexPath.row
                 if var recipeDirections = self.tableViewController.recipeDirections["general"] {
@@ -75,9 +72,6 @@ class AddDirectionTableViewCell: UITableViewCell, UITextFieldDelegate {
                     }
                     
                     self.tableViewController.recipeDirections["general"] = recipeDirections
-
-                    print(self.tableViewController.recipeDirections)
-
                 }
             }
         }
