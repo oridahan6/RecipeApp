@@ -31,6 +31,21 @@ extension UIImage {
     }
 }
 
+//// UITextField
+extension UITextField {
+    func addBottomBorder() {
+        let width = CGFloat(2.0)
+        let borderColor = UIColor.darkGrayColor().CGColor
+        
+        let border = CALayer()
+        border.borderColor = borderColor
+        border.frame = CGRect(x: 0, y: self.frame.size.height - width, width:  self.frame.size.width, height: self.frame.size.height)
+        border.borderWidth = width
+        self.layer.addSublayer(border)
+        self.layer.masksToBounds = true
+    }
+}
+
 // CALayer
 // Add border to element
 extension CALayer {

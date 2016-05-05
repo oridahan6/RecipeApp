@@ -37,6 +37,10 @@ class AddIngredientTableViewCell: UITableViewCell, UITextFieldDelegate {
         frame.size.width = frame.size.width + 38
 
         self.contentView.frame = frame
+
+        self.ingredientTextTextField.addBottomBorder()
+        self.ingredientAmountTextField.addBottomBorder()
+        
     }
     
     //--------------------------------------
@@ -95,7 +99,7 @@ class AddIngredientTableViewCell: UITableViewCell, UITextFieldDelegate {
             }
         }
     }
-
+    
     /* move reorder control to left size
      override func layoutSubviews() {
      

@@ -191,12 +191,16 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
                     
                     let sourceSectionIndex = sourceIndexPath.row - sourceIndexes[0]
                     let destSectionIndex = destinationIndexPath.row - sourceIndexes[0]
-                    let currentIngredient = sourceSection[sourceSectionIndex]
+                    
+                    if !sourceSection.isEmpty {
+                    
+                        let currentIngredient = sourceSection[sourceSectionIndex]
 
-                    sourceSection.removeAtIndex(sourceSectionIndex)
-                    sourceSection.insert(currentIngredient, atIndex: destSectionIndex)
-    
-                    self.recipeIngredients[sourceSectionName] = sourceSection
+                        sourceSection.removeAtIndex(sourceSectionIndex)
+                        sourceSection.insert(currentIngredient, atIndex: destSectionIndex)
+        
+                        self.recipeIngredients[sourceSectionName] = sourceSection
+                    }
                 
                 } else {
                     // move between sections

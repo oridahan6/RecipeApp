@@ -17,6 +17,9 @@ class AddDirectionTableViewCell: UITableViewCell, UITextFieldDelegate {
         // Initialization code
         
         self.directionTextField.delegate = self
+        
+        self.directionTextField.addBottomBorder()
+
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
