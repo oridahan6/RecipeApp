@@ -163,35 +163,10 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
     
     override func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
         
-
-        print("moveRowAtIndexPath")
-        print("sourceIndexPath")
-        print(sourceIndexPath)
-        print("destinationIndexPath")
-        print(destinationIndexPath)
-        
-        print("self.recipeIngredients")
-        print(self.recipeIngredients)
-        
-        print("self.ingredientsEndPositionPerSection")
-        print(self.ingredientsEndPositionPerSection)
-        
         var sourceSectionName = ""
         var destSectionName = ""
         
-        print("sourceIndexPath.row")
-        print(sourceIndexPath.row)
-        print("destinationIndexPath.row")
-        print(destinationIndexPath.row)
-        
         for (sectionName, indexesArray) in self.ingredientsEndPositionPerSection {
-            
-            print("in first for")
-            print("sectionName")
-            print(sectionName)
-            print("indexesArray")
-            print(indexesArray)
-            
             if sourceIndexPath.row <= indexesArray[1] && sourceIndexPath.row >= indexesArray[0] {
                 sourceSectionName = sectionName
             }
@@ -203,170 +178,30 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
 
         if destSectionName == "" {
             for (sectionName, indexesArray) in self.ingredientsEndPositionPerSection {
-                
-                print("in second for")
-                print("sectionName")
-                print(sectionName)
-                print("indexesArray")
-                print(indexesArray)
-                
                 if destinationIndexPath.row == indexesArray[1] + 1 && sectionName != sourceSectionName ||
                     destinationIndexPath.row == indexesArray[0] - 1 && sectionName != sourceSectionName {
                     destSectionName = sectionName
                 }
-                
             }
         }
         
-        
-        print("sourceSectionName")
-        print(sourceSectionName)
-        
-        print("destSectionName")
-        print(destSectionName)
-        
-        
         if var sourceSection = self.recipeIngredients[sourceSectionName], var destSection = self.recipeIngredients[destSectionName] {
-            
             if var sourceIndexes = self.ingredientsEndPositionPerSection[sourceSectionName], var destIndexes = self.ingredientsEndPositionPerSection[destSectionName]  {
-
                 if sourceSectionName == destSectionName {
                     
-                    print("sourceSection before")
-                    print(sourceSection)
-                    
                     let sourceSectionIndex = sourceIndexPath.row - sourceIndexes[0]
-                    
-                    print("sourceSectionIndex")
-                    print(sourceSectionIndex)
-                    
                     let destSectionIndex = destinationIndexPath.row - sourceIndexes[0]
-                    
-                    print("destSectionIndex")
-                    print(destSectionIndex)
-                    
-                    
                     let currentIngredient = sourceSection[sourceSectionIndex]
-                    
-                    print("currentIngredient")
-                    print(currentIngredient)
-                    
 
-                    print("sections equals")
-            
-                        sourceSection.removeAtIndex(sourceSectionIndex)
-                        
-                        print("sourceSection after remove")
-                        print(sourceSection)
-
-                        sourceSection.insert(currentIngredient, atIndex: destSectionIndex)
-
-                        print("sourceSection after insert")
-                        print(sourceSection)
-                        
-                        self.recipeIngredients[sourceSectionName] = sourceSection
+                    sourceSection.removeAtIndex(sourceSectionIndex)
+                    sourceSection.insert(currentIngredient, atIndex: destSectionIndex)
+    
+                    self.recipeIngredients[sourceSectionName] = sourceSection
                 
-                    } else {
-                        print("sections not equals")
-/*
-                    print("sourceSection before")
-                    print(sourceSection)
-                    print("sourceIndexes before")
-                    print(sourceIndexes)
-                    
-                        let sourceSectionIndex = sourceIndexPath.row - sourceIndexes[0]
-                        
-                        print("sourceSectionIndex")
-                        print(sourceSectionIndex)
-                        
-                        var destSectionIndex = max(destinationIndexPath.row - destIndexes[0], 0)
-//                        var destSectionIndex = 0
-                    
-                    if destinationIndexPath.row < sourceIndexPath.row {
-                        destSectionIndex -= 1
-                    } else if destinationIndexPath.row == destIndexes[1] || destinationIndexPath.row > sourceIndexPath.row {
-                        destSectionIndex += 1
-                    }
- 
-                    
-                        print("destSectionIndex")
-                        print(destSectionIndex)
-                        
-                        
-                        let currentIngredient = sourceSection[sourceSectionIndex]
-                        
-                        print("currentIngredient")
-                        print(currentIngredient)
-                    
-
-                        sourceSection.removeAtIndex(sourceSectionIndex)
-                    
-                        if sourceSectionIndex == 0 {
-                            sourceIndexes[0] += 1
-                        } else if destinationIndexPath.row < sourceIndexPath.row {
-                            sourceIndexes[0] += 1
-                        } else if destinationIndexPath.row > sourceIndexPath.row {
-                            sourceIndexes[1] -= 1
-                        }
-                    
-                    print("sourceSection after remove")
-                    print(sourceSection)
-                    print("sourceIndexes after remove")
-                    print(sourceIndexes)
-
-                    print("destSection before insert")
-                    print(destSection)
-                    print("destSectionIndex before insert")
-                    print(destSectionIndex)
-                    print("destIndexes before insert")
-                    print(destIndexes)
-
-                    
-                        destSection.insert(currentIngredient, atIndex: destSectionIndex)
-                    
-//                        if destSectionIndex == 0 {
-//                            destIndexes[0] -= 1
-//                        } else {
-//                            destIndexes[1] += 1
-//                        }
-                    
-                    if destSectionIndex == 0 {
-                        destIndexes[0] += 1
-                    } else if destinationIndexPath.row > sourceIndexPath.row {
-                        destIndexes[0] -= 1
-                    } else if destinationIndexPath.row < sourceIndexPath.row {
-                        destIndexes[1] += 1
-                    }
-                    
-                    
-                    print("destSection after insert")
-                    print(destSection)
-                    print("destIndexes after insert")
-                    print(destIndexes)
-                    
-                        self.recipeIngredients[sourceSectionName] = sourceSection
-                        self.ingredientsEndPositionPerSection[sourceSectionName] = sourceIndexes
-                        self.recipeIngredients[destSectionName] = destSection
-                        self.ingredientsEndPositionPerSection[destSectionName] = destIndexes
-*/
-                    
-                    
-                    print("sourceSection before")
-                    print(sourceSection)
-                    print("sourceIndexes before")
-                    print(sourceIndexes)
-                    
+                } else {
+                    // move between sections
                     let sourceSectionIndex = sourceIndexPath.row - sourceIndexes[0]
-                    
-                    print("sourceSectionIndex")
-                    print(sourceSectionIndex)
-
-                    
                     let currentIngredient = sourceSection[sourceSectionIndex]
-                    
-                    print("currentIngredient")
-                    print(currentIngredient)
-                    
                     
                     sourceSection.removeAtIndex(sourceSectionIndex)
                     
@@ -380,42 +215,13 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
                         sourceIndexes[1] -= 1
                     }
                     
-                    print("sourceSection after remove")
-                    print(sourceSection)
-                    print("sourceIndexes after remove")
-                    print(sourceIndexes)
-
-                    
-                    
-                    
-                    print("destinationIndexPath.row")
-                    print(destinationIndexPath.row)
-                    print("destSection before insert")
-                    print(destSection)
-                    print("destIndexes before insert")
-                    print(destIndexes)
-
-                    
-                    
                     var destSectionIndex = max(destinationIndexPath.row - destIndexes[0], 0)
-                    //                        var destSectionIndex = 0
                     
                     if destSectionIndex != 0 && destinationIndexPath.row > sourceIndexPath.row {
                         destSectionIndex += 1
                     }
                     
-                    print("destSectionIndex")
-                    print(destSectionIndex)
-                    
-                    
-                    
                     destSection.insert(currentIngredient, atIndex: destSectionIndex)
-                    
-                    //                        if destSectionIndex == 0 {
-                    //                            destIndexes[0] -= 1
-                    //                        } else {
-                    //                            destIndexes[1] += 1
-                    //                        }
                     
                     if destSectionIndex == 0 && destinationIndexPath.row > sourceIndexPath.row {
                         destIndexes[0] -= 1
@@ -427,20 +233,14 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
                         destIndexes[1] += 1
                     }
                     
-                    print("destSection after insert")
-                    print(destSection)
-                    print("destIndexes after insert")
-                    print(destIndexes)
-                    
                     self.recipeIngredients[sourceSectionName] = sourceSection
                     self.ingredientsEndPositionPerSection[sourceSectionName] = sourceIndexes
                     self.recipeIngredients[destSectionName] = destSection
                     self.ingredientsEndPositionPerSection[destSectionName] = destIndexes
 
-                    }
                 }
-
             }
+        }
         
             
         
