@@ -48,6 +48,9 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
         // set table view background image
         self.view.backgroundColor = UIColor(patternImage: Helpers().getDeviceSpecificBGImage("tableview-bg"))
 
+        // add done button
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: getLocalizedString("done"), style: .Done, target: self, action: #selector(AddRecipeViewController.uploadRecipe(_:)))
+        
         self.editing = true
     }
 
@@ -56,8 +59,14 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    //--------------------------------------
     // MARK: - Table view data source
-
+    //--------------------------------------
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 5
     }
@@ -372,6 +381,69 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
         tableView.contentInset = UIEdgeInsetsMake(-dummyViewHeight, 0, 0, 0)
     }
 
+    private func getMissingFieldsBeforeSubmit() -> [String] {
+        var missingFields: [String] = []
+        
+        if self.recipeTitle == nil {
+            missingFields.append("title")
+        }
+        if self.recipeImage == nil {
+            missingFields.append("image")
+        }
+        if self.recipeLevel == nil {
+            missingFields.append("level")
+        }
+        if self.recipeType == nil {
+            missingFields.append("type")
+        }
+        if self.recipePrepTime == nil {
+            missingFields.append("prepTime")
+        }
+        if self.recipeCookTime == nil {
+            missingFields.append("cookTime")
+        }
+        if self.recipeIngredients["general"]! == [] {
+            missingFields.append("ingredients")
+        }
+        if self.recipeDirections["general"]! == [] {
+            missingFields.append("directions")
+        }
+        
+        print(missingFields)
+        
+        return missingFields
+    }
+    
+    //--------------------------------------
+    // MARK: - actions
+    //--------------------------------------
+
+    func uploadRecipe(sender: UIBarButtonItem) {
+        
+        self.view.endEditing(true)
+        
+        if self.getMissingFieldsBeforeSubmit().isEmpty {
+            
+            let recipeData = [
+                "title":        self.recipeTitle,
+                "image":        self.recipeImage,
+                "level":        self.recipeLevel,
+                "type":         self.recipeType,
+                "prepTime":     self.recipePrepTime,
+                "cookTime":     self.recipeCookTime,
+                "ingredients":  self.recipeIngredients,
+                "directions":   self.recipeDirections
+            ]
+            
+            print(recipeData)
+            
+            ParseHelper().uploadRecipe(recipeData)
+            
+        } else {
+            print("data missing")
+        }
+        
+    }
     
     //--------------------------------------
     // MARK: - Text Field Delegate

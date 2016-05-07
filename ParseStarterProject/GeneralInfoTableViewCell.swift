@@ -86,12 +86,17 @@ class GeneralInfoTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPicke
     // MARK: - Helpers
     //--------------------------------------
 
-    func cancelPicker(sender: UIBarButtonItem) {
+    func cancelPicker() {
         activeTextField?.resignFirstResponder()
     }
     
-    func donePicker(sender: UIBarButtonItem) {
+    func donePicker() {
         activeTextField?.resignFirstResponder()
+        if activeTextField == self.levelTextField {
+            self.tableViewController.recipeLevel = self.levelOptions[levelPickerView.selectedRowInComponent(0)]
+        } else if activeTextField == self.typeTextField {
+            self.tableViewController.recipeType = self.typeOptions[typePickerView.selectedRowInComponent(0)]
+        }
     }
     
     func createPickerForTextField(textField: UITextField, pickerView: UIPickerView) {
@@ -131,6 +136,10 @@ class GeneralInfoTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPicke
         } else if textField == levelTextField {
             levelTextField.text = self.levelOptions[self.levelPickerView.selectedRowInComponent(0)]
         }
+    }
+
+    func textFieldDidEndEditing(textField: UITextField) {
+        self.donePicker()
     }
 
 }

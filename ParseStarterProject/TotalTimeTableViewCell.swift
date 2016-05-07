@@ -48,7 +48,7 @@ class TotalTimeTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerV
     // MARK: - Helpers
     //--------------------------------------
     
-    func cancelPicker(sender: UIBarButtonItem) {
+    func cancelPicker() {
         activeTextField?.resignFirstResponder()
         var hours = 0
         var minutes = 0
@@ -64,7 +64,7 @@ class TotalTimeTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerV
         activeTextField?.text = self.getTextFromHoursAndMinutes(hours, minutes: minutes)
     }
     
-    func donePicker(sender: UIBarButtonItem) {
+    func donePicker() {
         activeTextField?.resignFirstResponder()
         if let pickerView = self.activePickerView {
             let time = self.getTimeFromPickerView(pickerView)
@@ -273,4 +273,7 @@ class TotalTimeTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerV
         }
     }
 
+    func textFieldDidEndEditing(textField: UITextField) {
+        self.donePicker()
+    }
 }

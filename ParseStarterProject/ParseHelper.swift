@@ -136,6 +136,30 @@ class ParseHelper: NSObject {
     }
 
     //--------------------------------------
+    // MARK: - Submit Data
+    //--------------------------------------
+
+    func uploadRecipe(recipeData: [String: AnyObject]) -> Bool {
+        /*
+        let recipe = PFObject(className:"Recipe")
+        recipe["title"] = recipeData["title"]
+//        if let recipeImage = recipeData["image"] as? UIImage {
+//            recipe["imageName"] = recipeImage.
+//        }
+        recipe["cheatMode"] = false
+        recipe.saveInBackgroundWithBlock {
+            (success: Bool, error: NSError?) -> Void in
+            if (success) {
+                // The object has been saved.
+            } else {
+                // There was a problem, check error.description
+            }
+        }
+        */
+        return false
+    }
+    
+    //--------------------------------------
     // MARK: - user methods
     //--------------------------------------
 

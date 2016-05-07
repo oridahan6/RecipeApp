@@ -26,18 +26,29 @@ class SectionHeaderTitleTableViewCell: UITableViewCell, UITextFieldDelegate {
 
         // Configure the view for the selected state
     }
+    
+    //--------------------------------------
+    // MARK: - Helpers
+    //--------------------------------------
+
+    func saveTitle(title: String?) {
+        if let title = title {
+            self.tableViewController.recipeTitle = title
+        }
+    }
 
     //--------------------------------------
     // MARK: - Text Field Delegate
     //--------------------------------------
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        
-        if let text = textField.text {
-            self.tableViewController.recipeTitle = text
-        }
-        
+        self.saveTitle(textField.text)
         textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
+        self.saveTitle(textField.text)
         return true
     }
 
