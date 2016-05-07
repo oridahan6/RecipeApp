@@ -95,5 +95,12 @@ class ParseRecipe: NSObject {
         }
         return ""
     }
-
+    
+    func getImageFile() -> ParseFile? {
+        if let image = recipe["image"] as? PFFile {
+            return ParseFile(parseFile: image)
+        }
+        return nil
+    }
+    
 }

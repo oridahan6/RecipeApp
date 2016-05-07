@@ -21,6 +21,7 @@ class Recipe: NSObject {
     var prepTime: Int = 0
     var type: String = ""
     var imageName: String = ""
+    var imageFile: ParseFile?
     
     //--------------------------------------
     // MARK: - Printable
@@ -47,6 +48,7 @@ class Recipe: NSObject {
         self.prepTime = recipe.getPrepTime()
         self.type = recipe.getType()
         self.imageName = recipe.getImageName()
+        self.imageFile = recipe.getImageFile()
 
         if id.isEmpty || title.isEmpty || directions.isEmpty || ingredients.isEmpty || level.isEmpty || type.isEmpty {
             return nil

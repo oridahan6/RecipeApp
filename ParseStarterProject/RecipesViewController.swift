@@ -109,9 +109,14 @@ class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
         
         cell.recipeDetailsView.typeImageView.image = recipe.getTypeImage()
         
-        // update image async
-        let imageUrlString = Constants.GDRecipesImagesPath + recipe.imageName
-        KingfisherHelper.sharedInstance.setImageWithUrl(cell.recipeImageView, url: imageUrlString)
+        if recipe.imageName != "" {
+            // update image async
+            let imageUrlString = Constants.GDRecipesImagesPath + recipe.imageName
+            KingfisherHelper.sharedInstance.setImageWithUrl(cell.recipeImageView, url: imageUrlString)
+        } else if let recipeFile = recipe.imageFile {
+            let fileUrl = recipeFile.getUrl()
+            KingfisherHelper.sharedInstance.setImageWithUrl(cell.recipeImageView, url: fileUrl)
+        }
         
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         

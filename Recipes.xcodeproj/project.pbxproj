@@ -38,6 +38,7 @@
 		0C192F2B1CB39C8500811CB4 /* placeholder-w-text.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C192F2A1CB39C8500811CB4 /* placeholder-w-text.png */; };
 		0C192F2D1CB39CC000811CB4 /* placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C192F2C1CB39CC000811CB4 /* placeholder.jpg */; };
 		0C1F4C891CBE6E72002B0631 /* RecipesParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1F4C881CBE6E72002B0631 /* RecipesParentViewController.swift */; };
+		0C407EBF1CDE50AD00C95F8E /* ParseFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C407EBE1CDE50AD00C95F8E /* ParseFile.swift */; };
 		0C47CF701CC3FA6600F26623 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C47CF6F1CC3FA6600F26623 /* AboutViewController.swift */; };
 		0C47CF741CC49EB100F26623 /* Yochi.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C47CF731CC49EB100F26623 /* Yochi.jpg */; };
 		0C47CF761CC62DC900F26623 /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C47CF751CC62DC900F26623 /* UIKitExtensions.swift */; };
@@ -130,6 +131,7 @@
 		0C192F2A1CB39C8500811CB4 /* placeholder-w-text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder-w-text.png"; sourceTree = "<group>"; };
 		0C192F2C1CB39CC000811CB4 /* placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = placeholder.jpg; sourceTree = "<group>"; };
 		0C1F4C881CBE6E72002B0631 /* RecipesParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipesParentViewController.swift; sourceTree = "<group>"; };
+		0C407EBE1CDE50AD00C95F8E /* ParseFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseFile.swift; sourceTree = "<group>"; };
 		0C47CF6F1CC3FA6600F26623 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		0C47CF731CC49EB100F26623 /* Yochi.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Yochi.jpg; sourceTree = "<group>"; };
 		0C47CF751CC62DC900F26623 /* UIKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitExtensions.swift; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 				0C7BD9EA1CA80DAF0056ADCD /* ParseRecipe.swift */,
 				0C192F231CB38D4B00811CB4 /* ParseCategory.swift */,
 				0C151EA01CC7978E00631614 /* ParseUser.swift */,
+				0C407EBE1CDE50AD00C95F8E /* ParseFile.swift */,
 			);
 			name = Parse;
 			sourceTree = "<group>";
@@ -650,6 +653,7 @@
 				0C070DAF1CD10CFD0060CC8C /* AddIngredientTableViewCell.swift in Sources */,
 				0C151EA11CC7978E00631614 /* ParseUser.swift in Sources */,
 				0C1F4C891CBE6E72002B0631 /* RecipesParentViewController.swift in Sources */,
+				0C407EBF1CDE50AD00C95F8E /* ParseFile.swift in Sources */,
 				0C070DAD1CD0E29C0060CC8C /* TotalTimeTableViewCell.swift in Sources */,
 				0C7BD9E81CA809AD0056ADCD /* ParseHelper.swift in Sources */,
 				0C192F241CB38D4B00811CB4 /* ParseCategory.swift in Sources */,
