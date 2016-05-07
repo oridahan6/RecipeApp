@@ -140,22 +140,44 @@ class ParseHelper: NSObject {
     //--------------------------------------
 
     func uploadRecipe(recipeData: [String: AnyObject]) -> Bool {
-        /*
+
         let recipe = PFObject(className:"Recipe")
-        recipe["title"] = recipeData["title"]
-//        if let recipeImage = recipeData["image"] as? UIImage {
-//            recipe["imageName"] = recipeImage.
-//        }
-        recipe["cheatMode"] = false
+        if let title = recipeData["title"] as? String {
+            recipe.setValue(title, forKey: "title")
+        }
+        if let recipeImage = recipeData["image"] as? UIImage, imageData = UIImagePNGRepresentation(recipeImage) {
+            let imageFile = PFFile(data: imageData)
+            recipe.setObject(imageFile, forKey: "image")
+        }
+        if let level = recipeData["level"] as? String {
+            recipe.setValue(level, forKey: "level")
+        }
+        if let type = recipeData["type"] as? String {
+            recipe.setValue(type, forKey: "type")
+        }
+        if let prepTime = recipeData["prepTime"] as? Int {
+            recipe.setValue(prepTime, forKey: "prepTime")
+        }
+        if let cookTime = recipeData["cookTime"] as? Int {
+            recipe.setValue(cookTime, forKey: "cookTime")
+        }
+        if let ingredients = recipeData["ingredients"] as? [String: [String]] {
+            recipe.setObject(ingredients, forKey: "ingredients")
+        }
+        if let directions = recipeData["directions"] as? [String: [String]] {
+            recipe.setObject(directions, forKey: "directions")
+        }
         recipe.saveInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
             if (success) {
                 // The object has been saved.
+                
+                print("success")
+                
             } else {
                 // There was a problem, check error.description
             }
         }
-        */
         return false
     }
     
