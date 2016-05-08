@@ -10,6 +10,7 @@ import UIKit
 
 class PrepTimeTableViewCell: UITableViewCell {
 
+    @IBOutlet var cookTimeTitleLabel: UILabel!
     @IBOutlet var cookTimeLabel: UILabel!
     @IBOutlet var prepTimeLabel: UILabel!
     override func awakeFromNib() {

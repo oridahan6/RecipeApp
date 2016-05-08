@@ -33,7 +33,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
     var recipeLevel: String!
     var recipeType: String!
     var recipePrepTime: Int!
-    var recipeCookTime: Int!
+    var recipeCookTime: Int = 0
     var recipeIngredients: [String: [String]] = ["general": []]
     var recipeDirections: [String: [String]] = ["general": []]
     
@@ -396,11 +396,8 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
         if self.recipeType == nil {
             missingFields.append("type")
         }
-        if self.recipePrepTime == nil {
+        if self.recipePrepTime == nil || self.recipePrepTime == 0 {
             missingFields.append("prepTime")
-        }
-        if self.recipeCookTime == nil {
-            missingFields.append("cookTime")
         }
         if self.recipeIngredients["general"]! == [] {
             missingFields.append("ingredients")

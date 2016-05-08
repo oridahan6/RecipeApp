@@ -206,7 +206,13 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCellWithIdentifier(PrepTimeTableViewCellIdentifier, forIndexPath: indexPath) as! PrepTimeTableViewCell
             cell.backgroundColor = .clearColor()
-            cell.cookTimeLabel.text = recipe.getCookTimeText()
+            
+            if recipe.cookTime == 0 {
+                cell.cookTimeLabel.hidden = true
+                cell.cookTimeTitleLabel.hidden = true
+            } else {
+                cell.cookTimeLabel.text = recipe.getCookTimeText()
+            }
             cell.prepTimeLabel.text = recipe.getPreperationTimeText()
             return cell
         } else if indexPath.section == 2 {

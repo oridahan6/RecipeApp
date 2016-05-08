@@ -68,9 +68,15 @@ class TotalTimeTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerV
         activeTextField?.resignFirstResponder()
         if let pickerView = self.activePickerView {
             let time = self.getTimeFromPickerView(pickerView)
+            print("show error message if prep time zero!!")
             if activePickerView == prepTimePickerView {
-                self.tableViewController.recipePrepTime = time
+                if time > 0 {
+                    self.tableViewController.recipePrepTime = time
+                } else {
+                    // show error message
+                }
                 self.currentPrepTime = time
+
             } else {
                 self.tableViewController.recipeCookTime = time
                 self.currentCookTime = time
@@ -164,6 +170,9 @@ class TotalTimeTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerV
         }
         if minutes > 0 {
             text += getLocalizedString("minutes") + ": \(minutes)"
+        }
+        if hours == 0 && minutes == 0 {
+            text = getLocalizedString("noTimeSelected")
         }
         return text
         

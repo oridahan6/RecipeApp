@@ -54,9 +54,9 @@
 "Meat" = "בשרי";
 "Veggie" = "פרווה";
 
-"levelBegginer" = "מתחיל";
+"levelBegginer" = "קל";
 "levelIntermediate" = "בינוני";
-"levelAdvanced" = "מתקדם";
+"levelAdvanced" = "קשה";
 
 
 // Buttons
@@ -79,6 +79,8 @@
 
 
 // Time
+"noTimeSelected" = "ללא זמן";
+
 "second" = "שניה";
 "seconds" = "שניות";
 
