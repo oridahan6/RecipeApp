@@ -139,12 +139,14 @@ class ParseHelper: NSObject {
     // MARK: - Submit Data
     //--------------------------------------
 
-    func uploadRecipe(recipeData: [String: AnyObject]) -> Bool {
-
+    func uploadRecipe(recipeData: [String: AnyObject], vc: AddRecipeViewController) -> Bool {
+        
+        vc.showActivityIndicator()
+        
         let recipe = PFObject(className:"Recipe")
         if let title = recipeData["title"] as? String, recipeImage = recipeData["image"] as? UIImage, imageData = UIImagePNGRepresentation(recipeImage), level = recipeData["level"] as? String, type = recipeData["type"] as? String, prepTime = recipeData["prepTime"] as? Int, cookTime = recipeData["cookTime"] as? Int, ingredients = recipeData["ingredients"] as? [String: [String]], directions = recipeData["directions"] as? [String: [String]] {
             recipe.setValue(title, forKey: "title")
-            let imageFile = PFFile(data: imageData)
+            let imageFile = PFFile(name: Helpers.randomStringWithLength(10) + ".png", data: imageData)
             recipe.setObject(imageFile, forKey: "image")
             recipe.setValue(level, forKey: "level")
             recipe.setValue(type, forKey: "type")
@@ -160,8 +162,18 @@ class ParseHelper: NSObject {
                     
                     print("success")
                     
+                    vc.hideActivityIndicator()
+                    vc.showSuccessAlert()
+                    
                 } else {
                     // There was a problem, check error.description
+                    
+                    vc.hideActivityIndicator()
+                    if let error = error {
+                        vc.showErrorAlert(error.code)
+                    } else {
+                        vc.showErrorAlert()
+                    }
                 }
             }
 

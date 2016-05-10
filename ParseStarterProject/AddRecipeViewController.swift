@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
+class AddRecipeViewController: UITableViewController, UITextFieldDelegate, SwiftPromptsProtocol {
 
     let TitleTableViewCellIdentifier = "TitleTableViewCell"
     let ImageAddTableViewCellIdentifier = "ImageAddTableViewCell"
@@ -21,6 +21,13 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
     let AddDirectionTableViewCellIdentifier = "AddDirectionTableViewCell"
     let AddRecipeButtonsTableViewCellIdentifier = "AddRecipeButtonsTableViewCell"
 
+    // errors
+    let ERROR_CODE_MISSING_DATA = 11111
+    let ERROR_CODE_PREP_TIME_ZERO = 11112
+    
+    var prompt = SwiftPromptsView()
+    var activityIndicator: ActivityIndicator!
+    
     var ingredientsArray: [String] = ["ingredient"]
     var directionsArray: [String] = ["direction"]
     
@@ -50,6 +57,11 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
 
         // add done button
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: getLocalizedString("done"), style: .Done, target: self, action: #selector(AddRecipeViewController.uploadRecipe(_:)))
+        
+        // Activity Indicator
+        if let view = self.navigationController?.view {
+            self.activityIndicator = ActivityIndicator(largeActivityView: view, options: ["labelText": getLocalizedString("submitting")])
+        }
         
         self.editing = true
     }
@@ -411,6 +423,52 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
         return missingFields
     }
     
+    func showSuccessAlert() {
+        //Create an instance of SwiftPromptsView and assign its delegate
+        prompt = SwiftPromptsView(frame: self.view.frame)
+        prompt.delegate = self
+        
+        SwiftPromptHelper.buildSuccessAlert(prompt, type: "uploadSuccess")
+        self.navigationController?.view.addSubview(prompt)
+    }
+    
+    func showErrorAlert(errorCode: Int = 0) {
+        var propmptType = "generalError"
+        switch errorCode {
+        case self.ERROR_CODE_MISSING_DATA:
+            propmptType = "uploadErrorMissingData"
+        case self.ERROR_CODE_PREP_TIME_ZERO:
+            propmptType = "uploadErrorPrepTimeZero"
+        default:
+            propmptType = "generalError"
+        }
+        
+        //Create an instance of SwiftPromptsView and assign its delegate
+        prompt = SwiftPromptsView(frame: self.view.frame)
+        prompt.delegate = self
+        
+        SwiftPromptHelper.buildErrorAlert(prompt, type: propmptType)
+        self.navigationController?.view.addSubview(prompt)
+    }
+    
+    func showActivityIndicator() {
+        if let _ = self.activityIndicator {
+            self.navigationController?.view.userInteractionEnabled = false
+            self.activityIndicator.show()
+        } else {
+            print("ERROR: self.activityIndicator not set")
+        }
+    }
+
+    func hideActivityIndicator() {
+        if let _ = self.activityIndicator {
+            self.navigationController?.view.userInteractionEnabled = true
+            self.activityIndicator.hide()
+        } else {
+            print("ERROR: self.activityIndicator not set")
+        }
+    }
+
     //--------------------------------------
     // MARK: - actions
     //--------------------------------------
@@ -419,7 +477,9 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
         
         self.view.endEditing(true)
         
-        if self.getMissingFieldsBeforeSubmit().isEmpty {
+        if self.recipePrepTime == 0 {
+            self.showErrorAlert(self.ERROR_CODE_PREP_TIME_ZERO)
+        } else if self.getMissingFieldsBeforeSubmit().isEmpty {
             
             let recipeData = [
                 "title":        self.recipeTitle,
@@ -432,16 +492,31 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
                 "directions":   self.recipeDirections
             ]
             
-            print(recipeData)
-            
-            ParseHelper().uploadRecipe(recipeData)
+            ParseHelper().uploadRecipe(recipeData, vc: self)
             
         } else {
             print("data missing")
+            self.showErrorAlert(self.ERROR_CODE_MISSING_DATA)
         }
         
     }
     
+    //--------------------------------------
+    // MARK: - SwiftPromptsProtocol delegate methods
+    //--------------------------------------
+    
+    func clickedOnTheMainButton() {
+        prompt.dismissPrompt()
+    }
+    
+    func clickedOnTheSecondButton() {
+        prompt.dismissPrompt()
+    }
+    
+    func promptWasDismissed() {
+        
+    }
+
     //--------------------------------------
     // MARK: - Text Field Delegate
     //--------------------------------------
@@ -450,6 +525,5 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-
 
 }

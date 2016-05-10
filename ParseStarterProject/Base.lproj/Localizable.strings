@@ -6,7 +6,9 @@
   Copyright © 2016 Parse. All rights reserved.
 */
 
+//////////////////////////////
 // Tab Titles
+//////////////////////////////
 "Recipes" = "מתכונים";
 "Favorites" = "מועדפים";
 "Categories" = "קטגוריות";
@@ -15,41 +17,70 @@
 "addRecipe" = "הוספת מתכון";
 
 
+//////////////////////////////
 // Table Headers
+//////////////////////////////
 "sectionHeaderTitleTime" = "זמן הכנה כולל";
 "sectionHeaderTitleIngredients" = "מצרכים";
 "sectionHeaderTitleDirections" = "שלבי הכנה";
 "sectionHeaderTitleGeneralInfo" = "מידע כללי";
 
 
+//////////////////////////////
 // Alerts
-"noInternetConnectionTitle" = "אין חיבור לאינטרנט";
-"noInternetConnectionMessage" = "אינך מחובר לאינטרנט. אנא בדוק את החיבור לאינטרנט ונסה שנית.";
+//////////////////////////////
+/* 
+ Success
+ */
 "loginSuccessTitle" = "התחברת בהצלחה";
 "loginSuccessMessage" = "לחץ\\י על \"בסדר\" על מנת להמשיך";
-"wrongUsernamePasswordTitle" = "אופס...";
-"wrongUsernamePasswordMessage" = "שם המשתמש והסיסמא לא תואמים, נא נסה\\י שנית.";
+"uploadSuccessTitle" = "המתכון נשלח בהצלחה";
+"uploadSuccessMessage" = "לחץ\\י על \"בסדר\" על מנת להמשיך";
+
+/*
+ Error
+ */
+"noInternetConnectionTitle" = "אין חיבור לאינטרנט";
+"noInternetConnectionMessage" = "אינך מחובר לאינטרנט. אנא בדוק את החיבור לאינטרנט ונסה שנית.";
 "generalErrorTitle" = "אופס...";
 "generalErrorMessage" = "קרתה שגיאה, אנא נסה\\י שנית מאוחר יותר.";
+// Login
+"wrongUsernamePasswordTitle" = "אופס...";
+"wrongUsernamePasswordMessage" = "שם המשתמש והסיסמא לא תואמים, נא נסה\\י שנית.";
 "alreadyLoggedInTitle" = "אופס...";
 "alreadyLoggedInMessage" = "את\\ה כבר מחובר\\ת, לחץ\\י \"בסדר\" כדי להמשיך.";
 "emptyUsernamePasswordTitle" = "אופס...";
 "emptyUsernamePasswordMessage" = "שם מהמשתמש או הסיסמא חסרים.";
+// Add Recipe
+"uploadErrorMissingDataTitle" = "אופס...";
+"uploadErrorMissingDataMessage" = "נא וודא שכל הטופס מלא ונסה שנית.";
+"uploadErrorPrepTimeZeroTitle" = "אופס...";
+"uploadErrorPrepTimeZeroMessage" = "זמן ההכנה לא יכול להיות 0, אנא בחר זמן.";
+
 
 "OK" = "בסדר";
 
 
+//////////////////////////////
 // Messages
+//////////////////////////////
 "emptyFavorites" = "לא הוספו מתכונים למועדפים. נא הוסף\\י מתכונים כדי לראותם במועדפים";
 "emptySearchRecipes" = "לא נמצאו מתכונים עבור החיפוש '%@'.";
 "emptySearchCategories" = "לא נמצאו קטגוריות עבור החיפוש '%@'.";
 "loading" = "טוען...";
+"submitting" = "מעלה...";
 
+
+//////////////////////////////
 // Search
+//////////////////////////////
 "searchByName" = "חפש\\י לפי שם";
 "cancel" = "ביטול";
 
+
+//////////////////////////////
 // Recipe Details
+//////////////////////////////
 "Dairy" = "חלבי";
 "Meat" = "בשרי";
 "Veggie" = "פרווה";
@@ -59,7 +90,9 @@
 "levelAdvanced" = "קשה";
 
 
+//////////////////////////////
 // Buttons
+//////////////////////////////
 "edit" = "עריכה";
 "done" = "סיום";
 "enter" = "כניסה";
@@ -68,17 +101,25 @@
 "addSection" = "הוסף כותרת";
 "addIngredient" = "הוסף מצרך";
 
+
+//////////////////////////////
 // General
+//////////////////////////////
 "before" = "לפני";
 
+
+//////////////////////////////
 // Singular/Plural
+//////////////////////////////
 "singular" = "אחד";
 
 "recipeSingular" = "מתכון";
 "recipePlural" = "מתכונים";
 
 
+//////////////////////////////
 // Time
+//////////////////////////////
 "noTimeSelected" = "ללא זמן";
 
 "second" = "שניה";

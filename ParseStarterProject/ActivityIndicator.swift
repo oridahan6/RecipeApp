@@ -16,7 +16,7 @@ class ActivityIndicator {
     var HUD: UIView!
     
     var HUDSize: CGFloat!
-    var isShowLabel: Bool!
+    var options: [String: AnyObject] = [:]
     var HUDColor: UIColor!
     var elementsColor: UIColor!
     
@@ -25,30 +25,28 @@ class ActivityIndicator {
     //--------------------------------------
 
     init(view: UIView, HUDSize: CGFloat) {
-
         self.HUDSize = HUDSize
-        
         self.insertToView = view
-        
     }
     
-    convenience init(largeActivityView view: UIView, isShowLabel: Bool = true) {
+    convenience init(largeActivityView view: UIView, options: [String: AnyObject] = [:]) {
         self.init(view: view, HUDSize: 100.0)
-        self.isShowLabel = isShowLabel
+        self.options = self.setDefaultOptions(options)
         self.HUDColor = Helpers.getRedColor(0.95)
         self.elementsColor = Helpers.getNudeColor()
         
+        
         self.buildHUD()
-        if isShowLabel {
-            self.buildLoadingLabel()
+        if let isShowLabel = self.options["isShowLabel"] as? Bool where isShowLabel {
+            self.buildLabel()
         }
         self.buildActivityIndicator()
     }
 
     convenience init(smallActivityView view: UIView) {
         self.init(view: view, HUDSize: 40.0)
-        self.isShowLabel = false
         self.HUDColor = self.getBlackColor()
+        self.options["isShowLabel"] = false
         self.elementsColor = self.getGrayColor()
         
         self.buildHUD()
@@ -73,8 +71,13 @@ class ActivityIndicator {
     
     private func buildActivityIndicator() {
         let indicatorSize: CGFloat = 0.4 * self.HUDSize
-        let heightPointsToSubstract: CGFloat = self.isShowLabel == true ? 10 : -1
-        let widthPointsToAdd: CGFloat = self.isShowLabel == true ? 3 : 1
+        var isShowLabel = true
+        if let isShowLabelFromOptions = self.options["isShowLabel"] as? Bool {
+            isShowLabel = isShowLabelFromOptions
+        }
+        let heightPointsToSubstract: CGFloat = isShowLabel ? 10 : -1
+        let widthPointsToAdd: CGFloat = isShowLabel ? 3 : 1
+
         self.activityIndicatorView = NVActivityIndicatorView(
             frame: CGRectMake(self.HUD.bounds.width / 2 - indicatorSize / 2 + widthPointsToAdd, self.HUD.bounds.height / 2 - indicatorSize / 2 - heightPointsToSubstract, indicatorSize, indicatorSize),
             type: NVActivityIndicatorType.BallRotateChase,
@@ -86,16 +89,20 @@ class ActivityIndicator {
         self.HUD.addSubview(self.activityIndicatorView)
     }
     
-    private func buildLoadingLabel() {
-        let loadingLabel: UILabel = UILabel(frame: CGRectMake(self.HUD.bounds.width / 2 - 20, self.HUD.bounds.height - 30, self.HUD.bounds.width, 20))
-        loadingLabel.text = getLocalizedString("loading")
-        loadingLabel.textColor = self.elementsColor
-        loadingLabel.numberOfLines = 0
-        loadingLabel.textAlignment = NSTextAlignment.Center
-        loadingLabel.font = UIFont(name: "Alef-Regular", size: 14)
-        loadingLabel.sizeToFit()
+    private func buildLabel() {
+        let label: UILabel = UILabel(frame: CGRectMake(self.HUD.bounds.width / 2 - 20, self.HUD.bounds.height - 30, self.HUD.bounds.width, 20))
+        var labelText = getLocalizedString("loading")
+        if let labelTextFromOptions = options["labelText"] as? String {
+            labelText = labelTextFromOptions
+        }
+        label.text = labelText
+        label.textColor = self.elementsColor
+        label.numberOfLines = 0
+        label.textAlignment = NSTextAlignment.Center
+        label.font = UIFont(name: "Alef-Regular", size: 14)
+        label.sizeToFit()
         
-        self.HUD.addSubview(loadingLabel)
+        self.HUD.addSubview(label)
     }
     
     private func getBlackColor() -> UIColor {
@@ -109,6 +116,14 @@ class ActivityIndicator {
     //--------------------------------------
     // MARK: - Helper Methods
     //--------------------------------------
+    
+    private func setDefaultOptions(options: [String: AnyObject]) -> [String: AnyObject] {
+        var retOptions = options
+        if retOptions["isShowLabel"] == nil {
+           retOptions["isShowLabel"] = true
+        }
+        return retOptions
+    }
     
     func show() {
         self.activityIndicatorView.startAnimation()
