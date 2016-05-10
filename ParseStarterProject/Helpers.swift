@@ -63,18 +63,34 @@ class Helpers {
         let hours = minutesToConvert / (60);
         let minutes = minutesToConvert - hours * (60);
         
-        if hours == 0 {
-            return "\(minutes) " +  getLocalizedString("minutes")
-        } else if minutes == 0 {
-            if hours == 1 {
-                return getLocalizedString("hour")
-            } else if hours == 2 {
-                return getLocalizedString("2hours")
-            }
-            return "\(hours) " +  getLocalizedString("hours")
+        var text = ""
+        
+        if hours == 1 {
+            text += getLocalizedString("hour")
+        } else if hours == 2 {
+            text += getLocalizedString("2hours")
+        } else if hours > 0 {
+            text += "\(hours) " +  getLocalizedString("hours")
         }
         
-        return "\(hours)" + getLocalizedString("hoursShort") + "\(minutes)" + getLocalizedString("minutesShort")
+        if hours > 0 && minutes > 0 {
+            if minutes == 30 {
+                text += " " + getLocalizedString("and")
+            } else {
+                text += " " + getLocalizedString("and") + "- "
+            }
+        }
+        
+        if minutes > 0 {
+            if minutes == 30 {
+                text += getLocalizedString("half")
+            } else {
+                text += "\(minutes) " + getLocalizedString("minutes")
+            }
+        }
+        
+        return text
+
     }
     
     func getFractionSymbolFromString(str: String) -> String {
