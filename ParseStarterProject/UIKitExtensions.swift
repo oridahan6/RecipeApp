@@ -100,3 +100,8 @@ infix operator =~ {}
 func =~(string:String, regex:String) -> Bool {
     return string.rangeOfString(regex, options: .RegularExpressionSearch) != nil
 }
+
+infix operator !=~ {}
+func !=~(string:String, regex:String) -> Bool {
+    return string.rangeOfString(regex, options: .RegularExpressionSearch) == nil
+}

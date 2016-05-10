@@ -25,6 +25,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
     let ERROR_CODE_MISSING_DATA = 11111
     let ERROR_CODE_PREP_TIME_ZERO = 11112
     let ERROR_CODE_MISSING_INGREDIENT_TEXT = 11113
+    let ERROR_CODE_INGREDIENT_NUMBER_CONTAINS_TEXT = 11114
     
     var prompt = SwiftPromptsView()
     var activityIndicator: ActivityIndicator!
@@ -59,17 +60,16 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
         // add done button
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: getLocalizedString("done"), style: .Done, target: self, action: #selector(AddRecipeViewController.uploadRecipe(_:)))
         
-        // Activity Indicator
-        if let view = self.navigationController?.view {
-            self.activityIndicator = ActivityIndicator(largeActivityView: view, options: ["labelText": getLocalizedString("submitting")])
-        }
-        
         self.editing = true
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.activityIndicator = ActivityIndicator(largeActivityView: self.tableView.superview!, options: ["labelText": getLocalizedString("submitting")])
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -435,10 +435,22 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
             
             if let ingredients = self.recipeIngredients["general"] {
                 for ingredient in ingredients {
+                    // empty second field
                     if ingredient =~ "\\|$" {
                         hasError = true
                         self.showErrorAlert(self.ERROR_CODE_MISSING_INGREDIENT_TEXT)
                     }
+                    
+                    // non number or \ chars in first field
+                    if let ingredients = self.recipeIngredients["general"] {
+                        for ingredient in ingredients {
+                            if ingredient !=~ "^[\\d|\\\\]*\\|" {
+                                hasError = true
+                                self.showErrorAlert(self.ERROR_CODE_INGREDIENT_NUMBER_CONTAINS_TEXT)
+                            }
+                        }
+                    }
+
                 }
             }
             
@@ -452,7 +464,8 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
         prompt.delegate = self
         
         SwiftPromptHelper.buildSuccessAlert(prompt, type: "uploadSuccess")
-        self.navigationController?.view.addSubview(prompt)
+        self.tableView.superview?.addSubview(prompt)
+        self.navigationController?.navigationBar.userInteractionEnabled = false
     }
     
     func showErrorAlert(errorCode: Int = 0) {
@@ -464,6 +477,8 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
             propmptType = "uploadErrorPrepTimeZero"
         case self.ERROR_CODE_MISSING_INGREDIENT_TEXT:
             propmptType = "uploadErrorMissingIngredientText"
+        case self.ERROR_CODE_INGREDIENT_NUMBER_CONTAINS_TEXT:
+            propmptType = "uploadErrorIngredientNumberContainsText"
         default:
             propmptType = "generalError"
         }
@@ -473,7 +488,8 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
         prompt.delegate = self
         
         SwiftPromptHelper.buildErrorAlert(prompt, type: propmptType)
-        self.navigationController?.view.addSubview(prompt)
+        self.tableView.superview?.addSubview(prompt)
+        self.navigationController?.navigationBar.userInteractionEnabled = false
     }
     
     func showActivityIndicator() {
@@ -527,10 +543,12 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
     
     func clickedOnTheMainButton() {
         prompt.dismissPrompt()
+        self.navigationController?.navigationBar.userInteractionEnabled = true
     }
     
     func clickedOnTheSecondButton() {
         prompt.dismissPrompt()
+        self.navigationController?.navigationBar.userInteractionEnabled = true
     }
     
     func promptWasDismissed() {

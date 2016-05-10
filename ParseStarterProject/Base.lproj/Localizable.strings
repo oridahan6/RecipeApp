@@ -58,6 +58,8 @@
 "uploadErrorPrepTimeZeroMessage" = "זמן ההכנה לא יכול להיות 0, אנא בחר זמן.";
 "uploadErrorMissingIngredientTextTitle" = "אופס...";
 "uploadErrorMissingIngredientTextMessage" = "אחד המצרכים שהוזנו ריק, אנא וודא שכל המצרכים מלאים (חלק ראשון במצרך לא חובה)";
+"uploadErrorIngredientNumberContainsTextTitle" = "אופס...";
+"uploadErrorIngredientNumberContainsTextMessage" = "אחד המספרים של מצרך מסוים כולל טקסט, נא השתמש בשדה הראשון רק במספר או \\.";
 
 
 "OK" = "בסדר";
