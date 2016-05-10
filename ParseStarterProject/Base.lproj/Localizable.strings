@@ -56,6 +56,8 @@
 "uploadErrorMissingDataMessage" = "נא וודא שכל הטופס מלא ונסה שנית.";
 "uploadErrorPrepTimeZeroTitle" = "אופס...";
 "uploadErrorPrepTimeZeroMessage" = "זמן ההכנה לא יכול להיות 0, אנא בחר זמן.";
+"uploadErrorMissingIngredientTextTitle" = "אופס...";
+"uploadErrorMissingIngredientTextMessage" = "אחד המצרכים שהוזנו ריק, אנא וודא שכל המצרכים מלאים (חלק ראשון במצרך לא חובה)";
 
 
 "OK" = "בסדר";

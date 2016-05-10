@@ -77,3 +77,26 @@ extension CALayer {
     }
     
 }
+
+// String
+extension String {
+    func matchesForRegexInText(regex: String!) -> [String] {
+        
+        do {
+            let regex = try NSRegularExpression(pattern: regex, options: [])
+            let nsString = self as NSString
+            let results = regex.matchesInString(self,
+                                                options: [], range: NSMakeRange(0, nsString.length))
+            return results.map { nsString.substringWithRange($0.range)}
+        } catch let error as NSError {
+            print("invalid regex: \(error.localizedDescription)")
+            return []
+        }
+    }
+}
+
+// operators
+infix operator =~ {}
+func =~(string:String, regex:String) -> Bool {
+    return string.rangeOfString(regex, options: .RegularExpressionSearch) != nil
+}

@@ -24,6 +24,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
     // errors
     let ERROR_CODE_MISSING_DATA = 11111
     let ERROR_CODE_PREP_TIME_ZERO = 11112
+    let ERROR_CODE_MISSING_INGREDIENT_TEXT = 11113
     
     var prompt = SwiftPromptsView()
     var activityIndicator: ActivityIndicator!
@@ -418,9 +419,31 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
             missingFields.append("directions")
         }
         
-        print(missingFields)
-        
         return missingFields
+    }
+    
+    private func hasErrorsInFields() -> Bool {
+        var hasError = false
+
+        if !self.getMissingFieldsBeforeSubmit().isEmpty {
+            hasError = true
+            self.showErrorAlert(self.ERROR_CODE_MISSING_DATA)
+        } else if self.recipePrepTime == 0 {
+            hasError = true
+            self.showErrorAlert(self.ERROR_CODE_PREP_TIME_ZERO)
+        } else {
+            
+            if let ingredients = self.recipeIngredients["general"] {
+                for ingredient in ingredients {
+                    if ingredient =~ "\\|$" {
+                        hasError = true
+                        self.showErrorAlert(self.ERROR_CODE_MISSING_INGREDIENT_TEXT)
+                    }
+                }
+            }
+            
+        }
+        return hasError
     }
     
     func showSuccessAlert() {
@@ -439,6 +462,8 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
             propmptType = "uploadErrorMissingData"
         case self.ERROR_CODE_PREP_TIME_ZERO:
             propmptType = "uploadErrorPrepTimeZero"
+        case self.ERROR_CODE_MISSING_INGREDIENT_TEXT:
+            propmptType = "uploadErrorMissingIngredientText"
         default:
             propmptType = "generalError"
         }
@@ -477,10 +502,8 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
         
         self.view.endEditing(true)
         
-        if self.recipePrepTime == 0 {
-            self.showErrorAlert(self.ERROR_CODE_PREP_TIME_ZERO)
-        } else if self.getMissingFieldsBeforeSubmit().isEmpty {
-            
+        if !self.hasErrorsInFields() {
+        
             let recipeData = [
                 "title":        self.recipeTitle,
                 "image":        self.recipeImage,
@@ -493,9 +516,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
             ]
             
             ParseHelper().uploadRecipe(recipeData, vc: self)
-            
-        } else {
-            self.showErrorAlert(self.ERROR_CODE_MISSING_DATA)
+                
         }
         
     }
@@ -513,7 +534,6 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
     }
     
     func promptWasDismissed() {
-        
     }
 
     //--------------------------------------
