@@ -193,9 +193,14 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier(RecipeImageTableViewCellIdentifier, forIndexPath: indexPath) as! RecipeImageTableViewCell
             
-            // update image async
-            let imageUrlString = Constants.GDRecipesImagesPath + recipe.imageName
-            KingfisherHelper.sharedInstance.setImageWithUrl(cell.recipeImageView, url: imageUrlString)
+            if recipe.imageName != "" {
+                // update image async
+                let imageUrlString = Constants.GDRecipesImagesPath + recipe.imageName
+                KingfisherHelper.sharedInstance.setImageWithUrl(cell.recipeImageView, url: imageUrlString)
+            } else if let recipeFile = recipe.imageFile {
+                let fileUrl = recipeFile.getUrl()
+                KingfisherHelper.sharedInstance.setImageWithUrl(cell.recipeImageView, url: fileUrl)
+            }
             
             cell.favoriteButton.titleLabel?.font = UIFont.fontAwesomeOfSize(22)
             self.setFavoriteButtonIcon(cell.favoriteButton)

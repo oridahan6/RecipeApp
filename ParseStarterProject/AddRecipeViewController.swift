@@ -495,7 +495,6 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
             ParseHelper().uploadRecipe(recipeData, vc: self)
             
         } else {
-            print("data missing")
             self.showErrorAlert(self.ERROR_CODE_MISSING_DATA)
         }
         
