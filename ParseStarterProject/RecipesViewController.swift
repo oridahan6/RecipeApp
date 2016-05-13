@@ -20,6 +20,7 @@ class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
     var activityIndicator: ActivityIndicator!
     
     var addButton: UIBarButtonItem!
+    var updatedAt: NSDate!
     
     override func recipesUpdated() {
         self.tableView.reloadData()
@@ -44,16 +45,13 @@ class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
             
             if let category = self.category {
                 self.title = category.name
-                ParseHelper().updateRecipesFromCategoryId(self, catId: category.catId)
             } else {
                 self.title = getLocalizedString("Recipes")
-                ParseHelper().updateRecipes(self)
             }
+            self.loadRecipes()
         }
         
-        // Register Class
-        // tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: CellIdentifier)
-
+        self.addPullToRefresh()
     }
 
     override func didReceiveMemoryWarning() {
@@ -107,7 +105,7 @@ class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
         cell.recipeDetailsView.typeLabel.text = recipe.type
         cell.recipeDetailsView.levelLabel.text = recipe.level
         cell.recipeDetailsView.overallTimeLabel.text = recipe.getOverallPreperationTimeText()
-        cell.recipeDetailsView.dateAddedLabel.text = recipe.getDateAddedDiff()
+        cell.recipeDetailsView.dateAddedLabel.text = recipe.getUpdatedAtDiff()
         
         cell.recipeDetailsView.typeImageView.image = recipe.getTypeImage()
         
@@ -129,6 +127,14 @@ class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
     // MARK: - Helpers Methods
     //--------------------------------------
     
+    func loadRecipes() {
+        if let category = self.category {
+            ParseHelper().updateRecipesFromCategoryId(self, catId: category.catId)
+        } else {
+            ParseHelper().updateRecipes(self)
+        }
+    }
+    
     func showAddRecipeView(sender: UIBarButtonItem) {
         self.performSegueWithIdentifier(SegueAddRecipeViewController, sender: nil)
     }
@@ -146,6 +152,20 @@ class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
         } else {
             navigationItem.leftBarButtonItem = nil
         }
+    }
+    
+    func addPullToRefresh() {
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
+        tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
+            
+            self?.loadRecipes()
+            
+            // Do not forget to call dg_stopLoading() at the end
+            self?.tableView.dg_stopLoading()
+            }, loadingView: loadingView)
+        tableView.dg_setPullToRefreshFillColor(UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0))
+        tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
     }
     
     private func buildAlert() {
@@ -176,5 +196,12 @@ class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
     func promptWasDismissed() {
         
     }
+    
+    //--------------------------------------
+    // MARK: - deinit
+    //--------------------------------------
 
+    deinit {
+        tableView.dg_removePullToRefresh()
+    }
 }

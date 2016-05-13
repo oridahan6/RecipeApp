@@ -20,13 +20,18 @@ class ParseHelper: NSObject {
         vc.activityIndicator.show()
         
         let query = PFQuery(className:"Recipe")
-        //        query.whereKey("playerName", equalTo:"Sean Plott")
+        if let updatedAt = vc.updatedAt {
+            query.whereKey("updatedAt", greaterThan: updatedAt)
+        }
+        
+        query.orderByDescending("updatedAt")
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             if error == nil {
                 // The find succeeded.
 //                print("Successfully retrieved \(objects!.count) recipes.")
                 // Do something with the found objects
                 if let objects = objects {
+                    vc.updatedAt = NSDate()
                     for object in objects {
                         if let object = object as? PFObject {
                             let parseRecipe = ParseRecipe(recipe: object)
@@ -35,6 +40,9 @@ class ParseHelper: NSObject {
                             }
                         }
                     }
+                    
+                    vc.recipes.sortInPlace({ $0.updatedAt.compare($1.updatedAt) == NSComparisonResult.OrderedDescending })
+                    
                     vc.activityIndicator.hide()
                 }
             } else {

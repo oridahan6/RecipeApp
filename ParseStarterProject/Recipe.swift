@@ -12,6 +12,7 @@ class Recipe: NSObject {
 
     var id: String = ""
     var dateAdded: NSDate!
+    var updatedAt: NSDate!
     var title: String!
     var directions: [String: [String]]!
     var ingredients: [String: [String]]!
@@ -39,6 +40,7 @@ class Recipe: NSObject {
 
         self.id = recipe.getId()
         self.dateAdded = recipe.getAddedDate()
+        self.updatedAt = recipe.getUpdatedAt()
         self.title = recipe.getTitle()
         self.directions = recipe.getDirections()
         self.ingredients = recipe.getIngredients()
@@ -75,8 +77,8 @@ class Recipe: NSObject {
         return Helpers().convertMinutesToHoursAndMinText(self.cookTime)
     }
 
-    func getDateAddedDiff() -> String {
-        return getLocalizedString("before") + " " + NSDate().offsetFrom(self.dateAdded)
+    func getUpdatedAtDiff() -> String {
+        return getLocalizedString("before") + " " + NSDate().offsetFrom(self.updatedAt)
     }
     
     func getTypeImage() -> UIImage {

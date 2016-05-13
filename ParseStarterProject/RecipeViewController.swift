@@ -299,7 +299,7 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 recipeDetailCell.typeLabel.text = recipe.type
                 recipeDetailCell.levelLabel.text = recipe.level
                 recipeDetailCell.overallTimeLabel.text = recipe.getOverallPreperationTimeText()
-                recipeDetailCell.dateAdded.text = recipe.getDateAddedDiff()
+                recipeDetailCell.dateAdded.text = recipe.getUpdatedAtDiff()
 
                 recipeDetailCell.typeImageView.image = recipe.getTypeImage()
                 
