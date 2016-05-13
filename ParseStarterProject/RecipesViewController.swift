@@ -32,7 +32,7 @@ class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         if !Helpers.isInternetConnectionAvailable() {
             self.buildAlert()
             self.showAlert()
@@ -156,7 +156,7 @@ class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
     
     func addPullToRefresh() {
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
-        loadingView.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
+        loadingView.tintColor = tableView.backgroundColor!
         tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
             
             self?.loadRecipes()
@@ -164,7 +164,9 @@ class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
             // Do not forget to call dg_stopLoading() at the end
             self?.tableView.dg_stopLoading()
             }, loadingView: loadingView)
-        tableView.dg_setPullToRefreshFillColor(UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0))
+        if let navBarColor = navigationController?.navigationBar.barTintColor {
+            tableView.dg_setPullToRefreshFillColor(navBarColor)
+        }
         tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
     }
     
