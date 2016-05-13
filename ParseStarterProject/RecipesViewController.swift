@@ -62,7 +62,9 @@ class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.handleAddButton()
+        if category == nil {
+            self.handleAddButton()
+        }
     }
     
     //--------------------------------------
