@@ -46,7 +46,7 @@ class ParseHelper: NSObject {
     }
     
     func updateCategories(vc: CategoriesViewController) -> Void {
-
+        
         vc.activityIndicator.show()
         
         let query = PFQuery(className:"Categories")
@@ -54,7 +54,7 @@ class ParseHelper: NSObject {
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             if error == nil {
                 // The find succeeded.
-//                print("Successfully retrieved \(objects!.count) categories.")
+                //                print("Successfully retrieved \(objects!.count) categories.")
                 // Do something with the found objects
                 if let objects = objects {
                     for object in objects {
@@ -72,7 +72,34 @@ class ParseHelper: NSObject {
                 print("Error: \(error!) \(error!.userInfo)")
             }
         }
-
+        
+    }
+    
+    func updateCategories(addRecipe vc: AddRecipeViewController) -> Void {
+        
+        let query = PFQuery(className:"Categories")
+        //        query.whereKey("playerName", equalTo:"Sean Plott")
+        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+            if error == nil {
+                // The find succeeded.
+                //                print("Successfully retrieved \(objects!.count) categories.")
+                // Do something with the found objects
+                if let objects = objects {
+                    for object in objects {
+                        if let object = object as? PFObject {
+                            let parseCategory = ParseCategory(category: object)
+                            if let category = Category(category: parseCategory) {
+                                vc.categories.append(category)
+                            }
+                        }
+                    }
+                }
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+            }
+        }
+        
     }
     
     func updateRecipesFromCategoryId(vc: RecipesViewController, catId: Int) -> Void {
@@ -150,6 +177,16 @@ class ParseHelper: NSObject {
             recipe.setObject(imageFile, forKey: "image")
             recipe.setValue(level, forKey: "level")
             recipe.setValue(type, forKey: "type")
+            
+            var categoriesIds = [Int]()
+            if let categories = recipeData["categories"] as? [Category] {
+                for category in categories {
+                    categoriesIds.append(category.catId)
+                }
+            }
+            
+            recipe.setObject(categoriesIds, forKey: "categories")
+            
             recipe.setValue(prepTime, forKey: "prepTime")
             recipe.setValue(cookTime, forKey: "cookTime")
             recipe.setObject(ingredients, forKey: "ingredients")

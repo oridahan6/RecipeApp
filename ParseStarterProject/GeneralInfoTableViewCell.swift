@@ -12,6 +12,7 @@ class GeneralInfoTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPicke
 
     @IBOutlet var levelTextField: UITextField!
     @IBOutlet var typeTextField: UITextField!
+    @IBOutlet var categoriesLabel: UILabel!
     
     var levelOptions = [getLocalizedString("levelBegginer"), getLocalizedString("levelIntermediate"), getLocalizedString("levelAdvanced")]
     var typeOptions = [getLocalizedString("Dairy"), getLocalizedString("Veggie"), getLocalizedString("Meat")]
@@ -28,6 +29,14 @@ class GeneralInfoTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPicke
         
         self.createPickerForTextField(levelTextField, pickerView: levelPickerView)
         self.createPickerForTextField(typeTextField, pickerView: typePickerView)
+        
+        self.categoriesLabel.userInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(GeneralInfoTableViewCell.showCategories))
+        tapGesture.numberOfTapsRequired = 1
+        self.categoriesLabel.addGestureRecognizer(tapGesture)
+        
+        let nc = NSNotificationCenter.defaultCenter()
+        nc.addObserver(self, selector: #selector(GeneralInfoTableViewCell.doneSelectingCategories(_:)), name: "DoneSelectingCategories", object: nil)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -118,6 +127,40 @@ class GeneralInfoTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPicke
         
         textField.inputView = pickerView
         textField.inputAccessoryView = toolBar
+    }
+    
+    //--------------------------------------
+    // MARK: - actions
+    //--------------------------------------
+
+    func showCategories() {
+        self.tableViewController.performSegueWithIdentifier(self.tableViewController.SegueSelectCategoriesTableViewController, sender: nil)
+    }
+    
+    func doneSelectingCategories(notification: NSNotification) {
+        if let selectedCategories = notification.object as? [Category] {
+
+            var text = ""
+
+            if selectedCategories.isEmpty {
+                self.categoriesLabel.textColor = Helpers.uicolorFromHex(0xC4C4C8)
+                
+                text = getLocalizedString("clickToChoose")
+                
+            } else {
+                self.categoriesLabel.textColor = UIColor.blackColor()
+        
+                for (index, selectedCategory) in selectedCategories.enumerate() {
+                    if index != 0 {
+                        text += ", "
+                    }
+                    text += selectedCategory.name
+                }
+            }
+            
+            self.categoriesLabel.text = text
+
+        }
     }
     
     //--------------------------------------

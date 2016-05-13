@@ -43,6 +43,8 @@
             <string>Alef-Regular</string>
             <string>Alef-Regular</string>
             <string>Alef-Regular</string>
+            <string>Alef-Regular</string>
+            <string>Alef-Regular</string>
         </mutableArray>
         <mutableArray key="hillelclm-medium-webfont.ttf">
             <string>HillelCLM-Medium</string>
@@ -1605,11 +1607,11 @@
                                     <outlet property="ingredientSectionTextField" destination="xol-IH-XCY" id="CKV-kO-iIx"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="GeneralInfoTableViewCell" rowHeight="65" id="XIg-T7-wWI" customClass="GeneralInfoTableViewCell" customModule="Recipes" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="561" width="600" height="65"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="GeneralInfoTableViewCell" rowHeight="94" id="XIg-T7-wWI" customClass="GeneralInfoTableViewCell" customModule="Recipes" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="561" width="600" height="94"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XIg-T7-wWI" id="3kc-uv-Udu">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="94"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chef-icon" translatesAutoresizingMaskIntoConstraints="NO" id="7ul-Zw-Q8T">
@@ -1664,30 +1666,64 @@
                                             <fontDescription key="fontDescription" name="Alef-Regular" family="Alef" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cheese-icon" translatesAutoresizingMaskIntoConstraints="NO" id="hPb-Ik-CEu">
+                                            <rect key="frame" x="534" y="64" width="20" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="bwC-fb-kgO"/>
+                                                <constraint firstAttribute="width" constant="20" id="x30-SM-Toz"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="קטגוריות:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FlM-54-pjS">
+                                            <rect key="frame" x="459" y="62" width="67" height="24"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="67" id="MTq-ak-LEL"/>
+                                                <constraint firstAttribute="height" constant="24" id="tjG-c7-v5m"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Alef-Regular" family="Alef" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="לחץ לבחירה" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7KX-x0-m8Z">
+                                            <rect key="frame" x="8" y="64" width="427" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="Ipk-vx-89l"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Alef-Regular" family="Alef" pointSize="14"/>
+                                            <color key="textColor" red="0.76862745098039209" green="0.76862745098039209" blue="0.78431372549019607" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="mqs-je-kyM" firstAttribute="top" secondItem="7ul-Zw-Q8T" secondAttribute="bottom" constant="9" id="0Tr-JK-rwM"/>
                                         <constraint firstItem="7ul-Zw-Q8T" firstAttribute="top" secondItem="3kc-uv-Udu" secondAttribute="top" constant="8" id="7Wd-6B-4Qu"/>
                                         <constraint firstItem="YGA-0K-seX" firstAttribute="top" secondItem="3kc-uv-Udu" secondAttribute="top" constant="8" id="8gS-V1-u7I"/>
                                         <constraint firstItem="qp2-vs-dL5" firstAttribute="top" secondItem="6Oa-ot-QVk" secondAttribute="bottom" constant="7" id="B19-pw-4bi"/>
+                                        <constraint firstItem="7KX-x0-m8Z" firstAttribute="top" secondItem="qp2-vs-dL5" secondAttribute="bottom" constant="6" id="Exu-fz-NRQ"/>
+                                        <constraint firstItem="7KX-x0-m8Z" firstAttribute="leading" secondItem="3kc-uv-Udu" secondAttribute="leading" constant="8" id="H89-j6-7z5"/>
+                                        <constraint firstItem="FlM-54-pjS" firstAttribute="leading" secondItem="7KX-x0-m8Z" secondAttribute="trailing" constant="24" id="HHT-4v-lWw"/>
+                                        <constraint firstItem="hPb-Ik-CEu" firstAttribute="top" secondItem="mqs-je-kyM" secondAttribute="bottom" constant="7" id="K2G-2q-Usb"/>
                                         <constraint firstAttribute="trailing" secondItem="mqs-je-kyM" secondAttribute="trailing" constant="46" id="NlL-QU-fcp"/>
                                         <constraint firstItem="mqs-je-kyM" firstAttribute="leading" secondItem="Phg-PR-nRN" secondAttribute="trailing" constant="8" id="XtM-BK-DoZ"/>
+                                        <constraint firstItem="FlM-54-pjS" firstAttribute="top" secondItem="Phg-PR-nRN" secondAttribute="bottom" constant="3" id="ZB5-8a-NKc"/>
+                                        <constraint firstItem="hPb-Ik-CEu" firstAttribute="leading" secondItem="FlM-54-pjS" secondAttribute="trailing" constant="8" id="aRn-e7-wmQ"/>
                                         <constraint firstItem="7ul-Zw-Q8T" firstAttribute="leading" secondItem="YGA-0K-seX" secondAttribute="trailing" constant="8" id="dIk-CS-MlJ"/>
                                         <constraint firstItem="Phg-PR-nRN" firstAttribute="leading" secondItem="qp2-vs-dL5" secondAttribute="trailing" constant="8" id="goO-90-AIK"/>
                                         <constraint firstItem="6Oa-ot-QVk" firstAttribute="top" secondItem="3kc-uv-Udu" secondAttribute="top" constant="11" id="q5r-fE-OfT"/>
                                         <constraint firstItem="Phg-PR-nRN" firstAttribute="top" secondItem="YGA-0K-seX" secondAttribute="bottom" constant="3" id="qeD-HN-qqe"/>
                                         <constraint firstAttribute="trailing" secondItem="7ul-Zw-Q8T" secondAttribute="trailing" constant="46" id="uwv-XM-fCo"/>
+                                        <constraint firstAttribute="trailing" secondItem="hPb-Ik-CEu" secondAttribute="trailing" constant="46" id="xgk-vd-X1O"/>
                                         <constraint firstItem="YGA-0K-seX" firstAttribute="leading" secondItem="6Oa-ot-QVk" secondAttribute="trailing" constant="20" id="yQe-Lv-9xZ"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.98823529409999999" green="0.98823529409999999" blue="0.98823529409999999" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <outlet property="categoriesLabel" destination="7KX-x0-m8Z" id="kru-if-nHr"/>
                                     <outlet property="levelTextField" destination="6Oa-ot-QVk" id="EGJ-ir-Pts"/>
                                     <outlet property="typeTextField" destination="qp2-vs-dL5" id="54k-dT-X3y"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TotalTimeTableViewCell" rowHeight="65" id="X1m-4c-eef" customClass="TotalTimeTableViewCell" customModule="Recipes" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="626" width="600" height="65"/>
+                                <rect key="frame" x="0.0" y="655" width="600" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="X1m-4c-eef" id="XLf-ZP-ZyC">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
@@ -1768,7 +1804,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AddRecipeButtonsTableViewCell" rowHeight="44" id="l98-ut-cwt" customClass="AddRecipeButtonsTableViewCell" customModule="Recipes" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="691" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="720" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="l98-ut-cwt" id="n5j-IG-Njd">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -1816,10 +1852,49 @@
                             <outlet property="delegate" destination="cyq-wd-3bd" id="dhc-Aa-wZ5"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="nHH-nx-aPb" kind="presentation" identifier="SelectCategoriesTableViewController" id="5Va-z5-aoG"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W9e-8h-mJG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2302" y="705"/>
+        </scene>
+        <!--Select Categories Table View Controller-->
+        <scene sceneID="bBF-IX-VCs">
+            <objects>
+                <tableViewController id="UCy-Oc-slf" customClass="SelectCategoriesTableViewController" customModule="Recipes" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="OYz-J3-ZG1">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.94901960784313721" green="0.94117647058823528" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="bY5-1N-eCP">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bY5-1N-eCP" id="GKF-yN-cch">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="UCy-Oc-slf" id="FRb-Gc-DPX"/>
+                            <outlet property="delegate" destination="UCy-Oc-slf" id="wie-tj-XI3"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="GBV-2W-zhB">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="n29-jG-fiv">
+                            <connections>
+                                <segue destination="xrh-eF-Oku" kind="unwind" unwindAction="unwindToVC:" id="NNA-eF-2Ib"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1kB-aH-I00" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="xrh-eF-Oku" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="3837" y="705"/>
         </scene>
         <!--Item-->
         <scene sceneID="Ify-Ec-r8K">
@@ -1859,6 +1934,24 @@
             </objects>
             <point key="canvasLocation" x="644" y="1470"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="RaI-oa-Ccv">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nHH-nx-aPb" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kst-Jn-x0g">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="UCy-Oc-slf" kind="relationship" relationship="rootViewController" id="D4t-6e-fE9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UiC-sG-htm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3025" y="705"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Yochi.jpg" width="686" height="686"/>
@@ -1877,6 +1970,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="wJ4-wP-M5I"/>
-        <segue reference="BbG-em-Haw"/>
+        <segue reference="IKU-OY-FgG"/>
     </inferredMetricsTieBreakers>
 </document>

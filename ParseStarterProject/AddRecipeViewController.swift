@@ -10,6 +10,8 @@ import UIKit
 
 class AddRecipeViewController: UITableViewController, UITextFieldDelegate, SwiftPromptsProtocol {
 
+    let SegueSelectCategoriesTableViewController = "SelectCategoriesTableViewController"
+
     let TitleTableViewCellIdentifier = "TitleTableViewCell"
     let ImageAddTableViewCellIdentifier = "ImageAddTableViewCell"
     let AddRecipeSectionHeaderTableViewCellIdentifier = "AddRecipeSectionHeaderTableViewCell"
@@ -36,11 +38,14 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
     var ingredientsEndPositionPerSection = ["general": [0,0]]
     var currentIngredientSection = "general"
     
+    var categories = [Category]()
+    
     // Submit parameters
     var recipeTitle: String!
     var recipeImage: UIImage!
     var recipeLevel: String!
     var recipeType: String!
+    var recipeCategories = [Category]()
     var recipePrepTime: Int!
     var recipeCookTime: Int = 0
     var recipeIngredients: [String: [String]] = ["general": []]
@@ -59,6 +64,8 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
 
         // add done button
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: getLocalizedString("done"), style: .Done, target: self, action: #selector(AddRecipeViewController.uploadRecipe(_:)))
+        
+        ParseHelper().updateCategories(addRecipe: self)
         
         self.editing = true
     }
@@ -324,7 +331,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
         if indexPath.section == 0 {
             return 215
         } else if indexPath.section == 1 || indexPath.section == 2 {
-            return 65.0
+            return 94.0
         } else if indexPath.section == 3 && indexPath.row < self.ingredientsArray.count {
             return 38.0
         }
@@ -408,6 +415,9 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
         }
         if self.recipeType == nil {
             missingFields.append("type")
+        }
+        if self.recipeCategories.isEmpty {
+            missingFields.append("categories")
         }
         if self.recipePrepTime == nil || self.recipePrepTime == 0 {
             missingFields.append("prepTime")
@@ -519,22 +529,30 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
         self.view.endEditing(true)
         
         if !self.hasErrorsInFields() {
-        
             let recipeData = [
                 "title":        self.recipeTitle,
                 "image":        self.recipeImage,
                 "level":        self.recipeLevel,
                 "type":         self.recipeType,
+                "categories":   self.recipeCategories,
                 "prepTime":     self.recipePrepTime,
                 "cookTime":     self.recipeCookTime,
                 "ingredients":  self.recipeIngredients,
                 "directions":   self.recipeDirections
             ]
-            
             ParseHelper().uploadRecipe(recipeData, vc: self)
-                
+        }
+    }
+    
+    @IBAction func unwindToVC(segue: UIStoryboardSegue) {
+        if segue.sourceViewController.isKindOfClass(SelectCategoriesTableViewController) {
+            if let sourceVC = segue.sourceViewController as? SelectCategoriesTableViewController {
+                self.recipeCategories = sourceVC.selectedCategories
+            }
         }
         
+        let nc = NSNotificationCenter.defaultCenter()
+        nc.postNotificationName("DoneSelectingCategories", object: self.recipeCategories)
     }
     
     //--------------------------------------
@@ -563,4 +581,21 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
         return true
     }
 
+    //--------------------------------------
+    // MARK: - navigation
+    //--------------------------------------
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == SegueSelectCategoriesTableViewController {
+            let destinationNavigationViewController = segue.destinationViewController
+            let viewControllers = destinationNavigationViewController.childViewControllers
+            for vc in viewControllers {
+                if let destinationViewController = vc as? SelectCategoriesTableViewController {
+                    destinationViewController.categories = self.categories
+                    destinationViewController.selectedCategories = self.recipeCategories
+                }
+                
+            }
+        }
+    }
 }
