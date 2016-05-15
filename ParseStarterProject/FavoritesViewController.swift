@@ -68,6 +68,12 @@ class FavoritesViewController: RecipesParentViewController, SwiftPromptsProtocol
         }
     }
     
+    override func viewDidAppear(animated: Bool) {
+        if self.recipes.count == 0 {
+            self.endUpdateView()
+        }
+    }
+    
     //--------------------------------------
     // MARK: - Helpers
     //--------------------------------------

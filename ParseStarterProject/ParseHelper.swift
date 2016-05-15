@@ -16,39 +16,29 @@ class ParseHelper: NSObject {
     //--------------------------------------
 
     func updateRecipes(vc: RecipesViewController) -> Void {
-        
         let query = PFQuery(className:"Recipe")
-        if let updatedAt = vc.updatedAt {
-            query.whereKey("updatedAt", greaterThan: updatedAt)
-        }
-        
         query.orderByDescending("updatedAt")
-        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
-            if error == nil {
-                // The find succeeded.
-//                print("Successfully retrieved \(objects!.count) recipes.")
-                // Do something with the found objects
-                if let objects = objects {
-                    vc.updatedAt = NSDate()
-                    for object in objects {
-                        if let object = object as? PFObject {
-                            let parseRecipe = ParseRecipe(recipe: object)
-                            if let recipe = Recipe(recipe: parseRecipe) {
-                                vc.recipes.append(recipe)
-                            }
+        func successBlock (objects: [AnyObject]?) -> Void {
+            if let objects = objects {
+                vc.recipes = [Recipe]()
+                for object in objects {
+                    if let object = object as? PFObject {
+                        let parseRecipe = ParseRecipe(recipe: object)
+                        if let recipe = Recipe(recipe: parseRecipe) {
+                            vc.recipes.append(recipe)
                         }
                     }
-                    
-                    vc.recipes.sortInPlace({ $0.updatedAt.compare($1.updatedAt) == NSComparisonResult.OrderedDescending })
-                    
+                }
+                if objects.count > 0 {
                     vc.endUpdateView()
                 }
-            } else {
-                // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
-                vc.activityIndicator.hide()
             }
         }
+        func errorBlock () -> Void {
+            vc.endUpdateView()
+        }
+        
+        self.findObjectsLocallyThenRemotely(query, successBlock: successBlock, errorBlock: errorBlock)
     }
     
     func updateCategories(vc: CategoriesViewController) -> Void {
@@ -56,56 +46,44 @@ class ParseHelper: NSObject {
         vc.activityIndicator.show()
         
         let query = PFQuery(className:"Categories")
-        //        query.whereKey("playerName", equalTo:"Sean Plott")
-        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
-            if error == nil {
-                // The find succeeded.
-                //                print("Successfully retrieved \(objects!.count) categories.")
-                // Do something with the found objects
-                if let objects = objects {
-                    for object in objects {
-                        if let object = object as? PFObject {
-                            let parseCategory = ParseCategory(category: object)
-                            if let category = Category(category: parseCategory) {
-                                vc.categories.append(category)
-                            }
+        func successBlock (objects: [AnyObject]?) -> Void {
+            if let objects = objects {
+                for object in objects {
+                    if let object = object as? PFObject {
+                        let parseCategory = ParseCategory(category: object)
+                        if let category = Category(category: parseCategory) {
+                            vc.categories.append(category)
                         }
                     }
+                }
+                if objects.count > 0 {
                     vc.activityIndicator.hide()
                 }
-            } else {
-                // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
             }
         }
+        func errorBlock () -> Void {
+            vc.activityIndicator.hide()
+        }
         
+        self.findObjectsLocallyThenRemotely(query, successBlock: successBlock, errorBlock: errorBlock)
     }
     
     func updateCategories(addRecipe vc: AddRecipeViewController) -> Void {
         
         let query = PFQuery(className:"Categories")
-        //        query.whereKey("playerName", equalTo:"Sean Plott")
-        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
-            if error == nil {
-                // The find succeeded.
-                //                print("Successfully retrieved \(objects!.count) categories.")
-                // Do something with the found objects
-                if let objects = objects {
-                    for object in objects {
-                        if let object = object as? PFObject {
-                            let parseCategory = ParseCategory(category: object)
-                            if let category = Category(category: parseCategory) {
-                                vc.categories.append(category)
-                            }
+        func successBlock (objects: [AnyObject]?) -> Void {
+            if let objects = objects {
+                for object in objects {
+                    if let object = object as? PFObject {
+                        let parseCategory = ParseCategory(category: object)
+                        if let category = Category(category: parseCategory) {
+                            vc.categories.append(category)
                         }
                     }
                 }
-            } else {
-                // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
             }
         }
-        
+        self.findObjectsLocallyThenRemotely(query, successBlock: successBlock, errorBlock: {})
     }
     
     func updateRecipesFromCategoryId(vc: RecipesViewController, catId: Int) -> Void {
@@ -117,62 +95,54 @@ class ParseHelper: NSObject {
         }
         
         query.whereKey("categories", equalTo:catId)
-        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
-            if error == nil {
-                // The find succeeded.
-//                print("Successfully retrieved \(objects!.count) recipes.")
-                // Do something with the found objects
-                if let objects = objects {
-                    vc.updatedAt = NSDate()
-                    for object in objects {
-                        if let object = object as? PFObject {
-                            let parseRecipe = ParseRecipe(recipe: object)
-                            if let recipe = Recipe(recipe: parseRecipe) {
-                                vc.recipes.append(recipe)
-                            }
+        query.orderByDescending("updatedAt")
+        func successBlock (objects: [AnyObject]?) -> Void {
+            if let objects = objects {
+                vc.recipes = [Recipe]()
+                for object in objects {
+                    if let object = object as? PFObject {
+                        let parseRecipe = ParseRecipe(recipe: object)
+                        if let recipe = Recipe(recipe: parseRecipe) {
+                            vc.recipes.append(recipe)
                         }
                     }
-                    
-                    vc.recipes.sortInPlace({ $0.updatedAt.compare($1.updatedAt) == NSComparisonResult.OrderedDescending })
-                    
+                }
+                if objects.count > 0 {
                     vc.endUpdateView()
                 }
-            } else {
-                // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
             }
         }
-        
+        func errorBlock () -> Void {
+            vc.endUpdateView()
+        }
+
+        self.findObjectsLocallyThenRemotely(query, successBlock: successBlock, errorBlock: errorBlock)
     }
     
     func updateFavoriteRecipes(vc: FavoritesViewController, ids: [String]) -> Void {
-                
-        vc.beginUpdateView()
         
+        vc.beginUpdateView()
         let query = PFQuery(className:"Recipe")
         query.whereKey("objectId", containedIn: ids)
-        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
-            if error == nil {
-                // The find succeeded.
-//                print("Successfully retrieved \(objects!.count) recipes.")
-                // Do something with the found objects
-                if let objects = objects {
-                    for object in objects {
-                        if let object = object as? PFObject {
-                            let parseRecipe = ParseRecipe(recipe: object)
-                            if let recipe = Recipe(recipe: parseRecipe) {
-                                vc.recipes.append(recipe)
-                            }
+        
+        func successBlock (objects: [AnyObject]?) -> Void {
+            if let objects = objects {
+                for object in objects {
+                    if let object = object as? PFObject {
+                        let parseRecipe = ParseRecipe(recipe: object)
+                        if let recipe = Recipe(recipe: parseRecipe) {
+                            vc.recipes.append(recipe)
                         }
                     }
-                    vc.endUpdateView()
                 }
-            } else {
-                // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
+                vc.endUpdateView()
             }
         }
-        
+        func errorBlock () -> Void {
+            vc.endUpdateView()
+        }
+
+        self.findObjectsLocallyThenRemotely(query, successBlock: successBlock, errorBlock: errorBlock)
     }
 
     //--------------------------------------
@@ -266,4 +236,50 @@ class ParseHelper: NSObject {
     class func logOut() {
         PFUser.logOut()
     }
+    
+    //--------------------------------------
+    // MARK: - Helpers
+    //--------------------------------------
+
+    private func findObjectsLocallyThenRemotely(query: PFQuery!, successBlock:[AnyObject]! -> Void, errorBlock:Void -> Void) {
+        let localQuery = (query.copy() as! PFQuery).fromLocalDatastore()
+        localQuery.findObjectsInBackgroundWithBlock({ (localObjects, error) -> Void in
+            if (error == nil) {
+                if localObjects?.count > 0 {
+                    print("Success : Local Query: \(query.parseClassName)")
+                    successBlock(localObjects)
+                }
+            } else {
+                print("Error : Local Query: \(query.parseClassName)")
+            }
+            query.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
+                if(error == nil) {
+                    print("Success : Network Query: \(query.parseClassName)")
+                    PFObject.unpinAllInBackground(localObjects, block: { (success, error) -> Void in
+                        if (error == nil) {
+                            
+                            if localObjects?.count == 0 || localObjects?.count < objects?.count {
+                                print("Success : Unpin Local Query: \(query.parseClassName)")
+                                successBlock(objects)
+                            }
+                            
+                            PFObject.pinAllInBackground(objects, block: { (success, error) -> Void in
+                                if (error == nil) {
+                                    print("Success : Pin Query Result: \(query.parseClassName)")
+                                } else {
+                                    print("Error : Pin Query Result: \(query.parseClassName)")
+                                }
+                            })
+                        } else {
+                            print("Error : Unpin Local Query: \(query.parseClassName)")
+                        }
+                    })
+                } else {
+                    print("Error : Network Query: \(query.parseClassName)")
+                }
+            })
+        })
+        
+    }
+
 }

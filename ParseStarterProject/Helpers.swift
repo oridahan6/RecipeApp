@@ -89,6 +89,10 @@ class Helpers {
             }
         }
         
+        if hours == 0 && minutes == 30 {
+            text += " " + getLocalizedString("hour")
+        }
+        
         return text
 
     }
