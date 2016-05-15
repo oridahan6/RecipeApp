@@ -127,10 +127,13 @@ class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
     // MARK: - Helpers Methods
     //--------------------------------------
     
-    func loadRecipes() {
+    func loadRecipes(fromPullToRefresh: Bool = false) {
         if let category = self.category {
             ParseHelper().updateRecipesFromCategoryId(self, catId: category.catId)
         } else {
+            if !fromPullToRefresh {
+                self.beginUpdateView()
+            }
             ParseHelper().updateRecipes(self)
         }
     }
@@ -159,15 +162,23 @@ class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
         loadingView.tintColor = tableView.backgroundColor!
         tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
             
-            self?.loadRecipes()
+            self?.loadRecipes(true)
             
             // Do not forget to call dg_stopLoading() at the end
-            self?.tableView.dg_stopLoading()
             }, loadingView: loadingView)
         if let navBarColor = navigationController?.navigationBar.barTintColor {
             tableView.dg_setPullToRefreshFillColor(navBarColor)
         }
         tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
+    }
+    
+    func beginUpdateView() {
+        self.activityIndicator.show()
+    }
+    
+    func endUpdateView() {
+        self.activityIndicator.hide()
+        self.tableView.dg_stopLoading()
     }
     
     private func buildAlert() {

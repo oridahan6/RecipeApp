@@ -17,8 +17,6 @@ class ParseHelper: NSObject {
 
     func updateRecipes(vc: RecipesViewController) -> Void {
         
-        vc.activityIndicator.show()
-        
         let query = PFQuery(className:"Recipe")
         if let updatedAt = vc.updatedAt {
             query.whereKey("updatedAt", greaterThan: updatedAt)
@@ -43,7 +41,7 @@ class ParseHelper: NSObject {
                     
                     vc.recipes.sortInPlace({ $0.updatedAt.compare($1.updatedAt) == NSComparisonResult.OrderedDescending })
                     
-                    vc.activityIndicator.hide()
+                    vc.endUpdateView()
                 }
             } else {
                 // Log details of the failure

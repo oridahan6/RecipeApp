@@ -146,6 +146,9 @@ class FavoritesViewController: RecipesParentViewController, SwiftPromptsProtocol
     
     func endUpdateView() {
         self.activityIndicator.hide()
+        if self.recipes.count == 0 {
+            self.addEmptyFavoritesLabel()
+        }
     }
     
     private func buildAlert() {
@@ -176,8 +179,6 @@ class FavoritesViewController: RecipesParentViewController, SwiftPromptsProtocol
             return filteredRecipes.count
         } else if self.recipes.count > 0 {
             return recipes.count
-        } else if !self.activityIndicator.isAnimating(){
-            self.addEmptyFavoritesLabel()
         }
         return 0;
     }
@@ -222,6 +223,9 @@ class FavoritesViewController: RecipesParentViewController, SwiftPromptsProtocol
             }
             self.recipes.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Left)
+            if self.recipes.count == 0 {
+                self.addEmptyFavoritesLabel()
+            }
         }
     }
     
