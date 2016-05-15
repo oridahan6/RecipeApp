@@ -128,12 +128,12 @@ class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
     //--------------------------------------
     
     func loadRecipes(fromPullToRefresh: Bool = false) {
+        if !fromPullToRefresh {
+            self.beginUpdateView()
+        }
         if let category = self.category {
             ParseHelper().updateRecipesFromCategoryId(self, catId: category.catId)
         } else {
-            if !fromPullToRefresh {
-                self.beginUpdateView()
-            }
             ParseHelper().updateRecipes(self)
         }
     }

@@ -110,9 +110,12 @@ class ParseHelper: NSObject {
     
     func updateRecipesFromCategoryId(vc: RecipesViewController, catId: Int) -> Void {
         
-        vc.activityIndicator.show()
-        
         let query = PFQuery(className:"Recipe")
+        
+        if let updatedAt = vc.updatedAt {
+            query.whereKey("updatedAt", greaterThan: updatedAt)
+        }
+        
         query.whereKey("categories", equalTo:catId)
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             if error == nil {
@@ -120,6 +123,7 @@ class ParseHelper: NSObject {
 //                print("Successfully retrieved \(objects!.count) recipes.")
                 // Do something with the found objects
                 if let objects = objects {
+                    vc.updatedAt = NSDate()
                     for object in objects {
                         if let object = object as? PFObject {
                             let parseRecipe = ParseRecipe(recipe: object)
@@ -128,7 +132,10 @@ class ParseHelper: NSObject {
                             }
                         }
                     }
-                    vc.activityIndicator.hide()
+                    
+                    vc.recipes.sortInPlace({ $0.updatedAt.compare($1.updatedAt) == NSComparisonResult.OrderedDescending })
+                    
+                    vc.endUpdateView()
                 }
             } else {
                 // Log details of the failure
