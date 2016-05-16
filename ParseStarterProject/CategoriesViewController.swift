@@ -50,7 +50,7 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
             // Hack for placing the hud in the correct place
             Helpers.hackForPlacingHUD(self.activityIndicator.HUD)
             
-            ParseHelper().updateCategories(self)
+            ParseHelper.sharedInstance.updateCategories(self)
         }
         
         // Create Search Button

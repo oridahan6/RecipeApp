@@ -65,7 +65,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
         // add done button
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: getLocalizedString("done"), style: .Done, target: self, action: #selector(AddRecipeViewController.uploadRecipe(_:)))
         
-        ParseHelper().updateCategories(addRecipe: self)
+        ParseHelper.sharedInstance.updateCategories(addRecipe: self)
         
         self.editing = true
     }
@@ -540,7 +540,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
                 "ingredients":  self.recipeIngredients,
                 "directions":   self.recipeDirections
             ]
-            ParseHelper().uploadRecipe(recipeData, vc: self)
+            ParseHelper.sharedInstance.uploadRecipe(recipeData, vc: self)
         }
     }
     

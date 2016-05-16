@@ -132,9 +132,9 @@ class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
             self.beginUpdateView()
         }
         if let category = self.category {
-            ParseHelper().updateRecipesFromCategoryId(self, catId: category.catId)
+            ParseHelper.sharedInstance.updateRecipesFromCategoryId(self, catId: category.catId)
         } else {
-            ParseHelper().updateRecipes(self)
+            ParseHelper.sharedInstance.updateRecipes(self)
         }
     }
     

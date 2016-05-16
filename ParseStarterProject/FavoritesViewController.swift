@@ -94,7 +94,7 @@ class FavoritesViewController: RecipesParentViewController, SwiftPromptsProtocol
             }
         }
         if !recipeIdsToAdd.isEmpty {
-            ParseHelper().updateFavoriteRecipes(self, ids: recipeIdsToAdd)
+            ParseHelper.sharedInstance.updateFavoriteRecipes(self, ids: recipeIdsToAdd)
         }
         
     }
