@@ -470,7 +470,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
     
     func showSuccessAlert() {
         //Create an instance of SwiftPromptsView and assign its delegate
-        prompt = SwiftPromptsView(frame: self.view.frame)
+        prompt = SwiftPromptsView(frame: self.tableView.superview!.frame)
         prompt.delegate = self
         
         SwiftPromptHelper.buildSuccessAlert(prompt, type: "uploadSuccess")
@@ -494,7 +494,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
         }
         
         //Create an instance of SwiftPromptsView and assign its delegate
-        prompt = SwiftPromptsView(frame: self.view.frame)
+        prompt = SwiftPromptsView(frame: self.tableView.superview!.frame)
         prompt.delegate = self
         
         SwiftPromptHelper.buildErrorAlert(prompt, type: propmptType)
