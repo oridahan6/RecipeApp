@@ -38,12 +38,12 @@
 		0C192F271CB392BD00811CB4 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C192F261CB392BD00811CB4 /* CategoryTableViewCell.swift */; };
 		0C192F2B1CB39C8500811CB4 /* placeholder-w-text.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C192F2A1CB39C8500811CB4 /* placeholder-w-text.png */; };
 		0C192F2D1CB39CC000811CB4 /* placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C192F2C1CB39CC000811CB4 /* placeholder.jpg */; };
+		0C1C31AD1CE9FC1200D9D934 /* tableview-bg-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C1C31AC1CE9FC1200D9D934 /* tableview-bg-667h@2x.png */; };
 		0C1F4C891CBE6E72002B0631 /* RecipesParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1F4C881CBE6E72002B0631 /* RecipesParentViewController.swift */; };
 		0C407EBF1CDE50AD00C95F8E /* ParseFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C407EBE1CDE50AD00C95F8E /* ParseFile.swift */; };
 		0C47CF701CC3FA6600F26623 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C47CF6F1CC3FA6600F26623 /* AboutViewController.swift */; };
 		0C47CF741CC49EB100F26623 /* Yochi.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C47CF731CC49EB100F26623 /* Yochi.jpg */; };
 		0C47CF761CC62DC900F26623 /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C47CF751CC62DC900F26623 /* UIKitExtensions.swift */; };
-		0C47CF7A1CC65EAD00F26623 /* tableview-bg-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C47CF791CC65EAD00F26623 /* tableview-bg-667h@2x.png */; };
 		0C47CF7C1CC667A500F26623 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C47CF7B1CC667A500F26623 /* LoginViewController.swift */; };
 		0C47CF8A1CC66E1000F26623 /* AkiraTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C47CF7E1CC66E1000F26623 /* AkiraTextField.swift */; };
 		0C47CF8B1CC66E1000F26623 /* HoshiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C47CF7F1CC66E1000F26623 /* HoshiTextField.swift */; };
@@ -137,12 +137,12 @@
 		0C192F261CB392BD00811CB4 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		0C192F2A1CB39C8500811CB4 /* placeholder-w-text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder-w-text.png"; sourceTree = "<group>"; };
 		0C192F2C1CB39CC000811CB4 /* placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = placeholder.jpg; sourceTree = "<group>"; };
+		0C1C31AC1CE9FC1200D9D934 /* tableview-bg-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tableview-bg-667h@2x.png"; sourceTree = "<group>"; };
 		0C1F4C881CBE6E72002B0631 /* RecipesParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipesParentViewController.swift; sourceTree = "<group>"; };
 		0C407EBE1CDE50AD00C95F8E /* ParseFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseFile.swift; sourceTree = "<group>"; };
 		0C47CF6F1CC3FA6600F26623 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		0C47CF731CC49EB100F26623 /* Yochi.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Yochi.jpg; sourceTree = "<group>"; };
 		0C47CF751CC62DC900F26623 /* UIKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitExtensions.swift; sourceTree = "<group>"; };
-		0C47CF791CC65EAD00F26623 /* tableview-bg-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tableview-bg-667h@2x.png"; sourceTree = "<group>"; };
 		0C47CF7B1CC667A500F26623 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0C47CF7E1CC66E1000F26623 /* AkiraTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AkiraTextField.swift; sourceTree = "<group>"; };
 		0C47CF7F1CC66E1000F26623 /* HoshiTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoshiTextField.swift; sourceTree = "<group>"; };
@@ -286,7 +286,7 @@
 				0CA7C13B1CBB869A00BEDD65 /* placeholder-bg.png */,
 				0C192F2A1CB39C8500811CB4 /* placeholder-w-text.png */,
 				0C192F111CB27FC500811CB4 /* tableview-bg-568h@2x.png */,
-				0C47CF791CC65EAD00F26623 /* tableview-bg-667h@2x.png */,
+				0C1C31AC1CE9FC1200D9D934 /* tableview-bg-667h@2x.png */,
 				0C192F131CB27FC500811CB4 /* tableview-bg-736h@3x.png */,
 				0C192F141CB27FC500811CB4 /* tableview-bg.png */,
 				0C192F151CB27FC500811CB4 /* tableview-bg@2x.png */,
@@ -587,7 +587,7 @@
 				0C7BDA811CA95E260056ADCD /* Localizable.strings in Resources */,
 				0CD15FF31CB140F000C7B828 /* Alef-bold.ttf in Resources */,
 				0C192F191CB27FC500811CB4 /* tableview-bg-736h@3x.png in Resources */,
-				0C47CF7A1CC65EAD00F26623 /* tableview-bg-667h@2x.png in Resources */,
+				0C1C31AD1CE9FC1200D9D934 /* tableview-bg-667h@2x.png in Resources */,
 				0C192F1A1CB27FC500811CB4 /* tableview-bg.png in Resources */,
 				0CD15FF01CB1323200C7B828 /* hillelclm-medium-webfont.ttf in Resources */,
 				0C192F171CB27FC500811CB4 /* tableview-bg-568h@2x.png in Resources */,

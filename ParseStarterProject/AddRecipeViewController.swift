@@ -60,8 +60,11 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
         self.stopSectionsHeadersFromFloating()
 
         // set table view background image
-        self.view.backgroundColor = UIColor(patternImage: Helpers().getDeviceSpecificBGImage("tableview-bg"))
-
+        self.tableView.backgroundColor = UIColor.clearColor()
+        let backgroundImageView = UIImageView( image : Helpers().getDeviceSpecificBGImage("tableview-bg"));
+        backgroundImageView.frame = self.tableView.frame;
+        self.tableView.backgroundView = backgroundImageView;
+        
         // add done button
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: getLocalizedString("done"), style: .Done, target: self, action: #selector(AddRecipeViewController.uploadRecipe(_:)))
         
