@@ -755,8 +755,8 @@
                             <constraint firstItem="0SC-ai-Jf4" firstAttribute="leading" secondItem="y5R-bw-mHP" secondAttribute="leading" id="32D-Zm-9je"/>
                             <constraint firstAttribute="trailing" secondItem="0SC-ai-Jf4" secondAttribute="trailing" id="JDh-Sq-3I2"/>
                             <constraint firstAttribute="width" secondItem="eiP-47-B0N" secondAttribute="width" id="PeG-3P-5zg"/>
+                            <constraint firstItem="0SC-ai-Jf4" firstAttribute="top" secondItem="y5R-bw-mHP" secondAttribute="top" id="UX7-0X-kUo"/>
                             <constraint firstItem="B4l-lo-YCU" firstAttribute="top" secondItem="0SC-ai-Jf4" secondAttribute="bottom" constant="-49" id="dBj-ej-1Us"/>
-                            <constraint firstItem="0SC-ai-Jf4" firstAttribute="top" secondItem="32S-Hd-iiK" secondAttribute="bottom" constant="-64" id="woB-iR-9bY"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="l58-cc-jqx"/>
