@@ -31,6 +31,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SwiftPromptsPr
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // fix for view frame y set to navigation bar because we set the navbar translucent to false
+        self.extendedLayoutIncludesOpaqueBars = true
+        
         buttonLabel.text = getLocalizedString("enter")
         usernameTextField.delegate = self
         passwordTextField.delegate = self
