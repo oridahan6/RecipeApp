@@ -171,7 +171,11 @@ class Helpers {
     class func getRedColor(alpha: CGFloat = 1.0) -> UIColor {
         return self.uicolorFromHex(0xA73535, alpha: alpha)
     }
-
+    
+    class func getYellowColor(alpha: CGFloat = 1.0) -> UIColor {
+        return self.uicolorFromHex(0xf3b45f, alpha: alpha)
+    }
+    
     class func getGreenColor(alpha: CGFloat = 1.0) -> UIColor {
         return self.uicolorFromHex(0x55AA6D, alpha: alpha)
     }
