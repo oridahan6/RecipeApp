@@ -353,6 +353,7 @@ class ParseHelper: NSObject {
                                     PFObject.pinAllInBackground(objects, block: { (success, error) -> Void in
                                         if (error == nil) {
 //                                            print("Success : Pin Query Result: \(query.parseClassName)")
+                                            successBlock(objects)
                                         } else {
                                             print("Error : Pin Query Result: \(query.parseClassName)")
                                         }

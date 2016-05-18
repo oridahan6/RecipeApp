@@ -89,6 +89,8 @@ class TotalTimeTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerV
         toolBar.tintColor = Helpers.getRedColor()
         toolBar.sizeToFit()
         
+        textField.tintColor = UIColor.clearColor()
+        
         // Add fixed labels
         self.addFixedLabelsToPickerView(pickerView)
         
@@ -284,4 +286,9 @@ class TotalTimeTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerV
     func textFieldDidEndEditing(textField: UITextField) {
         self.donePicker()
     }
+
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        return false
+    }
+
 }

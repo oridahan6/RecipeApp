@@ -119,6 +119,7 @@ class GeneralInfoTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPicke
         toolBar.tintColor = Helpers.getRedColor()
         toolBar.sizeToFit()
         
+        textField.tintColor = UIColor.clearColor()
         
         let doneButton = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: #selector(GeneralInfoTableViewCell.donePicker))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
@@ -198,4 +199,7 @@ class GeneralInfoTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPicke
         self.donePicker()
     }
 
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        return false
+    }
 }
