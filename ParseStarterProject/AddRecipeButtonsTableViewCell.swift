@@ -53,5 +53,12 @@ class AddRecipeButtonsTableViewCell: UITableViewCell {
         }
         self.tableViewController.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: count, inSection: section)], withRowAnimation: UITableViewRowAnimation.Fade)
         self.tableViewController.tableView.endUpdates()
+        
+        // scroll to add direction button for convinience
+        if section == 4 {
+            let indexPath = NSIndexPath(forRow: self.tableViewController.tableView.numberOfRowsInSection(section) - 1, inSection: section)
+            self.tableViewController.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
+            
+        }
     }
 }

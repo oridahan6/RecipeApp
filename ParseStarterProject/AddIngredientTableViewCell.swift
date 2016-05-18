@@ -22,8 +22,6 @@ class AddIngredientTableViewCell: UITableViewCell, UITextFieldDelegate {
         self.ingredientAmountTextField.delegate = self
         self.ingredientTextTextField.tag = 0
         self.ingredientAmountTextField.tag = 0
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AddIngredientTableViewCell.uploadRecipeSuccess(_:)), name: AddRecipeViewController.NotificationUploadRecipeSuccess, object: nil)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
