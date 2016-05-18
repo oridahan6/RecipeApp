@@ -10,8 +10,14 @@ import UIKit
 
 class AddRecipeViewController: UITableViewController, UITextFieldDelegate, SwiftPromptsProtocol {
 
+    // Notifications
+    static let NotificationDoneSelectingCategories = "DoneSelectingCategories"
+    static let NotificationUploadRecipeSuccess = "UploadRecipeSuccess"
+    
+    // Segues
     let SegueSelectCategoriesTableViewController = "SelectCategoriesTableViewController"
 
+    // Cell Identifiers
     let TitleTableViewCellIdentifier = "TitleTableViewCell"
     let ImageAddTableViewCellIdentifier = "ImageAddTableViewCell"
     let AddRecipeSectionHeaderTableViewCellIdentifier = "AddRecipeSectionHeaderTableViewCell"
@@ -48,8 +54,8 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
     var recipeCategories = [Category]()
     var recipePrepTime: Int!
     var recipeCookTime: Int = 0
-    var recipeIngredients: [String: [String]] = ["general": []]
-    var recipeDirections: [String: [String]] = ["general": []]
+    var recipeIngredients: [String: [String]] = ["general": ["|"]]
+    var recipeDirections: [String: [String]] = ["general": [""]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -149,6 +155,12 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
                     let cell = tableView.dequeueReusableCellWithIdentifier(AddIngredientTableViewCellIdentifier, forIndexPath: indexPath) as! AddIngredientTableViewCell
                     cell.backgroundColor = .clearColor()
                     cell.tableViewController = self
+                    
+                    if let ingredientsArr = self.recipeIngredients["general"] {
+                        cell.ingredientAmountTextField.text = self.getAmountFromIngredient(ingredientsArr[indexPath.row])
+                        cell.ingredientTextTextField.text = self.getTextFromIngredient(ingredientsArr[indexPath.row])
+                    }
+                    
                     return cell
                 }
             }
@@ -173,6 +185,11 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
                     let cell = tableView.dequeueReusableCellWithIdentifier(AddDirectionTableViewCellIdentifier, forIndexPath: indexPath) as! AddDirectionTableViewCell
                     cell.backgroundColor = .clearColor()
                     cell.tableViewController = self
+                    
+                    if let directionsArr = self.recipeDirections["general"] {
+                        cell.directionTextField.text = directionsArr[indexPath.row]
+                    }
+                    
                     return cell
                 }
             }
@@ -201,6 +218,22 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
         
         if sourceIndexPath.section == 3 {
         
+            let sectionName = "general"
+            if var sourceSection = self.recipeIngredients[sectionName] {
+                if !sourceSection.isEmpty {
+                    
+                    let currentIngredient = sourceSection[sourceIndexPath.row]
+                    
+                    sourceSection.removeAtIndex(sourceIndexPath.row)
+                    sourceSection.insert(currentIngredient, atIndex: destinationIndexPath.row)
+                    
+                    self.recipeIngredients[sectionName] = sourceSection
+                }
+            }
+
+            
+            /* option to move sections in the future
+ 
             var sourceSectionName = ""
             var destSectionName = ""
             
@@ -283,6 +316,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
                     }
                 }
             }
+            */
         } else if sourceIndexPath.section == 4 {
             
             let sectionName = "general"
@@ -354,6 +388,9 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
             let view = UIView(frame: cell.frame)
             cell.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
             view.addSubview(cell)
+            if let title = self.recipeTitle {
+                cell.titleTextField.text = title
+            }
             return view
         case 1:
             let cell = tableView.dequeueReusableCellWithIdentifier(AddRecipeSectionHeaderTableViewCellIdentifier) as! AddRecipeSectionHeaderTableViewCell
@@ -471,6 +508,13 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
         return hasError
     }
     
+    func handlePostSuccess() {
+        self.hideActivityIndicator()
+        self.showSuccessAlert()
+        self.emptyRecipeUploadData()
+        NSNotificationCenter.defaultCenter().postNotificationName(AddRecipeViewController.NotificationUploadRecipeSuccess, object: self.recipeCategories)
+    }
+    
     func showSuccessAlert() {
         //Create an instance of SwiftPromptsView and assign its delegate
         prompt = SwiftPromptsView(frame: self.tableView.superview!.frame)
@@ -523,6 +567,32 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
         }
     }
 
+    private func emptyRecipeUploadData() {
+        
+        self.recipeTitle = nil
+        self.recipeImage = nil
+        self.recipeLevel = nil
+        self.recipeType = nil
+        self.recipeCategories = [Category]()
+        self.recipePrepTime = nil
+        self.recipeCookTime = 0
+        self.recipeIngredients = ["general": ["|"]]
+        self.recipeDirections = ["general": [""]]
+        
+        self.ingredientsArray = ["ingredient"]
+        self.directionsArray = ["direction"]
+
+        self.tableView.reloadData()
+    }
+    
+    private func getAmountFromIngredient(ingredient: String) -> String {
+        return ingredient.firstRegexMatches("^(.*)\\|.*$")
+    }
+
+    private func getTextFromIngredient(ingredient: String) -> String {
+        return ingredient.firstRegexMatches("^.*?\\|(.*)$")
+    }
+    
     //--------------------------------------
     // MARK: - actions
     //--------------------------------------
@@ -554,8 +624,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
             }
         }
         
-        let nc = NSNotificationCenter.defaultCenter()
-        nc.postNotificationName("DoneSelectingCategories", object: self.recipeCategories)
+        NSNotificationCenter.defaultCenter().postNotificationName(AddRecipeViewController.NotificationDoneSelectingCategories, object: self.recipeCategories)
     }
     
     //--------------------------------------

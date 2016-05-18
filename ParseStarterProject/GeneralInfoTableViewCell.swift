@@ -31,12 +31,14 @@ class GeneralInfoTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPicke
         self.createPickerForTextField(typeTextField, pickerView: typePickerView)
         
         self.categoriesLabel.userInteractionEnabled = true
+        self.categoriesLabelToSelectState()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(GeneralInfoTableViewCell.showCategories))
         tapGesture.numberOfTapsRequired = 1
         self.categoriesLabel.addGestureRecognizer(tapGesture)
         
-        let nc = NSNotificationCenter.defaultCenter()
-        nc.addObserver(self, selector: #selector(GeneralInfoTableViewCell.doneSelectingCategories(_:)), name: "DoneSelectingCategories", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GeneralInfoTableViewCell.doneSelectingCategories(_:)), name: AddRecipeViewController.NotificationDoneSelectingCategories, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GeneralInfoTableViewCell.uploadRecipeSuccess(_:)), name: AddRecipeViewController.NotificationUploadRecipeSuccess, object: nil)
+
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -129,6 +131,11 @@ class GeneralInfoTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPicke
         textField.inputAccessoryView = toolBar
     }
     
+    func categoriesLabelToSelectState() {
+        self.categoriesLabel.textColor = Helpers.uicolorFromHex(0xC4C4C8)
+        self.categoriesLabel.text = getLocalizedString("clickToChoose")
+    }
+    
     //--------------------------------------
     // MARK: - actions
     //--------------------------------------
@@ -161,6 +168,12 @@ class GeneralInfoTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPicke
             self.categoriesLabel.text = text
 
         }
+    }
+    
+    func uploadRecipeSuccess(notification: NSNotification) {
+        self.levelTextField.text = ""
+        self.typeTextField.text = ""
+        self.categoriesLabelToSelectState()
     }
     
     //--------------------------------------

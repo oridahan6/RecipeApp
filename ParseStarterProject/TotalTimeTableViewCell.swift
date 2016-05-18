@@ -32,6 +32,8 @@ class TotalTimeTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerV
 
         self.createPickerForTextField(prepTimeTextField, pickerView: prepTimePickerView)
         self.createPickerForTextField(cookTimeTextField, pickerView: cookTimePickerView)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TotalTimeTableViewCell.uploadRecipeSuccess(_:)), name: AddRecipeViewController.NotificationUploadRecipeSuccess, object: nil)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -172,6 +174,10 @@ class TotalTimeTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerV
         
     }
 
+    func uploadRecipeSuccess(notification: NSNotification) {
+        self.prepTimeTextField.text = ""
+        self.cookTimeTextField.text = ""
+    }
 
     //--------------------------------------
     // MARK: - UIPickerViewDataSource methods
@@ -217,7 +223,6 @@ class TotalTimeTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerV
         return label
     }
  
-    
     //--------------------------------------
     // MARK: - UIPickerViewDelegate methods
     //--------------------------------------

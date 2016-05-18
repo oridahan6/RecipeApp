@@ -132,3 +132,10 @@ extension RangeReplaceableCollectionType where Generator.Element : Equatable {
     }
     
 }
+
+extension NSRange {
+    func rangeForString(str: String) -> Range<String.Index>? {
+        guard location != NSNotFound else { return nil }
+        return str.startIndex.advancedBy(location) ..< str.startIndex.advancedBy(location + length)
+    }
+}

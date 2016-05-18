@@ -21,6 +21,8 @@ class ImageAddTableViewCell: UITableViewCell, UINavigationControllerDelegate, UI
         self.uploadImageView.userInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ImageAddTableViewCell.pickImage))
         self.uploadImageView.addGestureRecognizer(tapGesture)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ImageAddTableViewCell.uploadRecipeSuccess(_:)), name: AddRecipeViewController.NotificationUploadRecipeSuccess, object: nil)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -38,6 +40,10 @@ class ImageAddTableViewCell: UITableViewCell, UINavigationControllerDelegate, UI
         picker.allowsEditing = true
         picker.delegate = self
         self.parentController.presentViewController(picker, animated: true, completion: nil)
+    }
+    
+    func uploadRecipeSuccess(notification: NSNotification) {
+        self.uploadImageView.image = UIImage(named: "placeholder.jpg")
     }
     
     //--------------------------------------

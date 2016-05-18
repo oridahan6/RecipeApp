@@ -45,9 +45,11 @@ class AddRecipeButtonsTableViewCell: UITableViewCell {
         if section == 3 {
             count = self.tableViewController.ingredientsArray.count
             self.tableViewController.ingredientsArray.append(addSection ? "section" : "ingredient")
+            self.tableViewController.recipeIngredients["general"]!.append("|")
         } else if section == 4 {
             count = self.tableViewController.directionsArray.count
             self.tableViewController.directionsArray.append(addSection ? "section" : "direction")
+            self.tableViewController.recipeDirections["general"]!.append("")
         }
         self.tableViewController.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: count, inSection: section)], withRowAnimation: UITableViewRowAnimation.Fade)
         self.tableViewController.tableView.endUpdates()

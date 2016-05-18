@@ -261,8 +261,7 @@ class ParseHelper: NSObject {
                 if (success) {
                     // The object has been saved.
                     
-                    vc.hideActivityIndicator()
-                    vc.showSuccessAlert()
+                    vc.handlePostSuccess()
                     
                 } else {
                     // There was a problem, check error.description

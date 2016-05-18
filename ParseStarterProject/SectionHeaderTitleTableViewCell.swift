@@ -19,6 +19,8 @@ class SectionHeaderTitleTableViewCell: UITableViewCell, UITextFieldDelegate {
         // Initialization code
         self.titleTextField.delegate = self
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SectionHeaderTitleTableViewCell.uploadRecipeSuccess(_:)), name: AddRecipeViewController.NotificationUploadRecipeSuccess, object: nil)
+
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -35,6 +37,10 @@ class SectionHeaderTitleTableViewCell: UITableViewCell, UITextFieldDelegate {
         if let title = title {
             self.tableViewController.recipeTitle = title
         }
+    }
+    
+    func uploadRecipeSuccess(notification: NSNotification) {
+        self.titleTextField.text = ""
     }
 
     //--------------------------------------

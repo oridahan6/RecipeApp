@@ -93,6 +93,33 @@ extension String {
             return []
         }
     }
+
+    func firstRegexMatches(regex: String) -> String {
+        let matches = self.regexMatches(regex)
+        if matches.isEmpty {
+            return ""
+        }
+        return matches[0]
+    }
+    
+    func regexMatches(pattern: String) -> Array<String> {
+        let re: NSRegularExpression
+        do {
+            re = try NSRegularExpression(pattern: pattern, options: [])
+        } catch {
+            return []
+        }
+        
+        let matches = re.matchesInString(self, options: [], range: NSRange(location: 0, length: self.utf16.count))
+        var collectMatches: Array<String> = []
+        for match in matches {
+            // range at index 0: full match
+            // range at index 1: first capture group
+            let substring = (self as NSString).substringWithRange(match.rangeAtIndex(1))
+            collectMatches.append(substring)
+        }
+        return collectMatches
+    }
 }
 
 // operators
