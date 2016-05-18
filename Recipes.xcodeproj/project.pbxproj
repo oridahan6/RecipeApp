@@ -39,6 +39,7 @@
 		0C192F2B1CB39C8500811CB4 /* placeholder-w-text.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C192F2A1CB39C8500811CB4 /* placeholder-w-text.png */; };
 		0C192F2D1CB39CC000811CB4 /* placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C192F2C1CB39CC000811CB4 /* placeholder.jpg */; };
 		0C1C31AD1CE9FC1200D9D934 /* tableview-bg-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C1C31AC1CE9FC1200D9D934 /* tableview-bg-667h@2x.png */; };
+		0C1C31B01CECECC200D9D934 /* NoActionsTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1C31AF1CECECC200D9D934 /* NoActionsTextField.swift */; };
 		0C1F4C891CBE6E72002B0631 /* RecipesParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1F4C881CBE6E72002B0631 /* RecipesParentViewController.swift */; };
 		0C407EBF1CDE50AD00C95F8E /* ParseFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C407EBE1CDE50AD00C95F8E /* ParseFile.swift */; };
 		0C47CF701CC3FA6600F26623 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C47CF6F1CC3FA6600F26623 /* AboutViewController.swift */; };
@@ -138,6 +139,7 @@
 		0C192F2A1CB39C8500811CB4 /* placeholder-w-text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder-w-text.png"; sourceTree = "<group>"; };
 		0C192F2C1CB39CC000811CB4 /* placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = placeholder.jpg; sourceTree = "<group>"; };
 		0C1C31AC1CE9FC1200D9D934 /* tableview-bg-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tableview-bg-667h@2x.png"; sourceTree = "<group>"; };
+		0C1C31AF1CECECC200D9D934 /* NoActionsTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoActionsTextField.swift; sourceTree = "<group>"; };
 		0C1F4C881CBE6E72002B0631 /* RecipesParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipesParentViewController.swift; sourceTree = "<group>"; };
 		0C407EBE1CDE50AD00C95F8E /* ParseFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseFile.swift; sourceTree = "<group>"; };
 		0C47CF6F1CC3FA6600F26623 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -310,6 +312,14 @@
 			name = RecipeDetailsCells;
 			sourceTree = "<group>";
 		};
+		0C1C31AE1CECEC8C00D9D934 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				0C1C31AF1CECECC200D9D934 /* NoActionsTextField.swift */,
+			);
+			name = Controls;
+			sourceTree = "<group>";
+		};
 		0C47CF7D1CC66E1000F26623 /* TextFieldEffects */ = {
 			isa = PBXGroup;
 			children = (
@@ -459,6 +469,7 @@
 				0C7BDA861CA969C70056ADCD /* Helpers */,
 				0C0CD0BC1CABD09300F682F9 /* Libraries */,
 				0C7BD9E41CA808B10056ADCD /* Model */,
+				0C1C31AE1CECEC8C00D9D934 /* Controls */,
 				0C7BDA761CA90D9C0056ADCD /* Views */,
 				0C7BD9E31CA808A70056ADCD /* Controller */,
 				81BA814A1A49DA1800E65899 /* AppDelegate.swift */,
@@ -697,6 +708,7 @@
 				0C151EB21CC8CA6100631614 /* GeneralInfoTableViewCell.swift in Sources */,
 				0C151EAA1CC7CE7D00631614 /* SectionHeaderTitleTableViewCell.swift in Sources */,
 				0C7399601CE62CB90083CA34 /* DGElasticPullToRefreshLoadingView.swift in Sources */,
+				0C1C31B01CECECC200D9D934 /* NoActionsTextField.swift in Sources */,
 				0C9B154E1CD5CCD6009412AE /* AddDirectionTableViewCell.swift in Sources */,
 				0C7399611CE62CB90083CA34 /* DGElasticPullToRefreshLoadingViewCircle.swift in Sources */,
 				0C0CD0D31CAD627000F682F9 /* PrepTimeTableViewCell.swift in Sources */,

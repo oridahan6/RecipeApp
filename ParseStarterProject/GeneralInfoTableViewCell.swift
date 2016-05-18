@@ -10,8 +10,8 @@ import UIKit
 
 class GeneralInfoTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
 
-    @IBOutlet var levelTextField: UITextField!
-    @IBOutlet var typeTextField: UITextField!
+    @IBOutlet var levelTextField: NoActionsTextField!
+    @IBOutlet var typeTextField: NoActionsTextField!
     @IBOutlet var categoriesLabel: UILabel!
     
     var levelOptions = [getLocalizedString("levelBegginer"), getLocalizedString("levelIntermediate"), getLocalizedString("levelAdvanced")]
@@ -20,7 +20,7 @@ class GeneralInfoTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPicke
     let levelPickerView = UIPickerView()
     let typePickerView = UIPickerView()
     
-    var activeTextField:UITextField?
+    var activeTextField: NoActionsTextField?
     var tableViewController: AddRecipeViewController!
 
     override func awakeFromNib() {
@@ -110,7 +110,7 @@ class GeneralInfoTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPicke
         }
     }
     
-    func createPickerForTextField(textField: UITextField, pickerView: UIPickerView) {
+    func createPickerForTextField(textField: NoActionsTextField, pickerView: UIPickerView) {
         textField.delegate = self
         pickerView.delegate = self
         let toolBar = UIToolbar()
@@ -118,8 +118,6 @@ class GeneralInfoTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPicke
         toolBar.translucent = true
         toolBar.tintColor = Helpers.getRedColor()
         toolBar.sizeToFit()
-        
-        textField.tintColor = UIColor.clearColor()
         
         let doneButton = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: #selector(GeneralInfoTableViewCell.donePicker))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
@@ -187,7 +185,7 @@ class GeneralInfoTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPicke
     }
     
     func textFieldDidBeginEditing(textField: UITextField) { // became first responder
-        activeTextField = textField
+        activeTextField = textField as? NoActionsTextField
         if textField == typeTextField {
             typeTextField.text = self.typeOptions[self.typePickerView.selectedRowInComponent(0)]
         } else if textField == levelTextField {

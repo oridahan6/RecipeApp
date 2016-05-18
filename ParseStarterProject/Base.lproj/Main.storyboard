@@ -1648,7 +1648,7 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="לחץ לבחירה" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qp2-vs-dL5">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="לחץ לבחירה" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qp2-vs-dL5" customClass="NoActionsTextField" customModule="Recipes" customModuleProvider="target">
                                             <rect key="frame" x="338" y="38" width="97" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="MfU-xW-3hr"/>
@@ -1657,7 +1657,7 @@
                                             <fontDescription key="fontDescription" name="Alef-Regular" family="Alef" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="לחץ לבחירה" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Oa-ot-QVk">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="לחץ לבחירה" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Oa-ot-QVk" customClass="NoActionsTextField" customModule="Recipes" customModuleProvider="target">
                                             <rect key="frame" x="338" y="11" width="97" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="97" id="HjG-RU-d1e"/>
@@ -1763,7 +1763,7 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="לחץ לבחירה" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4cr-HB-Q4B">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="לחץ לבחירה" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4cr-HB-Q4B" customClass="NoActionsTextField" customModule="Recipes" customModuleProvider="target">
                                             <rect key="frame" x="275" y="38" width="169" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="169" id="bBZ-cU-X7Z"/>
@@ -1772,7 +1772,7 @@
                                             <fontDescription key="fontDescription" name="Alef-Regular" family="Alef" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="לחץ לבחירה" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cIV-E1-jpK">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="לחץ לבחירה" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cIV-E1-jpK" customClass="NoActionsTextField" customModule="Recipes" customModuleProvider="target">
                                             <rect key="frame" x="275" y="10" width="169" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="169" id="XXx-Hl-Nwq"/>

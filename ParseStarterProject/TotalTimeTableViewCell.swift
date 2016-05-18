@@ -10,8 +10,8 @@ import UIKit
 
 class TotalTimeTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
 
-    @IBOutlet var prepTimeTextField: UITextField!
-    @IBOutlet var cookTimeTextField: UITextField!
+    @IBOutlet var prepTimeTextField: NoActionsTextField!
+    @IBOutlet var cookTimeTextField: NoActionsTextField!
 
     var hoursOptions = Array(0...24)
     var minutesOptions = Array(0...59)
@@ -19,8 +19,8 @@ class TotalTimeTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerV
     let prepTimePickerView = UIPickerView()
     let cookTimePickerView = UIPickerView()
 
-    var activeTextField:UITextField?
-    var activePickerView:UIPickerView?
+    var activeTextField: NoActionsTextField?
+    var activePickerView: UIPickerView?
     var tableViewController: AddRecipeViewController!
 
     var currentPrepTime = 0
@@ -88,8 +88,6 @@ class TotalTimeTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerV
         toolBar.translucent = true
         toolBar.tintColor = Helpers.getRedColor()
         toolBar.sizeToFit()
-        
-        textField.tintColor = UIColor.clearColor()
         
         // Add fixed labels
         self.addFixedLabelsToPickerView(pickerView)
@@ -270,7 +268,7 @@ class TotalTimeTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerV
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
-        activeTextField = textField
+        activeTextField = textField as? NoActionsTextField
         
         if textField == prepTimeTextField {
             activePickerView = self.prepTimePickerView
