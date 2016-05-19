@@ -59,6 +59,8 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
         
         configureSearchController()
         
+        self.addPullToRefresh()
+        
         self.definesPresentationContext = true
     }
     
@@ -124,6 +126,13 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
     //--------------------------------------
     // MARK: - Helpers Methods
     //--------------------------------------
+
+    func loadCategories(fromPullToRefresh: Bool = false) {
+        if !fromPullToRefresh {
+            self.beginUpdateView()
+        }
+        ParseHelper.sharedInstance.updateCategories(self)
+    }
 
     func showSearchBar(sender: UIBarButtonItem) {
         self.navigationItem.rightBarButtonItem = nil
@@ -193,6 +202,30 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
         return categories[index]
     }
     
+    func addPullToRefresh() {
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.tintColor = tableView.backgroundColor!
+        tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
+            
+            self?.loadCategories(true)
+            
+            // Do not forget to call dg_stopLoading() at the end
+            }, loadingView: loadingView)
+        if let navBarColor = navigationController?.navigationBar.barTintColor {
+            tableView.dg_setPullToRefreshFillColor(navBarColor)
+        }
+        tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
+    }
+    
+    func beginUpdateView() {
+        self.activityIndicator.show()
+    }
+    
+    func endUpdateView() {
+        self.activityIndicator.hide()
+        self.tableView.dg_stopLoading()
+    }
+
     private func isShowSearchResults() -> Bool {
         if searchController.searchBar.text?.isEmpty == true {
             return false

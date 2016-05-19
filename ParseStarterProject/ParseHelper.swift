@@ -88,15 +88,15 @@ class ParseHelper: NSObject {
                 }
                 self.allCategories = vc.categories
                 if objects.count > 0 {
-                    vc.activityIndicator.hide()
+                    vc.endUpdateView()
                 }
             }
         }
         func errorBlock () -> Void {
-            vc.activityIndicator.hide()
+            vc.endUpdateView()
         }
         func updateViewBlock() -> Void {
-            vc.activityIndicator.show()
+            vc.beginUpdateView()
         }
         func extraNetworkSuccessBlock() -> Void {
             self.categoriesLastFetched = NSDate()
