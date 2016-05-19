@@ -242,14 +242,16 @@ class ParseHelper: NSObject {
             recipe.setValue(level, forKey: "level")
             recipe.setValue(type, forKey: "type")
             
-            var categoriesIds = [Int]()
+            var categoriesIds = [String]()
+            var categoriesCatIds = [Int]()
             if let categories = recipeData["categories"] as? [Category] {
                 for category in categories {
-                    categoriesIds.append(category.catId)
+                    categoriesIds.append(category.id)
+                    categoriesCatIds.append(category.catId)
                 }
             }
             
-            recipe.setObject(categoriesIds, forKey: "categories")
+            recipe.setObject(categoriesCatIds, forKey: "categories")
             
             recipe.setValue(prepTime, forKey: "prepTime")
             recipe.setValue(cookTime, forKey: "cookTime")
@@ -260,8 +262,8 @@ class ParseHelper: NSObject {
                 (success: Bool, error: NSError?) -> Void in
                 if (success) {
                     // The object has been saved.
-                    
                     vc.handlePostSuccess()
+                    self.updateCategoriesRecipesCount(categoriesIds)
                     
                 } else {
                     // There was a problem, check error.description
@@ -318,6 +320,28 @@ class ParseHelper: NSObject {
     //--------------------------------------
     // MARK: - Helpers
     //--------------------------------------
+    
+    private func updateCategoriesRecipesCount(ids: [String]) {
+        let query = PFQuery(className: self.parseClassNameCategories)
+        query.whereKey("objectId", containedIn: ids)
+        
+        query.findObjectsInBackgroundWithBlock({ (objects: [AnyObject]?, error: NSError?) in
+            if (error == nil) {
+                if let categories = objects {
+                    for category in categories {
+                        category.incrementKey("recipesCount")
+                    }
+                    PFObject.saveAllInBackground(categories, block: { (success, error) in
+                        if !success || error != nil {
+                            print("Saving categories' recipes count failed")
+                        }
+                    })
+                }
+            } else {
+                print("Fetch categories failed")
+            }
+        })
+    }
     
     private func findObjectsLocallyThenRemotely(query: PFQuery!, lastUpdateDate: NSDate?, successBlock:[AnyObject]! -> Void, extraNetworkSuccessBlock:Void -> Void = {}, errorBlock:Void -> Void = {}, updateViewBlock:Void -> Void = {}) {
         
