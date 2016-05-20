@@ -633,15 +633,14 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
     
     func clickedOnTheMainButton() {
         prompt.dismissPrompt()
-        self.navigationController?.navigationBar.userInteractionEnabled = true
     }
     
     func clickedOnTheSecondButton() {
         prompt.dismissPrompt()
-        self.navigationController?.navigationBar.userInteractionEnabled = true
     }
     
     func promptWasDismissed() {
+        self.navigationController?.navigationBar.userInteractionEnabled = true
     }
 
     //--------------------------------------
