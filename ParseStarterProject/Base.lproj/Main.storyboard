@@ -1412,7 +1412,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="215"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="RTr-4z-DsO">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder-w-add.png" translatesAutoresizingMaskIntoConstraints="NO" id="RTr-4z-DsO">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="215"/>
                                         </imageView>
                                     </subviews>
@@ -1964,6 +1964,7 @@
         <image name="favorite-btn-bg" width="40" height="40"/>
         <image name="login-button" width="280" height="50"/>
         <image name="placeholder-bg.png" width="1250" height="703"/>
+        <image name="placeholder-w-add.png" width="1250" height="703"/>
         <image name="placeholder.jpg" width="1250" height="703"/>
         <image name="prep-icon" width="20" height="19"/>
         <image name="section-circle" width="30" height="30"/>

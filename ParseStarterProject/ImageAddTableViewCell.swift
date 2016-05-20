@@ -43,7 +43,7 @@ class ImageAddTableViewCell: UITableViewCell, UINavigationControllerDelegate, UI
     }
     
     func uploadRecipeSuccess(notification: NSNotification) {
-        self.uploadImageView.image = UIImage(named: "placeholder.jpg")
+        self.uploadImageView.image = UIImage(named: "placeholder-w-add.png")
     }
     
     //--------------------------------------
