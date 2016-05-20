@@ -242,7 +242,7 @@
 				0CCC38201CBBBCA10055384F /* SwiftPrompts */,
 				0C0CD0C21CABD5E100F682F9 /* FontAwesomeSwift */,
 			);
-			name = Libraries;
+			path = Libraries;
 			sourceTree = "<group>";
 		};
 		0C0CD0C21CABD5E100F682F9 /* FontAwesomeSwift */ = {
@@ -253,7 +253,7 @@
 				0C0CD0C51CABD5FB00F682F9 /* FontAwesome.otf */,
 				0C0CD0C61CABD5FB00F682F9 /* FontAwesome.swift */,
 			);
-			name = FontAwesomeSwift;
+			path = FontAwesomeSwift;
 			sourceTree = "<group>";
 		};
 		0C151EA81CC7CE0F00631614 /* AddRecipeCells */ = {
@@ -270,7 +270,7 @@
 				0C151EAB1CC8AB2900631614 /* ImageAddTableViewCell.swift */,
 				0C151EA91CC7CE7D00631614 /* SectionHeaderTitleTableViewCell.swift */,
 			);
-			name = AddRecipeCells;
+			path = AddRecipeCells;
 			sourceTree = "<group>";
 		};
 		0C192F0F1CB27FAB00811CB4 /* Fonts */ = {
@@ -280,7 +280,7 @@
 				0CD15FF21CB140F000C7B828 /* Alef-regular.ttf */,
 				0CD15FEF1CB1323200C7B828 /* hillelclm-medium-webfont.ttf */,
 			);
-			name = Fonts;
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		0C192F101CB27FB200811CB4 /* Images */ = {
@@ -298,7 +298,7 @@
 				0C192F161CB27FC500811CB4 /* tableview-bg@3x.png */,
 				0C47CF731CC49EB100F26623 /* Yochi.jpg */,
 			);
-			name = Images;
+			path = Images;
 			sourceTree = "<group>";
 		};
 		0C192F251CB3928700811CB4 /* RecipeDetailsCells */ = {
@@ -312,7 +312,7 @@
 				0C0CD0CE1CAD618E00F682F9 /* IngredientTableViewCell.swift */,
 				0C0CD0CC1CAD614F00F682F9 /* DirectionTableViewCell.swift */,
 			);
-			name = RecipeDetailsCells;
+			path = RecipeDetailsCells;
 			sourceTree = "<group>";
 		};
 		0C1C31AE1CECEC8C00D9D934 /* Controls */ = {
@@ -320,7 +320,7 @@
 			children = (
 				0C1C31AF1CECECC200D9D934 /* NoActionsTextField.swift */,
 			);
-			name = Controls;
+			path = Controls;
 			sourceTree = "<group>";
 		};
 		0C47CF7D1CC66E1000F26623 /* TextFieldEffects */ = {
@@ -368,7 +368,7 @@
 				0C47CF6F1CC3FA6600F26623 /* AboutViewController.swift */,
 				0C47CF7B1CC667A500F26623 /* LoginViewController.swift */,
 			);
-			name = Controller;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		0C7BD9E41CA808B10056ADCD /* Model */ = {
@@ -377,7 +377,7 @@
 				0C192F211CB38C4B00811CB4 /* Category.swift */,
 				0C7BD9E51CA808D00056ADCD /* Recipe.swift */,
 			);
-			name = Model;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		0C7BD9E91CA80D990056ADCD /* Parse */ = {
@@ -389,7 +389,7 @@
 				0C151EA01CC7978E00631614 /* ParseUser.swift */,
 				0C407EBE1CDE50AD00C95F8E /* ParseFile.swift */,
 			);
-			name = Parse;
+			path = Parse;
 			sourceTree = "<group>";
 		};
 		0C7BDA761CA90D9C0056ADCD /* Views */ = {
@@ -398,7 +398,7 @@
 				0C999F5F1CB502A000E3844D /* Cells */,
 				0C7BDA791CA90E650056ADCD /* RecipeDetails.swift */,
 			);
-			name = Views;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		0C7BDA861CA969C70056ADCD /* Helpers */ = {
@@ -414,7 +414,7 @@
 				0C999F5B1CB4D80400E3844D /* KingfisherHelper.swift */,
 				0CCC381E1CBBB2BF0055384F /* Reachability.swift */,
 			);
-			name = Helpers;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		0C999F5F1CB502A000E3844D /* Cells */ = {
@@ -426,7 +426,7 @@
 				0C7BDA771CA90DB70056ADCD /* RecipeTableViewCell.swift */,
 				0C192F261CB392BD00811CB4 /* CategoryTableViewCell.swift */,
 			);
-			name = Cells;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		0CCC38201CBBBCA10055384F /* SwiftPrompts */ = {
@@ -436,7 +436,7 @@
 				0CCC38221CBBBCB60055384F /* SwiftPromptsView.swift */,
 				0CCC38231CBBBCB60055384F /* UIImageEffects.swift */,
 			);
-			name = SwiftPrompts;
+			path = SwiftPrompts;
 			sourceTree = "<group>";
 		};
 		0CD15FEE1CB1320F00C7B828 /* Resources */ = {
@@ -445,7 +445,7 @@
 				0C192F101CB27FB200811CB4 /* Images */,
 				0C192F0F1CB27FAB00811CB4 /* Fonts */,
 			);
-			name = Resources;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		81BA813C1A49DA1800E65899 = {
