@@ -1475,35 +1475,94 @@
                                     <outlet property="titleLabel" destination="wLk-2N-AMk" id="Yt9-xf-kRJ"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AddDirectionTableViewCell" rowHeight="38" id="pQb-2f-N3s" customClass="AddDirectionTableViewCell" customModule="Recipes" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="397" width="600" height="38"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AddRecipeButtonsTableViewCell" rowHeight="44" id="l98-ut-cwt" customClass="AddRecipeButtonsTableViewCell" customModule="Recipes" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="397" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pQb-2f-N3s" id="me0-AR-NJD">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="38"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="l98-ut-cwt" id="n5j-IG-Njd">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OhR-u7-GHT">
-                                            <rect key="frame" x="17" y="4" width="537" height="30"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q9b-z7-r3a">
+                                            <rect key="frame" x="488" y="7" width="66" height="30"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="30" id="RUD-6I-Szq"/>
+                                                <constraint firstAttribute="height" constant="30" id="JkC-Oy-0lc"/>
+                                                <constraint firstAttribute="width" constant="66" id="w6W-lV-yvx"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="Alef-Regular" family="Alef" pointSize="20"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
+                                            <state key="normal" title="הוסף מצרך"/>
+                                            <connections>
+                                                <action selector="addLine:" destination="l98-ut-cwt" eventType="touchUpInside" id="Bqg-70-uTt"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oZC-WJ-RwQ">
+                                            <rect key="frame" x="420" y="7" width="50" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="WFN-EX-o6E"/>
+                                                <constraint firstAttribute="height" constant="30" id="X64-bp-BkR"/>
+                                            </constraints>
+                                            <state key="normal" title="עריכה"/>
+                                            <connections>
+                                                <action selector="edit:" destination="l98-ut-cwt" eventType="touchUpInside" id="dCB-Ny-MQT"/>
+                                            </connections>
+                                        </button>
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O2t-LU-YGn">
+                                            <rect key="frame" x="330" y="7" width="72" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="72" id="5oe-py-7XD"/>
+                                                <constraint firstAttribute="height" constant="30" id="j77-ZY-RGY"/>
+                                            </constraints>
+                                            <state key="normal" title="הוסף כותרת"/>
+                                            <connections>
+                                                <action selector="addSubSection:" destination="l98-ut-cwt" eventType="touchUpInside" id="pzJ-r3-ryo"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="OhR-u7-GHT" secondAttribute="trailing" constant="46" id="T5E-5E-xaX"/>
-                                        <constraint firstItem="OhR-u7-GHT" firstAttribute="leading" secondItem="me0-AR-NJD" secondAttribute="leading" constant="17" id="ZNQ-kq-J9b"/>
-                                        <constraint firstItem="OhR-u7-GHT" firstAttribute="top" secondItem="me0-AR-NJD" secondAttribute="top" constant="4" id="pqa-Fw-BXn"/>
+                                        <constraint firstAttribute="trailing" secondItem="q9b-z7-r3a" secondAttribute="trailing" constant="46" id="6ql-i7-VCg"/>
+                                        <constraint firstItem="q9b-z7-r3a" firstAttribute="top" secondItem="n5j-IG-Njd" secondAttribute="top" constant="7" id="GE3-3E-dy4"/>
+                                        <constraint firstItem="q9b-z7-r3a" firstAttribute="leading" secondItem="oZC-WJ-RwQ" secondAttribute="trailing" constant="18" id="NbY-5f-Wt7"/>
+                                        <constraint firstItem="O2t-LU-YGn" firstAttribute="top" secondItem="n5j-IG-Njd" secondAttribute="top" constant="7" id="TK7-pD-wK3"/>
+                                        <constraint firstItem="oZC-WJ-RwQ" firstAttribute="leading" secondItem="O2t-LU-YGn" secondAttribute="trailing" constant="18" id="WlL-yq-EUK"/>
+                                        <constraint firstItem="oZC-WJ-RwQ" firstAttribute="top" secondItem="n5j-IG-Njd" secondAttribute="top" constant="7" id="q4U-iK-Wq7"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.98823529409999999" green="0.98823529409999999" blue="0.98823529409999999" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <outlet property="directionTextField" destination="OhR-u7-GHT" id="QJc-vG-sWQ"/>
+                                    <outlet property="addSectionButton" destination="O2t-LU-YGn" id="9C9-Fe-GyP"/>
+                                    <outlet property="addTextButton" destination="q9b-z7-r3a" id="YeU-Je-0rX"/>
+                                    <outlet property="editButton" destination="oZC-WJ-RwQ" id="caM-ci-taU"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AddDirectionTableViewCell" rowHeight="84" id="pQb-2f-N3s" customClass="AddDirectionTableViewCell" customModule="Recipes" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="441" width="600" height="84"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pQb-2f-N3s" id="me0-AR-NJD">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="84"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="SGC-B3-IGN">
+                                            <rect key="frame" x="17" y="5" width="537" height="74"/>
+                                            <color key="backgroundColor" red="0.95294117647058818" green="0.93333333333333335" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="74" id="Aeb-B8-T1R"/>
+                                            </constraints>
+                                            <string key="text">מערבבים את החומרים היבשים והפפאיה המיובשת בקערה, מוסיפים את התערובת הנוזלית ומערבבים היטב. מערבבים את החומרים היבשים והפפאיה המיובשת בקערה, מוסיפים את התערובת הנוזלית ומערבבים היטב.</string>
+                                            <fontDescription key="fontDescription" name="Alef-Regular" family="Alef" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="SGC-B3-IGN" secondAttribute="trailing" constant="46" id="Ayt-NT-48y"/>
+                                        <constraint firstItem="SGC-B3-IGN" firstAttribute="leading" secondItem="me0-AR-NJD" secondAttribute="leading" constant="17" id="tHB-lW-la5"/>
+                                        <constraint firstItem="SGC-B3-IGN" firstAttribute="top" secondItem="me0-AR-NJD" secondAttribute="top" constant="5" id="w6n-wN-vzc"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.98823529409999999" green="0.98823529409999999" blue="0.98823529409999999" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="directionTextView" destination="SGC-B3-IGN" id="yox-N1-fHv"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AddDirectionSectionTableViewCell" rowHeight="44" id="2p9-4S-HMh" customClass="AddDirectionSectionTableViewCell" customModule="Recipes" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="435" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="525" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2p9-4S-HMh" id="siq-CU-YX1">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -1536,7 +1595,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AddIngredientTableViewCell" rowHeight="38" id="non-rZ-VYh" customClass="AddIngredientTableViewCell" customModule="Recipes" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="479" width="600" height="38"/>
+                                <rect key="frame" x="0.0" y="569" width="600" height="38"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="non-rZ-VYh" id="E2i-91-uHJ">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="38"/>
@@ -1575,7 +1634,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AddIngredientSectionTableViewCell" rowHeight="44" id="krI-er-rbe" customClass="AddIngredientSectionTableViewCell" customModule="Recipes" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="517" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="607" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="krI-er-rbe" id="MbE-Cl-Pua">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -1608,7 +1667,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="GeneralInfoTableViewCell" rowHeight="94" id="XIg-T7-wWI" customClass="GeneralInfoTableViewCell" customModule="Recipes" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="561" width="600" height="94"/>
+                                <rect key="frame" x="0.0" y="651" width="600" height="94"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XIg-T7-wWI" id="3kc-uv-Udu">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="94"/>
@@ -1723,7 +1782,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TotalTimeTableViewCell" rowHeight="65" id="X1m-4c-eef" customClass="TotalTimeTableViewCell" customModule="Recipes" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="655" width="600" height="65"/>
+                                <rect key="frame" x="0.0" y="745" width="600" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="X1m-4c-eef" id="XLf-ZP-ZyC">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
@@ -1801,49 +1860,6 @@
                                 <connections>
                                     <outlet property="cookTimeTextField" destination="4cr-HB-Q4B" id="b5w-Si-rEq"/>
                                     <outlet property="prepTimeTextField" destination="cIV-E1-jpK" id="lUG-nZ-LOc"/>
-                                </connections>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AddRecipeButtonsTableViewCell" rowHeight="44" id="l98-ut-cwt" customClass="AddRecipeButtonsTableViewCell" customModule="Recipes" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="720" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="l98-ut-cwt" id="n5j-IG-Njd">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q9b-z7-r3a">
-                                            <rect key="frame" x="488" y="7" width="66" height="30"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="30" id="JkC-Oy-0lc"/>
-                                                <constraint firstAttribute="width" constant="66" id="w6W-lV-yvx"/>
-                                            </constraints>
-                                            <state key="normal" title="הוסף מצרך"/>
-                                            <connections>
-                                                <action selector="addLine:" destination="l98-ut-cwt" eventType="touchUpInside" id="Bqg-70-uTt"/>
-                                            </connections>
-                                        </button>
-                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O2t-LU-YGn">
-                                            <rect key="frame" x="394" y="7" width="72" height="30"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="30" id="Lqr-Jl-fp2"/>
-                                                <constraint firstAttribute="width" constant="72" id="Lxz-Nh-9ng"/>
-                                            </constraints>
-                                            <state key="normal" title="הוסף כותרת"/>
-                                            <connections>
-                                                <action selector="addSubSection:" destination="l98-ut-cwt" eventType="touchUpInside" id="pzJ-r3-ryo"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="O2t-LU-YGn" firstAttribute="top" secondItem="n5j-IG-Njd" secondAttribute="top" constant="7" id="2cb-iL-utQ"/>
-                                        <constraint firstAttribute="trailing" secondItem="q9b-z7-r3a" secondAttribute="trailing" constant="46" id="6ql-i7-VCg"/>
-                                        <constraint firstItem="q9b-z7-r3a" firstAttribute="top" secondItem="n5j-IG-Njd" secondAttribute="top" constant="7" id="GE3-3E-dy4"/>
-                                        <constraint firstItem="q9b-z7-r3a" firstAttribute="leading" secondItem="O2t-LU-YGn" secondAttribute="trailing" constant="22" id="sd1-nv-a6l"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.98823529409999999" green="0.98823529409999999" blue="0.98823529409999999" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <outlet property="addSectionButton" destination="O2t-LU-YGn" id="9C9-Fe-GyP"/>
-                                    <outlet property="addTextButton" destination="q9b-z7-r3a" id="YeU-Je-0rX"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

@@ -8,9 +8,9 @@
 
 import UIKit
 
-class AddDirectionTableViewCell: UITableViewCell, UITextFieldDelegate {
+class AddDirectionTableViewCell: UITableViewCell, UITextViewDelegate {
 
-    @IBOutlet var directionTextField: UITextField!
+    @IBOutlet var directionTextView: UITextView!
     
     var tableViewController: AddRecipeViewController!
 
@@ -18,8 +18,10 @@ class AddDirectionTableViewCell: UITableViewCell, UITextFieldDelegate {
         super.awakeFromNib()
         // Initialization code
         
-        self.directionTextField.delegate = self
-        self.directionTextField.tag = 0
+        self.directionTextView.delegate = self
+        
+        // delete this line
+        self.directionTextView.tag = 0
         
     }
 
@@ -31,37 +33,37 @@ class AddDirectionTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        var frame = self.contentView.frame
-        frame.size.width = frame.size.width + 38
-        
-        self.contentView.frame = frame
 
-        self.directionTextField.addBottomBorder()
+        self.directionTextView.layer.borderWidth = 0.5
+        self.directionTextView.layer.borderColor = UIColor.blackColor().CGColor
+        
+        if let tableVC = self.tableViewController {
+            if tableVC.isDirectionEditing {
+                var frame = self.contentView.frame
+                frame.size.width = frame.size.width + 38
+                self.contentView.frame = frame
+            }
+        }
+        
     }
+    
     
 
+    // add text view delegate methods
+
     //--------------------------------------
-    // MARK: - Text Field Delegate
+    // MARK: - Text View Delegate
     //--------------------------------------
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+    func textViewDidEndEditing(textView: UITextView) {
+        textView.resignFirstResponder()
+        self.updateDirectionsArray(textView)
     }
-    
-    func textFieldDidEndEditing(textField: UITextField) {
-        self.updateDirectionsArray(textField)
-    }
-    
-    //--------------------------------------
-    // MARK: - helpers
-    //--------------------------------------
-    
+
     // not supporting sections yet
-    func updateDirectionsArray(textField: UITextField) {
+    func updateDirectionsArray(textView: UITextView) {
         
-        if let directionText = textField.text, let cell = textField.superview?.superview as? AddDirectionTableViewCell {
+        if let directionText = textView.text, let cell = textView.superview?.superview as? AddDirectionTableViewCell {
             if let indexPath = self.tableViewController.tableView.indexPathForCell(cell) {
                 let currentRow = indexPath.row
                 if var recipeDirections = self.tableViewController.recipeDirections["general"] {

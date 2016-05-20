@@ -12,6 +12,7 @@ class AddRecipeButtonsTableViewCell: UITableViewCell {
 
     @IBOutlet var addTextButton: UIButton!
     @IBOutlet var addSectionButton: UIButton!
+    @IBOutlet var editButton: UIButton!
     
     var tableViewController: AddRecipeViewController!
     
@@ -21,6 +22,17 @@ class AddRecipeButtonsTableViewCell: UITableViewCell {
     
     @IBAction func addSubSection(sender: AnyObject) {
         self.addLineBySection(sender.tag, addSection: true)
+    }
+    
+    @IBAction func edit(sender: AnyObject) {
+        let section = sender.tag
+        
+        if section == 3 {
+            self.tableViewController.isIngredientEditing = !self.tableViewController.isIngredientEditing
+        } else if section == 4 {
+            self.tableViewController.isDirectionEditing = !self.tableViewController.isDirectionEditing
+        }
+        self.tableViewController.tableView.reloadSections(NSIndexSet(index: section), withRowAnimation: .None)
     }
     
     override func awakeFromNib() {

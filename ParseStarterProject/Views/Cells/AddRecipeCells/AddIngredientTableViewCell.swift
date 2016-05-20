@@ -32,11 +32,15 @@ class AddIngredientTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        var frame = self.contentView.frame
-        frame.size.width = frame.size.width + 38
 
-        self.contentView.frame = frame
+        if let tableVC = self.tableViewController {
+            if tableVC.isIngredientEditing {
+                var frame = self.contentView.frame
+                frame.size.width = frame.size.width + 38
+
+                self.contentView.frame = frame
+            }
+        }
 
         self.ingredientTextTextField.addBottomBorder()
         self.ingredientAmountTextField.addBottomBorder()
