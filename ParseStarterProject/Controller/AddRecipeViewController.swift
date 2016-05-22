@@ -164,7 +164,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
                     
                     if let ingredientsArr = self.recipeIngredients["general"] {
                         cell.ingredientAmountTextField.text = self.getAmountFromIngredient(ingredientsArr[indexPath.row])
-                        cell.ingredientTextTextField.text = self.getTextFromIngredient(ingredientsArr[indexPath.row])
+                        cell.ingredientTextTextView.text = self.getTextFromIngredient(ingredientsArr[indexPath.row])
                     }
                     
                     return cell
@@ -401,7 +401,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
         } else if indexPath.section == 1 || indexPath.section == 2 {
             return 94.0
         } else if indexPath.section == 3 && indexPath.row < self.ingredientsArray.count {
-            return 38.0
+            return 60.0
         } else if indexPath.section == 4 && indexPath.row < self.directionsArray.count {
             return 84.0
         }

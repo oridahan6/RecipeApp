@@ -8,19 +8,23 @@
 
 import UIKit
 
-class AddIngredientTableViewCell: UITableViewCell, UITextFieldDelegate {
+class AddIngredientTableViewCell: UITableViewCell, UITextFieldDelegate, UITextViewDelegate {
 
     @IBOutlet var ingredientAmountTextField: UITextField!
-    @IBOutlet var ingredientTextTextField: UITextField!
+    @IBOutlet var ingredientTextTextView: UITextView!
     
     var tableViewController: AddRecipeViewController!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        self.ingredientTextTextField.delegate = self
+        self.ingredientTextTextView.delegate = self
+        self.ingredientTextTextView.textContainerInset = UIEdgeInsetsMake(8, 5, 8, 5); // top, left, bottom, right
+        self.ingredientTextTextView.backgroundColor = Helpers.uicolorFromHex(0xF3EEE8)
+        self.ingredientTextTextView.tag = 0
+        
         self.ingredientAmountTextField.delegate = self
-        self.ingredientTextTextField.tag = 0
+        self.ingredientAmountTextField.backgroundColor = Helpers.uicolorFromHex(0xF3EEE8)
         self.ingredientAmountTextField.tag = 0
     }
 
@@ -33,6 +37,11 @@ class AddIngredientTableViewCell: UITableViewCell, UITextFieldDelegate {
     override func layoutSubviews() {
         super.layoutSubviews()
 
+        self.ingredientTextTextView.layer.borderWidth = 0.5
+        self.ingredientTextTextView.layer.borderColor = UIColor.blackColor().CGColor
+        self.ingredientAmountTextField.layer.borderWidth = 0.5
+        self.ingredientAmountTextField.layer.borderColor = UIColor.blackColor().CGColor
+        
         if let tableVC = self.tableViewController {
             if tableVC.isIngredientEditing {
                 var frame = self.contentView.frame
@@ -41,10 +50,24 @@ class AddIngredientTableViewCell: UITableViewCell, UITextFieldDelegate {
                 self.contentView.frame = frame
             }
         }
-
-        self.ingredientTextTextField.addBottomBorder()
-        self.ingredientAmountTextField.addBottomBorder()
         
+    }
+    
+    //--------------------------------------
+    // MARK: - Text View Delegate
+    //--------------------------------------
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        textView.resignFirstResponder()
+        self.updateIngredientArray(fromTextView: textView)
+    }
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
     }
     
     //--------------------------------------
@@ -57,51 +80,75 @@ class AddIngredientTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
-        self.updateIngredientArray(textField)
+        self.updateIngredientArray(fromTextField: textField)
     }
     
     //--------------------------------------
     // MARK: - helpers
     //--------------------------------------
 
-    func updateIngredientArray(textField: UITextField) {
+    func updateIngredientArray(fromTextField textField: UITextField) {
+        if let cell = textField.superview?.superview as? AddIngredientTableViewCell {
+            self.updateIngredientArray(cell)
+        }
+    }
+    
+    func updateIngredientArray(fromTextView textView: UITextView) {
+        if let cell = textView.superview?.superview as? AddIngredientTableViewCell {
+            self.updateIngredientArray(cell)
+        }
+    }
+    
+    func updateIngredientArray(cell: AddIngredientTableViewCell) {
         var ingredientText = ""
         
-        if let cell = textField.superview?.superview as? AddIngredientTableViewCell {
-            for (index, currentTextField) in cell.contentView.subviews.enumerate() {
-                if let currentTextField = currentTextField as? UITextField {
-                    if let text = currentTextField.text {
-                        ingredientText += text
-                    }
-                }
-                if index == 0 {
-                    ingredientText += "|"
+        if let amountText = self.ingredientAmountTextField.text {
+            ingredientText += amountText
+        }
+        ingredientText += "|"
+        if let ingText = self.ingredientTextTextView.text {
+            ingredientText += ingText
+        }
+        
+        if let indexPath = self.tableViewController.tableView.indexPathForCell(cell) {
+            self.tableViewController.recipeIngredients["general"]![indexPath.row] = ingredientText
+        }
+        
+        /*
+        for (index, currentTextField) in cell.contentView.subviews.enumerate() {
+            if let currentTextField = currentTextField as? UITextField {
+                if let text = currentTextField.text {
+                    ingredientText += text
                 }
             }
-            
-            let currentIngredientSection = self.tableViewController.currentIngredientSection
-            
-            if let indexPath = self.tableViewController.tableView.indexPathForCell(cell) {
-                let currentRow = indexPath.row
-                if var ingredientsArray = self.tableViewController.recipeIngredients[currentIngredientSection] {
-                    if let currentSectionIndexes = self.tableViewController.ingredientsEndPositionPerSection[currentIngredientSection] {
+            if index == 0 {
+                ingredientText += "|"
+            }
+        }
+        
+        let currentIngredientSection = self.tableViewController.currentIngredientSection
+        
+        if let indexPath = self.tableViewController.tableView.indexPathForCell(cell) {
+            let currentRow = indexPath.row
+            if var ingredientsArray = self.tableViewController.recipeIngredients[currentIngredientSection] {
+                if let currentSectionIndexes = self.tableViewController.ingredientsEndPositionPerSection[currentIngredientSection] {
 
-                        let currentIndex = currentRow - currentSectionIndexes[0]
-                        
-                        if ingredientsArray.count <= currentIndex {
-                            ingredientsArray.append(ingredientText)
-                            if var currentSectionIndexes = self.tableViewController.ingredientsEndPositionPerSection[self.tableViewController.currentIngredientSection] {
-                                currentSectionIndexes[1] = currentRow
-                                self.tableViewController.ingredientsEndPositionPerSection[self.tableViewController.currentIngredientSection] = currentSectionIndexes
-                            }
-                        } else {
-                            ingredientsArray[currentIndex] = ingredientText
+                    let currentIndex = currentRow - currentSectionIndexes[0]
+                    
+                    if ingredientsArray.count <= currentIndex {
+                        ingredientsArray.append(ingredientText)
+                        if var currentSectionIndexes = self.tableViewController.ingredientsEndPositionPerSection[self.tableViewController.currentIngredientSection] {
+                            currentSectionIndexes[1] = currentRow
+                            self.tableViewController.ingredientsEndPositionPerSection[self.tableViewController.currentIngredientSection] = currentSectionIndexes
                         }
-                        self.tableViewController.recipeIngredients[self.tableViewController.currentIngredientSection] = ingredientsArray
+                    } else {
+                        ingredientsArray[currentIndex] = ingredientText
                     }
+                    self.tableViewController.recipeIngredients[self.tableViewController.currentIngredientSection] = ingredientsArray
                 }
             }
         }
+        */
     }
     
     /* move reorder control to left size

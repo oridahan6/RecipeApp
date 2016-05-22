@@ -19,8 +19,10 @@ class AddDirectionTableViewCell: UITableViewCell, UITextViewDelegate {
         // Initialization code
         
         self.directionTextView.delegate = self
+        self.directionTextView.textContainerInset = UIEdgeInsetsMake(8, 5, 8, 5); // top, left, bottom, right
+        self.directionTextView.backgroundColor = Helpers.uicolorFromHex(0xF3EEE8)
         
-        // delete this line
+        // delete this line ?
         self.directionTextView.tag = 0
         
     }
@@ -47,10 +49,6 @@ class AddDirectionTableViewCell: UITableViewCell, UITextViewDelegate {
         
     }
     
-    
-
-    // add text view delegate methods
-
     //--------------------------------------
     // MARK: - Text View Delegate
     //--------------------------------------
@@ -59,6 +57,18 @@ class AddDirectionTableViewCell: UITableViewCell, UITextViewDelegate {
         textView.resignFirstResponder()
         self.updateDirectionsArray(textView)
     }
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
+    
+    //--------------------------------------
+    // MARK: - Helpers
+    //--------------------------------------
 
     // not supporting sections yet
     func updateDirectionsArray(textView: UITextView) {
