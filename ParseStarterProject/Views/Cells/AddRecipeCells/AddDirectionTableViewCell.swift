@@ -40,7 +40,7 @@ class AddDirectionTableViewCell: UITableViewCell, UITextViewDelegate {
         if let tableVC = self.tableViewController {
             if tableVC.isDirectionEditing {
                 var frame = self.contentView.frame
-                frame.size.width = frame.size.width + 38
+                frame.size.width = frame.size.width + 40
                 self.contentView.frame = frame
             }
         }
