@@ -38,8 +38,8 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
     var prompt = SwiftPromptsView()
     var activityIndicator: ActivityIndicator!
     
-    var ingredientsArray: [String] = ["ingredient"]
-    var directionsArray: [String] = ["direction"]
+//    var ingredientsArray: [String] = ["ingredient"]
+//    var directionsArray: [String] = ["direction"]
     
     var ingredientsEndPositionPerSection = ["general": [0,0]]
     var currentIngredientSection = "general"
@@ -112,9 +112,9 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
         case 2:
             return 1
         case 3:
-            return self.ingredientsArray.count + 1
+            return self.getRecipeIngredientsCount() + 1
         case 4:
-            return self.directionsArray.count + 1
+            return self.getRecipeDirectionsCount() + 1
         default:
             return 0
         }
@@ -139,7 +139,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
             cell.tableViewController = self
             return cell
         case 3:
-            if indexPath.row == self.ingredientsArray.count {
+            if indexPath.row == self.getRecipeIngredientsCount() {
                 let cell = tableView.dequeueReusableCellWithIdentifier(AddRecipeButtonsTableViewCellIdentifier, forIndexPath: indexPath) as! AddRecipeButtonsTableViewCell
                 cell.tableViewController = self
                 cell.addTextButton.setTitle(getLocalizedString("addIngredient"), forState: .Normal)
@@ -152,7 +152,9 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
                 cell.backgroundColor = .clearColor()
                 return cell
             } else {
-                if self.ingredientsArray[indexPath.row] == "section" {
+                if false
+//                    && self.ingredientsArray[indexPath.row] == "section"
+                {
                     let cell = tableView.dequeueReusableCellWithIdentifier(AddIngredientSectionTableViewCellIdentifier, forIndexPath: indexPath) as! AddIngredientSectionTableViewCell
                     cell.backgroundColor = .clearColor()
                     cell.tableViewController = self
@@ -172,7 +174,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
             }
             
         case 4:
-            if indexPath.row == self.directionsArray.count {
+            if indexPath.row == self.getRecipeDirectionsCount() {
                 let cell = tableView.dequeueReusableCellWithIdentifier(AddRecipeButtonsTableViewCellIdentifier, forIndexPath: indexPath) as! AddRecipeButtonsTableViewCell
                 cell.tableViewController = self
                 cell.addTextButton.setTitle(getLocalizedString("addDirection"), forState: .Normal)
@@ -186,7 +188,9 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
                 cell.backgroundColor = .clearColor()
                 return cell
             } else {
-                if self.directionsArray[indexPath.row] == "section" {
+                if false
+//                    && self.directionsArray[indexPath.row] == "section"
+                {
                     let cell = tableView.dequeueReusableCellWithIdentifier(AddDirectionSectionTableViewCellIdentifier, forIndexPath: indexPath) as! AddDirectionSectionTableViewCell
                     cell.backgroundColor = .clearColor()
                     cell.tableViewController = self
@@ -209,16 +213,16 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
     }
 
     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        if  (self.isIngredientEditing && indexPath.section == 3 && indexPath.row != self.ingredientsArray.count) ||
-            (self.isDirectionEditing && indexPath.section == 4 && indexPath.row != self.directionsArray.count) {
+        if  (self.isIngredientEditing && indexPath.section == 3 && indexPath.row != self.getRecipeIngredientsCount()) ||
+            (self.isDirectionEditing && indexPath.section == 4 && indexPath.row != self.getRecipeDirectionsCount()) {
             return true
         }
         return false
     }
     
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        if  (self.isIngredientEditing && indexPath.section == 3 && indexPath.row != self.ingredientsArray.count) ||
-            (self.isDirectionEditing && indexPath.section == 4 && indexPath.row != self.directionsArray.count) {
+        if  (self.isIngredientEditing && indexPath.section == 3 && indexPath.row != self.getRecipeIngredientsCount()) ||
+            (self.isDirectionEditing && indexPath.section == 4 && indexPath.row != self.getRecipeDirectionsCount()) {
             return true
         }
         return false
@@ -228,14 +232,10 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
         if editingStyle == .Delete {
             if indexPath.section == 3 {
                 self.recipeIngredients["general"]?.removeAtIndex(indexPath.row)
-                self.ingredientsArray.removeAtIndex(indexPath.row)
-                print("self.recipeIngredients")
-                print(self.recipeIngredients)
+//                self.ingredientsArray.removeAtIndex(indexPath.row)
             } else if indexPath.section == 4 {
                 self.recipeDirections["general"]?.removeAtIndex(indexPath.row)
-                self.directionsArray.removeAtIndex(indexPath.row)
-                print("recipeDirections")
-                print(self.recipeDirections)
+//                self.directionsArray.removeAtIndex(indexPath.row)
             }
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Left)
         }
@@ -372,13 +372,13 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
         }
         
         if sourceIndexPath.section == 3 {
-            if proposedDestinationIndexPath.section != 3 || proposedDestinationIndexPath.row == self.ingredientsArray.count {
+            if proposedDestinationIndexPath.section != 3 || proposedDestinationIndexPath.row == self.getRecipeIngredientsCount() {
                 return sourceIndexPath
             }
         }
         
         if sourceIndexPath.section == 4 {
-            if proposedDestinationIndexPath.section != 4 || proposedDestinationIndexPath.row == self.directionsArray.count {
+            if proposedDestinationIndexPath.section != 4 || proposedDestinationIndexPath.row == self.getRecipeDirectionsCount() {
                 return sourceIndexPath
             }
         }
@@ -400,9 +400,9 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
             return 215
         } else if indexPath.section == 1 || indexPath.section == 2 {
             return 94.0
-        } else if indexPath.section == 3 && indexPath.row < self.ingredientsArray.count {
+        } else if indexPath.section == 3 && indexPath.row < self.getRecipeIngredientsCount() {
             return 60.0
-        } else if indexPath.section == 4 && indexPath.row < self.directionsArray.count {
+        } else if indexPath.section == 4 && indexPath.row < self.getRecipeDirectionsCount() {
             return 84.0
         }
         return UITableViewAutomaticDimension
@@ -599,7 +599,21 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
             print("ERROR: self.activityIndicator not set")
         }
     }
-
+    
+    func getRecipeIngredientsCount() -> Int {
+        if let ingredients = self.recipeIngredients["general"] {
+            return ingredients.count
+        }
+        return 0
+    }
+    
+    func getRecipeDirectionsCount() -> Int {
+        if let directions = self.recipeDirections["general"] {
+            return directions.count
+        }
+        return 0
+    }
+    
     private func changeEditButtonAppearance(editButton: UIButton, isEdit: Bool) {
         if isEdit {
             editButton.tintColor = Helpers.getRedColor()
@@ -623,8 +637,8 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
         self.recipeIngredients = ["general": ["|"]]
         self.recipeDirections = ["general": [""]]
         
-        self.ingredientsArray = ["ingredient"]
-        self.directionsArray = ["direction"]
+//        self.ingredientsArray = ["ingredient"]
+//        self.directionsArray = ["direction"]
 
         self.tableView.reloadData()
     }
