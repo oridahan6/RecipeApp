@@ -111,13 +111,10 @@ class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
         let currentCell = cell as! RecipeTableViewCell
         let recipe = self.getRecipeBasedOnSearch(indexPath.row)
         
-        currentCell.recipeDetailsView.titleLabel.text = recipe.title
-        currentCell.recipeDetailsView.typeLabel.text = recipe.type
-        currentCell.recipeDetailsView.levelLabel.text = recipe.level
-        currentCell.recipeDetailsView.overallTimeLabel.text = recipe.getOverallPreperationTimeText()
-        currentCell.recipeDetailsView.dateAddedLabel.text = recipe.getUpdatedAtDiff()
+        let recipeDetailsView = currentCell.recipeDetailsView
+        recipeDetailsView.recipe = recipe
         
-        currentCell.recipeDetailsView.typeImageView.image = recipe.getTypeImage()
+        recipeDetailsView.setNeedsDisplay()
 
         var imageUrl = ""
         if recipe.imageName != "" {

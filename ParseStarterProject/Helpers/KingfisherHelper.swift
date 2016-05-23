@@ -30,7 +30,10 @@ class KingfisherHelper {
 //        imageView.kf_showIndicatorWhenLoading = true
         imageView.kf_setImageWithURL(NSURL(string: url)!,
                                      placeholderImage: UIImage(named: "placeholder-bg.png"),
-                                     optionsInfo: [.Transition(ImageTransition.Fade(0.3)), .BackgroundDecode],
+                                     optionsInfo: [
+                                        .Transition(ImageTransition.Fade(0.3)),
+                                        .BackgroundDecode
+                                     ],
                                      progressBlock: { (receivedSize, totalSize) -> () in
 //                                        print("Download Progress: \(receivedSize)/\(totalSize)")
                                         if receivedSize == totalSize {
@@ -42,8 +45,7 @@ class KingfisherHelper {
 //                                        print("Downloaded and set!")
                                         if error != nil || image == nil {
                                             imageView.image = UIImage(named: "placeholder.jpg")
-                                        }
-                                     }
+                                        }                                      }
         )
     }
     
