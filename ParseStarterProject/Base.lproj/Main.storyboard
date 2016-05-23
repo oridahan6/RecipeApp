@@ -34,17 +34,8 @@
             <string>Alef-Regular</string>
             <string>Alef-Regular</string>
             <string>Alef-Regular</string>
-            <string>Alef-Regular</string>
-            <string>Alef-Regular</string>
-            <string>Alef-Regular</string>
-            <string>Alef-Regular</string>
-            <string>Alef-Regular</string>
-            <string>Alef-Regular</string>
-            <string>Alef-Regular</string>
         </mutableArray>
         <mutableArray key="hillelclm-medium-webfont.ttf">
-            <string>HillelCLM-Medium</string>
-            <string>HillelCLM-Medium</string>
             <string>HillelCLM-Medium</string>
             <string>HillelCLM-Medium</string>
             <string>HillelCLM-Medium</string>
@@ -224,132 +215,10 @@
                                         </imageView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="634-3j-bKj" customClass="RecipeDetails" customModule="Recipes" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="165" width="600" height="50"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="לזניה" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dkc-56-g3u">
-                                                    <rect key="frame" x="44" y="2" width="548" height="28"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="28" id="LtL-5c-are"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="HillelCLM-Medium" family="Hillel CLM" pointSize="26"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="מתחיל" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uSs-pD-5Qu">
-                                                    <rect key="frame" x="535" y="31" width="31" height="17"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="17" id="V7z-Xc-2kl"/>
-                                                        <constraint firstAttribute="width" constant="31" id="jrZ-DD-rbL"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="Alef-Regular" family="Alef" pointSize="12"/>
-                                                    <color key="textColor" red="0.41176470590000003" green="0.41176470590000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chef-icon" translatesAutoresizingMaskIntoConstraints="NO" id="uFo-lJ-OSW">
-                                                    <rect key="frame" x="574" y="31" width="15" height="15"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="15" id="7oy-lR-TAp"/>
-                                                        <constraint firstAttribute="height" constant="15" id="msM-mc-YWF"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="פרווה" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NN1-ro-tDV">
-                                                    <rect key="frame" x="474" y="31" width="27" height="17"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="27" id="A68-hv-Ubd"/>
-                                                        <constraint firstAttribute="height" constant="17" id="K61-hW-MLE"/>
-                                                        <constraint firstAttribute="height" constant="15" id="jAC-cT-ZT0"/>
-                                                        <constraint firstAttribute="width" constant="44" id="ktc-y0-VhK"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="Alef-Regular" family="Alef" pointSize="12"/>
-                                                    <color key="textColor" red="0.41176470590000003" green="0.41176470590000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="jAC-cT-ZT0"/>
-                                                            <exclude reference="ktc-y0-VhK"/>
-                                                        </mask>
-                                                    </variation>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cheese-icon" translatesAutoresizingMaskIntoConstraints="NO" id="1a7-Gl-miw">
-                                                    <rect key="frame" x="509" y="31" width="16" height="16"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="16" id="WGh-0F-Ca0"/>
-                                                        <constraint firstAttribute="height" constant="18" id="iTt-IM-b2a"/>
-                                                        <constraint firstAttribute="width" constant="18" id="kQ6-7U-sc7"/>
-                                                        <constraint firstAttribute="width" constant="16" id="tni-O6-Qpn"/>
-                                                    </constraints>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="iTt-IM-b2a"/>
-                                                            <exclude reference="kQ6-7U-sc7"/>
-                                                        </mask>
-                                                    </variation>
-                                                </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timer-icon" translatesAutoresizingMaskIntoConstraints="NO" id="feB-2t-F4a">
-                                                    <rect key="frame" x="449" y="31" width="16" height="16"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="16" id="Ee2-p4-3C5"/>
-                                                        <constraint firstAttribute="height" constant="16" id="Vae-N3-km3"/>
-                                                        <constraint firstAttribute="width" constant="18" id="pWI-Py-OW4"/>
-                                                        <constraint firstAttribute="height" constant="18" id="sw3-Mo-aZ4"/>
-                                                    </constraints>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="pWI-Py-OW4"/>
-                                                            <exclude reference="sw3-Mo-aZ4"/>
-                                                        </mask>
-                                                    </variation>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="שעה ועשרים" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XQy-Jc-AYE">
-                                                    <rect key="frame" x="307" y="32" width="134" height="15"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="60" id="D1g-vk-xrH"/>
-                                                        <constraint firstAttribute="width" constant="134" id="Do7-gS-7dY"/>
-                                                        <constraint firstAttribute="height" constant="15" id="a57-tB-W3n"/>
-                                                        <constraint firstAttribute="height" constant="15" id="nPc-RO-Xmt"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="Alef-Regular" family="Alef" pointSize="12"/>
-                                                    <color key="textColor" red="0.41176470590000003" green="0.41176470590000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="D1g-vk-xrH"/>
-                                                            <exclude reference="nPc-RO-Xmt"/>
-                                                        </mask>
-                                                    </variation>
-                                                </label>
-                                            </subviews>
                                             <color key="backgroundColor" red="0.9882352941176471" green="0.9882352941176471" blue="0.9882352941176471" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="Dkc-56-g3u" secondAttribute="trailing" constant="8" id="51S-Ue-sAt"/>
-                                                <constraint firstItem="uSs-pD-5Qu" firstAttribute="leading" secondItem="1a7-Gl-miw" secondAttribute="trailing" constant="10" id="7Oj-km-G8K"/>
-                                                <constraint firstAttribute="trailing" secondItem="uFo-lJ-OSW" secondAttribute="trailing" constant="11" id="88e-d3-qU3"/>
-                                                <constraint firstItem="XQy-Jc-AYE" firstAttribute="top" secondItem="Dkc-56-g3u" secondAttribute="bottom" constant="2" id="Ek5-OJ-Tso"/>
-                                                <constraint firstAttribute="bottom" secondItem="Dkc-56-g3u" secondAttribute="bottom" constant="20" id="FTh-UN-5vg"/>
-                                                <constraint firstItem="uFo-lJ-OSW" firstAttribute="leading" secondItem="uSs-pD-5Qu" secondAttribute="trailing" constant="8" id="GmG-ov-J8G"/>
-                                                <constraint firstItem="1a7-Gl-miw" firstAttribute="leading" secondItem="NN1-ro-tDV" secondAttribute="trailing" constant="8" id="JO5-Ym-hXd"/>
                                                 <constraint firstAttribute="height" constant="50" id="OMz-PZ-qt3"/>
-                                                <constraint firstItem="NN1-ro-tDV" firstAttribute="top" secondItem="Dkc-56-g3u" secondAttribute="bottom" constant="1" id="QTI-Sz-mdX"/>
-                                                <constraint firstItem="Dkc-56-g3u" firstAttribute="leading" secondItem="634-3j-bKj" secondAttribute="leading" constant="45" id="cTW-Za-WFR"/>
-                                                <constraint firstItem="feB-2t-F4a" firstAttribute="top" secondItem="Dkc-56-g3u" secondAttribute="bottom" constant="1" id="h9n-oc-rQr"/>
-                                                <constraint firstItem="uFo-lJ-OSW" firstAttribute="top" secondItem="634-3j-bKj" secondAttribute="top" constant="31" id="j0h-nJ-iPE"/>
-                                                <constraint firstItem="Dkc-56-g3u" firstAttribute="top" secondItem="634-3j-bKj" secondAttribute="top" constant="2" id="pZt-S2-u6k"/>
-                                                <constraint firstItem="1a7-Gl-miw" firstAttribute="top" secondItem="Dkc-56-g3u" secondAttribute="bottom" constant="1" id="rtf-JY-WVh"/>
-                                                <constraint firstItem="uSs-pD-5Qu" firstAttribute="top" secondItem="Dkc-56-g3u" secondAttribute="bottom" constant="1" id="sy3-e6-EvJ"/>
-                                                <constraint firstItem="feB-2t-F4a" firstAttribute="leading" secondItem="XQy-Jc-AYE" secondAttribute="trailing" constant="8" id="vRl-NX-7vf"/>
-                                                <constraint firstItem="NN1-ro-tDV" firstAttribute="leading" secondItem="feB-2t-F4a" secondAttribute="trailing" constant="9" id="w6R-fw-8Hm"/>
                                             </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="cTW-Za-WFR"/>
-                                                </mask>
-                                            </variation>
-                                            <connections>
-                                                <outlet property="levelLabel" destination="uSs-pD-5Qu" id="Xrc-fZ-JdT"/>
-                                                <outlet property="overallTimeLabel" destination="XQy-Jc-AYE" id="D1G-mH-ege"/>
-                                                <outlet property="titleLabel" destination="Dkc-56-g3u" id="SgT-q5-Q2U"/>
-                                                <outlet property="typeImageView" destination="1a7-Gl-miw" id="cBg-cB-hax"/>
-                                                <outlet property="typeLabel" destination="NN1-ro-tDV" id="dok-Wi-caF"/>
-                                            </connections>
                                         </view>
                                     </subviews>
                                     <constraints>
@@ -758,113 +627,8 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DAO-M0-DWo" id="qe4-MJ-9JV">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="58"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="לזניה" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nd9-oz-wfj">
-                                                    <rect key="frame" x="120" y="5" width="471" height="29"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="29" id="e1k-bO-hu8"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="HillelCLM-Medium" family="Hillel CLM" pointSize="29"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="לפני 3 שבועות" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jeR-I3-t6x">
-                                                    <rect key="frame" x="8" y="2" width="89" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="89" id="GQq-13-b0Q"/>
-                                                        <constraint firstAttribute="height" constant="21" id="lNG-UO-ZKy"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="Alef-Regular" family="Alef" pointSize="14"/>
-                                                    <color key="textColor" red="0.41176470590000003" green="0.41176470590000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chef-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Zag-Be-RiH">
-                                                    <rect key="frame" x="574" y="39" width="15" height="15"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="15" id="Jx7-M2-ijb"/>
-                                                        <constraint firstAttribute="width" constant="15" id="uK1-sU-9H1"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="מתחיל" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lFA-1t-bFq">
-                                                    <rect key="frame" x="535" y="38" width="31" height="17"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="31" id="1L5-kr-W0D"/>
-                                                        <constraint firstAttribute="height" constant="17" id="roR-c3-1VT"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="Alef-Regular" family="Alef" pointSize="12"/>
-                                                    <color key="textColor" red="0.41176470590000003" green="0.41176470590000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cheese-icon" translatesAutoresizingMaskIntoConstraints="NO" id="cis-9e-XCw">
-                                                    <rect key="frame" x="509" y="38" width="17" height="17"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="17" id="jYm-AD-aLl"/>
-                                                        <constraint firstAttribute="width" constant="17" id="zSq-WJ-ZsQ"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="פרווה" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="StR-8t-Llh">
-                                                    <rect key="frame" x="474" y="38" width="27" height="17"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="27" id="K4Y-4E-EXD"/>
-                                                        <constraint firstAttribute="height" constant="17" id="M8Y-eg-DGl"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="Alef-Regular" family="Alef" pointSize="12"/>
-                                                    <color key="textColor" red="0.41176470590000003" green="0.41176470590000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timer-icon" translatesAutoresizingMaskIntoConstraints="NO" id="pTV-n9-TZY">
-                                                    <rect key="frame" x="449" y="39" width="16" height="16"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="16" id="Lw7-1U-p4f"/>
-                                                        <constraint firstAttribute="width" constant="16" id="a1X-Q4-54x"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="שעה ועשרים" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvP-TC-DBl">
-                                                    <rect key="frame" x="307" y="39" width="134" height="15"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="134" id="0Fx-4i-lQ7"/>
-                                                        <constraint firstAttribute="height" constant="15" id="Lnv-9b-Vjw"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="Alef-Regular" family="Alef" pointSize="12"/>
-                                                    <color key="textColor" red="0.41176470590000003" green="0.41176470590000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="dvP-TC-DBl" firstAttribute="top" secondItem="Nd9-oz-wfj" secondAttribute="bottom" constant="5" id="0Lq-NU-N3k"/>
-                                                <constraint firstAttribute="trailing" secondItem="Nd9-oz-wfj" secondAttribute="trailing" constant="9" id="1Ip-V4-DBq"/>
-                                                <constraint firstItem="cis-9e-XCw" firstAttribute="top" secondItem="Nd9-oz-wfj" secondAttribute="bottom" constant="4" id="7pE-3z-No9"/>
-                                                <constraint firstAttribute="trailing" secondItem="Zag-Be-RiH" secondAttribute="trailing" constant="11" id="A0V-d4-Wlo"/>
-                                                <constraint firstItem="lFA-1t-bFq" firstAttribute="top" secondItem="Nd9-oz-wfj" secondAttribute="bottom" constant="4" id="EI1-9O-LCW"/>
-                                                <constraint firstItem="jeR-I3-t6x" firstAttribute="leading" secondItem="qe4-MJ-9JV" secondAttribute="leading" constant="8" id="H7Q-SN-m0s"/>
-                                                <constraint firstItem="lFA-1t-bFq" firstAttribute="leading" secondItem="cis-9e-XCw" secondAttribute="trailing" constant="9" id="HEV-ab-9Ik"/>
-                                                <constraint firstItem="Zag-Be-RiH" firstAttribute="top" secondItem="Nd9-oz-wfj" secondAttribute="bottom" constant="5" id="JyV-n1-h5d"/>
-                                                <constraint firstItem="StR-8t-Llh" firstAttribute="leading" secondItem="pTV-n9-TZY" secondAttribute="trailing" constant="9" id="OWz-3m-nA8"/>
-                                                <constraint firstItem="cis-9e-XCw" firstAttribute="leading" secondItem="StR-8t-Llh" secondAttribute="trailing" constant="8" id="QjY-WG-QNp"/>
-                                                <constraint firstItem="jeR-I3-t6x" firstAttribute="top" secondItem="qe4-MJ-9JV" secondAttribute="top" constant="2" id="S0L-Zy-EOf"/>
-                                                <constraint firstItem="pTV-n9-TZY" firstAttribute="top" secondItem="Nd9-oz-wfj" secondAttribute="bottom" constant="5" id="adJ-YG-H3w"/>
-                                                <constraint firstItem="Nd9-oz-wfj" firstAttribute="top" secondItem="qe4-MJ-9JV" secondAttribute="top" constant="5" id="fuG-B3-PAg"/>
-                                                <constraint firstItem="Zag-Be-RiH" firstAttribute="leading" secondItem="lFA-1t-bFq" secondAttribute="trailing" constant="8" id="hJ1-s3-hsr"/>
-                                                <constraint firstItem="lFA-1t-bFq" firstAttribute="leading" secondItem="cis-9e-XCw" secondAttribute="trailing" constant="13" id="lIb-Zl-jYM"/>
-                                                <constraint firstItem="Nd9-oz-wfj" firstAttribute="leading" secondItem="jeR-I3-t6x" secondAttribute="trailing" constant="23" id="pAK-wQ-m91"/>
-                                                <constraint firstItem="StR-8t-Llh" firstAttribute="top" secondItem="Nd9-oz-wfj" secondAttribute="bottom" constant="4" id="vjY-z4-xrO"/>
-                                                <constraint firstItem="pTV-n9-TZY" firstAttribute="leading" secondItem="dvP-TC-DBl" secondAttribute="trailing" constant="8" id="xMU-Wb-zZK"/>
-                                            </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="lIb-Zl-jYM"/>
-                                                </mask>
-                                            </variation>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.9882352941176471" green="0.9882352941176471" blue="0.9882352941176471" alpha="0.95379849137931039" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <outlet property="dateAdded" destination="jeR-I3-t6x" id="7OT-fj-UFb"/>
-                                            <outlet property="levelLabel" destination="lFA-1t-bFq" id="lxV-gx-0XB"/>
-                                            <outlet property="overallTimeLabel" destination="dvP-TC-DBl" id="PUQ-gr-mMO"/>
-                                            <outlet property="titleLabel" destination="Nd9-oz-wfj" id="zyW-T0-OaV"/>
-                                            <outlet property="typeImageView" destination="cis-9e-XCw" id="36A-Ir-KYM"/>
-                                            <outlet property="typeLabel" destination="StR-8t-Llh" id="ARZ-No-5pj"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SectionHeaderTableViewCell" rowHeight="45" id="7BI-iy-Juh" customClass="SectionHeaderTableViewCell" customModule="Recipes" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="86" width="600" height="45"/>
@@ -1830,10 +1594,9 @@
         <image name="placeholder.jpg" width="1250" height="703"/>
         <image name="prep-icon" width="20" height="19"/>
         <image name="section-circle" width="30" height="30"/>
-        <image name="timer-icon" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="IKU-OY-FgG"/>
         <segue reference="wJ4-wP-M5I"/>
-        <segue reference="BbG-em-Haw"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -294,15 +294,7 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         switch section {
             case 0:
                 let recipeDetailCell = tableView.dequeueReusableCellWithIdentifier(RecipeDetailSectionHeaderTableViewCellIdentifier) as! RecipeDetailSectionHeaderTableViewCell
-
-                recipeDetailCell.titleLabel.text = recipe.title
-                recipeDetailCell.typeLabel.text = recipe.type
-                recipeDetailCell.levelLabel.text = recipe.level
-                recipeDetailCell.overallTimeLabel.text = recipe.getOverallPreperationTimeText()
-                recipeDetailCell.dateAdded.text = recipe.getUpdatedAtDiff()
-
-                recipeDetailCell.typeImageView.image = recipe.getTypeImage()
-                
+                recipeDetailCell.recipe = self.recipe
                 return recipeDetailCell
             
             case 1:

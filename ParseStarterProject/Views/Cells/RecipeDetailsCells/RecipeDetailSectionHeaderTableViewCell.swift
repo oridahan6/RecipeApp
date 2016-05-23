@@ -10,16 +10,14 @@ import UIKit
 
 class RecipeDetailSectionHeaderTableViewCell: UITableViewCell {
 
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var dateAdded: UILabel!
-    @IBOutlet var levelLabel: UILabel!
-    @IBOutlet var typeLabel: UILabel!
-    @IBOutlet var overallTimeLabel: UILabel!
-    @IBOutlet var typeImageView: UIImageView!
+    var recipe: Recipe!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        // draw again on orientation change
+        self.contentMode = UIViewContentMode.Redraw
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -28,4 +26,10 @@ class RecipeDetailSectionHeaderTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    override func drawRect(rect: CGRect) {
+        // Drawing code
+        if let _ = self.recipe {
+            self.drawRecipeDetails(self.recipe)
+        }
+    }
 }

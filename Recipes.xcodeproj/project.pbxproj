@@ -12,6 +12,7 @@
 		0C070DAF1CD10CFD0060CC8C /* AddIngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C070DAE1CD10CFD0060CC8C /* AddIngredientTableViewCell.swift */; };
 		0C070DB11CD10EF90060CC8C /* AddRecipeButtonsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C070DB01CD10EF90060CC8C /* AddRecipeButtonsTableViewCell.swift */; };
 		0C070DB31CD11ED80060CC8C /* AddIngredientSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C070DB21CD11ED80060CC8C /* AddIngredientSectionTableViewCell.swift */; };
+		0C0BF0B61CF39AF0001ED414 /* ODUIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BF0B51CF39AF0001ED414 /* ODUIKitExtensions.swift */; };
 		0C0CD0C71CABD5FB00F682F9 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0CD0C31CABD5FB00F682F9 /* Enum.swift */; };
 		0C0CD0C81CABD5FB00F682F9 /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0C0CD0C51CABD5FB00F682F9 /* FontAwesome.otf */; };
 		0C0CD0C91CABD5FB00F682F9 /* FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0CD0C61CABD5FB00F682F9 /* FontAwesome.swift */; };
@@ -112,6 +113,7 @@
 		0C070DAE1CD10CFD0060CC8C /* AddIngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddIngredientTableViewCell.swift; sourceTree = "<group>"; };
 		0C070DB01CD10EF90060CC8C /* AddRecipeButtonsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRecipeButtonsTableViewCell.swift; sourceTree = "<group>"; };
 		0C070DB21CD11ED80060CC8C /* AddIngredientSectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddIngredientSectionTableViewCell.swift; sourceTree = "<group>"; };
+		0C0BF0B51CF39AF0001ED414 /* ODUIKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ODUIKitExtensions.swift; sourceTree = "<group>"; };
 		0C0CD0C31CABD5FB00F682F9 /* Enum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		0C0CD0C41CABD5FB00F682F9 /* FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontAwesome.h; sourceTree = "<group>"; };
 		0C0CD0C51CABD5FB00F682F9 /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
@@ -411,6 +413,7 @@
 				0CCC382B1CBBE20D0055384F /* SwiftPromptHelper.swift */,
 				0C7BDA841CA969BB0056ADCD /* FoundationExtensions.swift */,
 				0C47CF751CC62DC900F26623 /* UIKitExtensions.swift */,
+				0C0BF0B51CF39AF0001ED414 /* ODUIKitExtensions.swift */,
 				0C999F5B1CB4D80400E3844D /* KingfisherHelper.swift */,
 				0CCC381E1CBBB2BF0055384F /* Reachability.swift */,
 			);
@@ -707,6 +710,7 @@
 				0C7BDA781CA90DB70056ADCD /* RecipeTableViewCell.swift in Sources */,
 				0C999F5E1CB5028C00E3844D /* FavoriteRecipeTableViewCell.swift in Sources */,
 				0C47CF941CC66E1000F26623 /* YoshikoTextField.swift in Sources */,
+				0C0BF0B61CF39AF0001ED414 /* ODUIKitExtensions.swift in Sources */,
 				0CCC38261CBBBCB60055384F /* UIImageEffects.swift in Sources */,
 				0C192F201CB295DB00811CB4 /* RecipeDetailSectionHeaderTableViewCell.swift in Sources */,
 				0C151EB21CC8CA6100631614 /* GeneralInfoTableViewCell.swift in Sources */,

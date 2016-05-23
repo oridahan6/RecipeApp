@@ -194,13 +194,11 @@ class FavoritesViewController: RecipesParentViewController, SwiftPromptsProtocol
         
         let recipe = self.getRecipeBasedOnSearch(indexPath.row)
         
-        cell.recipeDetailsView.titleLabel.text = recipe.title
-        cell.recipeDetailsView.typeLabel.text = recipe.type
-        cell.recipeDetailsView.levelLabel.text = recipe.level
-        cell.recipeDetailsView.overallTimeLabel.text = recipe.getOverallPreperationTimeText()
-        
-        cell.recipeDetailsView.typeImageView.image = recipe.getTypeImage()
-        
+        let recipeDetailsView = cell.recipeDetailsView
+        recipeDetailsView.recipe = recipe
+        recipeDetailsView.isShowDate = false
+        recipeDetailsView.setNeedsDisplay()
+
         if recipe.imageName != "" {
             // update image async
             let imageUrlString = Constants.GDRecipesImagesPath + recipe.imageName
