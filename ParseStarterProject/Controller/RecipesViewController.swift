@@ -98,29 +98,35 @@ class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as! RecipeTableViewCell
-
-        let recipe = self.getRecipeBasedOnSearch(indexPath.row)
-        
-        cell.recipeDetailsView.titleLabel.text = recipe.title
-        cell.recipeDetailsView.typeLabel.text = recipe.type
-        cell.recipeDetailsView.levelLabel.text = recipe.level
-        cell.recipeDetailsView.overallTimeLabel.text = recipe.getOverallPreperationTimeText()
-        cell.recipeDetailsView.dateAddedLabel.text = recipe.getUpdatedAtDiff()
-        
-        cell.recipeDetailsView.typeImageView.image = recipe.getTypeImage()
-        
-        if recipe.imageName != "" {
-            // update image async
-            let imageUrlString = Constants.GDRecipesImagesPath + recipe.imageName
-            KingfisherHelper.sharedInstance.setImageWithUrl(cell.recipeImageView, url: imageUrlString)
-        } else if let recipeFile = recipe.imageFile {
-            let fileUrl = recipeFile.getUrl()
-            KingfisherHelper.sharedInstance.setImageWithUrl(cell.recipeImageView, url: fileUrl)
-        }
-        
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         
         return cell
+    }
+    
+    //--------------------------------------
+    // MARK: - Table View Delegate
+    //--------------------------------------
+
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        let currentCell = cell as! RecipeTableViewCell
+        let recipe = self.getRecipeBasedOnSearch(indexPath.row)
+        
+        currentCell.recipeDetailsView.titleLabel.text = recipe.title
+        currentCell.recipeDetailsView.typeLabel.text = recipe.type
+        currentCell.recipeDetailsView.levelLabel.text = recipe.level
+        currentCell.recipeDetailsView.overallTimeLabel.text = recipe.getOverallPreperationTimeText()
+        currentCell.recipeDetailsView.dateAddedLabel.text = recipe.getUpdatedAtDiff()
+        
+        currentCell.recipeDetailsView.typeImageView.image = recipe.getTypeImage()
+
+        var imageUrl = ""
+        if recipe.imageName != "" {
+            imageUrl = Constants.GDRecipesImagesPath + recipe.imageName
+        } else if let recipeFile = recipe.imageFile {
+            imageUrl = recipeFile.getUrl()
+        }
+        // update image async
+        KingfisherHelper.sharedInstance.setImageWithUrl(currentCell.recipeImageView, url: imageUrl)
     }
     
     //--------------------------------------
