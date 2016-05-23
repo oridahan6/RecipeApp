@@ -68,9 +68,20 @@ class AddRecipeButtonsTableViewCell: UITableViewCell {
         
         // scroll to add direction button for convinience
         if section == 4 {
-            let indexPath = NSIndexPath(forRow: self.tableViewController.tableView.numberOfRowsInSection(section) - 1, inSection: section)
-            self.tableViewController.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
-            
+            self.scrollToEndOfSection(section)
+        } else if section == 3, let win = UIApplication.sharedApplication().keyWindow {
+            let buttonPointRelativeToWindow = self.convertRect(CGRectZero, toView: win)
+            // scroll only if the add row button is closer to the bottom of the screen
+            let percentageInWindow: CGFloat = buttonPointRelativeToWindow.origin.y / win.bounds.size.height
+            if percentageInWindow > 0.8 {
+                self.scrollToEndOfSection(section)
+            }
         }
+
+    }
+    
+    func scrollToEndOfSection(section: Int) {
+        let indexPath = NSIndexPath(forRow: self.tableViewController.tableView.numberOfRowsInSection(section) - 1, inSection: section)
+        self.tableViewController.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
     }
 }
