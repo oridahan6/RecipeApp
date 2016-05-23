@@ -420,7 +420,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="215"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" alpha="0.94999999999999996" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="rlP-bj-YRA">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="rlP-bj-YRA">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="215"/>
                                         </imageView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Rx-fd-8At" customClass="RecipeDetails" customModule="Recipes" customModuleProvider="target">
@@ -1974,8 +1974,8 @@
     <resources>
         <image name="Yochi.jpg" width="686" height="686"/>
         <image name="categories-icon" width="18" height="14"/>
-        <image name="cheese-icon" width="25" height="21"/>
-        <image name="chef-icon" width="18" height="18"/>
+        <image name="cheese-icon" width="16" height="16"/>
+        <image name="chef-icon" width="15" height="15"/>
         <image name="chef-login" width="110" height="110"/>
         <image name="cook-icon" width="20" height="20"/>
         <image name="dotted-line" width="325" height="4"/>
@@ -1990,6 +1990,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="wJ4-wP-M5I"/>
-        <segue reference="IKU-OY-FgG"/>
+        <segue reference="BbG-em-Haw"/>
     </inferredMetricsTieBreakers>
 </document>
