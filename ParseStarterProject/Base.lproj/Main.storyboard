@@ -463,11 +463,11 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cheese-icon" translatesAutoresizingMaskIntoConstraints="NO" id="kjf-v7-3Ln">
-                                                    <rect key="frame" x="509" y="31" width="16" height="16"/>
+                                                    <rect key="frame" x="509" y="30" width="17" height="17"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="16" id="Alc-h8-lwx"/>
+                                                        <constraint firstAttribute="height" constant="17" id="Alc-h8-lwx"/>
                                                         <constraint firstAttribute="height" constant="18" id="GuK-CJ-rDK"/>
-                                                        <constraint firstAttribute="width" constant="16" id="RBP-AO-ZQC"/>
+                                                        <constraint firstAttribute="width" constant="17" id="RBP-AO-ZQC"/>
                                                         <constraint firstAttribute="width" constant="18" id="YEr-9Q-QaV"/>
                                                     </constraints>
                                                     <variation key="default">
@@ -551,12 +551,12 @@
                                                 <constraint firstItem="vkw-04-U9n" firstAttribute="leading" secondItem="9Rx-fd-8At" secondAttribute="leading" constant="8" id="hiU-FY-Lih"/>
                                                 <constraint firstItem="3qp-v8-cEa" firstAttribute="leading" secondItem="kjf-v7-3Ln" secondAttribute="trailing" constant="8" id="jQn-lx-tXU"/>
                                                 <constraint firstItem="Spp-X0-ELo" firstAttribute="leading" secondItem="vkw-04-U9n" secondAttribute="trailing" constant="23.5" id="kav-FO-1PV"/>
-                                                <constraint firstItem="kjf-v7-3Ln" firstAttribute="top" secondItem="Spp-X0-ELo" secondAttribute="bottom" constant="1" id="kjT-vr-UWz"/>
+                                                <constraint firstItem="kjf-v7-3Ln" firstAttribute="top" secondItem="Spp-X0-ELo" secondAttribute="bottom" id="kjT-vr-UWz"/>
                                                 <constraint firstItem="kjf-v7-3Ln" firstAttribute="leading" secondItem="Shs-qh-FTz" secondAttribute="trailing" constant="8" id="oiE-gB-PmK"/>
                                                 <constraint firstItem="Spp-X0-ELo" firstAttribute="top" secondItem="9Rx-fd-8At" secondAttribute="top" constant="2" id="qcJ-tj-lLe"/>
                                                 <constraint firstItem="RIL-oK-1iX" firstAttribute="top" secondItem="Spp-X0-ELo" secondAttribute="bottom" constant="1" id="s4i-Qw-bC9"/>
                                                 <constraint firstItem="vkw-04-U9n" firstAttribute="top" secondItem="9Rx-fd-8At" secondAttribute="top" id="tit-jG-O0w"/>
-                                                <constraint firstItem="3qp-v8-cEa" firstAttribute="leading" secondItem="kjf-v7-3Ln" secondAttribute="trailing" constant="10" id="uF8-fQ-QpN"/>
+                                                <constraint firstItem="3qp-v8-cEa" firstAttribute="leading" secondItem="kjf-v7-3Ln" secondAttribute="trailing" constant="9" id="uF8-fQ-QpN"/>
                                                 <constraint firstItem="V2T-9w-zv8" firstAttribute="top" secondItem="Spp-X0-ELo" secondAttribute="bottom" constant="1" id="xEM-bl-u5n"/>
                                             </constraints>
                                             <variation key="default">
@@ -1986,7 +1986,7 @@
         <image name="placeholder.jpg" width="1250" height="703"/>
         <image name="prep-icon" width="20" height="19"/>
         <image name="section-circle" width="30" height="30"/>
-        <image name="timer-icon" width="25" height="25"/>
+        <image name="timer-icon" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="wJ4-wP-M5I"/>
