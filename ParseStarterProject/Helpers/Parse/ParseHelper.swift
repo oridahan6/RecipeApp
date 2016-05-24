@@ -186,7 +186,7 @@ class ParseHelper: NSObject {
     }
     
     func updateFavoriteRecipes(vc: FavoritesViewController, ids: [String]) -> Void {
-        
+
         if allRecipes.isEmpty {
             let query = PFQuery(className: self.parseClassNameRecipe)
             query.whereKey("objectId", containedIn: ids)
@@ -223,6 +223,9 @@ class ParseHelper: NSObject {
             vc.recipes = allRecipes.filter({ (recipe) -> Bool in
                 return ids.contains(recipe.id)
             })
+            
+            // sort recipes by addition order
+            vc.recipes.sortInPlace({ ids.indexOf($0.id) > ids.indexOf($1.id) })
         }
     }
     

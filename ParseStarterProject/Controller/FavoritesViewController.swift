@@ -21,14 +21,11 @@ class FavoritesViewController: RecipesParentViewController, SwiftPromptsProtocol
     var prompt = SwiftPromptsView()
     var activityIndicator: ActivityIndicator!
     
-    var recipeIds = [String]()
-
     override func recipesUpdated() {
         if !self.recipeRemoved {
             tableView.reloadData()
         }
         self.recipeRemoved = false
-        self.updateRecipeIds()
     }
     
     //--------------------------------------
@@ -80,44 +77,7 @@ class FavoritesViewController: RecipesParentViewController, SwiftPromptsProtocol
 
     func reloadFavorites() {
         if let favoriteIds = NSUserDefaults.standardUserDefaults().arrayForKey("favorites") as? [String] {
-            self.addToFavorites(favoriteIds)
-            self.removeFromFavorites(favoriteIds)
-        }
-    }
-    
-    func addToFavorites(favoriteIds: [String]) {
-        var recipeIdsToAdd = [String]()
-        
-        for id in favoriteIds {
-            if !self.recipeIds.contains(id) {
-                recipeIdsToAdd.append(id)
-            }
-        }
-        if !recipeIdsToAdd.isEmpty {
-            ParseHelper.sharedInstance.updateFavoriteRecipes(self, ids: recipeIdsToAdd)
-        }
-        
-    }
-    
-    func removeFromFavorites(favoriteIds: [String]) {
-        for recipeId in recipeIds {
-            if !favoriteIds.contains(recipeId) {
-                recipeIds.removeObject(recipeId)
-                for recipe in recipes {
-                    if recipe.id == recipeId {
-                        if let index = recipes.indexOf(recipe) {
-                            recipes.removeAtIndex(index)
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    func updateRecipeIds() {
-        self.recipeIds = []
-        for recipe in self.recipes {
-            self.recipeIds.append(recipe.id)
+            ParseHelper.sharedInstance.updateFavoriteRecipes(self, ids: favoriteIds)
         }
     }
 
