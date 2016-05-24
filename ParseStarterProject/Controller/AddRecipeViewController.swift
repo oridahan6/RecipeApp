@@ -70,7 +70,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
 
         // set table view background image
         self.tableView.backgroundColor = UIColor.clearColor()
-        let backgroundImageView = UIImageView( image : Helpers().getDeviceSpecificBGImage("tableview-bg"));
+        let backgroundImageView = UIImageView( image : Helpers.sharedInstance.getDeviceSpecificBGImage("tableview-bg"));
         backgroundImageView.frame = self.tableView.frame;
         self.tableView.backgroundView = backgroundImageView;
         
@@ -616,10 +616,10 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
     
     private func changeEditButtonAppearance(editButton: UIButton, isEdit: Bool) {
         if isEdit {
-            editButton.tintColor = Helpers.getRedColor()
+            editButton.tintColor = Helpers.sharedInstance.getRedColor()
             editButton.setTitle(getLocalizedString("done"), forState: .Normal)
         } else {
-            editButton.tintColor = Helpers.uicolorFromHex(0x0076ff)
+            editButton.tintColor = Helpers.sharedInstance.uicolorFromHex(0x0076ff)
             editButton.setTitle(getLocalizedString("edit"), forState: .Normal)
         }
         

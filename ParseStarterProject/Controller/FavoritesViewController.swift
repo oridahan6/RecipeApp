@@ -48,7 +48,7 @@ class FavoritesViewController: RecipesParentViewController, SwiftPromptsProtocol
         self.activityIndicator = ActivityIndicator(largeActivityView: self.view)
         
         // Hack for placing the hud in the correct place
-        Helpers.hackForPlacingHUD(self.activityIndicator.HUD)
+        Helpers.sharedInstance.hackForPlacingHUD(self.activityIndicator.HUD)
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,7 +57,7 @@ class FavoritesViewController: RecipesParentViewController, SwiftPromptsProtocol
     }
     
     override func viewWillAppear(animated: Bool) {
-        if !Helpers.isInternetConnectionAvailable() {
+        if !Helpers.sharedInstance.isInternetConnectionAvailable() {
             self.buildAlert()
             self.showAlert()
         } else {
@@ -97,7 +97,7 @@ class FavoritesViewController: RecipesParentViewController, SwiftPromptsProtocol
             self.emptyMessageLabel!.textColor = UIColor.blackColor()
             self.emptyMessageLabel!.numberOfLines = 0
             self.emptyMessageLabel!.textAlignment = NSTextAlignment.Center
-            self.emptyMessageLabel!.font = UIFont(name: "Alef-Regular", size: 20)
+            self.emptyMessageLabel!.font = Helpers.sharedInstance.getTextFont(20)
             self.emptyMessageLabel!.sizeToFit()
             self.emptyMessageLabel!.tag = 45
         }

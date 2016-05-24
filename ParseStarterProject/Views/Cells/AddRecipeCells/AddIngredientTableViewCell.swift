@@ -20,11 +20,11 @@ class AddIngredientTableViewCell: UITableViewCell, UITextFieldDelegate, UITextVi
         // Initialization code
         self.ingredientTextTextView.delegate = self
         self.ingredientTextTextView.textContainerInset = UIEdgeInsetsMake(8, 5, 8, 5); // top, left, bottom, right
-        self.ingredientTextTextView.backgroundColor = Helpers.uicolorFromHex(0xF3EEE8)
+        self.ingredientTextTextView.backgroundColor = Helpers.sharedInstance.uicolorFromHex(0xF3EEE8)
         self.ingredientTextTextView.tag = 0
         
         self.ingredientAmountTextField.delegate = self
-        self.ingredientAmountTextField.backgroundColor = Helpers.uicolorFromHex(0xF3EEE8)
+        self.ingredientAmountTextField.backgroundColor = Helpers.sharedInstance.uicolorFromHex(0xF3EEE8)
         self.ingredientAmountTextField.tag = 0
     }
 

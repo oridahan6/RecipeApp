@@ -86,7 +86,7 @@ class TotalTimeTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerV
         let toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.Default
         toolBar.translucent = true
-        toolBar.tintColor = Helpers.getRedColor()
+        toolBar.tintColor = Helpers.sharedInstance.getRedColor()
         toolBar.sizeToFit()
         
         // Add fixed labels
@@ -109,7 +109,7 @@ class TotalTimeTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerV
         hourLabel.text = getLocalizedString("hours")
         hourLabel.textAlignment = NSTextAlignment.Right
         hourLabel.textColor = UIColor.blackColor()
-        hourLabel.font = UIFont(name: "Alef-Regular", size: 16)
+        hourLabel.font = Helpers.sharedInstance.getTextFont(16)
         
         pickerView.addSubview(hourLabel)
         
@@ -118,7 +118,7 @@ class TotalTimeTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerV
         minLabel.text = getLocalizedString("minutes")
         minLabel.textAlignment = NSTextAlignment.Right
         minLabel.textColor = UIColor.blackColor()
-        minLabel.font = UIFont(name: "Alef-Regular", size: 16)
+        minLabel.font = Helpers.sharedInstance.getTextFont(16)
         
         pickerView.addSubview(minLabel)
     }
@@ -219,7 +219,7 @@ class TotalTimeTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerV
         label.text = text
         label.textAlignment = NSTextAlignment.Right
         label.textColor = UIColor.blackColor()
-        label.font = UIFont(name: "Alef-Regular", size: 24)
+        label.font = Helpers.sharedInstance.getTextFont(24)
         return label
     }
  

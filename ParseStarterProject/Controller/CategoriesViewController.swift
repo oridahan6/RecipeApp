@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UISearchResultsUpdating, UISearchBarDelegate {
     
@@ -40,7 +39,7 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
 
         self.title = getLocalizedString("Categories")
         
-        if !Helpers.isInternetConnectionAvailable() {
+        if !Helpers.sharedInstance.isInternetConnectionAvailable() {
             self.buildAlert()
             self.showAlert()
         } else {
@@ -48,7 +47,7 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
             self.activityIndicator = ActivityIndicator(largeActivityView: self.view)
             
             // Hack for placing the hud in the correct place
-            Helpers.hackForPlacingHUD(self.activityIndicator.HUD)
+            Helpers.sharedInstance.hackForPlacingHUD(self.activityIndicator.HUD)
             
             ParseHelper.sharedInstance.updateCategories(self)
         }
@@ -112,7 +111,7 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
         let category = self.getCategoryBasedOnSearch(indexPath.row)
 
         cell.categoryNameLabel.text = category.name
-        cell.recipesCountLabel.text = Helpers().getSingularOrPluralForm(category.recipesCount, textToConvert: "recipe")
+        cell.recipesCountLabel.text = Helpers.sharedInstance.getSingularOrPluralForm(category.recipesCount, textToConvert: "recipe")
         
         // update image async
         let imageUrlString = Constants.GDCategoriesImagesPath + category.imageName
@@ -184,7 +183,7 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
             self.emptySearchLabel!.textColor = UIColor.blackColor()
             self.emptySearchLabel!.numberOfLines = 0
             self.emptySearchLabel!.textAlignment = NSTextAlignment.Center
-            self.emptySearchLabel!.font = UIFont(name: "Alef-Regular", size: 20)
+            self.emptySearchLabel!.font = Helpers.sharedInstance.getTextFont(20)
             self.emptySearchLabel!.sizeToFit()
             self.emptySearchLabel!.tag = 45
         }

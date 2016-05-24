@@ -32,8 +32,8 @@ class ActivityIndicator {
     convenience init(largeActivityView view: UIView, options: [String: AnyObject] = [:]) {
         self.init(view: view, HUDSize: 100.0)
         self.options = self.setDefaultOptions(options)
-        self.HUDColor = Helpers.getRedColor(0.95)
-        self.elementsColor = Helpers.getNudeColor()
+        self.HUDColor = Helpers.sharedInstance.getRedColor(0.95)
+        self.elementsColor = Helpers.sharedInstance.getNudeColor()
         
         
         self.buildHUD()
@@ -99,7 +99,7 @@ class ActivityIndicator {
         label.textColor = self.elementsColor
         label.numberOfLines = 0
         label.textAlignment = NSTextAlignment.Center
-        label.font = UIFont(name: "Alef-Regular", size: 14)
+        label.font = Helpers.sharedInstance.getTextFont()
         label.sizeToFit()
         
         self.HUD.addSubview(label)

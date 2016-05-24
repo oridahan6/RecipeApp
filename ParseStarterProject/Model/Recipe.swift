@@ -66,15 +66,15 @@ class Recipe: NSObject {
     }
 
     func getOverallPreperationTimeText() -> String {
-        return Helpers().convertMinutesToHoursAndMinText(self.getOverallPreperationTime())
+        return Helpers.sharedInstance.convertMinutesToHoursAndMinText(self.getOverallPreperationTime())
     }
 
     func getPreperationTimeText() -> String {
-        return Helpers().convertMinutesToHoursAndMinText(self.prepTime)
+        return Helpers.sharedInstance.convertMinutesToHoursAndMinText(self.prepTime)
     }
 
     func getCookTimeText() -> String {
-        return Helpers().convertMinutesToHoursAndMinText(self.cookTime)
+        return Helpers.sharedInstance.convertMinutesToHoursAndMinText(self.cookTime)
     }
 
     func getUpdatedAtDiff() -> String {

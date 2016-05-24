@@ -50,7 +50,7 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.prepareDirectionsOrderedArray()
         
         // set table view background image
-        self.view.backgroundColor = UIColor(patternImage: Helpers().getDeviceSpecificBGImage("tableview-bg"))
+        self.view.backgroundColor = UIColor(patternImage: Helpers.sharedInstance.getDeviceSpecificBGImage("tableview-bg"))
 
         self.tableView.backgroundColor = UIColor.clearColor()
     }
@@ -235,7 +235,7 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 let amount: String = ingredientArr[0]
                 let ingredientText: String = ingredientArr[1]
                 
-                cell.ingredientAmountLabel.text = Helpers().getFractionSymbolFromString(amount)
+                cell.ingredientAmountLabel.text = Helpers.sharedInstance.getFractionSymbolFromString(amount)
                 cell.ingredientLabel.text = ingredientText
                 cell.backgroundColor = .clearColor()
                 return cell

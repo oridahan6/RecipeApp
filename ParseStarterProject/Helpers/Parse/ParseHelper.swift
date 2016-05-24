@@ -240,7 +240,7 @@ class ParseHelper: NSObject {
         let recipe = PFObject(className: self.parseClassNameRecipe)
         if let title = recipeData["title"] as? String, recipeImage = recipeData["image"] as? UIImage, imageData = UIImagePNGRepresentation(recipeImage), level = recipeData["level"] as? String, type = recipeData["type"] as? String, prepTime = recipeData["prepTime"] as? Int, cookTime = recipeData["cookTime"] as? Int, ingredients = recipeData["ingredients"] as? [String: [String]], directions = recipeData["directions"] as? [String: [String]] {
             recipe.setValue(title, forKey: "title")
-            let imageFile = PFFile(name: Helpers.randomStringWithLength(10) + ".png", data: imageData)
+            let imageFile = PFFile(name: Helpers.sharedInstance.randomStringWithLength(10) + ".png", data: imageData)
             recipe.setObject(imageFile, forKey: "image")
             recipe.setValue(level, forKey: "level")
             recipe.setValue(type, forKey: "type")

@@ -81,7 +81,7 @@ extension UIView {
         let fieldColor: UIColor = UIColor.blackColor()
         
         // set the font to Helvetica Neue 18
-        let fieldFont = UIFont(name: "Hillel CLM", size: 26)
+        let fieldFont = Helpers.sharedInstance.getTitleFont()
         
         // set the line spacing to 6
         let paraStyle = NSMutableParagraphStyle()
@@ -96,7 +96,7 @@ extension UIView {
             //            NSBackgroundColorAttributeName: UIColor.yellowColor(),
             NSParagraphStyleAttributeName: paraStyle,
             NSObliquenessAttributeName: skew,
-            NSFontAttributeName: fieldFont!
+            NSFontAttributeName: fieldFont
         ]
         
         return attributes
@@ -107,7 +107,7 @@ extension UIView {
         let fieldColor: UIColor = UIColor.grayColor()
         
         // set the font to Helvetica Neue 18
-        let fieldFont = UIFont(name: "Alef-Regular", size: 12)
+        let fieldFont = Helpers.sharedInstance.getTextFont(12)
         
         // set the line spacing to 6
         let paraStyle = NSMutableParagraphStyle()
@@ -122,7 +122,7 @@ extension UIView {
             //            NSBackgroundColorAttributeName: UIColor.yellowColor(),
             NSParagraphStyleAttributeName: paraStyle,
             NSObliquenessAttributeName: skew,
-            NSFontAttributeName: fieldFont!
+            NSFontAttributeName: fieldFont
         ]
         return attributes
     }

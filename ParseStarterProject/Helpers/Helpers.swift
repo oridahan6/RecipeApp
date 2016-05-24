@@ -10,6 +10,10 @@ import UIKit
 
 class Helpers {
     
+    static let sharedInstance = Helpers()
+    
+    private init() {}
+
     // MARK:- Images Methods
     func updateImageFromUrlAsync(url: String, imageViewToUpdate: UIImageView) {
         let imgURL = NSURL(string: url)!
@@ -121,10 +125,28 @@ class Helpers {
     }
     
     //--------------------------------------
+    // MARK: - Text
+    //--------------------------------------
+
+    func getTitleFont(size: CGFloat = 26) -> UIFont {
+        if let font = UIFont(name: "Hillel CLM", size: size) {
+            return font
+        }
+        return UIFont()
+    }
+    
+    func getTextFont(size: CGFloat = 14, bold: Bool = false) -> UIFont {
+        if let font = UIFont(name: "Alef-" + (bold ? "bold" : "Regular"), size: size) {
+            return font
+        }
+        return UIFont()
+    }
+    
+    //--------------------------------------
     // MARK: - Strings
     //--------------------------------------
 
-    class func randomStringWithLength (len : Int) -> String {
+    func randomStringWithLength (len : Int) -> String {
         
         let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         
@@ -143,7 +165,7 @@ class Helpers {
     // MARK: - Internet
     //--------------------------------------
     
-    class func isInternetConnectionAvailable() -> Bool {
+    func isInternetConnectionAvailable() -> Bool {
         if Reachability.isConnectedToNetwork() != true {
             return false
         }
@@ -154,7 +176,7 @@ class Helpers {
     // MARK: - Color
     //--------------------------------------
 
-    class func uicolorFromHex(rgbValue:UInt32, alpha: CGFloat = 1.0) -> UIColor {
+    func uicolorFromHex(rgbValue:UInt32, alpha: CGFloat = 1.0) -> UIColor {
         
         var alphaValue = alpha
         if alpha > 1 || alpha < 0 {
@@ -168,19 +190,19 @@ class Helpers {
         return UIColor(red:red, green:green, blue:blue, alpha:alphaValue)
     }
     
-    class func getRedColor(alpha: CGFloat = 1.0) -> UIColor {
+    func getRedColor(alpha: CGFloat = 1.0) -> UIColor {
         return self.uicolorFromHex(0xA73535, alpha: alpha)
     }
     
-    class func getYellowColor(alpha: CGFloat = 1.0) -> UIColor {
+    func getYellowColor(alpha: CGFloat = 1.0) -> UIColor {
         return self.uicolorFromHex(0xf3b45f, alpha: alpha)
     }
     
-    class func getGreenColor(alpha: CGFloat = 1.0) -> UIColor {
+    func getGreenColor(alpha: CGFloat = 1.0) -> UIColor {
         return self.uicolorFromHex(0x55AA6D, alpha: alpha)
     }
     
-    class func getNudeColor(alpha: CGFloat = 1.0) -> UIColor {
+    func getNudeColor(alpha: CGFloat = 1.0) -> UIColor {
         return self.uicolorFromHex(0xF2F0EA, alpha: alpha)
     }
     
@@ -188,7 +210,7 @@ class Helpers {
     // MARK: - Hacks
     //--------------------------------------
 
-    class func hackForPlacingHUD(HUD: UIView) {
+    func hackForPlacingHUD(HUD: UIView) {
         let frame = HUD.frame
         HUD.frame = CGRectMake(frame.origin.x, frame.origin.y - 60, frame.size.width, frame.size.height)
     }

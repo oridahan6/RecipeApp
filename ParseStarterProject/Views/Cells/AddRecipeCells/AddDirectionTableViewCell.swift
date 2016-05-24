@@ -20,7 +20,7 @@ class AddDirectionTableViewCell: UITableViewCell, UITextViewDelegate {
         
         self.directionTextView.delegate = self
         self.directionTextView.textContainerInset = UIEdgeInsetsMake(8, 5, 8, 5); // top, left, bottom, right
-        self.directionTextView.backgroundColor = Helpers.uicolorFromHex(0xF3EEE8)
+        self.directionTextView.backgroundColor = Helpers.sharedInstance.uicolorFromHex(0xF3EEE8)
         
         // delete this line ?
         self.directionTextView.tag = 0

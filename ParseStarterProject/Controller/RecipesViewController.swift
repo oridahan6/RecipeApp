@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
 
@@ -33,7 +32,7 @@ class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if !Helpers.isInternetConnectionAvailable() {
+        if !Helpers.sharedInstance.isInternetConnectionAvailable() {
             self.buildAlert()
             self.showAlert()
         } else {
@@ -41,7 +40,7 @@ class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
             self.activityIndicator = ActivityIndicator(largeActivityView: self.view)
 
             // Hack for placing the hud in the correct place
-            Helpers.hackForPlacingHUD(self.activityIndicator.HUD)
+            Helpers.sharedInstance.hackForPlacingHUD(self.activityIndicator.HUD)
             
             if let category = self.category {
                 self.title = category.name

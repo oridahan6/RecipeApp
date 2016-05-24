@@ -48,7 +48,7 @@ class SelectCategoriesTableViewController: UITableViewController {
         let category = categories[indexPath.row]
         
         cell.textLabel?.text = category.name
-        cell.textLabel?.font = UIFont(name: "Alef-Regular", size: 16)
+        cell.textLabel?.font = Helpers.sharedInstance.getTextFont(16)
         cell.textLabel?.textAlignment = NSTextAlignment.Right
         
         var addCheckMark = false
@@ -66,7 +66,7 @@ class SelectCategoriesTableViewController: UITableViewController {
         
         cell.backgroundColor = UIColor.clearColor()
         cell.selectionStyle = .None
-        cell.tintColor = Helpers.getRedColor()
+        cell.tintColor = Helpers.sharedInstance.getRedColor()
         
         return cell
     }

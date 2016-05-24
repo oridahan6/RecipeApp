@@ -116,7 +116,7 @@ class GeneralInfoTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPicke
         let toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.Default
         toolBar.translucent = true
-        toolBar.tintColor = Helpers.getRedColor()
+        toolBar.tintColor = Helpers.sharedInstance.getRedColor()
         toolBar.sizeToFit()
         
         let doneButton = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: #selector(GeneralInfoTableViewCell.donePicker))
@@ -131,7 +131,7 @@ class GeneralInfoTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPicke
     }
     
     func categoriesLabelToSelectState() {
-        self.categoriesLabel.textColor = Helpers.uicolorFromHex(0xC4C4C8)
+        self.categoriesLabel.textColor = Helpers.sharedInstance.uicolorFromHex(0xC4C4C8)
         self.categoriesLabel.text = getLocalizedString("clickToChoose")
     }
     
@@ -149,7 +149,7 @@ class GeneralInfoTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPicke
             var text = ""
 
             if selectedCategories.isEmpty {
-                self.categoriesLabel.textColor = Helpers.uicolorFromHex(0xC4C4C8)
+                self.categoriesLabel.textColor = Helpers.sharedInstance.uicolorFromHex(0xC4C4C8)
                 
                 text = getLocalizedString("clickToChoose")
                 

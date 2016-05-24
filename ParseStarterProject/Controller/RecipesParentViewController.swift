@@ -115,7 +115,7 @@ class RecipesParentViewController: UITableViewController, UISearchResultsUpdatin
             self.emptySearchLabel!.textColor = UIColor.blackColor()
             self.emptySearchLabel!.numberOfLines = 0
             self.emptySearchLabel!.textAlignment = NSTextAlignment.Center
-            self.emptySearchLabel!.font = UIFont(name: "Alef-Regular", size: 20)
+            self.emptySearchLabel!.font = Helpers.sharedInstance.getTextFont(20)
             self.emptySearchLabel!.sizeToFit()
             self.emptySearchLabel!.tag = 45
         }

@@ -50,8 +50,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func customizeNavBar() {
         // Set Navigation bar background color
-        UINavigationBar.appearance().barTintColor = Helpers.getRedColor()
-        UINavigationBar.appearance().backgroundColor = Helpers.getRedColor()
+        UINavigationBar.appearance().barTintColor = Helpers.sharedInstance.getRedColor()
+        UINavigationBar.appearance().backgroundColor = Helpers.sharedInstance.getRedColor()
         
         // Set translucent. (Default value is already true, so this can be removed if desired.)
         UINavigationBar.appearance().translucent = false
@@ -61,27 +61,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().shadowImage = UIImage()
         
         // Set Navigation bar Title font & color
-        UINavigationBar.appearance().titleTextAttributes = ([NSFontAttributeName: UIFont(name: "Alef-Bold", size: 20)! ,NSForegroundColorAttributeName:UIColor.whiteColor()])
+        UINavigationBar.appearance().titleTextAttributes = ([NSFontAttributeName: Helpers.sharedInstance.getTextFont(20, bold: true) ,NSForegroundColorAttributeName:UIColor.whiteColor()])
         
         // Set Navigation bar tint color
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         
         // Set bar button items font
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Alef-Regular", size: 18)!], forState: UIControlState.Normal)
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: Helpers.sharedInstance.getTextFont(18)], forState: UIControlState.Normal)
     }
     
     func customizeTabBar() {
         // Set Tab bar color
         // SPLIT TEST: color - f2e1d2
-        UITabBar.appearance().barTintColor = Helpers.uicolorFromHex(0xf2f0ea)
+        UITabBar.appearance().barTintColor = Helpers.sharedInstance.uicolorFromHex(0xf2f0ea)
         
         // Set Tab bar selected item color
-        UITabBar.appearance().tintColor = Helpers.getRedColor()
+        UITabBar.appearance().tintColor = Helpers.sharedInstance.getRedColor()
 
         // Set tab bar selected/unselected text color and font
-        let font = UIFont(name: "Alef-Regular", size: 10)!
+        let font = Helpers.sharedInstance.getTextFont(10)
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: self.getUnselectedTabBarItemColor(), NSFontAttributeName: font], forState:.Normal)
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: Helpers.getRedColor(), NSFontAttributeName: font], forState:.Selected)
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: Helpers.sharedInstance.getRedColor(), NSFontAttributeName: font], forState:.Selected)
         
         // Set tab bar items icons and text
         if let tabBarController = self.window?.rootViewController as? UITabBarController {
@@ -108,7 +108,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func getUnselectedTabBarItemColor() -> UIColor {
-        return Helpers.uicolorFromHex(0x42413c)
+        return Helpers.sharedInstance.uicolorFromHex(0x42413c)
     }
     
     //--------------------------------------
