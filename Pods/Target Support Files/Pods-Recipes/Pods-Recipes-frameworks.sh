@@ -86,8 +86,10 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Recipes/Kingfisher.framework"
   install_framework "Pods-Recipes/NVActivityIndicatorView.framework"
+  install_framework "Pods-Recipes/SVProgressHUD.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Recipes/Kingfisher.framework"
   install_framework "Pods-Recipes/NVActivityIndicatorView.framework"
+  install_framework "Pods-Recipes/SVProgressHUD.framework"
 fi
