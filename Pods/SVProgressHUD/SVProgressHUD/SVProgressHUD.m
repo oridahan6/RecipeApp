@@ -755,8 +755,12 @@ static const CGFloat SVProgressHUDDefaultAnimationDuration = 0.15;
     activeHeight -= keyboardHeight;
     
     CGFloat posX = CGRectGetWidth(orientationFrame)/2.0f;
-    CGFloat posY = floorf(activeHeight*0.45f);
-
+    
+    // ORI CHANGE
+    // - changed position to be centered vertically (https://github.com/SVProgressHUD/SVProgressHUD/issues/135)
+    CGFloat posY = floorf(activeHeight*0.5f);
+    // ORI END CHANGE
+    
     CGFloat rotateAngle = 0.0;
     CGPoint newCenter = CGPointMake(posX, posY);
     
