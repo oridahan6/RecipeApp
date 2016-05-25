@@ -289,22 +289,20 @@ class ParseHelper: NSObject {
     //--------------------------------------
     
     class func login(username: String, password: String, vc: LoginViewController) {
-        
-        vc.activityIndicator.show()
+
+        vc.beginUpdateView()
         
         PFUser.logInWithUsernameInBackground(username, password: password) {
             (user: PFUser?, error: NSError?) -> Void in
             if user != nil {
-                vc.activityIndicator.hide()
-                
                 vc.showSuccessAlert()
             } else {
                 if let error = error {
                     print(error)
-                    vc.activityIndicator.hide()
                     vc.showErrorAlert(error.code)
                 }
             }
+            vc.endUpdateView()
         }
         
     }

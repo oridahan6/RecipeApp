@@ -13,6 +13,7 @@
 		0C070DB11CD10EF90060CC8C /* AddRecipeButtonsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C070DB01CD10EF90060CC8C /* AddRecipeButtonsTableViewCell.swift */; };
 		0C070DB31CD11ED80060CC8C /* AddIngredientSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C070DB21CD11ED80060CC8C /* AddIngredientSectionTableViewCell.swift */; };
 		0C0BF0B61CF39AF0001ED414 /* ODUIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BF0B51CF39AF0001ED414 /* ODUIKitExtensions.swift */; };
+		0C0BF0DF1CF48883001ED414 /* SVProgressHUDHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BF0DE1CF48883001ED414 /* SVProgressHUDHelper.swift */; };
 		0C0CD0C71CABD5FB00F682F9 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0CD0C31CABD5FB00F682F9 /* Enum.swift */; };
 		0C0CD0C81CABD5FB00F682F9 /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0C0CD0C51CABD5FB00F682F9 /* FontAwesome.otf */; };
 		0C0CD0C91CABD5FB00F682F9 /* FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0CD0C61CABD5FB00F682F9 /* FontAwesome.swift */; };
@@ -114,6 +115,7 @@
 		0C070DB01CD10EF90060CC8C /* AddRecipeButtonsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRecipeButtonsTableViewCell.swift; sourceTree = "<group>"; };
 		0C070DB21CD11ED80060CC8C /* AddIngredientSectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddIngredientSectionTableViewCell.swift; sourceTree = "<group>"; };
 		0C0BF0B51CF39AF0001ED414 /* ODUIKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ODUIKitExtensions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0C0BF0DE1CF48883001ED414 /* SVProgressHUDHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVProgressHUDHelper.swift; sourceTree = "<group>"; };
 		0C0CD0C31CABD5FB00F682F9 /* Enum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		0C0CD0C41CABD5FB00F682F9 /* FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontAwesome.h; sourceTree = "<group>"; };
 		0C0CD0C51CABD5FB00F682F9 /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
@@ -416,6 +418,7 @@
 				0C0BF0B51CF39AF0001ED414 /* ODUIKitExtensions.swift */,
 				0C999F5B1CB4D80400E3844D /* KingfisherHelper.swift */,
 				0CCC381E1CBBB2BF0055384F /* Reachability.swift */,
+				0C0BF0DE1CF48883001ED414 /* SVProgressHUDHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -716,6 +719,7 @@
 				0C151EB21CC8CA6100631614 /* GeneralInfoTableViewCell.swift in Sources */,
 				0C151EAA1CC7CE7D00631614 /* SectionHeaderTitleTableViewCell.swift in Sources */,
 				0C7399601CE62CB90083CA34 /* DGElasticPullToRefreshLoadingView.swift in Sources */,
+				0C0BF0DF1CF48883001ED414 /* SVProgressHUDHelper.swift in Sources */,
 				0C1C31B01CECECC200D9D934 /* NoActionsTextField.swift in Sources */,
 				0C9B154E1CD5CCD6009412AE /* AddDirectionTableViewCell.swift in Sources */,
 				0C7399611CE62CB90083CA34 /* DGElasticPullToRefreshLoadingViewCircle.swift in Sources */,

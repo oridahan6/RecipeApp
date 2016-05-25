@@ -14,7 +14,6 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
     let SegueRecipesViewController = "RecipesViewController"
     
     var prompt = SwiftPromptsView()
-    var activityIndicator: ActivityIndicator!
     
     var searchButton: UIBarButtonItem!
     var searchController: UISearchController!
@@ -23,7 +22,7 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
     var shouldShowSearchResults = false
     
     var emptySearchLabel: UILabel?
-
+    
     var categories = [Category]() {
         didSet {
             tableView.reloadData()
@@ -33,22 +32,16 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
     //--------------------------------------
     // MARK: - Life Cycle Methods
     //--------------------------------------
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.title = getLocalizedString("Categories")
         
         if !Helpers.sharedInstance.isInternetConnectionAvailable() {
             self.buildAlert()
             self.showAlert()
         } else {
-            // Activity Indicator
-            self.activityIndicator = ActivityIndicator(largeActivityView: self.view)
-            
-            // Hack for placing the hud in the correct place
-            Helpers.sharedInstance.hackForPlacingHUD(self.activityIndicator.HUD)
-            
             ParseHelper.sharedInstance.updateCategories(self)
         }
         
@@ -66,16 +59,16 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
     override func viewWillAppear(animated: Bool) {
         self.definesPresentationContext = true
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     //--------------------------------------
     // MARK: - Navigation
     //--------------------------------------
-
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == SegueRecipesViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
@@ -87,15 +80,15 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
             }
         }
     }
-
+    
     //--------------------------------------
     // MARK: - Table view data source
     //--------------------------------------
-
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         tableView.backgroundView = nil
         if isShowSearchResults() {
@@ -104,12 +97,12 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
         }
         return categories.count
     }
-
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as! CategoryTableViewCell
-
+        
         let category = self.getCategoryBasedOnSearch(indexPath.row)
-
+        
         cell.categoryNameLabel.text = category.name
         cell.recipesCountLabel.text = Helpers.sharedInstance.getSingularOrPluralForm(category.recipesCount, textToConvert: "recipe")
         
@@ -118,21 +111,21 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
         KingfisherHelper.sharedInstance.setImageWithUrl(cell.categoryImage, url: imageUrlString)
         
         cell.selectionStyle = UITableViewCellSelectionStyle.None
-
+        
         return cell
     }
-
+    
     //--------------------------------------
     // MARK: - Helpers Methods
     //--------------------------------------
-
+    
     func loadCategories(fromPullToRefresh: Bool = false) {
         if !fromPullToRefresh {
             self.beginUpdateView()
         }
         ParseHelper.sharedInstance.updateCategories(self)
     }
-
+    
     func showSearchBar(sender: UIBarButtonItem) {
         self.navigationItem.rightBarButtonItem = nil
         self.navigationItem.leftBarButtonItem = nil
@@ -150,7 +143,7 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
         searchController.searchBar.setValue(getLocalizedString("cancel"), forKey:"_cancelButtonText")
         searchController.searchBar.delegate = self
         searchController.hidesNavigationBarDuringPresentation = false
-
+        
         // enable search button even when empty search string
         var searchBarTextField: UITextField!
         for subview in searchController.searchBar.subviews {
@@ -168,7 +161,7 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
         searchController.searchBar.showsCancelButton = true
         searchController.searchBar.sizeToFit()
     }
-
+    
     func handleIfEmptySearch() {
         if searchController.searchBar.text?.isEmpty == false && filteredCategories.count == 0 {
             self.addEmptySearchLabel()
@@ -193,7 +186,7 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
         self.tableView.backgroundView = emptySearchLabel
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
     }
-
+    
     func getCategoryBasedOnSearch(index: Int) -> Category {
         if isShowSearchResults() {
             return filteredCategories[index]
@@ -217,14 +210,14 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
     }
     
     func beginUpdateView() {
-        self.activityIndicator.show()
+        SVProgressHUDHelper.sharedInstance.showLoadingHUD()
     }
     
     func endUpdateView() {
-        self.activityIndicator.hide()
+        SVProgressHUDHelper.sharedInstance.dissmisHUD()
         self.tableView.dg_stopLoading()
     }
-
+    
     private func isShowSearchResults() -> Bool {
         if searchController.searchBar.text?.isEmpty == true {
             return false
@@ -304,7 +297,7 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
     //--------------------------------------
     // MARK: - SwiftPromptsProtocol delegate methods
     //--------------------------------------
-
+    
     func clickedOnTheMainButton() {
         prompt.dismissPrompt()
     }
@@ -314,13 +307,13 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
     }
     
     func promptWasDismissed() {
-
+        
     }
-
+    
     //--------------------------------------
     // MARK: - UIScrollViewDelegate Methods
     //--------------------------------------
-
+    
     override func scrollViewWillBeginDragging(scrollView: UIScrollView) {
         if searchController.searchBar.isFirstResponder() && (shouldShowSearchResults || searchController.active) {
             searchController.searchBar.resignFirstResponder()
@@ -330,7 +323,7 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
     //--------------------------------------
     // MARK: - deinitialization
     //--------------------------------------
-
+    
     deinit {
         if let superView = searchController.view.superview
         {

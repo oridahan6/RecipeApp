@@ -19,7 +19,6 @@ class FavoritesViewController: RecipesParentViewController, SwiftPromptsProtocol
     
     var recipeRemoved = false
     var prompt = SwiftPromptsView()
-    var activityIndicator: ActivityIndicator!
     
     override func recipesUpdated() {
         if !self.recipeRemoved {
@@ -43,12 +42,6 @@ class FavoritesViewController: RecipesParentViewController, SwiftPromptsProtocol
         // Create Edit Button
         self.editButton = UIBarButtonItem(title: getLocalizedString("edit"), style: .Plain, target: self, action: #selector(FavoritesViewController.editItems(_:)))
         navigationItem.leftBarButtonItem = self.editButton
-
-        // Activity Indicator
-        self.activityIndicator = ActivityIndicator(largeActivityView: self.view)
-        
-        // Hack for placing the hud in the correct place
-        Helpers.sharedInstance.hackForPlacingHUD(self.activityIndicator.HUD)
     }
 
     override func didReceiveMemoryWarning() {
@@ -107,11 +100,11 @@ class FavoritesViewController: RecipesParentViewController, SwiftPromptsProtocol
     
     func beginUpdateView() {
         self.tableView.backgroundView = nil
-        self.activityIndicator.show()
+        SVProgressHUDHelper.sharedInstance.showLoadingHUD()
     }
     
     func endUpdateView() {
-        self.activityIndicator.hide()
+        SVProgressHUDHelper.sharedInstance.dissmisHUD()
         if self.recipes.count == 0 {
             self.addEmptyFavoritesLabel()
         }

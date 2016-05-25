@@ -11,7 +11,6 @@ import UIKit
 class LoginViewController: UIViewController, UITextFieldDelegate, SwiftPromptsProtocol {
 
     var prompt = SwiftPromptsView()
-    var activityIndicator: ActivityIndicator!
 
     @IBOutlet var usernameTextField: HoshiTextField!
     @IBOutlet var passwordTextField: HoshiTextField!
@@ -37,9 +36,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SwiftPromptsPr
         buttonLabel.text = getLocalizedString("enter")
         usernameTextField.delegate = self
         passwordTextField.delegate = self
-        
-        // Activity Indicator
-        self.activityIndicator = ActivityIndicator(largeActivityView: self.view, options: ["isShowLabel": false])
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,6 +63,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SwiftPromptsPr
     //--------------------------------------
     // MARK: - Helper methods
     //--------------------------------------
+
+    func beginUpdateView() {
+        // if keyboard is shown - SVProgressHUD is aligned more to the top
+        self.usernameTextField.resignFirstResponder()
+        self.passwordTextField.resignFirstResponder()
+        SVProgressHUDHelper.sharedInstance.showLoginInHUD()
+    }
+    
+    func endUpdateView() {
+        SVProgressHUDHelper.sharedInstance.dissmisHUD()
+    }
 
     func showSuccessAlert() {
         //Create an instance of SwiftPromptsView and assign its delegate

@@ -36,7 +36,6 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
     let ERROR_CODE_INGREDIENT_NUMBER_CONTAINS_TEXT = 11114
     
     var prompt = SwiftPromptsView()
-    var activityIndicator: ActivityIndicator!
     
 //    var ingredientsArray: [String] = ["ingredient"]
 //    var directionsArray: [String] = ["direction"]
@@ -85,10 +84,6 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        self.activityIndicator = ActivityIndicator(largeActivityView: self.tableView.superview!, options: ["labelText": getLocalizedString("submitting")])
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -583,21 +578,11 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
     }
     
     func showActivityIndicator() {
-        if let _ = self.activityIndicator {
-            self.navigationController?.view.userInteractionEnabled = false
-            self.activityIndicator.show()
-        } else {
-            print("ERROR: self.activityIndicator not set")
-        }
+        SVProgressHUDHelper.sharedInstance.showPostingHUD()
     }
-
+    
     func hideActivityIndicator() {
-        if let _ = self.activityIndicator {
-            self.navigationController?.view.userInteractionEnabled = true
-            self.activityIndicator.hide()
-        } else {
-            print("ERROR: self.activityIndicator not set")
-        }
+        SVProgressHUDHelper.sharedInstance.dissmisHUD()
     }
     
     func getRecipeIngredientsCount() -> Int {

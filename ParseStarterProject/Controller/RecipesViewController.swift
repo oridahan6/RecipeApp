@@ -16,7 +16,6 @@ class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
     
     var category: Category?
     var prompt = SwiftPromptsView()
-    var activityIndicator: ActivityIndicator!
     
     var addButton: UIBarButtonItem!
     var updatedAt: NSDate!
@@ -36,12 +35,6 @@ class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
             self.buildAlert()
             self.showAlert()
         } else {
-            // Activity Indicator
-            self.activityIndicator = ActivityIndicator(largeActivityView: self.view)
-
-            // Hack for placing the hud in the correct place
-            Helpers.sharedInstance.hackForPlacingHUD(self.activityIndicator.HUD)
-            
             if let category = self.category {
                 self.title = category.name
             } else {
@@ -175,11 +168,11 @@ class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
     }
     
     func beginUpdateView() {
-        self.activityIndicator.show()
+        SVProgressHUDHelper.sharedInstance.showLoadingHUD()
     }
     
     func endUpdateView() {
-        self.activityIndicator.hide()
+        SVProgressHUDHelper.sharedInstance.dissmisHUD()
         self.tableView.dg_stopLoading()
     }
     

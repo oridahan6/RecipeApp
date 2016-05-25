@@ -31,6 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        KingfisherHelper.sharedInstance.clearAllCache()
     
         self.configureParse(application, launchOptions: launchOptions)
+
+//        ParseHelper.logOut()
         
         return true
     }
