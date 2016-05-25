@@ -14,6 +14,9 @@
 		0C070DB31CD11ED80060CC8C /* AddIngredientSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C070DB21CD11ED80060CC8C /* AddIngredientSectionTableViewCell.swift */; };
 		0C0BF0B61CF39AF0001ED414 /* ODUIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BF0B51CF39AF0001ED414 /* ODUIKitExtensions.swift */; };
 		0C0BF0DF1CF48883001ED414 /* SVProgressHUDHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BF0DE1CF48883001ED414 /* SVProgressHUDHelper.swift */; };
+		0C0BF0E41CF57199001ED414 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C0BF0E11CF57199001ED414 /* Info.plist */; };
+		0C0BF0E51CF57199001ED414 /* SCLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BF0E21CF57199001ED414 /* SCLAlertView.swift */; };
+		0C0BF0E61CF57199001ED414 /* SCLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BF0E31CF57199001ED414 /* SCLExtensions.swift */; };
 		0C0CD0C71CABD5FB00F682F9 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0CD0C31CABD5FB00F682F9 /* Enum.swift */; };
 		0C0CD0C81CABD5FB00F682F9 /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0C0CD0C51CABD5FB00F682F9 /* FontAwesome.otf */; };
 		0C0CD0C91CABD5FB00F682F9 /* FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0CD0C61CABD5FB00F682F9 /* FontAwesome.swift */; };
@@ -116,6 +119,9 @@
 		0C070DB21CD11ED80060CC8C /* AddIngredientSectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddIngredientSectionTableViewCell.swift; sourceTree = "<group>"; };
 		0C0BF0B51CF39AF0001ED414 /* ODUIKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ODUIKitExtensions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0C0BF0DE1CF48883001ED414 /* SVProgressHUDHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVProgressHUDHelper.swift; sourceTree = "<group>"; };
+		0C0BF0E11CF57199001ED414 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0C0BF0E21CF57199001ED414 /* SCLAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCLAlertView.swift; sourceTree = "<group>"; };
+		0C0BF0E31CF57199001ED414 /* SCLExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCLExtensions.swift; sourceTree = "<group>"; };
 		0C0CD0C31CABD5FB00F682F9 /* Enum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		0C0CD0C41CABD5FB00F682F9 /* FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontAwesome.h; sourceTree = "<group>"; };
 		0C0CD0C51CABD5FB00F682F9 /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
@@ -238,9 +244,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C0BF0E01CF57198001ED414 /* SCLAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				0C0BF0E11CF57199001ED414 /* Info.plist */,
+				0C0BF0E21CF57199001ED414 /* SCLAlertView.swift */,
+				0C0BF0E31CF57199001ED414 /* SCLExtensions.swift */,
+			);
+			path = SCLAlertView;
+			sourceTree = "<group>";
+		};
 		0C0CD0BC1CABD09300F682F9 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				0C0BF0E01CF57198001ED414 /* SCLAlertView */,
 				0C7399581CE62CB90083CA34 /* DGElasticPullToRefresh */,
 				0C47CF7D1CC66E1000F26623 /* TextFieldEffects */,
 				0CCC38201CBBBCA10055384F /* SwiftPrompts */,
@@ -605,6 +622,7 @@
 				0C0CD0C81CABD5FB00F682F9 /* FontAwesome.otf in Resources */,
 				0CD15FF41CB140F000C7B828 /* Alef-regular.ttf in Resources */,
 				0C7BDA811CA95E260056ADCD /* Localizable.strings in Resources */,
+				0C0BF0E41CF57199001ED414 /* Info.plist in Resources */,
 				0CD15FF31CB140F000C7B828 /* Alef-bold.ttf in Resources */,
 				0C192F191CB27FC500811CB4 /* tableview-bg-736h@3x.png in Resources */,
 				0CA4A2E11CEEFE59000FC8CD /* placeholder-w-add.png in Resources */,
@@ -708,6 +726,7 @@
 				0C192F241CB38D4B00811CB4 /* ParseCategory.swift in Sources */,
 				0C0CD0C91CABD5FB00F682F9 /* FontAwesome.swift in Sources */,
 				0C0535DB1CE24AB7009B00D5 /* SelectCategoriesTableViewController.swift in Sources */,
+				0C0BF0E51CF57199001ED414 /* SCLAlertView.swift in Sources */,
 				0CCC381F1CBBB2BF0055384F /* Reachability.swift in Sources */,
 				0C47CF8D1CC66E1000F26623 /* IsaoTextField.swift in Sources */,
 				0C7BDA781CA90DB70056ADCD /* RecipeTableViewCell.swift in Sources */,
@@ -735,6 +754,7 @@
 				0C7BD9E61CA808D00056ADCD /* Recipe.swift in Sources */,
 				0C070DB11CD10EF90060CC8C /* AddRecipeButtonsTableViewCell.swift in Sources */,
 				0C47CF8A1CC66E1000F26623 /* AkiraTextField.swift in Sources */,
+				0C0BF0E61CF57199001ED414 /* SCLExtensions.swift in Sources */,
 				0CCC382C1CBBE20D0055384F /* SwiftPromptHelper.swift in Sources */,
 				0C0CD0CF1CAD618E00F682F9 /* IngredientTableViewCell.swift in Sources */,
 				0C7BDA7E1CA942DF0056ADCD /* Helpers.swift in Sources */,
