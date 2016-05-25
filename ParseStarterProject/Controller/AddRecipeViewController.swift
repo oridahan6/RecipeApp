@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddRecipeViewController: UITableViewController, UITextFieldDelegate, SwiftPromptsProtocol {
+class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
 
     // Notifications
     static let NotificationDoneSelectingCategories = "DoneSelectingCategories"
@@ -34,8 +34,6 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
     let ERROR_CODE_PREP_TIME_ZERO = 11112
     let ERROR_CODE_MISSING_INGREDIENT_TEXT = 11113
     let ERROR_CODE_INGREDIENT_NUMBER_CONTAINS_TEXT = 11114
-    
-    var prompt = SwiftPromptsView()
     
 //    var ingredientsArray: [String] = ["ingredient"]
 //    var directionsArray: [String] = ["direction"]
@@ -544,37 +542,25 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
     }
     
     func showSuccessAlert() {
-        //Create an instance of SwiftPromptsView and assign its delegate
-        prompt = SwiftPromptsView(frame: self.tableView.superview!.frame)
-        prompt.delegate = self
-        
-        SwiftPromptHelper.buildSuccessAlert(prompt, type: "uploadSuccess")
-        self.tableView.superview?.addSubview(prompt)
-        self.navigationController?.navigationBar.userInteractionEnabled = false
+        SCLAlertViewHelper.sharedInstance.showSuccessAlert("uploadSuccess")
     }
     
     func showErrorAlert(errorCode: Int = 0) {
-        var propmptType = "generalError"
+        var alertTextType = "generalError"
         switch errorCode {
         case self.ERROR_CODE_MISSING_DATA:
-            propmptType = "uploadErrorMissingData"
+            alertTextType = "uploadErrorMissingData"
         case self.ERROR_CODE_PREP_TIME_ZERO:
-            propmptType = "uploadErrorPrepTimeZero"
+            alertTextType = "uploadErrorPrepTimeZero"
         case self.ERROR_CODE_MISSING_INGREDIENT_TEXT:
-            propmptType = "uploadErrorMissingIngredientText"
+            alertTextType = "uploadErrorMissingIngredientText"
         case self.ERROR_CODE_INGREDIENT_NUMBER_CONTAINS_TEXT:
-            propmptType = "uploadErrorIngredientNumberContainsText"
+            alertTextType = "uploadErrorIngredientNumberContainsText"
         default:
-            propmptType = "generalError"
+            alertTextType = "generalError"
         }
         
-        //Create an instance of SwiftPromptsView and assign its delegate
-        prompt = SwiftPromptsView(frame: self.tableView.superview!.frame)
-        prompt.delegate = self
-        
-        SwiftPromptHelper.buildErrorAlert(prompt, type: propmptType)
-        self.tableView.superview?.addSubview(prompt)
-        self.navigationController?.navigationBar.userInteractionEnabled = false
+        SCLAlertViewHelper.sharedInstance.showErrorAlert(alertTextType)
     }
     
     func showActivityIndicator() {
@@ -670,22 +656,6 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate, Swift
         NSNotificationCenter.defaultCenter().postNotificationName(AddRecipeViewController.NotificationDoneSelectingCategories, object: self.recipeCategories)
     }
     
-    //--------------------------------------
-    // MARK: - SwiftPromptsProtocol delegate methods
-    //--------------------------------------
-    
-    func clickedOnTheMainButton() {
-        prompt.dismissPrompt()
-    }
-    
-    func clickedOnTheSecondButton() {
-        prompt.dismissPrompt()
-    }
-    
-    func promptWasDismissed() {
-        self.navigationController?.navigationBar.userInteractionEnabled = true
-    }
-
     //--------------------------------------
     // MARK: - Text Field Delegate
     //--------------------------------------

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FavoritesViewController: RecipesParentViewController, SwiftPromptsProtocol {
+class FavoritesViewController: RecipesParentViewController {
 
     let CellIdentifier = "FavoriteRecipeTableViewCell"
     let SegueRecipeViewController = "RecipeViewController"
@@ -18,7 +18,6 @@ class FavoritesViewController: RecipesParentViewController, SwiftPromptsProtocol
     var emptyMessageLabel: UILabel?
     
     var recipeRemoved = false
-    var prompt = SwiftPromptsView()
     
     override func recipesUpdated() {
         if !self.recipeRemoved {
@@ -51,7 +50,6 @@ class FavoritesViewController: RecipesParentViewController, SwiftPromptsProtocol
     
     override func viewWillAppear(animated: Bool) {
         if !Helpers.sharedInstance.isInternetConnectionAvailable() {
-            self.buildAlert()
             self.showAlert()
         } else {
             self.reloadFavorites()
@@ -110,17 +108,8 @@ class FavoritesViewController: RecipesParentViewController, SwiftPromptsProtocol
         }
     }
     
-    private func buildAlert() {
-        //Create an instance of SwiftPromptsView and assign its delegate
-        prompt = SwiftPromptHelper.getSwiftPromptView(self.view.bounds)
-        prompt.delegate = self
-        
-        SwiftPromptHelper.buildErrorAlert(prompt, type: "noInternetConnection")
-        
-    }
-    
     private func showAlert() {
-        self.view.addSubview(prompt)
+        SCLAlertViewHelper.sharedInstance.showErrorAlert("noInternetConnection")
     }
     
     //--------------------------------------
@@ -216,22 +205,4 @@ class FavoritesViewController: RecipesParentViewController, SwiftPromptsProtocol
         super.searchBarCancelButtonClicked(searchBar)
         self.navigationItem.leftBarButtonItem = self.editButton
     }
-
-    //--------------------------------------
-    // MARK: - SwiftPromptsProtocol delegate methods
-    //--------------------------------------
-    
-    func clickedOnTheMainButton() {
-        prompt.dismissPrompt()
-    }
-    
-    func clickedOnTheSecondButton() {
-        prompt.dismissPrompt()
-    }
-    
-    func promptWasDismissed() {
-        
-    }
-    
-
 }

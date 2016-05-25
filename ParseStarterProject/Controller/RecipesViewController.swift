@@ -8,14 +8,13 @@
 
 import UIKit
 
-class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
+class RecipesViewController: RecipesParentViewController {
 
     let CellIdentifier = "RecipeTableViewCell"
     let SegueRecipeViewController = "RecipeViewController"
     let SegueAddRecipeViewController = "AddRecipeViewController"
     
     var category: Category?
-    var prompt = SwiftPromptsView()
     
     var addButton: UIBarButtonItem!
     var updatedAt: NSDate!
@@ -32,7 +31,6 @@ class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
         super.viewDidLoad()
         
         if !Helpers.sharedInstance.isInternetConnectionAvailable() {
-            self.buildAlert()
             self.showAlert()
         } else {
             if let category = self.category {
@@ -176,33 +174,8 @@ class RecipesViewController: RecipesParentViewController, SwiftPromptsProtocol {
         self.tableView.dg_stopLoading()
     }
     
-    private func buildAlert() {
-        //Create an instance of SwiftPromptsView and assign its delegate
-        prompt = SwiftPromptHelper.getSwiftPromptView(self.view.bounds)
-        prompt.delegate = self
-        
-        SwiftPromptHelper.buildErrorAlert(prompt, type: "noInternetConnection")
-        
-    }
-    
     private func showAlert() {
-        self.view.addSubview(prompt)
-    }
-    
-    //--------------------------------------
-    // MARK: - SwiftPromptsProtocol delegate methods
-    //--------------------------------------
-    
-    func clickedOnTheMainButton() {
-        prompt.dismissPrompt()
-    }
-    
-    func clickedOnTheSecondButton() {
-        prompt.dismissPrompt()
-    }
-    
-    func promptWasDismissed() {
-        
+        SCLAlertViewHelper.sharedInstance.showErrorAlert("noInternetConnection")
     }
     
     //--------------------------------------

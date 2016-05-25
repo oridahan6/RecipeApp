@@ -8,12 +8,10 @@
 
 import UIKit
 
-class AboutViewController: UIViewController, SwiftPromptsProtocol {
+class AboutViewController: UIViewController {
 
     let SegueLoginViewController = "LoginViewController"
 
-    var prompt = SwiftPromptsView()
-    
     @IBOutlet var aboutLabel: UILabel!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var authorImageView: UIImageView!
@@ -64,28 +62,7 @@ class AboutViewController: UIViewController, SwiftPromptsProtocol {
     //--------------------------------------
     
     func showAlert() {
-        //Create an instance of SwiftPromptsView and assign its delegate
-        prompt = SwiftPromptsView(frame: self.view.frame)
-        prompt.delegate = self
-        
-        SwiftPromptHelper.buildSuccessAlert(prompt, type: "alreadyLoggedIn")
-        self.view.addSubview(prompt)
-    }
-
-    //--------------------------------------
-    // MARK: - SwiftPromptsProtocol delegate methods
-    //--------------------------------------
-    
-    func clickedOnTheMainButton() {
-        prompt.dismissPrompt()
-    }
-    
-    func clickedOnTheSecondButton() {
-        prompt.dismissPrompt()
-    }
-    
-    func promptWasDismissed() {
-        
+        SCLAlertViewHelper.sharedInstance.showInfoAlert("alreadyLoggedIn")
     }
     
     /*

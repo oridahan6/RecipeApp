@@ -8,9 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController, UITextFieldDelegate, SwiftPromptsProtocol {
-
-    var prompt = SwiftPromptsView()
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var usernameTextField: HoshiTextField!
     @IBOutlet var passwordTextField: HoshiTextField!
@@ -76,39 +74,24 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SwiftPromptsPr
     }
 
     func showSuccessAlert() {
-        //Create an instance of SwiftPromptsView and assign its delegate
-        prompt = SwiftPromptsView(frame: self.view.frame)
-        prompt.delegate = self
-        
-        SwiftPromptHelper.buildSuccessAlert(prompt, type: "loginSuccess")
-        self.view.addSubview(prompt)
+        SCLAlertViewHelper.sharedInstance.showSuccessAlert("loginSuccess", action: { self.checkUserExistsAndReturnToAboutVC() })
     }
 
     func showErrorAlert(errorCode: Int) {
-        var propmptType = "generalError"
+        var alertTextType = "generalError"
         switch errorCode {
         case 101:
-            propmptType = "wrongUsernamePassword"
+            alertTextType = "wrongUsernamePassword"
         case 701:
-            propmptType = "emptyUsernamePassword"
+            alertTextType = "emptyUsernamePassword"
         default:
-            propmptType = "generalError"
+            alertTextType = "generalError"
         }
         
-        //Create an instance of SwiftPromptsView and assign its delegate
-        prompt = SwiftPromptsView(frame: self.view.frame)
-        prompt.delegate = self
-        
-        SwiftPromptHelper.buildErrorAlert(prompt, type: propmptType)
-        self.view.addSubview(prompt)
+        SCLAlertViewHelper.sharedInstance.showErrorAlert(alertTextType)
     }
     
-    //--------------------------------------
-    // MARK: - SwiftPromptsProtocol delegate methods
-    //--------------------------------------
-    
-    func clickedOnTheMainButton() {
-        prompt.dismissPrompt()
+    func checkUserExistsAndReturnToAboutVC() {
         if let user = ParseHelper.currentUser() {
             let parseUser = ParseUser(user: user)
             if parseUser.isAdmin() {
@@ -118,23 +101,4 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SwiftPromptsPr
             }
         }
     }
-    
-    func clickedOnTheSecondButton() {
-        prompt.dismissPrompt()
-    }
-    
-    func promptWasDismissed() {
-        
-    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

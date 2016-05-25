@@ -48,7 +48,7 @@
 "wrongUsernamePasswordTitle" = "אופס...";
 "wrongUsernamePasswordMessage" = "שם המשתמש והסיסמא לא תואמים, נא נסה\\י שנית.";
 "alreadyLoggedInTitle" = "אופס...";
-"alreadyLoggedInMessage" = "את\\ה כבר מחובר\\ת, לחץ\\י \"בסדר\" כדי להמשיך.";
+"alreadyLoggedInMessage" = "אתה כבר מחובר, לחץ \"בסדר\" כדי להמשיך.";
 "emptyUsernamePasswordTitle" = "אופס...";
 "emptyUsernamePasswordMessage" = "שם מהמשתמש או הסיסמא חסרים.";
 // Add Recipe

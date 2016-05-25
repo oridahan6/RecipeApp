@@ -8,12 +8,10 @@
 
 import UIKit
 
-class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UISearchResultsUpdating, UISearchBarDelegate {
+class CategoriesViewController: UITableViewController, UISearchResultsUpdating, UISearchBarDelegate {
     
     let CellIdentifier = "CategoryTableViewCell"
     let SegueRecipesViewController = "RecipesViewController"
-    
-    var prompt = SwiftPromptsView()
     
     var searchButton: UIBarButtonItem!
     var searchController: UISearchController!
@@ -39,7 +37,6 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
         self.title = getLocalizedString("Categories")
         
         if !Helpers.sharedInstance.isInternetConnectionAvailable() {
-            self.buildAlert()
             self.showAlert()
         } else {
             ParseHelper.sharedInstance.updateCategories(self)
@@ -225,16 +222,8 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
         return shouldShowSearchResults
     }
     
-    private func buildAlert() {
-        //Create an instance of SwiftPromptsView and assign its delegate
-        prompt = SwiftPromptHelper.getSwiftPromptView(self.view.bounds)
-        prompt.delegate = self
-        
-        SwiftPromptHelper.buildErrorAlert(prompt, type: "noInternetConnection")
-    }
-    
     private func showAlert() {
-        self.view.addSubview(prompt)
+        SCLAlertViewHelper.sharedInstance.showErrorAlert("noInternetConnection")
     }
     
     //--------------------------------------
@@ -292,22 +281,6 @@ class CategoriesViewController: UITableViewController, SwiftPromptsProtocol, UIS
             shouldShowSearchResults = false
             tableView.reloadData()
         }
-    }
-    
-    //--------------------------------------
-    // MARK: - SwiftPromptsProtocol delegate methods
-    //--------------------------------------
-    
-    func clickedOnTheMainButton() {
-        prompt.dismissPrompt()
-    }
-    
-    func clickedOnTheSecondButton() {
-        prompt.dismissPrompt()
-    }
-    
-    func promptWasDismissed() {
-        
     }
     
     //--------------------------------------
