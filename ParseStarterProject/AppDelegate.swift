@@ -116,7 +116,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //--------------------------------------
     // MARK: Push Notifications
     //--------------------------------------
-
+    /*
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         let installation = PFInstallation.currentInstallation()
         installation.setDeviceTokenFromData(deviceToken)
@@ -145,7 +145,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
         }
     }
-
+    */
+ 
     ///////////////////////////////////////////////////////////
     // Uncomment this method if you want to use Push Notifications with Background App Refresh
     ///////////////////////////////////////////////////////////
@@ -186,6 +187,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser:true)
         
+        /*
         if application.applicationState != UIApplicationState.Background {
             // Track an app open here if we launch with a push, unless
             // "content_available" was used to trigger a background push (introduced in iOS 7).
@@ -215,6 +217,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application.registerUserNotificationSettings(settings)
             application.registerForRemoteNotifications()
         }
-
+        */
     }
 }
