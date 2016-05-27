@@ -32,12 +32,8 @@
             <string>Alef-Regular</string>
             <string>Alef-Regular</string>
             <string>Alef-Regular</string>
-            <string>Alef-Regular</string>
-            <string>Alef-Regular</string>
         </mutableArray>
         <mutableArray key="hillelclm-medium-webfont.ttf">
-            <string>HillelCLM-Medium</string>
-            <string>HillelCLM-Medium</string>
             <string>HillelCLM-Medium</string>
             <string>HillelCLM-Medium</string>
             <string>HillelCLM-Medium</string>
@@ -709,74 +705,17 @@
                                             <outlet property="subtitleLabel" destination="IUQ-BY-UlU" id="1pt-IH-Jzr"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PrepTimeTableViewCell" rowHeight="53" id="fIN-1H-OpP" customClass="PrepTimeTableViewCell" customModule="Recipes" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="175" width="600" height="53"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PrepTimeTableViewCell" id="fIN-1H-OpP" customClass="PrepTimeTableViewCell" customModule="Recipes" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="175" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fIN-1H-OpP" id="pAz-ad-IFt">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="53"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="זמן הכנה" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3h0-L5-hAL">
-                                                    <rect key="frame" x="445" y="0.0" width="109" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="109" id="6Nt-Go-tjy"/>
-                                                        <constraint firstAttribute="height" constant="21" id="nrs-13-grS"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="HillelCLM-Medium" family="Hillel CLM" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="זמן בישול" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G6K-r4-e5u">
-                                                    <rect key="frame" x="262" y="0.0" width="109" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="109" id="Skh-be-aO3"/>
-                                                        <constraint firstAttribute="height" constant="21" id="kru-c7-9px"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="HillelCLM-Medium" family="Hillel CLM" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="שעתיים ועשרים דקות" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfn-ki-GUZ">
-                                                    <rect key="frame" x="400" y="20" width="154" height="22"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="154" id="Veq-GT-UAf"/>
-                                                        <constraint firstAttribute="height" constant="22" id="wyl-vh-P2z"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="Alef-Regular" family="Alef" pointSize="16"/>
-                                                    <color key="textColor" red="0.47058823529411764" green="0.47058823529411764" blue="0.47058823529411764" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="40 דקות" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bWI-J9-lR3">
-                                                    <rect key="frame" x="262" y="20" width="109" height="22"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="22" id="KGm-Ai-JhH"/>
-                                                        <constraint firstAttribute="width" constant="109" id="eFq-3A-akZ"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="Alef-Regular" family="Alef" pointSize="16"/>
-                                                    <color key="textColor" red="0.47058823529411764" green="0.47058823529411764" blue="0.47058823529411764" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="G6K-r4-e5u" firstAttribute="top" secondItem="pAz-ad-IFt" secondAttribute="top" id="15K-fq-sP7"/>
-                                                <constraint firstItem="bWI-J9-lR3" firstAttribute="top" secondItem="pAz-ad-IFt" secondAttribute="topMargin" constant="12" id="Biz-fD-lss"/>
-                                                <constraint firstAttribute="trailing" secondItem="kfn-ki-GUZ" secondAttribute="trailing" constant="46" id="FmG-C0-JHB"/>
-                                                <constraint firstItem="3h0-L5-hAL" firstAttribute="leading" secondItem="G6K-r4-e5u" secondAttribute="trailing" constant="74" id="HsF-mk-xLT"/>
-                                                <constraint firstItem="3h0-L5-hAL" firstAttribute="top" secondItem="pAz-ad-IFt" secondAttribute="top" id="O51-VW-kty"/>
-                                                <constraint firstItem="kfn-ki-GUZ" firstAttribute="top" secondItem="pAz-ad-IFt" secondAttribute="top" constant="20" id="bwl-rw-nSM"/>
-                                                <constraint firstAttribute="trailing" secondItem="3h0-L5-hAL" secondAttribute="trailing" constant="46" id="ftS-I4-sXP"/>
-                                                <constraint firstItem="kfn-ki-GUZ" firstAttribute="leading" secondItem="bWI-J9-lR3" secondAttribute="trailing" constant="29" id="yD2-SU-V3t"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <outlet property="cookTimeLabel" destination="bWI-J9-lR3" id="syF-gX-mD9"/>
-                                            <outlet property="cookTimeTitleLabel" destination="G6K-r4-e5u" id="4fe-kw-2I5"/>
-                                            <outlet property="prepTimeLabel" destination="kfn-ki-GUZ" id="McP-MM-71W"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="IngredientTableViewCell" id="RMy-Mi-c9X" customClass="IngredientTableViewCell" customModule="Recipes" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="228" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="219" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RMy-Mi-c9X" id="B0Z-h9-Iaz">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -824,7 +763,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DirectionTableViewCell" rowHeight="53" id="iUd-io-uW9" customClass="DirectionTableViewCell" customModule="Recipes" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="272" width="600" height="53"/>
+                                        <rect key="frame" x="0.0" y="263" width="600" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iUd-io-uW9" id="CRl-wx-dzx">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="53"/>
@@ -889,7 +828,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RecipeImageTableViewCell" rowHeight="215" id="e79-R7-Kef" customClass="RecipeImageTableViewCell" customModule="Recipes" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="325" width="600" height="215"/>
+                                        <rect key="frame" x="0.0" y="316" width="600" height="215"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e79-R7-Kef" id="abl-Bo-x7h">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="215"/>

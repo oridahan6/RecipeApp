@@ -212,13 +212,7 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let cell = tableView.dequeueReusableCellWithIdentifier(PrepTimeTableViewCellIdentifier, forIndexPath: indexPath) as! PrepTimeTableViewCell
             cell.backgroundColor = .clearColor()
             
-            if recipe.cookTime == 0 {
-                cell.cookTimeLabel.hidden = true
-                cell.cookTimeTitleLabel.hidden = true
-            } else {
-                cell.cookTimeLabel.text = recipe.getCookTimeText()
-            }
-            cell.prepTimeLabel.text = recipe.getPreperationTimeText()
+            cell.recipe = recipe
             return cell
         } else if indexPath.section == 2 {
 
@@ -266,8 +260,11 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return 215
-        } else if indexPath.section == 1 {
-            return 53.0
+        }
+        else if indexPath.section == 1 {
+            if let cell = self.tableView.cellForRowAtIndexPath(indexPath) as? PrepTimeTableViewCell {
+                return cell.getHeight()
+            }
         }
         return UITableViewAutomaticDimension
     }
@@ -275,8 +272,6 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return 215.0
-        } else if indexPath.section == 1 {
-            return 53.0
         }
         return UITableViewAutomaticDimension
     }
