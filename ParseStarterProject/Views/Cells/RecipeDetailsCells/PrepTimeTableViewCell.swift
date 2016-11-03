@@ -38,13 +38,13 @@ class PrepTimeTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
     
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         
         let titleAttributes = self.getTitleTextAttributes()
         let textAttributes = self.getTextAttributes()
@@ -52,12 +52,12 @@ class PrepTimeTableViewCell: UITableViewCell {
         // draw prep title
         let prepTitleSize = self.getPrepTimeTitleSize()
         let prepTitleX = self.frame.size.width - marginRightfromScreen - prepTitleSize.width
-        self.getPrepTimeTitle().drawInRect(CGRectMake(prepTitleX, marginTop, prepTitleSize.width, prepTitleSize.height), withAttributes: titleAttributes)
+        self.getPrepTimeTitle().draw(in: CGRect(x: prepTitleX, y: marginTop, width: prepTitleSize.width, height: prepTitleSize.height), withAttributes: titleAttributes)
         
         // draw prep time
         let prepTimeSize = self.getPrepTimeTextSize()
         let prepTimeX = prepTitleX - marginRightAfterTitle - prepTimeSize.width
-        self.getPrepTimeText().drawInRect(CGRectMake(prepTimeX, marginTop, prepTimeSize.width, prepTimeSize.height), withAttributes: textAttributes)
+        self.getPrepTimeText().draw(in: CGRect(x: prepTimeX, y: marginTop, width: prepTimeSize.width, height: prepTimeSize.height), withAttributes: textAttributes)
 
         if recipe.cookTime > 0 {
             let cookTitleSize = self.getCookTimeTitleSize()
@@ -67,14 +67,14 @@ class PrepTimeTableViewCell: UITableViewCell {
             if self.getHeight() > self.shortHeight {
                 let cookTitleX = self.frame.size.width - marginRightfromScreen - cookTitleSize.width
                 let cookTextY = prepTitleSize.height + marginTopLongWidthText
-                self.getCookTimeTitle().drawInRect(CGRectMake(cookTitleX, cookTextY, cookTitleSize.width, cookTitleSize.height), withAttributes: titleAttributes)
+                self.getCookTimeTitle().draw(in: CGRect(x: cookTitleX, y: cookTextY, width: cookTitleSize.width, height: cookTitleSize.height), withAttributes: titleAttributes)
                 let cookTimeX = cookTitleX - marginRightAfterTitle - cookTimeSize.width
-                self.getCookTimeText().drawInRect(CGRectMake(cookTimeX, cookTextY, cookTimeSize.width, cookTimeSize.height), withAttributes: textAttributes)
+                self.getCookTimeText().draw(in: CGRect(x: cookTimeX, y: cookTextY, width: cookTimeSize.width, height: cookTimeSize.height), withAttributes: textAttributes)
             } else {
                 let cookTitleX = prepTimeX - marginRightFromSection - cookTitleSize.width
-                self.getCookTimeTitle().drawInRect(CGRectMake(cookTitleX, marginTop, cookTitleSize.width, cookTitleSize.height), withAttributes: titleAttributes)
+                self.getCookTimeTitle().draw(in: CGRect(x: cookTitleX, y: marginTop, width: cookTitleSize.width, height: cookTitleSize.height), withAttributes: titleAttributes)
                 let cookTimeX = cookTitleX - marginRightAfterTitle - cookTimeSize.width
-                self.getCookTimeText().drawInRect(CGRectMake(cookTimeX, marginTop, cookTimeSize.width, cookTimeSize.height), withAttributes: textAttributes)
+                self.getCookTimeText().draw(in: CGRect(x: cookTimeX, y: marginTop, width: cookTimeSize.width, height: cookTimeSize.height), withAttributes: textAttributes)
             }
             
         }
@@ -88,16 +88,16 @@ class PrepTimeTableViewCell: UITableViewCell {
         return self.shortHeight
     }
     
-    private func getTitleTextAttributes() -> [String: AnyObject] {
+    fileprivate func getTitleTextAttributes() -> [String: AnyObject] {
         // set the text color to dark gray
-        let fieldColor: UIColor = UIColor.blackColor()
+        let fieldColor: UIColor = UIColor.black
         
         // set the font to Helvetica Neue 18
         let fieldFont = Helpers.sharedInstance.getTitleFont(18)
         
         // set the line spacing to 6
         let paraStyle = NSMutableParagraphStyle()
-        paraStyle.alignment = .Right
+        paraStyle.alignment = .right
         paraStyle.maximumLineHeight = 15.0
         //            paraStyle.lineSpacing = 6.0
         
@@ -115,16 +115,16 @@ class PrepTimeTableViewCell: UITableViewCell {
         return attributes
     }
     
-    private func getTextAttributes() -> [String: AnyObject] {
+    fileprivate func getTextAttributes() -> [String: AnyObject] {
         // set the text color to dark gray
-        let fieldColor: UIColor = UIColor.grayColor()
+        let fieldColor: UIColor = UIColor.gray
         
         // set the font to Helvetica Neue 18
         let fieldFont = Helpers.sharedInstance.getTextFont(16)
         
         // set the line spacing to 6
         let paraStyle = NSMutableParagraphStyle()
-        paraStyle.alignment = .Right
+        paraStyle.alignment = .right
         paraStyle.maximumLineHeight = 15.0
         
         // set the Obliqueness to 0.1
@@ -140,7 +140,7 @@ class PrepTimeTableViewCell: UITableViewCell {
         return attributes
     }
 
-    private func getTotalWidth() -> CGFloat {
+    fileprivate func getTotalWidth() -> CGFloat {
         if self.totalWidth == nil {
         self.totalWidth =
             marginRightfromScreen +
@@ -159,58 +159,58 @@ class PrepTimeTableViewCell: UITableViewCell {
     // MARK: - Cache size calculations methods
     //--------------------------------------
     
-    private func getPrepTimeTitle() -> String {
+    fileprivate func getPrepTimeTitle() -> String {
         return getLocalizedString("preperation") + ":"
     }
     
-    private func getPrepTimeText() -> String {
+    fileprivate func getPrepTimeText() -> String {
         if self.prepTimeText == nil {
             self.prepTimeText = recipe.getPreperationTimeText()
         }
         return self.prepTimeText
     }
     
-    private func getPrepTimeTitleSize() -> CGSize {
+    fileprivate func getPrepTimeTitleSize() -> CGSize {
         if self.prepTimeTitleSize == nil {
-            self.prepTimeTitleSize = self.getPrepTimeTitle().sizeWithAttributes(self.getTitleTextAttributes())
+            self.prepTimeTitleSize = self.getPrepTimeTitle().size(attributes: self.getTitleTextAttributes())
         }
         return self.prepTimeTitleSize
     }
     
-    private func getPrepTimeTextSize() -> CGSize {
+    fileprivate func getPrepTimeTextSize() -> CGSize {
         if self.prepTimeTextSize == nil {
-            self.prepTimeTextSize = self.getPrepTimeText().sizeWithAttributes(self.getTextAttributes())
+            self.prepTimeTextSize = self.getPrepTimeText().size(attributes: self.getTextAttributes())
         }
         return self.prepTimeTextSize
     }
     
-    private func getCookTimeTitle() -> String {
+    fileprivate func getCookTimeTitle() -> String {
         return getLocalizedString("cook") + ":"
     }
     
-    private func getCookTimeText() -> String {
+    fileprivate func getCookTimeText() -> String {
         if self.cookTimeText == nil {
             self.cookTimeText = recipe.getCookTimeText()
         }
         return self.cookTimeText
     }
     
-    private func getCookTimeTitleSize() -> CGSize {
+    fileprivate func getCookTimeTitleSize() -> CGSize {
         if recipe.cookTime == 0 {
             return CGSize()
         }
         if self.cookTimeTitleSize == nil {
-            self.cookTimeTitleSize = self.getCookTimeTitle().sizeWithAttributes(self.getTitleTextAttributes())
+            self.cookTimeTitleSize = self.getCookTimeTitle().size(attributes: self.getTitleTextAttributes())
         }
         return self.cookTimeTitleSize
     }
     
-    private func getCookTimeTextSize() -> CGSize {
+    fileprivate func getCookTimeTextSize() -> CGSize {
         if recipe.cookTime == 0 {
             return CGSize()
         }
         if self.cookTimeTextSize == nil {
-            self.cookTimeTextSize = self.getCookTimeText().sizeWithAttributes(self.getTextAttributes())
+            self.cookTimeTextSize = self.getCookTimeText().size(attributes: self.getTextAttributes())
         }
         return self.cookTimeTextSize
     }

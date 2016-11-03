@@ -12,23 +12,23 @@ class SCLAlertViewHelper {
     
     static let sharedInstance = SCLAlertViewHelper()
     
-    private init() {}
+    fileprivate init() {}
     
-    func showInfoAlert(alertTextType: String) {
+    func showInfoAlert(_ alertTextType: String) {
         let alert = SCLAlertView(appearance: self.getAppearance())
         
         alert.addButton(getLocalizedString("OK")) {}
         alert.showInfo(self.getTitle(alertTextType), subTitle: self.getSubtitle(alertTextType))
     }
     
-    func showSuccessAlert(alertTextType: String, action:() -> Void = {}) {
+    func showSuccessAlert(_ alertTextType: String, action:() -> Void = {}) {
         let alert = SCLAlertView(appearance: self.getAppearance())
         
         alert.addButton(getLocalizedString("OK"), action: action)
         alert.showSuccess(self.getTitle(alertTextType), subTitle: self.getSubtitle(alertTextType))
     }
     
-    func showErrorAlert(alertTextType: String) {
+    func showErrorAlert(_ alertTextType: String) {
         let alert = SCLAlertView(appearance: self.getAppearance())
         
         alert.addButton(getLocalizedString("OK")) {}
@@ -39,7 +39,7 @@ class SCLAlertViewHelper {
     // MARK: - Helpers
     //--------------------------------------
 
-    private func getAppearance() -> SCLAlertView.SCLAppearance {
+    fileprivate func getAppearance() -> SCLAlertView.SCLAppearance {
         let apperance = SCLAlertView.SCLAppearance(
             kTitleFont: Helpers.sharedInstance.getTitleFont(24),
             kTitleHeight: 40,
@@ -51,11 +51,11 @@ class SCLAlertViewHelper {
         return apperance
     }
     
-    private func getTitle(alertTextType: String) -> String {
+    fileprivate func getTitle(_ alertTextType: String) -> String {
         return getLocalizedString(alertTextType + "Title")
     }
     
-    private func getSubtitle(alertTextType: String) -> String {
+    fileprivate func getSubtitle(_ alertTextType: String) -> String {
         return getLocalizedString(alertTextType + "Message")
     }
 

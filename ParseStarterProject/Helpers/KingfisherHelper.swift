@@ -13,26 +13,26 @@ class KingfisherHelper {
 
     static let sharedInstance = KingfisherHelper()
     
-    private var cache: ImageCache
+    fileprivate var cache: ImageCache
     
-    private init() {
-        self.cache = KingfisherManager.sharedManager.cache
+    fileprivate init() {
+        self.cache = KingfisherManager.shared.cache
     }
     
     //--------------------------------------
     // MARK: - Images
     //--------------------------------------
-    func setImageWithUrl(imageView: UIImageView, url: String) {
+    func setImageWithUrl(_ imageView: UIImageView, url: String) {
         
         let activityIndicator = ActivityIndicator(smallActivityView: imageView)
         activityIndicator.show()
         
 //        imageView.kf_showIndicatorWhenLoading = true
-        imageView.kf_setImageWithURL(NSURL(string: url)!,
-                                     placeholderImage: UIImage(named: "placeholder-bg.png"),
-                                     optionsInfo: [
-                                        .Transition(ImageTransition.Fade(0.3)),
-                                        .BackgroundDecode
+        imageView.kf.setImage(with: URL(string: url)!,
+                                     placeholder: UIImage(named: "placeholder-bg.png"),
+                                     options: [
+                                        .transition(.fade(0.3)),
+                                        .backgroundDecode
                                      ],
                                      progressBlock: { (receivedSize, totalSize) -> () in
 //                                        print("Download Progress: \(receivedSize)/\(totalSize)")
@@ -45,7 +45,8 @@ class KingfisherHelper {
 //                                        print("Downloaded and set!")
                                         if error != nil || image == nil {
                                             imageView.image = UIImage(named: "placeholder.jpg")
-                                        }                                      }
+                                        }
+                                    }
         )
     }
     

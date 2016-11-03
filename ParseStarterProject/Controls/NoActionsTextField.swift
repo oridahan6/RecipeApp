@@ -12,10 +12,10 @@ class NoActionsTextField: UITextField {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.tintColor = UIColor.clearColor()
+        self.tintColor = UIColor.clear
     }
     
-    override func canPerformAction(action: Selector, withSender sender: AnyObject?) -> Bool {
+    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
         /*
         if  action == #selector(NSObject.copy(_:)) ||
             action == #selector(NSObject.select(_:)) ||

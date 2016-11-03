@@ -8,27 +8,27 @@
 
 import Foundation
 
-extension NSDate {
-    func yearsFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.Year, fromDate: date, toDate: self, options: []).year
+extension Date {
+    func yearsFrom(_ date:Date) -> Int{
+        return (Calendar.current as NSCalendar).components(.year, from: date, to: self, options: []).year!
     }
-    func monthsFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.Month, fromDate: date, toDate: self, options: []).month
+    func monthsFrom(_ date:Date) -> Int{
+        return (Calendar.current as NSCalendar).components(.month, from: date, to: self, options: []).month!
     }
-    func weeksFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.WeekOfYear, fromDate: date, toDate: self, options: []).weekOfYear
+    func weeksFrom(_ date:Date) -> Int{
+        return (Calendar.current as NSCalendar).components(.weekOfYear, from: date, to: self, options: []).weekOfYear!
     }
-    func daysFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.Day, fromDate: date, toDate: self, options: []).day
+    func daysFrom(_ date:Date) -> Int{
+        return (Calendar.current as NSCalendar).components(.day, from: date, to: self, options: []).day!
     }
-    func hoursFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.Hour, fromDate: date, toDate: self, options: []).hour
+    func hoursFrom(_ date:Date) -> Int{
+        return (Calendar.current as NSCalendar).components(.hour, from: date, to: self, options: []).hour!
     }
-    func minutesFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.Minute, fromDate: date, toDate: self, options: []).minute
+    func minutesFrom(_ date:Date) -> Int{
+        return (Calendar.current as NSCalendar).components(.minute, from: date, to: self, options: []).minute!
     }
-    func secondsFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.Second, fromDate: date, toDate: self, options: []).second
+    func secondsFrom(_ date:Date) -> Int{
+        return (Calendar.current as NSCalendar).components(.second, from: date, to: self, options: []).second!
     }
 //    func offsetFrom(date:NSDate) -> String {
 //        if yearsFrom(date)   > 0 { return "\(yearsFrom(date))y"   }
@@ -40,7 +40,7 @@ extension NSDate {
 //        if secondsFrom(date) > 0 { return "\(secondsFrom(date))s" }
 //        return ""
 //    }
-    func offsetFrom(date:NSDate) -> String {
+    func offsetFrom(_ date:Date) -> String {
         if yearsFrom(date)   > 0 {
             if yearsFrom(date) == 1 {
                 return getLocalizedString("year")
@@ -104,16 +104,16 @@ extension NSDate {
 }
 
 // Arrays
-extension CollectionType where Generator.Element : Comparable {
+extension Collection where Iterator.Element : Comparable {
 
     // Return difference between arrays
-    func getDiffFromArray(elem: [String]) -> [String] {
+    func getDiffFromArray(_ elem: [String]) -> [String] {
         if let selfArray = self as? [String] {
             let setA = Set(selfArray)
             let setB = Set(elem)
             
             // Return a set with all values in A which are not contained in B
-            let diff = setA.subtract(setB)
+            let diff = setA.subtracting(setB)
             
             return Array(diff)
         }
@@ -122,20 +122,20 @@ extension CollectionType where Generator.Element : Comparable {
     }
 }
 
-extension RangeReplaceableCollectionType where Generator.Element : Equatable {
+extension RangeReplaceableCollection where Iterator.Element : Equatable {
     
     // Remove first collection element that is equal to the given `object`:
-    mutating func removeObject(object : Generator.Element) {
-        if let index = self.indexOf(object) {
-            self.removeAtIndex(index)
+    mutating func removeObject(_ object : Iterator.Element) {
+        if let index = self.index(of: object) {
+            self.remove(at: index)
         }
     }
     
 }
 
 extension NSRange {
-    func rangeForString(str: String) -> Range<String.Index>? {
+    func rangeForString(_ str: String) -> Range<String.Index>? {
         guard location != NSNotFound else { return nil }
-        return str.startIndex.advancedBy(location) ..< str.startIndex.advancedBy(location + length)
+        return str.characters.index(str.startIndex, offsetBy: location) ..< str.characters.index(str.startIndex, offsetBy: location + length)
     }
 }

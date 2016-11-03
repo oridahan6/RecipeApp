@@ -18,14 +18,14 @@ class ImageAddTableViewCell: UITableViewCell, UINavigationControllerDelegate, UI
         super.awakeFromNib()
         // Initialization code
         
-        self.uploadImageView.userInteractionEnabled = true
+        self.uploadImageView.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ImageAddTableViewCell.pickImage))
         self.uploadImageView.addGestureRecognizer(tapGesture)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ImageAddTableViewCell.uploadRecipeSuccess(_:)), name: AddRecipeViewController.NotificationUploadRecipeSuccess, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ImageAddTableViewCell.uploadRecipeSuccess(_:)), name: NSNotification.Name(rawValue: AddRecipeViewController.NotificationUploadRecipeSuccess), object: nil)
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
@@ -39,10 +39,10 @@ class ImageAddTableViewCell: UITableViewCell, UINavigationControllerDelegate, UI
         let picker = UIImagePickerController()
         picker.allowsEditing = true
         picker.delegate = self
-        self.parentController.presentViewController(picker, animated: true, completion: nil)
+        self.parentController.present(picker, animated: true, completion: nil)
     }
     
-    func uploadRecipeSuccess(notification: NSNotification) {
+    func uploadRecipeSuccess(_ notification: Notification) {
         self.uploadImageView.image = UIImage(named: "placeholder-w-add.png")
     }
     
@@ -50,11 +50,11 @@ class ImageAddTableViewCell: UITableViewCell, UINavigationControllerDelegate, UI
     // MARK: - UIImagePickerControllerDelegate methods
     //--------------------------------------
 
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        parentController.dismissViewControllerAnimated(true, completion: nil)
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        parentController.dismiss(animated: true, completion: nil)
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         var newImage: UIImage
         
         if let possibleImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
@@ -68,6 +68,6 @@ class ImageAddTableViewCell: UITableViewCell, UINavigationControllerDelegate, UI
         self.uploadImageView.image = newImage
         self.parentController.recipeImage = newImage
         
-        parentController.dismissViewControllerAnimated(true, completion: nil)
+        parentController.dismiss(animated: true, completion: nil)
     }
 }

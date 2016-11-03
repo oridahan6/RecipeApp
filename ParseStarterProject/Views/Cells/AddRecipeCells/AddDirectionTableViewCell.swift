@@ -27,7 +27,7 @@ class AddDirectionTableViewCell: UITableViewCell, UITextViewDelegate {
         
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
@@ -37,7 +37,7 @@ class AddDirectionTableViewCell: UITableViewCell, UITextViewDelegate {
         super.layoutSubviews()
 
         self.directionTextView.layer.borderWidth = 0.5
-        self.directionTextView.layer.borderColor = UIColor.blackColor().CGColor
+        self.directionTextView.layer.borderColor = UIColor.black.cgColor
         
         if let tableVC = self.tableViewController {
             if tableVC.isDirectionEditing {
@@ -53,12 +53,12 @@ class AddDirectionTableViewCell: UITableViewCell, UITextViewDelegate {
     // MARK: - Text View Delegate
     //--------------------------------------
     
-    func textViewDidEndEditing(textView: UITextView) {
+    func textViewDidEndEditing(_ textView: UITextView) {
         textView.resignFirstResponder()
         self.updateDirectionsArray(textView)
     }
     
-    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if(text == "\n") {
             textView.resignFirstResponder()
             return false
@@ -71,10 +71,10 @@ class AddDirectionTableViewCell: UITableViewCell, UITextViewDelegate {
     //--------------------------------------
 
     // not supporting sections yet
-    func updateDirectionsArray(textView: UITextView) {
+    func updateDirectionsArray(_ textView: UITextView) {
         
         if let directionText = textView.text, let cell = textView.superview?.superview as? AddDirectionTableViewCell {
-            if let indexPath = self.tableViewController.tableView.indexPathForCell(cell) {
+            if let indexPath = self.tableViewController.tableView.indexPath(for: cell) {
                 let currentRow = indexPath.row
                 if var recipeDirections = self.tableViewController.recipeDirections["general"] {
                     if recipeDirections.count <= currentRow {

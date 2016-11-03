@@ -14,7 +14,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var passwordTextField: HoshiTextField!
     @IBOutlet var buttonLabel: UILabel!
     
-    @IBAction func login(sender: AnyObject) {
+    @IBAction func login(_ sender: AnyObject) {
         
         if let username = self.usernameTextField.text, let password = self.passwordTextField.text {
             if username == "" || password == "" {
@@ -41,7 +41,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     
@@ -49,7 +49,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Text Field Delegate
     //--------------------------------------
 
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if (textField === usernameTextField) {
             passwordTextField.becomeFirstResponder()
         } else if (textField === passwordTextField) {
@@ -77,7 +77,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         SCLAlertViewHelper.sharedInstance.showSuccessAlert("loginSuccess", action: { self.checkUserExistsAndReturnToAboutVC() })
     }
 
-    func showErrorAlert(errorCode: Int) {
+    func showErrorAlert(_ errorCode: Int) {
         var alertTextType = "generalError"
         switch errorCode {
         case 101:
@@ -96,7 +96,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             let parseUser = ParseUser(user: user)
             if parseUser.isAdmin() {
                 if let navigationController = self.navigationController {
-                    navigationController.popViewControllerAnimated(true)
+                    navigationController.popViewController(animated: true)
                 }
             }
         }

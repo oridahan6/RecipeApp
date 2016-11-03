@@ -43,7 +43,7 @@ class CategoriesViewController: UITableViewController, UISearchResultsUpdating, 
         }
         
         // Create Search Button
-        self.searchButton = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: #selector(FavoritesViewController.showSearchBar(_:)))
+        self.searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(FavoritesViewController.showSearchBar(_:)))
         navigationItem.rightBarButtonItem = self.searchButton
         
         configureSearchController()
@@ -53,7 +53,7 @@ class CategoriesViewController: UITableViewController, UISearchResultsUpdating, 
         self.definesPresentationContext = true
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.definesPresentationContext = true
     }
     
@@ -66,11 +66,11 @@ class CategoriesViewController: UITableViewController, UISearchResultsUpdating, 
     // MARK: - Navigation
     //--------------------------------------
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SegueRecipesViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let category = self.getCategoryBasedOnSearch(indexPath.row)
-                let destinationViewController = segue.destinationViewController as! RecipesViewController
+                let destinationViewController = segue.destination as! RecipesViewController
                 destinationViewController.category = category
                 searchController.searchBar.resignFirstResponder()
                 self.definesPresentationContext = false
@@ -82,11 +82,11 @@ class CategoriesViewController: UITableViewController, UISearchResultsUpdating, 
     // MARK: - Table view data source
     //--------------------------------------
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         tableView.backgroundView = nil
         if isShowSearchResults() {
             self.handleIfEmptySearch()
@@ -95,8 +95,8 @@ class CategoriesViewController: UITableViewController, UISearchResultsUpdating, 
         return categories.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as! CategoryTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier, for: indexPath) as! CategoryTableViewCell
         
         let category = self.getCategoryBasedOnSearch(indexPath.row)
         
@@ -107,7 +107,7 @@ class CategoriesViewController: UITableViewController, UISearchResultsUpdating, 
         let imageUrlString = Constants.GDCategoriesImagesPath + category.imageName
         KingfisherHelper.sharedInstance.setImageWithUrl(cell.categoryImage, url: imageUrlString)
         
-        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
         
         return cell
     }
@@ -116,14 +116,14 @@ class CategoriesViewController: UITableViewController, UISearchResultsUpdating, 
     // MARK: - Helpers Methods
     //--------------------------------------
     
-    func loadCategories(fromPullToRefresh: Bool = false) {
+    func loadCategories(_ fromPullToRefresh: Bool = false) {
         if !fromPullToRefresh {
             self.beginUpdateView()
         }
         ParseHelper.sharedInstance.updateCategories(self)
     }
     
-    func showSearchBar(sender: UIBarButtonItem) {
+    func showSearchBar(_ sender: UIBarButtonItem) {
         self.navigationItem.rightBarButtonItem = nil
         self.navigationItem.leftBarButtonItem = nil
         
@@ -145,7 +145,7 @@ class CategoriesViewController: UITableViewController, UISearchResultsUpdating, 
         var searchBarTextField: UITextField!
         for subview in searchController.searchBar.subviews {
             for view2 in subview.subviews {
-                if view2.isKindOfClass(UITextField) {
+                if view2.isKind(of: UITextField.self) {
                     searchBarTextField = view2 as! UITextField
                     break
                 }
@@ -169,10 +169,10 @@ class CategoriesViewController: UITableViewController, UISearchResultsUpdating, 
     
     func addEmptySearchLabel() {
         if (self.emptySearchLabel == nil) {
-            self.emptySearchLabel = UILabel(frame: CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height))
-            self.emptySearchLabel!.textColor = UIColor.blackColor()
+            self.emptySearchLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
+            self.emptySearchLabel!.textColor = UIColor.black
             self.emptySearchLabel!.numberOfLines = 0
-            self.emptySearchLabel!.textAlignment = NSTextAlignment.Center
+            self.emptySearchLabel!.textAlignment = NSTextAlignment.center
             self.emptySearchLabel!.font = Helpers.sharedInstance.getTextFont(20)
             self.emptySearchLabel!.sizeToFit()
             self.emptySearchLabel!.tag = 45
@@ -181,10 +181,10 @@ class CategoriesViewController: UITableViewController, UISearchResultsUpdating, 
             self.emptySearchLabel!.text = String.localizedStringWithFormat(NSLocalizedString("emptySearchCategories", comment: ""), searchString)
         }
         self.tableView.backgroundView = emptySearchLabel
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
     }
     
-    func getCategoryBasedOnSearch(index: Int) -> Category {
+    func getCategoryBasedOnSearch(_ index: Int) -> Category {
         if isShowSearchResults() {
             return filteredCategories[index]
         }
@@ -215,14 +215,14 @@ class CategoriesViewController: UITableViewController, UISearchResultsUpdating, 
         self.tableView.dg_stopLoading()
     }
     
-    private func isShowSearchResults() -> Bool {
+    fileprivate func isShowSearchResults() -> Bool {
         if searchController.searchBar.text?.isEmpty == true {
             return false
         }
         return shouldShowSearchResults
     }
     
-    private func showAlert() {
+    fileprivate func showAlert() {
         SCLAlertViewHelper.sharedInstance.showErrorAlert("noInternetConnection")
     }
     
@@ -230,16 +230,16 @@ class CategoriesViewController: UITableViewController, UISearchResultsUpdating, 
     // MARK: - UISearchBarDelegate methods
     //--------------------------------------
     
-    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         searchController.searchBar.showsCancelButton = true
     }
     
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         shouldShowSearchResults = true
         tableView.reloadData()
     }
     
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         
         self.navigationItem.rightBarButtonItem = self.searchButton
         
@@ -250,7 +250,7 @@ class CategoriesViewController: UITableViewController, UISearchResultsUpdating, 
         tableView.reloadData()
     }
     
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if !shouldShowSearchResults {
             shouldShowSearchResults = true
             tableView.reloadData()
@@ -263,16 +263,16 @@ class CategoriesViewController: UITableViewController, UISearchResultsUpdating, 
     // MARK: - UISearchResultsUpdating methods
     //--------------------------------------
     
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
-        if let searchString = searchController.searchBar.text where searchString.isEmpty == false {
+    func updateSearchResults(for searchController: UISearchController) {
+        if let searchString = searchController.searchBar.text, searchString.isEmpty == false {
             
             shouldShowSearchResults = true
             
             // Filter the data array and get only those countries that match the search text.
             filteredCategories = categories.filter({ (category) -> Bool in
-                let categoryName: NSString = category.name
+                let categoryName: NSString = category.name as NSString
                 
-                return (categoryName.rangeOfString(searchString, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
+                return (categoryName.range(of: searchString, options: NSString.CompareOptions.caseInsensitive).location) != NSNotFound
             })
             
             // Reload the tableview.
@@ -287,8 +287,8 @@ class CategoriesViewController: UITableViewController, UISearchResultsUpdating, 
     // MARK: - UIScrollViewDelegate Methods
     //--------------------------------------
     
-    override func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-        if searchController.searchBar.isFirstResponder() && (shouldShowSearchResults || searchController.active) {
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        if searchController.searchBar.isFirstResponder && (shouldShowSearchResults || searchController.isActive) {
             searchController.searchBar.resignFirstResponder()
         }
     }

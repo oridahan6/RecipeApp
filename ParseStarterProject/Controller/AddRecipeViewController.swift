@@ -66,17 +66,17 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
         self.stopSectionsHeadersFromFloating()
 
         // set table view background image
-        self.tableView.backgroundColor = UIColor.clearColor()
+        self.tableView.backgroundColor = UIColor.clear
         let backgroundImageView = UIImageView( image : Helpers.sharedInstance.getDeviceSpecificBGImage("tableview-bg"));
         backgroundImageView.frame = self.tableView.frame;
         self.tableView.backgroundView = backgroundImageView;
         
         // add done button
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: getLocalizedString("done"), style: .Done, target: self, action: #selector(AddRecipeViewController.uploadRecipe(_:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: getLocalizedString("done"), style: .done, target: self, action: #selector(AddRecipeViewController.uploadRecipe(_:)))
         
         ParseHelper.sharedInstance.updateCategories(addRecipe: self)
         
-        self.editing = true
+        self.isEditing = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -84,7 +84,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     
@@ -92,11 +92,11 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
     // MARK: - Table view data source
     //--------------------------------------
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 5
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
             return 1
@@ -114,47 +114,47 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
 
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch indexPath.section {
         case 0:
-            let cell = tableView.dequeueReusableCellWithIdentifier(ImageAddTableViewCellIdentifier, forIndexPath: indexPath) as! ImageAddTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: ImageAddTableViewCellIdentifier, for: indexPath) as! ImageAddTableViewCell
             cell.parentController = self
             return cell
         case 1:
-            let cell = tableView.dequeueReusableCellWithIdentifier(GeneralInfoTableViewCellIdentifier, forIndexPath: indexPath) as! GeneralInfoTableViewCell
-            cell.backgroundColor = .clearColor()
+            let cell = tableView.dequeueReusableCell(withIdentifier: GeneralInfoTableViewCellIdentifier, for: indexPath) as! GeneralInfoTableViewCell
+            cell.backgroundColor = .clear
             cell.tableViewController = self
             return cell
         case 2:
-            let cell = tableView.dequeueReusableCellWithIdentifier(TotalTimeTableViewCellIdentifier, forIndexPath: indexPath) as! TotalTimeTableViewCell
-            cell.backgroundColor = .clearColor()
+            let cell = tableView.dequeueReusableCell(withIdentifier: TotalTimeTableViewCellIdentifier, for: indexPath) as! TotalTimeTableViewCell
+            cell.backgroundColor = .clear
             cell.tableViewController = self
             return cell
         case 3:
             if indexPath.row == self.getRecipeIngredientsCount() {
-                let cell = tableView.dequeueReusableCellWithIdentifier(AddRecipeButtonsTableViewCellIdentifier, forIndexPath: indexPath) as! AddRecipeButtonsTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: AddRecipeButtonsTableViewCellIdentifier, for: indexPath) as! AddRecipeButtonsTableViewCell
                 cell.tableViewController = self
-                cell.addTextButton.setTitle(getLocalizedString("addIngredient"), forState: .Normal)
-                cell.addSectionButton.setTitle(getLocalizedString("addSection"), forState: .Normal)
+                cell.addTextButton.setTitle(getLocalizedString("addIngredient"), for: UIControlState())
+                cell.addSectionButton.setTitle(getLocalizedString("addSection"), for: UIControlState())
                 cell.addTextButton.tag = indexPath.section
                 cell.addSectionButton.tag = indexPath.section
                 cell.editButton.tag = indexPath.section
                 self.changeEditButtonAppearance(cell.editButton, isEdit: self.isIngredientEditing)
                 
-                cell.backgroundColor = .clearColor()
+                cell.backgroundColor = .clear
                 return cell
             } else {
                 if false
 //                    && self.ingredientsArray[indexPath.row] == "section"
                 {
-                    let cell = tableView.dequeueReusableCellWithIdentifier(AddIngredientSectionTableViewCellIdentifier, forIndexPath: indexPath) as! AddIngredientSectionTableViewCell
-                    cell.backgroundColor = .clearColor()
+                    let cell = tableView.dequeueReusableCell(withIdentifier: AddIngredientSectionTableViewCellIdentifier, for: indexPath) as! AddIngredientSectionTableViewCell
+                    cell.backgroundColor = .clear
                     cell.tableViewController = self
                     return cell
                 } else {
-                    let cell = tableView.dequeueReusableCellWithIdentifier(AddIngredientTableViewCellIdentifier, forIndexPath: indexPath) as! AddIngredientTableViewCell
-                    cell.backgroundColor = .clearColor()
+                    let cell = tableView.dequeueReusableCell(withIdentifier: AddIngredientTableViewCellIdentifier, for: indexPath) as! AddIngredientTableViewCell
+                    cell.backgroundColor = .clear
                     cell.tableViewController = self
                     
                     if let ingredientsArr = self.recipeIngredients["general"] {
@@ -168,29 +168,29 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
             
         case 4:
             if indexPath.row == self.getRecipeDirectionsCount() {
-                let cell = tableView.dequeueReusableCellWithIdentifier(AddRecipeButtonsTableViewCellIdentifier, forIndexPath: indexPath) as! AddRecipeButtonsTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: AddRecipeButtonsTableViewCellIdentifier, for: indexPath) as! AddRecipeButtonsTableViewCell
                 cell.tableViewController = self
-                cell.addTextButton.setTitle(getLocalizedString("addDirection"), forState: .Normal)
-                cell.addSectionButton.setTitle(getLocalizedString("addSection"), forState: .Normal)
+                cell.addTextButton.setTitle(getLocalizedString("addDirection"), for: UIControlState())
+                cell.addSectionButton.setTitle(getLocalizedString("addSection"), for: UIControlState())
                 cell.addTextButton.tag = indexPath.section
                 cell.addSectionButton.tag = indexPath.section
                 cell.editButton.tag = indexPath.section
                 
                 self.changeEditButtonAppearance(cell.editButton, isEdit: self.isDirectionEditing)
 
-                cell.backgroundColor = .clearColor()
+                cell.backgroundColor = .clear
                 return cell
             } else {
                 if false
 //                    && self.directionsArray[indexPath.row] == "section"
                 {
-                    let cell = tableView.dequeueReusableCellWithIdentifier(AddDirectionSectionTableViewCellIdentifier, forIndexPath: indexPath) as! AddDirectionSectionTableViewCell
-                    cell.backgroundColor = .clearColor()
+                    let cell = tableView.dequeueReusableCell(withIdentifier: AddDirectionSectionTableViewCellIdentifier, for: indexPath) as! AddDirectionSectionTableViewCell
+                    cell.backgroundColor = .clear
                     cell.tableViewController = self
                     return cell
                 } else {
-                    let cell = tableView.dequeueReusableCellWithIdentifier(AddDirectionTableViewCellIdentifier, forIndexPath: indexPath) as! AddDirectionTableViewCell
-                    cell.backgroundColor = .clearColor()
+                    let cell = tableView.dequeueReusableCell(withIdentifier: AddDirectionTableViewCellIdentifier, for: indexPath) as! AddDirectionTableViewCell
+                    cell.backgroundColor = .clear
                     cell.tableViewController = self
                     
                     if let directionsArr = self.recipeDirections["general"] {
@@ -205,7 +205,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
         }
     }
 
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         if  (self.isIngredientEditing && indexPath.section == 3 && indexPath.row != self.getRecipeIngredientsCount()) ||
             (self.isDirectionEditing && indexPath.section == 4 && indexPath.row != self.getRecipeDirectionsCount()) {
             return true
@@ -213,7 +213,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
         return false
     }
     
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         if  (self.isIngredientEditing && indexPath.section == 3 && indexPath.row != self.getRecipeIngredientsCount()) ||
             (self.isDirectionEditing && indexPath.section == 4 && indexPath.row != self.getRecipeDirectionsCount()) {
             return true
@@ -221,24 +221,24 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
         return false
     }
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
             if indexPath.section == 3 {
-                self.recipeIngredients["general"]?.removeAtIndex(indexPath.row)
+                self.recipeIngredients["general"]?.remove(at: indexPath.row)
 //                self.ingredientsArray.removeAtIndex(indexPath.row)
             } else if indexPath.section == 4 {
-                self.recipeDirections["general"]?.removeAtIndex(indexPath.row)
+                self.recipeDirections["general"]?.remove(at: indexPath.row)
 //                self.directionsArray.removeAtIndex(indexPath.row)
             }
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Left)
+            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.left)
         }
     }
     
-    override func tableView(tableView: UITableView, shouldIndentWhileEditingRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return false
     }
     
-    override func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         
         if sourceIndexPath.section == 3 {
         
@@ -248,8 +248,8 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
                     
                     let currentIngredient = sourceSection[sourceIndexPath.row]
                     
-                    sourceSection.removeAtIndex(sourceIndexPath.row)
-                    sourceSection.insert(currentIngredient, atIndex: destinationIndexPath.row)
+                    sourceSection.remove(at: sourceIndexPath.row)
+                    sourceSection.insert(currentIngredient, at: destinationIndexPath.row)
                     
                     self.recipeIngredients[sectionName] = sourceSection
                 }
@@ -349,8 +349,8 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
                     
                     let currentDirection = sourceSection[sourceIndexPath.row]
                     
-                    sourceSection.removeAtIndex(sourceIndexPath.row)
-                    sourceSection.insert(currentDirection, atIndex: destinationIndexPath.row)
+                    sourceSection.remove(at: sourceIndexPath.row)
+                    sourceSection.insert(currentDirection, at: destinationIndexPath.row)
 
                     self.recipeDirections[sectionName] = sourceSection
                 }
@@ -358,7 +358,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
-    override func tableView(tableView: UITableView, targetIndexPathForMoveFromRowAtIndexPath sourceIndexPath: NSIndexPath, toProposedIndexPath proposedDestinationIndexPath: NSIndexPath) -> NSIndexPath {
+    override func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
         
         if sourceIndexPath.section != proposedDestinationIndexPath.section {
             return sourceIndexPath
@@ -388,7 +388,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
     // MARK: - Table view delegate
     //--------------------------------------
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return 215
         } else if indexPath.section == 1 || indexPath.section == 2 {
@@ -401,52 +401,52 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
         return UITableViewAutomaticDimension
     }
     
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 45.0
     }
 
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         switch section {
         case 0:
-            let cell = tableView.dequeueReusableCellWithIdentifier(TitleTableViewCellIdentifier) as! SectionHeaderTitleTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCellIdentifier) as! SectionHeaderTitleTableViewCell
             cell.tableViewController = self
             let view = UIView(frame: cell.frame)
-            cell.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+            cell.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             view.addSubview(cell)
             if let title = self.recipeTitle {
                 cell.titleTextField.text = title
             }
             return view
         case 1:
-            let cell = tableView.dequeueReusableCellWithIdentifier(AddRecipeSectionHeaderTableViewCellIdentifier) as! AddRecipeSectionHeaderTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: AddRecipeSectionHeaderTableViewCellIdentifier) as! AddRecipeSectionHeaderTableViewCell
             
             self.setSectionHeaderElements(cell, FAIconName: FontAwesome.Info, title: "sectionHeaderTitleGeneralInfo")
             
             return cell.contentView
         case 2:
-            let cell = tableView.dequeueReusableCellWithIdentifier(AddRecipeSectionHeaderTableViewCellIdentifier) as! AddRecipeSectionHeaderTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: AddRecipeSectionHeaderTableViewCellIdentifier) as! AddRecipeSectionHeaderTableViewCell
             
             self.setSectionHeaderElements(cell, FAIconName: FontAwesome.ClockO, title: "sectionHeaderTitleTime")
             
             return cell.contentView
             
         case 3:
-            let cell = tableView.dequeueReusableCellWithIdentifier(AddRecipeSectionHeaderTableViewCellIdentifier) as! AddRecipeSectionHeaderTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: AddRecipeSectionHeaderTableViewCellIdentifier) as! AddRecipeSectionHeaderTableViewCell
             
             self.setSectionHeaderElements(cell, FAIconName: FontAwesome.ShoppingBasket, title: "sectionHeaderTitleIngredients")
             
             return cell.contentView
             
         case 4:
-            let cell = tableView.dequeueReusableCellWithIdentifier(AddRecipeSectionHeaderTableViewCellIdentifier) as! AddRecipeSectionHeaderTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: AddRecipeSectionHeaderTableViewCellIdentifier) as! AddRecipeSectionHeaderTableViewCell
             
             self.setSectionHeaderElements(cell, FAIconName: FontAwesome.FileTextO, title: "sectionHeaderTitleDirections")
             
             return cell.contentView
         default:
             let dummyViewHeight: CGFloat = 45
-            let dummyView: UIView = UIView(frame: CGRectMake(0, 0, tableView.bounds.size.width, dummyViewHeight))
+            let dummyView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: dummyViewHeight))
             return dummyView
         }
     }
@@ -455,19 +455,19 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
     // MARK: - Helpers
     //--------------------------------------
 
-    private func setSectionHeaderElements(cell: AddRecipeSectionHeaderTableViewCell, FAIconName: FontAwesome, title: String) {
-        cell.sectionImageView.image = UIImage.fontAwesomeIconWithName(FAIconName, textColor: UIColor.blackColor(), size: CGSizeMake(20, 20))
+    fileprivate func setSectionHeaderElements(_ cell: AddRecipeSectionHeaderTableViewCell, FAIconName: FontAwesome, title: String) {
+        cell.sectionImageView.image = UIImage.fontAwesomeIcon(name: FAIconName, textColor: UIColor.black, size: CGSize(width: 20, height: 20))
         cell.titleLabel.text = getLocalizedString(title)
     }
     
-    private func stopSectionsHeadersFromFloating() {
+    fileprivate func stopSectionsHeadersFromFloating() {
         let dummyViewHeight: CGFloat = 60
-        let dummyView: UIView = UIView(frame: CGRectMake(0, 0, tableView.bounds.size.width, dummyViewHeight))
+        let dummyView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: dummyViewHeight))
         tableView.tableHeaderView = dummyView
         tableView.contentInset = UIEdgeInsetsMake(-dummyViewHeight, 0, 0, 0)
     }
 
-    private func getMissingFieldsBeforeSubmit() -> [String] {
+    fileprivate func getMissingFieldsBeforeSubmit() -> [String] {
         var missingFields: [String] = []
         
         if self.recipeTitle == nil {
@@ -498,7 +498,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
         return missingFields
     }
     
-    private func hasErrorsInFields() -> Bool {
+    fileprivate func hasErrorsInFields() -> Bool {
         var hasError = false
 
         if !self.getMissingFieldsBeforeSubmit().isEmpty {
@@ -538,14 +538,14 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
         self.hideActivityIndicator()
         self.showSuccessAlert()
         self.emptyRecipeUploadData()
-        NSNotificationCenter.defaultCenter().postNotificationName(AddRecipeViewController.NotificationUploadRecipeSuccess, object: self.recipeCategories)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: AddRecipeViewController.NotificationUploadRecipeSuccess), object: self.recipeCategories)
     }
     
     func showSuccessAlert() {
         SCLAlertViewHelper.sharedInstance.showSuccessAlert("uploadSuccess")
     }
     
-    func showErrorAlert(errorCode: Int = 0) {
+    func showErrorAlert(_ errorCode: Int = 0) {
         var alertTextType = "generalError"
         switch errorCode {
         case self.ERROR_CODE_MISSING_DATA:
@@ -585,18 +585,18 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
         return 0
     }
     
-    private func changeEditButtonAppearance(editButton: UIButton, isEdit: Bool) {
+    fileprivate func changeEditButtonAppearance(_ editButton: UIButton, isEdit: Bool) {
         if isEdit {
             editButton.tintColor = Helpers.sharedInstance.getRedColor()
-            editButton.setTitle(getLocalizedString("done"), forState: .Normal)
+            editButton.setTitle(getLocalizedString("done"), for: UIControlState())
         } else {
             editButton.tintColor = Helpers.sharedInstance.uicolorFromHex(0x0076ff)
-            editButton.setTitle(getLocalizedString("edit"), forState: .Normal)
+            editButton.setTitle(getLocalizedString("edit"), for: UIControlState())
         }
         
     }
     
-    private func emptyRecipeUploadData() {
+    fileprivate func emptyRecipeUploadData() {
         
         self.recipeTitle = nil
         self.recipeImage = nil
@@ -614,11 +614,11 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
         self.tableView.reloadData()
     }
     
-    private func getAmountFromIngredient(ingredient: String) -> String {
+    fileprivate func getAmountFromIngredient(_ ingredient: String) -> String {
         return ingredient.firstRegexMatches("^(.*)\\|.*$")
     }
 
-    private func getTextFromIngredient(ingredient: String) -> String {
+    fileprivate func getTextFromIngredient(_ ingredient: String) -> String {
         return ingredient.firstRegexMatches("^.*?\\|(.*)$")
     }
     
@@ -626,7 +626,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
     // MARK: - actions
     //--------------------------------------
 
-    func uploadRecipe(sender: UIBarButtonItem) {
+    func uploadRecipe(_ sender: UIBarButtonItem) {
         
         self.view.endEditing(true)
         
@@ -641,26 +641,26 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
                 "cookTime":     self.recipeCookTime,
                 "ingredients":  self.recipeIngredients,
                 "directions":   self.recipeDirections
-            ]
+            ] as [String : Any]
             ParseHelper.sharedInstance.uploadRecipe(recipeData, vc: self)
         }
     }
     
-    @IBAction func unwindToVC(segue: UIStoryboardSegue) {
-        if segue.sourceViewController.isKindOfClass(SelectCategoriesTableViewController) {
-            if let sourceVC = segue.sourceViewController as? SelectCategoriesTableViewController {
+    @IBAction func unwindToVC(_ segue: UIStoryboardSegue) {
+        if segue.source.isKind(of: SelectCategoriesTableViewController.self) {
+            if let sourceVC = segue.source as? SelectCategoriesTableViewController {
                 self.recipeCategories = sourceVC.selectedCategories
             }
         }
         
-        NSNotificationCenter.defaultCenter().postNotificationName(AddRecipeViewController.NotificationDoneSelectingCategories, object: self.recipeCategories)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: AddRecipeViewController.NotificationDoneSelectingCategories), object: self.recipeCategories)
     }
     
     //--------------------------------------
     // MARK: - Text Field Delegate
     //--------------------------------------
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
@@ -669,9 +669,9 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
     // MARK: - navigation
     //--------------------------------------
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SegueSelectCategoriesTableViewController {
-            let destinationNavigationViewController = segue.destinationViewController
+            let destinationNavigationViewController = segue.destination
             let viewControllers = destinationNavigationViewController.childViewControllers
             for vc in viewControllers {
                 if let destinationViewController = vc as? SelectCategoriesTableViewController {

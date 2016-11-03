@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - UIApplicationDelegate
     //--------------------------------------
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         self.customizeApp()
         
@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func customizeApp() {
 
         // Light status bar color
-        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
+        UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true)
         
         self.customizeNavBar()
         self.customizeTabBar()
@@ -56,20 +56,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().backgroundColor = Helpers.sharedInstance.getRedColor()
         
         // Set translucent. (Default value is already true, so this can be removed if desired.)
-        UINavigationBar.appearance().translucent = false
+        UINavigationBar.appearance().isTranslucent = false
         // Sets background to a blank/empty image
-        UINavigationBar.appearance().setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
         // Sets shadow (line below the bar) to a blank image
         UINavigationBar.appearance().shadowImage = UIImage()
         
         // Set Navigation bar Title font & color
-        UINavigationBar.appearance().titleTextAttributes = ([NSFontAttributeName: Helpers.sharedInstance.getTextFont(20, bold: true) ,NSForegroundColorAttributeName:UIColor.whiteColor()])
+        UINavigationBar.appearance().titleTextAttributes = ([NSFontAttributeName: Helpers.sharedInstance.getTextFont(20, bold: true) ,NSForegroundColorAttributeName:UIColor.white])
         
         // Set Navigation bar tint color
-        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        UINavigationBar.appearance().tintColor = UIColor.white
         
         // Set bar button items font
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: Helpers.sharedInstance.getTextFont(18)], forState: UIControlState.Normal)
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: Helpers.sharedInstance.getTextFont(18)], for: UIControlState())
     }
     
     func customizeTabBar() {
@@ -82,29 +82,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Set tab bar selected/unselected text color and font
         let font = Helpers.sharedInstance.getTextFont(10)
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: self.getUnselectedTabBarItemColor(), NSFontAttributeName: font], forState:.Normal)
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: Helpers.sharedInstance.getRedColor(), NSFontAttributeName: font], forState:.Selected)
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: self.getUnselectedTabBarItemColor(), NSFontAttributeName: font], for:UIControlState())
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: Helpers.sharedInstance.getRedColor(), NSFontAttributeName: font], for:.selected)
         
         // Set tab bar items icons and text
         if let tabBarController = self.window?.rootViewController as? UITabBarController {
             let tabBar = tabBarController.tabBar
             if let tabBarItems = tabBar.items {
-                self.setTabBarItemApperance(tabBarItems[0], title: "categories", icon: FontAwesome.ThList)
-                self.setTabBarItemApperance(tabBarItems[1], title: "Favorites", icon: FontAwesome.Heart)
-                self.setTabBarItemApperance(tabBarItems[2], title: "Recipes", icon: FontAwesome.Cutlery)
-                self.setTabBarItemApperance(tabBarItems[3], title: "About", icon: FontAwesome.Info, size: CGSizeMake(35, 35))
+                self.setTabBarItemApperance(tabBarItems[0], title: "categories", icon: FontAwesome.thList)
+                self.setTabBarItemApperance(tabBarItems[1], title: "Favorites", icon: FontAwesome.heart)
+                self.setTabBarItemApperance(tabBarItems[2], title: "Recipes", icon: FontAwesome.cutlery)
+                self.setTabBarItemApperance(tabBarItems[3], title: "About", icon: FontAwesome.info, size: CGSize(width: 35, height: 35))
             }
         }
     }
     
-    func setTabBarItemApperance(tabBarItem: UITabBarItem, title: String, icon: FontAwesome, size: CGSize = CGSizeMake(30, 30)) {
+    func setTabBarItemApperance(_ tabBarItem: UITabBarItem, title: String, icon: FontAwesome, size: CGSize = CGSize(width: 30, height: 30)) {
 
         tabBarItem.title = getLocalizedString(title)
-        tabBarItem.image = UIImage.fontAwesomeIconWithName(icon, textColor: UIColor.blackColor(), size: size)
+        tabBarItem.image = UIImage.fontAwesomeIcon(name: icon, textColor: UIColor.black, size: size)
         
         // Set unselected tab bar image color
         if let image = tabBarItem.image {
-            tabBarItem.image = image.imageWithColor(self.getUnselectedTabBarItemColor()).imageWithRenderingMode(.AlwaysOriginal)
+            tabBarItem.image = image.imageWithColor(self.getUnselectedTabBarItemColor()).withRenderingMode(.alwaysOriginal)
         }
 
     }
@@ -169,7 +169,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK:- customization
 
-    func configureParse(application: UIApplication, launchOptions: [NSObject: AnyObject]?) {
+    func configureParse(_ application: UIApplication, launchOptions: [AnyHashable: Any]?) {
         
         // Enable storing and querying data from Local Datastore.
         // Remove this line if you don't want to use Local Datastore features or want to use cachePolicy.
@@ -185,7 +185,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If you would like all objects to be private by default, remove this line.
         defaultACL.setPublicReadAccess(true)
         
-        PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser:true)
+        PFACL.setDefault(defaultACL, withAccessForCurrentUser:true)
         
         /*
         if application.applicationState != UIApplicationState.Background {

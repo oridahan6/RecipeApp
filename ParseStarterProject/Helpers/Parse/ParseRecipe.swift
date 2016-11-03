@@ -26,14 +26,14 @@ class ParseRecipe: NSObject {
         return ""
     }
 
-    func getAddedDate() -> NSDate? {
+    func getAddedDate() -> Date? {
         if let dateAdded = recipe.createdAt {
             return dateAdded
         }
         return nil
     }
 
-    func getUpdatedAt() -> NSDate? {
+    func getUpdatedAt() -> Date? {
         if let updatedAt = recipe.updatedAt {
             return updatedAt
         }

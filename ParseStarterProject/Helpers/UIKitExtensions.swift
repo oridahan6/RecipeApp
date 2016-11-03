@@ -11,20 +11,20 @@ import UIKit
 
 // UIImage
 extension UIImage {
-    func imageWithColor(tintColor: UIColor) -> UIImage {
+    func imageWithColor(_ tintColor: UIColor) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale)
         
-        let context = UIGraphicsGetCurrentContext()! as CGContextRef
-        CGContextTranslateCTM(context, 0, self.size.height)
-        CGContextScaleCTM(context, 1.0, -1.0);
-        CGContextSetBlendMode(context, CGBlendMode.Normal)
+        let context = UIGraphicsGetCurrentContext()! as CGContext
+        context.translateBy(x: 0, y: self.size.height)
+        context.scaleBy(x: 1.0, y: -1.0);
+        context.setBlendMode(CGBlendMode.normal)
         
-        let rect = CGRectMake(0, 0, self.size.width, self.size.height) as CGRect
-        CGContextClipToMask(context, rect, self.CGImage)
+        let rect = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height) as CGRect
+        context.clip(to: rect, mask: self.cgImage!)
         tintColor.setFill()
-        CGContextFillRect(context, rect)
+        context.fill(rect)
         
-        let newImage = UIGraphicsGetImageFromCurrentImageContext() as UIImage
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()! as UIImage
         UIGraphicsEndImageContext()
         
         return newImage
@@ -35,7 +35,7 @@ extension UIImage {
 extension UITextField {
     func addBottomBorder() {
         let width = CGFloat(2.0)
-        let borderColor = UIColor.darkGrayColor().CGColor
+        let borderColor = UIColor.darkGray.cgColor
         
         let border = CALayer()
         border.borderColor = borderColor
@@ -50,28 +50,28 @@ extension UITextField {
 // Add border to element
 extension CALayer {
     
-    func addBorder(edge: UIRectEdge, color: UIColor, thickness: CGFloat) {
+    func addBorder(_ edge: UIRectEdge, color: UIColor, thickness: CGFloat) {
         
         let border = CALayer()
         
         switch edge {
-        case UIRectEdge.Top:
-            border.frame = CGRectMake(0, 0, CGRectGetWidth(self.frame), thickness)
+        case UIRectEdge.top:
+            border.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: thickness)
             break
-        case UIRectEdge.Bottom:
-            border.frame = CGRectMake(0, CGRectGetHeight(self.frame) - thickness, self.bounds.width, thickness)
+        case UIRectEdge.bottom:
+            border.frame = CGRect(x: 0, y: self.frame.height - thickness, width: self.bounds.width, height: thickness)
             break
-        case UIRectEdge.Left:
-            border.frame = CGRectMake(0, 0, thickness, CGRectGetHeight(self.frame))
+        case UIRectEdge.left:
+            border.frame = CGRect(x: 0, y: 0, width: thickness, height: self.frame.height)
             break
-        case UIRectEdge.Right:
-            border.frame = CGRectMake(CGRectGetWidth(self.frame) - thickness,  0, thickness, CGRectGetHeight(self.frame))
+        case UIRectEdge.right:
+            border.frame = CGRect(x: self.frame.width - thickness,  y: 0, width: thickness, height: self.frame.height)
             break
         default:
             break
         }
         
-        border.backgroundColor = color.CGColor;
+        border.backgroundColor = color.cgColor;
         
         self.addSublayer(border)
     }
@@ -80,21 +80,21 @@ extension CALayer {
 
 // String
 extension String {
-    func matchesForRegexInText(regex: String!) -> [String] {
+    func matchesForRegexInText(_ regex: String!) -> [String] {
         
         do {
             let regex = try NSRegularExpression(pattern: regex, options: [])
             let nsString = self as NSString
-            let results = regex.matchesInString(self,
+            let results = regex.matches(in: self,
                                                 options: [], range: NSMakeRange(0, nsString.length))
-            return results.map { nsString.substringWithRange($0.range)}
+            return results.map { nsString.substring(with: $0.range)}
         } catch let error as NSError {
             print("invalid regex: \(error.localizedDescription)")
             return []
         }
     }
 
-    func firstRegexMatches(regex: String) -> String {
+    func firstRegexMatches(_ regex: String) -> String {
         let matches = self.regexMatches(regex)
         if matches.isEmpty {
             return ""
@@ -102,7 +102,7 @@ extension String {
         return matches[0]
     }
     
-    func regexMatches(pattern: String) -> Array<String> {
+    func regexMatches(_ pattern: String) -> Array<String> {
         let re: NSRegularExpression
         do {
             re = try NSRegularExpression(pattern: pattern, options: [])
@@ -110,12 +110,12 @@ extension String {
             return []
         }
         
-        let matches = re.matchesInString(self, options: [], range: NSRange(location: 0, length: self.utf16.count))
+        let matches = re.matches(in: self, options: [], range: NSRange(location: 0, length: self.utf16.count))
         var collectMatches: Array<String> = []
         for match in matches {
             // range at index 0: full match
             // range at index 1: first capture group
-            let substring = (self as NSString).substringWithRange(match.rangeAtIndex(1))
+            let substring = (self as NSString).substring(with: match.rangeAt(1))
             collectMatches.append(substring)
         }
         return collectMatches
@@ -123,12 +123,12 @@ extension String {
 }
 
 // operators
-infix operator =~ {}
+infix operator =~
 func =~(string:String, regex:String) -> Bool {
-    return string.rangeOfString(regex, options: .RegularExpressionSearch) != nil
+    return string.range(of: regex, options: .regularExpression) != nil
 }
 
-infix operator !=~ {}
+infix operator !=~
 func !=~(string:String, regex:String) -> Bool {
-    return string.rangeOfString(regex, options: .RegularExpressionSearch) == nil
+    return string.range(of: regex, options: .regularExpression) == nil
 }

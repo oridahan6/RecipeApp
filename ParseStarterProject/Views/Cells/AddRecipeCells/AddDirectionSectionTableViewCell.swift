@@ -21,7 +21,7 @@ class AddDirectionSectionTableViewCell: UITableViewCell, UITextFieldDelegate {
         self.directionSectionTextField.delegate = self
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
@@ -31,7 +31,7 @@ class AddDirectionSectionTableViewCell: UITableViewCell, UITextFieldDelegate {
     // MARK: - Text Field Delegate
     //--------------------------------------
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }

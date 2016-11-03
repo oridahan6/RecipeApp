@@ -19,11 +19,11 @@ class SectionHeaderTitleTableViewCell: UITableViewCell, UITextFieldDelegate {
         // Initialization code
         self.titleTextField.delegate = self
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SectionHeaderTitleTableViewCell.uploadRecipeSuccess(_:)), name: AddRecipeViewController.NotificationUploadRecipeSuccess, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SectionHeaderTitleTableViewCell.uploadRecipeSuccess(_:)), name: NSNotification.Name(rawValue: AddRecipeViewController.NotificationUploadRecipeSuccess), object: nil)
 
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
@@ -33,13 +33,13 @@ class SectionHeaderTitleTableViewCell: UITableViewCell, UITextFieldDelegate {
     // MARK: - Helpers
     //--------------------------------------
 
-    func saveTitle(title: String?) {
+    func saveTitle(_ title: String?) {
         if let title = title {
             self.tableViewController.recipeTitle = title
         }
     }
     
-    func uploadRecipeSuccess(notification: NSNotification) {
+    func uploadRecipeSuccess(_ notification: Notification) {
         self.titleTextField.text = ""
     }
 
@@ -47,13 +47,13 @@ class SectionHeaderTitleTableViewCell: UITableViewCell, UITextFieldDelegate {
     // MARK: - Text Field Delegate
     //--------------------------------------
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.saveTitle(textField.text)
         textField.resignFirstResponder()
         return true
     }
     
-    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         self.saveTitle(textField.text)
         return true
     }

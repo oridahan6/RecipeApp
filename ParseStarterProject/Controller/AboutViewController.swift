@@ -16,9 +16,9 @@ class AboutViewController: UIViewController {
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var authorImageView: UIImageView!
     
-    @IBAction func icon8Clicked(sender: AnyObject) {
-        if let url = NSURL(string: "https://icons8.com/") {
-            UIApplication.sharedApplication().openURL(url)
+    @IBAction func icon8Clicked(_ sender: AnyObject) {
+        if let url = URL(string: "https://icons8.com/") {
+            UIApplication.shared.openURL(url)
         }
     }
     
@@ -38,7 +38,7 @@ class AboutViewController: UIViewController {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(AboutViewController.doubleTapped))
         tap.numberOfTapsRequired = 2
-        self.authorImageView.userInteractionEnabled = true
+        self.authorImageView.isUserInteractionEnabled = true
         self.authorImageView.addGestureRecognizer(tap)
     }
     
@@ -52,7 +52,7 @@ class AboutViewController: UIViewController {
         if ParseHelper.currentUser() != nil {
             self.showAlert()
         } else {
-            self.performSegueWithIdentifier(SegueLoginViewController, sender: nil)
+            self.performSegue(withIdentifier: SegueLoginViewController, sender: nil)
         }
 
     }

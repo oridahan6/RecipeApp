@@ -25,10 +25,10 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var isFavorite: Bool = false
     var favoriteButton: UIButton!
     
-    private var ingredientsSubtitleByIndexArray = [Bool]()
-    private var ingredientsOrderedArray = [String]()
-    private var directionsSubtitleByIndexArray = [Bool]()
-    private var directionsOrderedArray = [String]()
+    fileprivate var ingredientsSubtitleByIndexArray = [Bool]()
+    fileprivate var ingredientsOrderedArray = [String]()
+    fileprivate var directionsSubtitleByIndexArray = [Bool]()
+    fileprivate var directionsOrderedArray = [String]()
     
     //--------------------------------------
     // MARK: - View Life Cycle
@@ -52,10 +52,10 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // set table view background image
         self.view.backgroundColor = UIColor(patternImage: Helpers.sharedInstance.getDeviceSpecificBGImage("tableview-bg"))
 
-        self.tableView.backgroundColor = UIColor.clearColor()
+        self.tableView.backgroundColor = UIColor.clear
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.prepareFavoritesElements()
     }
     
@@ -63,7 +63,7 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: - Helpers
     //--------------------------------------
     
-    private func getNumOfRowsFromDict(dict: [String: [String]]) -> Int {
+    fileprivate func getNumOfRowsFromDict(_ dict: [String: [String]]) -> Int {
         var numOfRows: Int = 0
         if dict.count > 1 {
             numOfRows += dict.count - 1
@@ -74,14 +74,14 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return numOfRows
     }
     
-    private func setSectionHeaderElements(cell: SectionHeaderTableViewCell, FAIconName: FontAwesome, title: String) {
-        cell.sectionHeaderIconImageView.image = UIImage.fontAwesomeIconWithName(FAIconName, textColor: UIColor.blackColor(), size: CGSizeMake(20, 20))
+    fileprivate func setSectionHeaderElements(_ cell: SectionHeaderTableViewCell, FAIconName: FontAwesome, title: String) {
+        cell.sectionHeaderIconImageView.image = UIImage.fontAwesomeIcon(name: FAIconName, textColor: UIColor.black, size: CGSize(width: 20, height: 20))
         cell.titleLabel.text = getLocalizedString(title)
     }
     
-    private func prepareIngredientsOrderedArray() {
+    fileprivate func prepareIngredientsOrderedArray() {
         
-        for (title, ingredients) in recipe.ingredients.reverse() {
+        for (title, ingredients) in recipe.ingredients.reversed() {
             
             if title != "general" {
                 self.ingredientsOrderedArray.append(title)
@@ -96,9 +96,9 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
-    private func prepareDirectionsOrderedArray() {
+    fileprivate func prepareDirectionsOrderedArray() {
         
-        for (title, directions) in recipe.directions.reverse() {
+        for (title, directions) in recipe.directions.reversed() {
             
             if title != "general" {
                 self.directionsOrderedArray.append(title)
@@ -113,23 +113,23 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
-    private func stopSectionsHeadersFromFloating() {
+    fileprivate func stopSectionsHeadersFromFloating() {
         let dummyViewHeight: CGFloat = 60
-        let dummyView: UIView = UIView(frame: CGRectMake(0, 0, tableView.bounds.size.width, dummyViewHeight))
+        let dummyView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: dummyViewHeight))
         tableView.tableHeaderView = dummyView
         tableView.contentInset = UIEdgeInsetsMake(-dummyViewHeight, 0, 0, 0)
     }
     
-    private func setFavoriteButtonIcon(favoriteButton: UIButton) {
+    fileprivate func setFavoriteButtonIcon(_ favoriteButton: UIButton) {
         if self.isFavorite == true {
-            favoriteButton.setTitle(String.fontAwesomeIconWithName(FontAwesome.Heart), forState: .Normal)
+            favoriteButton.setTitle(String.fontAwesomeIcon(name: FontAwesome.Heart), for: UIControlState())
         } else {
-            favoriteButton.setTitle(String.fontAwesomeIconWithName(FontAwesome.HeartO), forState: .Normal)
+            favoriteButton.setTitle(String.fontAwesomeIcon(name: FontAwesome.HeartO), for: UIControlState())
         }
     }
     
-    private func prepareFavoritesElements() {
-        if let favoritesIds = NSUserDefaults.standardUserDefaults().arrayForKey("favorites") as? [String] {
+    fileprivate func prepareFavoritesElements() {
+        if let favoritesIds = UserDefaults.standard.array(forKey: "favorites") as? [String] {
             if favoritesIds.contains(recipe.id) {
                 isFavorite = true
             } else {
@@ -145,20 +145,20 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: - Buttons actions
     //--------------------------------------
 
-    @IBAction func markAsFavorite(sender: AnyObject) {
+    @IBAction func markAsFavorite(_ sender: AnyObject) {
         if self.isFavorite == true {
             self.isFavorite = false
-            if var favoriteIds = NSUserDefaults.standardUserDefaults().arrayForKey("favorites") as? [String] {
+            if var favoriteIds = UserDefaults.standard.array(forKey: "favorites") as? [String] {
                 favoriteIds.removeObject(recipe.id)
-                NSUserDefaults.standardUserDefaults().setObject(favoriteIds, forKey: "favorites")
+                UserDefaults.standard.set(favoriteIds, forKey: "favorites")
             }
         } else {
             self.isFavorite = true
-            if var favoriteIds = NSUserDefaults.standardUserDefaults().arrayForKey("favorites") as? [String] {
+            if var favoriteIds = UserDefaults.standard.array(forKey: "favorites") as? [String] {
                 favoriteIds.append(self.recipe.id)
-                NSUserDefaults.standardUserDefaults().setObject(favoriteIds, forKey: "favorites")
+                UserDefaults.standard.set(favoriteIds, forKey: "favorites")
             } else {
-                NSUserDefaults.standardUserDefaults().setObject([self.recipe.id], forKey: "favorites")
+                UserDefaults.standard.set([self.recipe.id], forKey: "favorites")
             }
         }
         self.setFavoriteButtonIcon(self.favoriteButton)
@@ -168,11 +168,11 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: - Table view data source
     //--------------------------------------
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 4
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         switch section {
             case 0:
@@ -188,10 +188,10 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier(RecipeImageTableViewCellIdentifier, forIndexPath: indexPath) as! RecipeImageTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: RecipeImageTableViewCellIdentifier, for: indexPath) as! RecipeImageTableViewCell
             
             if recipe.imageName != "" {
                 // update image async
@@ -209,44 +209,44 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             return cell
         } else if indexPath.section == 1 {
-            let cell = tableView.dequeueReusableCellWithIdentifier(PrepTimeTableViewCellIdentifier, forIndexPath: indexPath) as! PrepTimeTableViewCell
-            cell.backgroundColor = .clearColor()
+            let cell = tableView.dequeueReusableCell(withIdentifier: PrepTimeTableViewCellIdentifier, for: indexPath) as! PrepTimeTableViewCell
+            cell.backgroundColor = .clear
             
             cell.recipe = recipe
             return cell
         } else if indexPath.section == 2 {
 
             if self.ingredientsSubtitleByIndexArray[indexPath.row] == true {
-                let cell = tableView.dequeueReusableCellWithIdentifier(RecipeSubtitleTableViewCellIdentifier, forIndexPath: indexPath) as! RecipeSubtitleTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: RecipeSubtitleTableViewCellIdentifier, for: indexPath) as! RecipeSubtitleTableViewCell
                 cell.subtitleLabel.text = self.ingredientsOrderedArray[indexPath.row]
-                cell.backgroundColor = .clearColor()
+                cell.backgroundColor = .clear
                 return cell
             } else {
-                let cell = tableView.dequeueReusableCellWithIdentifier(IngredientTableViewCellIdentifier, forIndexPath: indexPath) as! IngredientTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: IngredientTableViewCellIdentifier, for: indexPath) as! IngredientTableViewCell
                 
                 let ingredient = self.ingredientsOrderedArray[indexPath.row]
-                let ingredientArr = ingredient.componentsSeparatedByString("|")
+                let ingredientArr = ingredient.components(separatedBy: "|")
                 let amount: String = ingredientArr[0]
                 let ingredientText: String = ingredientArr[1]
                 
                 cell.ingredientAmountLabel.text = Helpers.sharedInstance.getFractionSymbolFromString(amount)
                 cell.ingredientLabel.text = ingredientText
-                cell.backgroundColor = .clearColor()
+                cell.backgroundColor = .clear
                 return cell
             }
             
         } else if indexPath.section == 3 {
             
             if self.directionsSubtitleByIndexArray[indexPath.row] == true {
-                let cell = tableView.dequeueReusableCellWithIdentifier(RecipeSubtitleTableViewCellIdentifier, forIndexPath: indexPath) as! RecipeSubtitleTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: RecipeSubtitleTableViewCellIdentifier, for: indexPath) as! RecipeSubtitleTableViewCell
                 cell.subtitleLabel.text = self.directionsOrderedArray[indexPath.row]
-                cell.backgroundColor = .clearColor()
+                cell.backgroundColor = .clear
                 return cell
             } else {
-                let cell = tableView.dequeueReusableCellWithIdentifier(DirectionTableViewCellIdentifier, forIndexPath: indexPath) as! DirectionTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: DirectionTableViewCellIdentifier, for: indexPath) as! DirectionTableViewCell
                 cell.directionLabel.text = self.directionsOrderedArray[indexPath.row]
                 cell.directionIndexLabel.text = "\(indexPath.row + 1)"
-                cell.backgroundColor = .clearColor()
+                cell.backgroundColor = .clear
                 return cell
             }
         }
@@ -257,38 +257,38 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: - Table view delegate
     //--------------------------------------
 
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return 215
         }
         else if indexPath.section == 1 {
-            if let cell = self.tableView.cellForRowAtIndexPath(indexPath) as? PrepTimeTableViewCell {
+            if let cell = self.tableView.cellForRow(at: indexPath) as? PrepTimeTableViewCell {
                 return cell.getHeight()
             }
         }
         return UITableViewAutomaticDimension
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return 215.0
         }
         return UITableViewAutomaticDimension
     }
 
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return 58.0
         }
         return 45.0
     }
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let cell = tableView.dequeueReusableCellWithIdentifier(SectionHeaderTableViewCellIdentifier) as! SectionHeaderTableViewCell
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let cell = tableView.dequeueReusableCell(withIdentifier: SectionHeaderTableViewCellIdentifier) as! SectionHeaderTableViewCell
         
         switch section {
             case 0:
-                let recipeDetailCell = tableView.dequeueReusableCellWithIdentifier(RecipeDetailSectionHeaderTableViewCellIdentifier) as! RecipeDetailSectionHeaderTableViewCell
+                let recipeDetailCell = tableView.dequeueReusableCell(withIdentifier: RecipeDetailSectionHeaderTableViewCellIdentifier) as! RecipeDetailSectionHeaderTableViewCell
                 recipeDetailCell.recipe = self.recipe
                 return recipeDetailCell
             
@@ -301,14 +301,14 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 self.setSectionHeaderElements(cell, FAIconName: FontAwesome.FileTextO, title: "sectionHeaderTitleDirections")
             default:
                 let dummyViewHeight: CGFloat = 45
-                let dummyView: UIView = UIView(frame: CGRectMake(0, 0, tableView.bounds.size.width, dummyViewHeight))
+                let dummyView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: dummyViewHeight))
                 return dummyView
         }
 
         return cell.contentView
     }
     
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        cell.backgroundColor = .clearColor()
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.backgroundColor = .clear
     }
 }

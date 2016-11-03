@@ -12,14 +12,14 @@ class Helpers {
     
     static let sharedInstance = Helpers()
     
-    private init() {}
+    fileprivate init() {}
 
     // MARK:- Images Methods
-    func updateImageFromUrlAsync(url: String, imageViewToUpdate: UIImageView) {
-        let imgURL = NSURL(string: url)!
+    func updateImageFromUrlAsync(_ url: String, imageViewToUpdate: UIImageView) {
+        let imgURL = URL(string: url)!
         
-        let request: NSURLRequest = NSURLRequest(URL: imgURL)
-        let mainQueue = NSOperationQueue.mainQueue()
+        let request: URLRequest = URLRequest(url: imgURL)
+        let mainQueue = OperationQueue.main
         NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
             if error == nil {
                 if let data = data {
@@ -29,7 +29,7 @@ class Helpers {
                     // Store the image in to our cache
                     //                    self.imageCache[urlString] = image
                     // Update the cell
-                    dispatch_async(dispatch_get_main_queue(), {
+                    DispatchQueue.main.async(execute: {
 //                        if let cellToUpdate = tableView.cellForRowAtIndexPath(indexPath) as? RecipeTableViewCell {
                             imageViewToUpdate.image = image
 //                        }
@@ -43,11 +43,11 @@ class Helpers {
  
     }
     
-    func getDeviceSpecificBGImage(imageName: String) -> UIImage {
+    func getDeviceSpecificBGImage(_ imageName: String) -> UIImage {
         var BGImage: UIImage = UIImage(named: "\(imageName).png")!
         
-        let screenHeight: CGFloat = UIScreen.mainScreen().bounds.size.height
-        let scale: CGFloat = UIScreen.mainScreen().scale
+        let screenHeight: CGFloat = UIScreen.main.bounds.size.height
+        let scale: CGFloat = UIScreen.main.scale
         
         if scale == 2.0 && screenHeight == 568.0 {
             BGImage = UIImage(named: "\(imageName)-568h@2x.png")!
@@ -63,7 +63,7 @@ class Helpers {
     }
     
     // MARK:- Numbers Methods
-    func convertMinutesToHoursAndMinText(minutesToConvert: Int) -> String {
+    func convertMinutesToHoursAndMinText(_ minutesToConvert: Int) -> String {
         let hours = minutesToConvert / (60);
         let minutes = minutesToConvert - hours * (60);
         
@@ -101,7 +101,7 @@ class Helpers {
 
     }
     
-    func getFractionSymbolFromString(str: String) -> String {
+    func getFractionSymbolFromString(_ str: String) -> String {
         if str == "1/2" {
             return "½"
         } else if str == "1/4" {
@@ -116,7 +116,7 @@ class Helpers {
         return str
     }
     
-    func getSingularOrPluralForm(number: Int, textToConvert: String) -> String {
+    func getSingularOrPluralForm(_ number: Int, textToConvert: String) -> String {
         
         if number == 1 {
             return getLocalizedString(textToConvert + "Singular") + " " + getLocalizedString("singular")
@@ -128,14 +128,14 @@ class Helpers {
     // MARK: - Text
     //--------------------------------------
 
-    func getTitleFont(size: CGFloat = 26) -> UIFont {
+    func getTitleFont(_ size: CGFloat = 26) -> UIFont {
         if let font = UIFont(name: "Hillel CLM", size: size) {
             return font
         }
         return UIFont()
     }
     
-    func getTextFont(size: CGFloat = 14, bold: Bool = false) -> UIFont {
+    func getTextFont(_ size: CGFloat = 14, bold: Bool = false) -> UIFont {
         if let font = UIFont(name: "Alef-" + (bold ? "bold" : "Regular"), size: size) {
             return font
         }
@@ -146,7 +146,7 @@ class Helpers {
     // MARK: - Strings
     //--------------------------------------
 
-    func randomStringWithLength (len : Int) -> String {
+    func randomStringWithLength (_ len : Int) -> String {
         
         let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         
@@ -155,7 +155,7 @@ class Helpers {
         for _ in 0 ..< len {
             let length = UInt32 (letters.length)
             let rand = arc4random_uniform(length)
-            randomString.appendFormat("%C", letters.characterAtIndex(Int(rand)))
+            randomString.appendFormat("%C", letters.character(at: Int(rand)))
         }
         
         return String(randomString)
@@ -176,7 +176,7 @@ class Helpers {
     // MARK: - Color
     //--------------------------------------
 
-    func uicolorFromHex(rgbValue:UInt32, alpha: CGFloat = 1.0) -> UIColor {
+    func uicolorFromHex(_ rgbValue:UInt32, alpha: CGFloat = 1.0) -> UIColor {
         
         var alphaValue = alpha
         if alpha > 1 || alpha < 0 {
@@ -190,19 +190,19 @@ class Helpers {
         return UIColor(red:red, green:green, blue:blue, alpha:alphaValue)
     }
     
-    func getRedColor(alpha: CGFloat = 1.0) -> UIColor {
+    func getRedColor(_ alpha: CGFloat = 1.0) -> UIColor {
         return self.uicolorFromHex(0xA73535, alpha: alpha)
     }
     
-    func getYellowColor(alpha: CGFloat = 1.0) -> UIColor {
+    func getYellowColor(_ alpha: CGFloat = 1.0) -> UIColor {
         return self.uicolorFromHex(0xf3b45f, alpha: alpha)
     }
     
-    func getGreenColor(alpha: CGFloat = 1.0) -> UIColor {
+    func getGreenColor(_ alpha: CGFloat = 1.0) -> UIColor {
         return self.uicolorFromHex(0x55AA6D, alpha: alpha)
     }
     
-    func getNudeColor(alpha: CGFloat = 1.0) -> UIColor {
+    func getNudeColor(_ alpha: CGFloat = 1.0) -> UIColor {
         return self.uicolorFromHex(0xF2F0EA, alpha: alpha)
     }
     
@@ -210,13 +210,13 @@ class Helpers {
     // MARK: - Hacks
     //--------------------------------------
 
-    func hackForPlacingHUD(HUD: UIView) {
+    func hackForPlacingHUD(_ HUD: UIView) {
         let frame = HUD.frame
-        HUD.frame = CGRectMake(frame.origin.x, frame.origin.y - 60, frame.size.width, frame.size.height)
+        HUD.frame = CGRect(x: frame.origin.x, y: frame.origin.y - 60, width: frame.size.width, height: frame.size.height)
     }
 
 }
 
-func getLocalizedString(key: String) -> String {
+func getLocalizedString(_ key: String) -> String {
     return NSLocalizedString(key, comment: "")
 }

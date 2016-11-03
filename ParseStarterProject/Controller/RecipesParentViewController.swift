@@ -41,7 +41,7 @@ class RecipesParentViewController: UITableViewController, UISearchResultsUpdatin
         super.viewDidLoad()
 
         // Create Search Button
-        self.searchButton = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: #selector(FavoritesViewController.showSearchBar(_:)))
+        self.searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(FavoritesViewController.showSearchBar(_:)))
         navigationItem.rightBarButtonItem = self.searchButton
 
         configureSearchController()
@@ -58,7 +58,7 @@ class RecipesParentViewController: UITableViewController, UISearchResultsUpdatin
     // MARK: - Helpers Methods
     //--------------------------------------
 
-    func showSearchBar(sender: UIBarButtonItem) {
+    func showSearchBar(_ sender: UIBarButtonItem) {
         self.navigationItem.setHidesBackButton(true, animated: true)
         self.navigationItem.rightBarButtonItem = nil
         self.navigationItem.leftBarButtonItem = nil
@@ -81,7 +81,7 @@ class RecipesParentViewController: UITableViewController, UISearchResultsUpdatin
         var searchBarTextField: UITextField!
         for subview in searchController.searchBar.subviews {
             for view2 in subview.subviews {
-                if view2.isKindOfClass(UITextField) {
+                if view2.isKind(of: UITextField.self) {
                     searchBarTextField = view2 as! UITextField
                     break
                 }
@@ -94,7 +94,7 @@ class RecipesParentViewController: UITableViewController, UISearchResultsUpdatin
         searchController.searchBar.sizeToFit()
     }
     
-    func getRecipeBasedOnSearch(index: Int) -> Recipe {
+    func getRecipeBasedOnSearch(_ index: Int) -> Recipe {
         if isShowSearchResults() {
             return filteredRecipes[index]
         }
@@ -111,10 +111,10 @@ class RecipesParentViewController: UITableViewController, UISearchResultsUpdatin
     
     func addEmptySearchLabel() {
         if (self.emptySearchLabel == nil) {
-            self.emptySearchLabel = UILabel(frame: CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height))
-            self.emptySearchLabel!.textColor = UIColor.blackColor()
+            self.emptySearchLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
+            self.emptySearchLabel!.textColor = UIColor.black
             self.emptySearchLabel!.numberOfLines = 0
-            self.emptySearchLabel!.textAlignment = NSTextAlignment.Center
+            self.emptySearchLabel!.textAlignment = NSTextAlignment.center
             self.emptySearchLabel!.font = Helpers.sharedInstance.getTextFont(20)
             self.emptySearchLabel!.sizeToFit()
             self.emptySearchLabel!.tag = 45
@@ -123,7 +123,7 @@ class RecipesParentViewController: UITableViewController, UISearchResultsUpdatin
             self.emptySearchLabel!.text = String.localizedStringWithFormat(NSLocalizedString("emptySearchRecipes", comment: ""), searchString)
         }
         self.tableView.backgroundView = emptySearchLabel
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
     }
     
     func isShowSearchResults() -> Bool {
@@ -137,16 +137,16 @@ class RecipesParentViewController: UITableViewController, UISearchResultsUpdatin
     // MARK: - UISearchBarDelegate methods
     //--------------------------------------
     
-    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         searchController.searchBar.showsCancelButton = true
     }
     
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         shouldShowSearchResults = true
         tableView.reloadData()
     }
     
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         
         self.navigationItem.rightBarButtonItem = self.searchButton
         self.navigationItem.setHidesBackButton(false, animated: true)
@@ -158,7 +158,7 @@ class RecipesParentViewController: UITableViewController, UISearchResultsUpdatin
         tableView.reloadData()
     }
     
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if !shouldShowSearchResults {
             shouldShowSearchResults = true
             tableView.reloadData()
@@ -171,16 +171,16 @@ class RecipesParentViewController: UITableViewController, UISearchResultsUpdatin
     // MARK: - UISearchResultsUpdating methods
     //--------------------------------------
     
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
-        if let searchString = searchController.searchBar.text where searchString.isEmpty == false {
+    func updateSearchResults(for searchController: UISearchController) {
+        if let searchString = searchController.searchBar.text, searchString.isEmpty == false {
             
             shouldShowSearchResults = true
             
             // Filter the data array and get only those countries that match the search text.
             filteredRecipes = recipes.filter({ (recipe) -> Bool in
-                let recipeTitle: NSString = recipe.title
+                let recipeTitle: NSString = recipe.title as NSString
                 
-                return (recipeTitle.rangeOfString(searchString, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
+                return (recipeTitle.range(of: searchString, options: NSString.CompareOptions.caseInsensitive).location) != NSNotFound
             })
             
             // Reload the tableview.
@@ -195,8 +195,8 @@ class RecipesParentViewController: UITableViewController, UISearchResultsUpdatin
     // MARK: - UIScrollViewDelegate Methods
     //--------------------------------------
     
-    override func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-        if searchController.searchBar.isFirstResponder() && (shouldShowSearchResults || searchController.active) {
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        if searchController.searchBar.isFirstResponder && (shouldShowSearchResults || searchController.isActive) {
             searchController.searchBar.resignFirstResponder()
         }
     }

@@ -39,7 +39,7 @@ class FavoritesViewController: RecipesParentViewController {
         self.title = getLocalizedString("Favorites")
         
         // Create Edit Button
-        self.editButton = UIBarButtonItem(title: getLocalizedString("edit"), style: .Plain, target: self, action: #selector(FavoritesViewController.editItems(_:)))
+        self.editButton = UIBarButtonItem(title: getLocalizedString("edit"), style: .plain, target: self, action: #selector(FavoritesViewController.editItems(_:)))
         navigationItem.leftBarButtonItem = self.editButton
     }
 
@@ -48,7 +48,7 @@ class FavoritesViewController: RecipesParentViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         if !Helpers.sharedInstance.isInternetConnectionAvailable() {
             self.showAlert()
         } else {
@@ -56,7 +56,7 @@ class FavoritesViewController: RecipesParentViewController {
         }
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         if self.recipes.count == 0 {
             self.endUpdateView()
         }
@@ -67,14 +67,14 @@ class FavoritesViewController: RecipesParentViewController {
     //--------------------------------------
 
     func reloadFavorites() {
-        if let favoriteIds = NSUserDefaults.standardUserDefaults().arrayForKey("favorites") as? [String] {
+        if let favoriteIds = UserDefaults.standard.array(forKey: "favorites") as? [String] {
             ParseHelper.sharedInstance.updateFavoriteRecipes(self, ids: favoriteIds)
         }
     }
 
-    func editItems(sender: UIBarButtonItem) {
-        tableView.setEditing(!tableView.editing, animated: true)
-        if tableView.editing {
+    func editItems(_ sender: UIBarButtonItem) {
+        tableView.setEditing(!tableView.isEditing, animated: true)
+        if tableView.isEditing {
             navigationItem.rightBarButtonItem?.title = getLocalizedString("done")
         } else {
             navigationItem.rightBarButtonItem?.title = getLocalizedString("edit")
@@ -83,17 +83,17 @@ class FavoritesViewController: RecipesParentViewController {
     
     func addEmptyFavoritesLabel() {
         if (self.emptyMessageLabel == nil) {
-            self.emptyMessageLabel = UILabel(frame: CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height))
+            self.emptyMessageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
             self.emptyMessageLabel!.text = getLocalizedString("emptyFavorites")
-            self.emptyMessageLabel!.textColor = UIColor.blackColor()
+            self.emptyMessageLabel!.textColor = UIColor.black
             self.emptyMessageLabel!.numberOfLines = 0
-            self.emptyMessageLabel!.textAlignment = NSTextAlignment.Center
+            self.emptyMessageLabel!.textAlignment = NSTextAlignment.center
             self.emptyMessageLabel!.font = Helpers.sharedInstance.getTextFont(20)
             self.emptyMessageLabel!.sizeToFit()
             self.emptyMessageLabel!.tag = 45
         }
         self.tableView.backgroundView = emptyMessageLabel
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
     }
     
     func beginUpdateView() {
@@ -108,7 +108,7 @@ class FavoritesViewController: RecipesParentViewController {
         }
     }
     
-    private func showAlert() {
+    fileprivate func showAlert() {
         SCLAlertViewHelper.sharedInstance.showErrorAlert("noInternetConnection")
     }
     
@@ -116,11 +116,11 @@ class FavoritesViewController: RecipesParentViewController {
     // MARK: - Table view data source
     //--------------------------------------
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         tableView.backgroundView = nil
         if isShowSearchResults() {
             self.handleIfEmptySearch()
@@ -131,15 +131,15 @@ class FavoritesViewController: RecipesParentViewController {
         return 0;
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as! FavoriteRecipeTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier, for: indexPath) as! FavoriteRecipeTableViewCell
         
         let recipe = self.getRecipeBasedOnSearch(indexPath.row)
         
         let recipeDetailsView = cell.recipeDetailsView
         recipeDetailsView.recipe = recipe
-        recipeDetailsView.isShowDate = false
-        recipeDetailsView.setNeedsDisplay()
+        recipeDetailsView?.isShowDate = false
+        recipeDetailsView?.setNeedsDisplay()
 
         if recipe.imageName != "" {
             // update image async
@@ -150,25 +150,25 @@ class FavoritesViewController: RecipesParentViewController {
             KingfisherHelper.sharedInstance.setImageWithUrl(cell.recipeImageView, url: fileUrl)
         }
         
-        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
         
         return cell
     }
 
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
             recipeRemoved = true
-            if var favoriteIds = NSUserDefaults.standardUserDefaults().arrayForKey("favorites") as? [String] {
+            if var favoriteIds = UserDefaults.standard.array(forKey: "favorites") as? [String] {
                 let recipe = self.recipes[indexPath.row]
                 favoriteIds.removeObject(recipe.id)
-                NSUserDefaults.standardUserDefaults().setObject(favoriteIds, forKey: "favorites")
+                UserDefaults.standard.set(favoriteIds, forKey: "favorites")
             }
-            self.recipes.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Left)
+            self.recipes.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.left)
             if self.recipes.count == 0 {
                 self.addEmptyFavoritesLabel()
             }
@@ -179,7 +179,7 @@ class FavoritesViewController: RecipesParentViewController {
     // MARK: - Table view delegate
     //--------------------------------------
 
-    override func tableView(tableView: UITableView, shouldIndentWhileEditingRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return false
     }
     
@@ -187,11 +187,11 @@ class FavoritesViewController: RecipesParentViewController {
     // MARK: - Navigation
     //--------------------------------------
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SegueRecipeViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let recipe = self.getRecipeBasedOnSearch(indexPath.row)
-                let destinationViewController = segue.destinationViewController as! RecipeViewController
+                let destinationViewController = segue.destination as! RecipeViewController
                 destinationViewController.recipe = recipe
             }
         }
@@ -201,7 +201,7 @@ class FavoritesViewController: RecipesParentViewController {
     // MARK: - UISearchBarDelegate methods
     //--------------------------------------
     
-    override func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+    override func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         super.searchBarCancelButtonClicked(searchBar)
         self.navigationItem.leftBarButtonItem = self.editButton
     }

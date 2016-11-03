@@ -571,6 +571,7 @@
 				TargetAttributes = {
 					81BA81441A49DA1800E65899 = {
 						CreatedOnToolsVersion = 6.1.1;
+						LastSwiftMigration = 0810;
 					};
 				};
 			};
@@ -877,6 +878,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.parse.appdem;
 				PRODUCT_NAME = Recipes;
 				SWIFT_OBJC_BRIDGING_HEADER = "ParseStarterProject/ParseStarterProject-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -894,6 +896,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.parse.appdem;
 				PRODUCT_NAME = Recipes;
 				SWIFT_OBJC_BRIDGING_HEADER = "ParseStarterProject/ParseStarterProject-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

@@ -1,10 +1,10 @@
 PODS:
-  - Kingfisher (2.4.1)
+  - Kingfisher (3.1.4)
   - NVActivityIndicatorView (2.4)
   - SVProgressHUD (2.0.3)
 
 DEPENDENCIES:
-  - Kingfisher (~> 2.4)
+  - Kingfisher (~> 3.0)
   - NVActivityIndicatorView
   - SVProgressHUD (from `https://github.com/SVProgressHUD/SVProgressHUD.git`)
 
@@ -18,7 +18,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/SVProgressHUD/SVProgressHUD.git
 
 SPEC CHECKSUMS:
-  Kingfisher: 41aed5b6c1ed8fa98cf6d75283ce89cf7890f517
+  Kingfisher: 6c67e3e57f2d81a9cfdfa25052cd86f33ceac9bb
   NVActivityIndicatorView: 275a3248d752b5eb1163b33aee664d7e3b43c101
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
 

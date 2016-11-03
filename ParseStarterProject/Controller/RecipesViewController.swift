@@ -17,7 +17,7 @@ class RecipesViewController: RecipesParentViewController {
     var category: Category?
     
     var addButton: UIBarButtonItem!
-    var updatedAt: NSDate!
+    var updatedAt: Date!
     
     override func recipesUpdated() {
         self.tableView.reloadData()
@@ -49,7 +49,7 @@ class RecipesViewController: RecipesParentViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         if category == nil {
             self.handleAddButton()
         }
@@ -59,11 +59,11 @@ class RecipesViewController: RecipesParentViewController {
     // MARK: - Navigation
     //--------------------------------------
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SegueRecipeViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let recipe = self.getRecipeBasedOnSearch(indexPath.row)
-                let destinationViewController = segue.destinationViewController as! RecipeViewController
+                let destinationViewController = segue.destination as! RecipeViewController
                 destinationViewController.recipe = recipe
             }
         }
@@ -73,11 +73,11 @@ class RecipesViewController: RecipesParentViewController {
     // MARK: - Table view data source
     //--------------------------------------
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         tableView.backgroundView = nil
         if isShowSearchResults() {
             self.handleIfEmptySearch()
@@ -86,9 +86,9 @@ class RecipesViewController: RecipesParentViewController {
         return recipes.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as! RecipeTableViewCell
-        cell.selectionStyle = UITableViewCellSelectionStyle.None
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier, for: indexPath) as! RecipeTableViewCell
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
         
         return cell
     }
@@ -97,14 +97,14 @@ class RecipesViewController: RecipesParentViewController {
     // MARK: - Table View Delegate
     //--------------------------------------
 
-    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let currentCell = cell as! RecipeTableViewCell
         let recipe = self.getRecipeBasedOnSearch(indexPath.row)
         
         let recipeDetailsView = currentCell.recipeDetailsView
         recipeDetailsView.recipe = recipe
         
-        recipeDetailsView.setNeedsDisplay()
+        recipeDetailsView?.setNeedsDisplay()
 
         var imageUrl = ""
         if recipe.imageName != "" {
@@ -120,7 +120,7 @@ class RecipesViewController: RecipesParentViewController {
     // MARK: - Helpers Methods
     //--------------------------------------
     
-    func loadRecipes(fromPullToRefresh: Bool = false) {
+    func loadRecipes(_ fromPullToRefresh: Bool = false) {
         if !fromPullToRefresh {
             self.beginUpdateView()
         }
@@ -131,8 +131,8 @@ class RecipesViewController: RecipesParentViewController {
         }
     }
     
-    func showAddRecipeView(sender: UIBarButtonItem) {
-        self.performSegueWithIdentifier(SegueAddRecipeViewController, sender: nil)
+    func showAddRecipeView(_ sender: UIBarButtonItem) {
+        self.performSegue(withIdentifier: SegueAddRecipeViewController, sender: nil)
     }
     
     func handleAddButton() {
@@ -141,7 +141,7 @@ class RecipesViewController: RecipesParentViewController {
             let parseUser = ParseUser(user: user)
             if parseUser.isAdmin() {
                 if self.addButton == nil {
-                    self.addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(RecipesViewController.showAddRecipeView(_:)))
+                    self.addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(RecipesViewController.showAddRecipeView(_:)))
                 }
                 navigationItem.leftBarButtonItem = self.addButton
             }
@@ -174,7 +174,7 @@ class RecipesViewController: RecipesParentViewController {
         self.tableView.dg_stopLoading()
     }
     
-    private func showAlert() {
+    fileprivate func showAlert() {
         SCLAlertViewHelper.sharedInstance.showErrorAlert("noInternetConnection")
     }
     

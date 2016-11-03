@@ -37,7 +37,7 @@ class ActivityIndicator {
         
         
         self.buildHUD()
-        if let isShowLabel = self.options["isShowLabel"] as? Bool where isShowLabel {
+        if let isShowLabel = self.options["isShowLabel"] as? Bool, isShowLabel {
             self.buildLabel()
         }
         self.buildActivityIndicator()
@@ -46,30 +46,30 @@ class ActivityIndicator {
     convenience init(smallActivityView view: UIView) {
         self.init(view: view, HUDSize: 40.0)
         self.HUDColor = self.getBlackColor()
-        self.options["isShowLabel"] = false
+        self.options["isShowLabel"] = false as AnyObject?
         self.elementsColor = self.getGrayColor()
         
         self.buildHUD()
         self.buildActivityIndicator()
     }
 
-    private func buildHUD() {
+    fileprivate func buildHUD() {
         let HUDSize: CGFloat = self.HUDSize
-        let frame = CGRectMake(UIScreen.mainScreen().bounds.width / 2 - HUDSize / 2, self.insertToView.bounds.height / 2 - HUDSize / 2, HUDSize, HUDSize)
+        let frame = CGRect(x: UIScreen.main.bounds.width / 2 - HUDSize / 2, y: self.insertToView.bounds.height / 2 - HUDSize / 2, width: HUDSize, height: HUDSize)
         self.HUD = UIView(frame: frame)
         self.HUD.backgroundColor = self.HUDColor
         
         let maskPath = UIBezierPath(roundedRect: self.HUD.bounds,
-                                    byRoundingCorners: .AllCorners,
+                                    byRoundingCorners: .allCorners,
                                     cornerRadii: CGSize(width: 10.0, height: 10.0)
         )
         let maskLayer = CAShapeLayer(layer: maskPath)
         maskLayer.frame = self.HUD.bounds
-        maskLayer.path = maskPath.CGPath
+        maskLayer.path = maskPath.cgPath
         self.HUD.layer.mask = maskLayer
     }
     
-    private func buildActivityIndicator() {
+    fileprivate func buildActivityIndicator() {
         let indicatorSize: CGFloat = 0.4 * self.HUDSize
         var isShowLabel = true
         if let isShowLabelFromOptions = self.options["isShowLabel"] as? Bool {
@@ -79,8 +79,8 @@ class ActivityIndicator {
         let widthPointsToAdd: CGFloat = isShowLabel ? 3 : 1
 
         self.activityIndicatorView = NVActivityIndicatorView(
-            frame: CGRectMake(self.HUD.bounds.width / 2 - indicatorSize / 2 + widthPointsToAdd, self.HUD.bounds.height / 2 - indicatorSize / 2 - heightPointsToSubstract, indicatorSize, indicatorSize),
-            type: NVActivityIndicatorType.BallRotateChase,
+            frame: CGRect(x: self.HUD.bounds.width / 2 - indicatorSize / 2 + widthPointsToAdd, y: self.HUD.bounds.height / 2 - indicatorSize / 2 - heightPointsToSubstract, width: indicatorSize, height: indicatorSize),
+            type: NVActivityIndicatorType.ballRotateChase,
             color: self.elementsColor,
             padding: indicatorSize
         )
@@ -89,8 +89,8 @@ class ActivityIndicator {
         self.HUD.addSubview(self.activityIndicatorView)
     }
     
-    private func buildLabel() {
-        let label: UILabel = UILabel(frame: CGRectMake(self.HUD.bounds.width / 2 - 20, self.HUD.bounds.height - 30, self.HUD.bounds.width, 20))
+    fileprivate func buildLabel() {
+        let label: UILabel = UILabel(frame: CGRect(x: self.HUD.bounds.width / 2 - 20, y: self.HUD.bounds.height - 30, width: self.HUD.bounds.width, height: 20))
         var labelText = getLocalizedString("loading")
         if let labelTextFromOptions = options["labelText"] as? String {
             labelText = labelTextFromOptions
@@ -98,18 +98,18 @@ class ActivityIndicator {
         label.text = labelText
         label.textColor = self.elementsColor
         label.numberOfLines = 0
-        label.textAlignment = NSTextAlignment.Center
+        label.textAlignment = NSTextAlignment.center
         label.font = Helpers.sharedInstance.getTextFont()
         label.sizeToFit()
         
         self.HUD.addSubview(label)
     }
     
-    private func getBlackColor() -> UIColor {
+    fileprivate func getBlackColor() -> UIColor {
         return UIColor(red:0.26, green:0.27, blue:0.27, alpha:0.95)
     }
 
-    private func getGrayColor() -> UIColor {
+    fileprivate func getGrayColor() -> UIColor {
         return UIColor(red:0.87, green:0.89, blue:0.91, alpha:1.0)
     }
 
@@ -117,10 +117,10 @@ class ActivityIndicator {
     // MARK: - Helper Methods
     //--------------------------------------
     
-    private func setDefaultOptions(options: [String: AnyObject]) -> [String: AnyObject] {
+    fileprivate func setDefaultOptions(_ options: [String: AnyObject]) -> [String: AnyObject] {
         var retOptions = options
         if retOptions["isShowLabel"] == nil {
-           retOptions["isShowLabel"] = true
+           retOptions["isShowLabel"] = true as AnyObject?
         }
         return retOptions
     }

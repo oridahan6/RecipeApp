@@ -4,7 +4,7 @@ use_frameworks!
 
 target 'Recipes' do
 
-pod 'Kingfisher', '~> 2.4'
+pod 'Kingfisher', '~> 3.0'
 pod 'NVActivityIndicatorView'
 pod 'SVProgressHUD', :git => 'https://github.com/SVProgressHUD/SVProgressHUD.git'
 

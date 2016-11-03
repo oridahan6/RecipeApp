@@ -17,16 +17,16 @@ class RecipeDetailSectionHeaderTableViewCell: UITableViewCell {
         // Initialization code
         
         // draw again on orientation change
-        self.contentMode = UIViewContentMode.Redraw
+        self.contentMode = UIViewContentMode.redraw
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
 
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         // Drawing code
         if let _ = self.recipe {
             self.drawRecipeDetails(self.recipe)

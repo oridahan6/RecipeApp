@@ -16,12 +16,12 @@ class ViewController: UIViewController {
         
         let query = PFQuery(className:"Recipe")
 //        query.whereKey("playerName", equalTo:"Sean Plott")
-        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+        query.findObjectsInBackground { (objects, error) -> Void in
             if error == nil {
                 // The find succeeded.
                 print("Successfully retrieved \(objects!.count) recipes.")
                 // Do something with the found objects
-                if let objects = objects {
+                if let objects = objects as? [PFObject] {
                     for object in objects {
                         print(object)
                         self.testTitle.text = object["title"] as? String
@@ -29,7 +29,7 @@ class ViewController: UIViewController {
                 }
             } else {
                 // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
+                print("Error: \(error!) \(error!._userInfo)")
             }
 
         }

@@ -21,7 +21,7 @@ class AddIngredientSectionTableViewCell: UITableViewCell, UITextFieldDelegate {
         self.ingredientSectionTextField.delegate = self
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
@@ -31,16 +31,16 @@ class AddIngredientSectionTableViewCell: UITableViewCell, UITextFieldDelegate {
     // MARK: - Text Field Delegate
     //--------------------------------------
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
 
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         if let sectionText = textField.text {
             self.tableViewController.recipeIngredients[sectionText] = []
             if let cell = textField.superview?.superview as? AddIngredientSectionTableViewCell {
-                if let indexPath = self.tableViewController.tableView.indexPathForCell(cell) {
+                if let indexPath = self.tableViewController.tableView.indexPath(for: cell) {
                     let currentRow = indexPath.row
                     // set previous section
                     var previousIngredientsEndPositionPerSection = self.tableViewController.ingredientsEndPositionPerSection[self.tableViewController.currentIngredientSection]

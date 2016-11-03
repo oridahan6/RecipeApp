@@ -28,7 +28,7 @@ class AddIngredientTableViewCell: UITableViewCell, UITextFieldDelegate, UITextVi
         self.ingredientAmountTextField.tag = 0
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
@@ -38,9 +38,9 @@ class AddIngredientTableViewCell: UITableViewCell, UITextFieldDelegate, UITextVi
         super.layoutSubviews()
 
         self.ingredientTextTextView.layer.borderWidth = 0.5
-        self.ingredientTextTextView.layer.borderColor = UIColor.blackColor().CGColor
+        self.ingredientTextTextView.layer.borderColor = UIColor.black.cgColor
         self.ingredientAmountTextField.layer.borderWidth = 0.5
-        self.ingredientAmountTextField.layer.borderColor = UIColor.blackColor().CGColor
+        self.ingredientAmountTextField.layer.borderColor = UIColor.black.cgColor
         
         if let tableVC = self.tableViewController {
             if tableVC.isIngredientEditing {
@@ -57,12 +57,12 @@ class AddIngredientTableViewCell: UITableViewCell, UITextFieldDelegate, UITextVi
     // MARK: - Text View Delegate
     //--------------------------------------
     
-    func textViewDidEndEditing(textView: UITextView) {
+    func textViewDidEndEditing(_ textView: UITextView) {
         textView.resignFirstResponder()
         self.updateIngredientArray(fromTextView: textView)
     }
     
-    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if(text == "\n") {
             textView.resignFirstResponder()
             return false
@@ -74,12 +74,12 @@ class AddIngredientTableViewCell: UITableViewCell, UITextFieldDelegate, UITextVi
     // MARK: - Text Field Delegate
     //--------------------------------------
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         self.updateIngredientArray(fromTextField: textField)
     }
     
@@ -99,7 +99,7 @@ class AddIngredientTableViewCell: UITableViewCell, UITextFieldDelegate, UITextVi
         }
     }
     
-    func updateIngredientArray(cell: AddIngredientTableViewCell) {
+    func updateIngredientArray(_ cell: AddIngredientTableViewCell) {
         var ingredientText = ""
         
         if let amountText = self.ingredientAmountTextField.text {
@@ -110,7 +110,7 @@ class AddIngredientTableViewCell: UITableViewCell, UITextFieldDelegate, UITextVi
             ingredientText += ingText
         }
         
-        if let indexPath = self.tableViewController.tableView.indexPathForCell(cell) {
+        if let indexPath = self.tableViewController.tableView.indexPath(for: cell) {
             self.tableViewController.recipeIngredients["general"]![indexPath.row] = ingredientText
         }
         

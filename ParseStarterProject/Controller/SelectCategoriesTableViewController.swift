@@ -34,22 +34,22 @@ class SelectCategoriesTableViewController: UITableViewController {
     // MARK: - Table view data source
     //--------------------------------------
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categories.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier, for: indexPath)
 
         let category = categories[indexPath.row]
         
         cell.textLabel?.text = category.name
         cell.textLabel?.font = Helpers.sharedInstance.getTextFont(16)
-        cell.textLabel?.textAlignment = NSTextAlignment.Right
+        cell.textLabel?.textAlignment = NSTextAlignment.right
         
         var addCheckMark = false
         
@@ -61,21 +61,21 @@ class SelectCategoriesTableViewController: UITableViewController {
         }
         
         if addCheckMark {
-            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+            cell.accessoryType = UITableViewCellAccessoryType.checkmark
         }
         
-        cell.backgroundColor = UIColor.clearColor()
-        cell.selectionStyle = .None
+        cell.backgroundColor = UIColor.clear
+        cell.selectionStyle = .none
         cell.tintColor = Helpers.sharedInstance.getRedColor()
         
         return cell
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.checkAndDisplayCheckMarkOnCellAtIndexPath(indexPath)
     }
     
-    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         self.checkAndDisplayCheckMarkOnCellAtIndexPath(indexPath)
     }
 
@@ -83,7 +83,7 @@ class SelectCategoriesTableViewController: UITableViewController {
     // MARK: - helpers
     //--------------------------------------
 
-    func isCategoryAlreadySelected(category: Category) -> Bool {
+    func isCategoryAlreadySelected(_ category: Category) -> Bool {
         for selectedCategory in selectedCategories {
             if selectedCategory.name == category.name {
                 return true
@@ -92,7 +92,7 @@ class SelectCategoriesTableViewController: UITableViewController {
         return false
     }
     
-    func checkAndDisplayCheckMarkOnCellAtIndexPath(indexPath: NSIndexPath) {
+    func checkAndDisplayCheckMarkOnCellAtIndexPath(_ indexPath: IndexPath) {
         if self.isCategoryAlreadySelected(categories[indexPath.row]) {
             self.uncheckCategoryAtIndexPath(indexPath)
         } else {
@@ -100,13 +100,13 @@ class SelectCategoriesTableViewController: UITableViewController {
         }
     }
     
-    func checkCategoryAtIndexPath(indexPath: NSIndexPath) {
-        tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
+    func checkCategoryAtIndexPath(_ indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
         self.selectedCategories.append(categories[indexPath.row])
     }
     
-    func uncheckCategoryAtIndexPath(indexPath: NSIndexPath) {
-        tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.None
+    func uncheckCategoryAtIndexPath(_ indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
         self.selectedCategories.removeObject(categories[indexPath.row])
     }
 }

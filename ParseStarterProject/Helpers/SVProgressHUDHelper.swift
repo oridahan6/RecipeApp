@@ -13,9 +13,9 @@ class SVProgressHUDHelper {
     
     static let sharedInstance = SVProgressHUDHelper()
     
-    private init() {
-        SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.Custom)
-        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.Gradient)
+    fileprivate init() {
+        SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.custom)
+        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.gradient)
         SVProgressHUD.setRingThickness(4)
         SVProgressHUD.setBackgroundColor(Helpers.sharedInstance.getRedColor())
         SVProgressHUD.setForegroundColor(Helpers.sharedInstance.getNudeColor())
@@ -23,15 +23,15 @@ class SVProgressHUDHelper {
     }
     
     func showLoadingHUD() {
-        SVProgressHUD.showWithStatus(getLocalizedString("loading"))
+        SVProgressHUD.show(withStatus: getLocalizedString("loading"))
     }
     
     func showPostingHUD() {
-        SVProgressHUD.showWithStatus(getLocalizedString("submitting"))
+        SVProgressHUD.show(withStatus: getLocalizedString("submitting"))
     }
     
     func showLoginInHUD() {
-        SVProgressHUD.showWithStatus(getLocalizedString("login-in"))
+        SVProgressHUD.show(withStatus: getLocalizedString("login-in"))
     }
     
     func dissmisHUD() {

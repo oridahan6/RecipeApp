@@ -24,10 +24,10 @@ class RecipeDetails: UIView {
         super.init(coder: aDecoder)
         
         // draw again on orientation change
-        self.contentMode = UIViewContentMode.Redraw
+        self.contentMode = UIViewContentMode.redraw
     }
     
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         // Drawing code
         if let _ = self.recipe {
             self.drawRecipeDetails(self.recipe, isShowDate: self.isShowDate)

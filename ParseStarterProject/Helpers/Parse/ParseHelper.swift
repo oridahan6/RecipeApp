@@ -8,21 +8,45 @@
 
 import UIKit
 import Parse
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class ParseHelper: NSObject {
     
     static let sharedInstance = ParseHelper()
     
-    private override init() {}
+    fileprivate override init() {}
     
     var allRecipes = [Recipe]()
     var allCategories = [Category]()
 
     // update dates
-    var recipesLastFetched: NSDate!
-    var categoriesLastFetched: NSDate!
-    var recipesFromCategoryIdLastFetched = [String: NSDate]()
-    var favoritesLastFetched: NSDate!
+    var recipesLastFetched: Date!
+    var categoriesLastFetched: Date!
+    var recipesFromCategoryIdLastFetched = [String: Date]()
+    var favoritesLastFetched: Date!
     
     // Parse class names
     let parseClassNameRecipe = "Recipe"
@@ -32,11 +56,11 @@ class ParseHelper: NSObject {
     // MARK: - get data methods
     //--------------------------------------
     
-    func updateRecipes(vc: RecipesViewController) -> Void {
+    func updateRecipes(_ vc: RecipesViewController) -> Void {
         
         let query = PFQuery(className: self.parseClassNameRecipe)
-        query.orderByDescending("updatedAt")
-        func successBlock (objects: [AnyObject]?) -> Void {
+        query.order(byDescending: "updatedAt")
+        func successBlock (_ objects: [AnyObject]?) -> Void {
             if let objects = objects {
                 vc.recipes = [Recipe]()
                 for object in objects {
@@ -60,22 +84,22 @@ class ParseHelper: NSObject {
             vc.beginUpdateView()
         }
         func extraNetworkSuccessBlock() -> Void {
-            self.recipesLastFetched = NSDate()
-            NSUserDefaults.standardUserDefaults().setObject(self.recipesLastFetched, forKey: "recipesLastFetched")
+            self.recipesLastFetched = Date()
+            UserDefaults.standard.set(self.recipesLastFetched, forKey: "recipesLastFetched")
         }
         
-        if let recipesLastFetched = NSUserDefaults.standardUserDefaults().objectForKey("recipesLastFetched") as? NSDate {
+        if let recipesLastFetched = UserDefaults.standard.object(forKey: "recipesLastFetched") as? Date {
             self.recipesLastFetched = recipesLastFetched
         }
         
         self.findObjectsLocallyThenRemotely(query, lastUpdateDate: self.recipesLastFetched, successBlock: successBlock, extraNetworkSuccessBlock: extraNetworkSuccessBlock, errorBlock: errorBlock, updateViewBlock: updateViewBlock)
     }
     
-    func updateCategories(vc: CategoriesViewController) -> Void {
+    func updateCategories(_ vc: CategoriesViewController) -> Void {
         
         let query = PFQuery(className: self.parseClassNameCategories)
-        query.orderByAscending("displayOrder")
-        func successBlock (objects: [AnyObject]?) -> Void {
+        query.order(byAscending: "displayOrder")
+        func successBlock (_ objects: [AnyObject]?) -> Void {
             if let objects = objects {
                 vc.categories = [Category]()
                 for object in objects {
@@ -99,11 +123,11 @@ class ParseHelper: NSObject {
             vc.beginUpdateView()
         }
         func extraNetworkSuccessBlock() -> Void {
-            self.categoriesLastFetched = NSDate()
-            NSUserDefaults.standardUserDefaults().setObject(self.categoriesLastFetched, forKey: "categoriesLastFetched")
+            self.categoriesLastFetched = Date()
+            UserDefaults.standard.set(self.categoriesLastFetched, forKey: "categoriesLastFetched")
         }
         
-        if let categoriesLastFetched = NSUserDefaults.standardUserDefaults().objectForKey("categoriesLastFetched") as? NSDate {
+        if let categoriesLastFetched = UserDefaults.standard.object(forKey: "categoriesLastFetched") as? Date {
             self.categoriesLastFetched = categoriesLastFetched
         }
 
@@ -113,7 +137,7 @@ class ParseHelper: NSObject {
     func updateCategories(addRecipe vc: AddRecipeViewController) -> Void {
         if allCategories.isEmpty {
             let query = PFQuery(className: self.parseClassNameCategories)
-            func successBlock (objects: [AnyObject]?) -> Void {
+            func successBlock (_ objects: [AnyObject]?) -> Void {
                 if let objects = objects {
                     for object in objects {
                         if let object = object as? PFObject {
@@ -127,11 +151,11 @@ class ParseHelper: NSObject {
                 }
             }
             func extraNetworkSuccessBlock() -> Void {
-                self.categoriesLastFetched = NSDate()
-                NSUserDefaults.standardUserDefaults().setObject(self.categoriesLastFetched, forKey: "categoriesLastFetched")
+                self.categoriesLastFetched = Date()
+                UserDefaults.standard.set(self.categoriesLastFetched, forKey: "categoriesLastFetched")
             }
 
-            if let categoriesLastFetched = NSUserDefaults.standardUserDefaults().objectForKey("categoriesLastFetched") as? NSDate {
+            if let categoriesLastFetched = UserDefaults.standard.object(forKey: "categoriesLastFetched") as? Date {
                 self.categoriesLastFetched = categoriesLastFetched
             }
 
@@ -141,7 +165,7 @@ class ParseHelper: NSObject {
         }
     }
     
-    func updateRecipesFromCategoryId(vc: RecipesViewController, catId: Int) -> Void {
+    func updateRecipesFromCategoryId(_ vc: RecipesViewController, catId: Int) -> Void {
         
         let query = PFQuery(className: self.parseClassNameRecipe)
         
@@ -150,8 +174,8 @@ class ParseHelper: NSObject {
         }
         
         query.whereKey("categories", equalTo:catId)
-        query.orderByDescending("updatedAt")
-        func successBlock (objects: [AnyObject]?) -> Void {
+        query.order(byDescending: "updatedAt")
+        func successBlock (_ objects: [AnyObject]?) -> Void {
             if let objects = objects {
                 vc.recipes = [Recipe]()
                 for object in objects {
@@ -174,24 +198,24 @@ class ParseHelper: NSObject {
             vc.beginUpdateView()
         }
         func extraNetworkSuccessBlock() -> Void {
-            self.recipesFromCategoryIdLastFetched[String(catId)] = NSDate()
-            NSUserDefaults.standardUserDefaults().setObject(self.recipesFromCategoryIdLastFetched, forKey: "recipesFromCategoryIdLastFetched")
+            self.recipesFromCategoryIdLastFetched[String(catId)] = Date()
+            UserDefaults.standard.set(self.recipesFromCategoryIdLastFetched, forKey: "recipesFromCategoryIdLastFetched")
         }
 
-        if let recipesFromCategoriesIdLastFetched = NSUserDefaults.standardUserDefaults().objectForKey("recipesFromCategoryIdLastFetched") as? [String: NSDate] {
+        if let recipesFromCategoriesIdLastFetched = UserDefaults.standard.object(forKey: "recipesFromCategoryIdLastFetched") as? [String: Date] {
             self.recipesFromCategoryIdLastFetched[String(catId)] = recipesFromCategoriesIdLastFetched[String(catId)]
         }
 
         self.findObjectsLocallyThenRemotely(query, lastUpdateDate: self.recipesFromCategoryIdLastFetched[String(catId)], successBlock: successBlock, extraNetworkSuccessBlock: extraNetworkSuccessBlock, errorBlock: errorBlock, updateViewBlock: updateViewBlock)
     }
     
-    func updateFavoriteRecipes(vc: FavoritesViewController, ids: [String]) -> Void {
+    func updateFavoriteRecipes(_ vc: FavoritesViewController, ids: [String]) -> Void {
 
         if allRecipes.isEmpty {
             let query = PFQuery(className: self.parseClassNameRecipe)
             query.whereKey("objectId", containedIn: ids)
             
-            func successBlock (objects: [AnyObject]?) -> Void {
+            func successBlock (_ objects: [AnyObject]?) -> Void {
                 if let objects = objects {
                     for object in objects {
                         if let object = object as? PFObject {
@@ -211,10 +235,10 @@ class ParseHelper: NSObject {
                 vc.beginUpdateView()
             }
             func extraNetworkSuccessBlock() -> Void {
-                self.favoritesLastFetched = NSDate()
-                NSUserDefaults.standardUserDefaults().setObject(self.favoritesLastFetched, forKey: "favoritesLastFetched")
+                self.favoritesLastFetched = Date()
+                UserDefaults.standard.set(self.favoritesLastFetched, forKey: "favoritesLastFetched")
             }
-            if let favoritesLastFetched = NSUserDefaults.standardUserDefaults().objectForKey("favoritesLastFetched") as? NSDate {
+            if let favoritesLastFetched = UserDefaults.standard.object(forKey: "favoritesLastFetched") as? Date {
                 self.favoritesLastFetched = favoritesLastFetched
             }
 
@@ -225,7 +249,7 @@ class ParseHelper: NSObject {
             })
             
             // sort recipes by addition order
-            vc.recipes.sortInPlace({ ids.indexOf($0.id) > ids.indexOf($1.id) })
+            vc.recipes.sort(by: { ids.index(of: $0.id) > ids.index(of: $1.id) })
         }
     }
     
@@ -233,12 +257,12 @@ class ParseHelper: NSObject {
     // MARK: - Submit Data
     //--------------------------------------
     
-    func uploadRecipe(recipeData: [String: AnyObject], vc: AddRecipeViewController) -> Bool {
+    func uploadRecipe(_ recipeData: [String: AnyObject], vc: AddRecipeViewController) -> Bool {
         
         vc.showActivityIndicator()
         
         let recipe = PFObject(className: self.parseClassNameRecipe)
-        if let title = recipeData["title"] as? String, recipeImage = recipeData["image"] as? UIImage, imageData = UIImagePNGRepresentation(recipeImage), level = recipeData["level"] as? String, type = recipeData["type"] as? String, prepTime = recipeData["prepTime"] as? Int, cookTime = recipeData["cookTime"] as? Int, ingredients = recipeData["ingredients"] as? [String: [String]], directions = recipeData["directions"] as? [String: [String]] {
+        if let title = recipeData["title"] as? String, let recipeImage = recipeData["image"] as? UIImage, let imageData = UIImagePNGRepresentation(recipeImage), let level = recipeData["level"] as? String, let type = recipeData["type"] as? String, let prepTime = recipeData["prepTime"] as? Int, let cookTime = recipeData["cookTime"] as? Int, let ingredients = recipeData["ingredients"] as? [String: [String]], let directions = recipeData["directions"] as? [String: [String]] {
             recipe.setValue(title, forKey: "title")
             let imageFile = PFFile(name: Helpers.sharedInstance.randomStringWithLength(10) + ".png", data: imageData)
             recipe.setObject(imageFile, forKey: "image")
@@ -261,8 +285,8 @@ class ParseHelper: NSObject {
             recipe.setObject(ingredients, forKey: "ingredients")
             recipe.setObject(directions, forKey: "directions")
             
-            recipe.saveInBackgroundWithBlock {
-                (success: Bool, error: NSError?) -> Void in
+            recipe.saveInBackground {
+                (success: Bool, error: Error?) -> Void in
                 if (success) {
                     // The object has been saved.
                     vc.handlePostSuccess()
@@ -273,7 +297,7 @@ class ParseHelper: NSObject {
                     
                     vc.hideActivityIndicator()
                     if let error = error {
-                        vc.showErrorAlert(error.code)
+                        vc.showErrorAlert(error._code)
                     } else {
                         vc.showErrorAlert()
                     }
@@ -288,18 +312,18 @@ class ParseHelper: NSObject {
     // MARK: - user methods
     //--------------------------------------
     
-    class func login(username: String, password: String, vc: LoginViewController) {
+    class func login(_ username: String, password: String, vc: LoginViewController) {
 
         vc.beginUpdateView()
         
-        PFUser.logInWithUsernameInBackground(username, password: password) {
-            (user: PFUser?, error: NSError?) -> Void in
+        PFUser.logInWithUsername(inBackground: username, password: password) {
+            (user: PFUser?, error: Error?) -> Void in
             if user != nil {
                 vc.showSuccessAlert()
             } else {
                 if let error = error {
                     print(error)
-                    vc.showErrorAlert(error.code)
+                    vc.showErrorAlert(error._code)
                 }
             }
             vc.endUpdateView()
@@ -308,7 +332,7 @@ class ParseHelper: NSObject {
     }
     
     class func currentUser() -> PFUser? {
-        if let user = PFUser.currentUser() {
+        if let user = PFUser.current() {
             return user
         }
         return nil
@@ -322,17 +346,17 @@ class ParseHelper: NSObject {
     // MARK: - Helpers
     //--------------------------------------
     
-    private func updateCategoriesRecipesCount(ids: [String]) {
+    fileprivate func updateCategoriesRecipesCount(_ ids: [String]) {
         let query = PFQuery(className: self.parseClassNameCategories)
         query.whereKey("objectId", containedIn: ids)
         
-        query.findObjectsInBackgroundWithBlock({ (objects: [AnyObject]?, error: NSError?) in
+        query.findObjectsInBackground(block: { (objects, error) -> Void in
             if (error == nil) {
-                if let categories = objects {
+                if let categories = objects as? [PFObject] {
                     for category in categories {
                         category.incrementKey("recipesCount")
                     }
-                    PFObject.saveAllInBackground(categories, block: { (success, error) in
+                    PFObject.saveAll(inBackground: categories, block: { (success, error) in
                         if !success || error != nil {
                             print("Saving categories' recipes count failed")
                         }
@@ -344,14 +368,14 @@ class ParseHelper: NSObject {
         })
     }
     
-    private func findObjectsLocallyThenRemotely(query: PFQuery!, lastUpdateDate: NSDate?, successBlock:[AnyObject]! -> Void, extraNetworkSuccessBlock:Void -> Void = {}, errorBlock:Void -> Void = {}, updateViewBlock:Void -> Void = {}) {
+    fileprivate func findObjectsLocallyThenRemotely(_ query: PFQuery!, lastUpdateDate: Date?, successBlock:@escaping ([AnyObject]!) -> Void, extraNetworkSuccessBlock:@escaping (Void) -> Void = {}, errorBlock:(Void) -> Void = {}, updateViewBlock:@escaping (Void) -> Void = {}) {
         
         let localQuery = (query.copy() as! PFQuery).fromLocalDatastore()
-        localQuery.findObjectsInBackgroundWithBlock({ (localObjects, error) -> Void in
+        localQuery.findObjectsInBackground(block: { (localObjects, error) -> Void in
             if (error == nil) {
                 if localObjects?.count > 0 {
 //                    print("Success : Local Query: \(query.parseClassName)")
-                    successBlock(localObjects)
+                    successBlock(localObjects as [AnyObject]!)
                 } else {
                     updateViewBlock()
                 }
@@ -365,20 +389,20 @@ class ParseHelper: NSObject {
             if let lastUpdateDate = lastUpdateDate {
                 dateQuery.whereKey("updatedAt", greaterThan: lastUpdateDate)
             }
-            dateQuery.getFirstObjectInBackgroundWithBlock({ (first, error) -> Void in
+            dateQuery.getFirstObjectInBackground(block: { (first, error) -> Void in
                 if error == nil {
                     // something was updated after lastUpdateDate
-                    query.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
+                    query.findObjectsInBackground(block: { (objects, error) -> Void in
                         if(error == nil) {
 //                            print("Success : Network Query: \(query.parseClassName)")
-                            PFObject.unpinAllInBackground(localObjects, block: { (success, error) -> Void in
+                            PFObject.unpinAll(inBackground: localObjects, block: { (success, error) -> Void in
                                 if (error == nil) {
 //                                    print("Success : Unpin Local Query: \(query.parseClassName)")
                                     extraNetworkSuccessBlock()
-                                    PFObject.pinAllInBackground(objects, block: { (success, error) -> Void in
+                                    PFObject.pinAll(inBackground: objects, block: { (success, error) -> Void in
                                         if (error == nil) {
 //                                            print("Success : Pin Query Result: \(query.parseClassName)")
-                                            successBlock(objects)
+                                            successBlock(objects as [AnyObject]!)
                                         } else {
                                             print("Error : Pin Query Result: \(query.parseClassName)")
                                         }
@@ -391,7 +415,7 @@ class ParseHelper: NSObject {
                             print("Error : Network Query: \(query.parseClassName)")
                         }
                     })
-                } else if error?.code == 101 {
+                } else if error?._code == 101 {
                     // nothing was updated after lastUpdateDate
 //                    print("Error: nothing was updated!")
                 } else {

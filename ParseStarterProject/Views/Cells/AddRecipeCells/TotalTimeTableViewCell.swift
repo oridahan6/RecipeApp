@@ -33,16 +33,16 @@ class TotalTimeTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerV
         self.createPickerForTextField(prepTimeTextField, pickerView: prepTimePickerView)
         self.createPickerForTextField(cookTimeTextField, pickerView: cookTimePickerView)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TotalTimeTableViewCell.uploadRecipeSuccess(_:)), name: AddRecipeViewController.NotificationUploadRecipeSuccess, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(TotalTimeTableViewCell.uploadRecipeSuccess(_:)), name: NSNotification.Name(rawValue: AddRecipeViewController.NotificationUploadRecipeSuccess), object: nil)
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.endEditing(true)
     }
     
@@ -80,83 +80,83 @@ class TotalTimeTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerV
         }
     }
     
-    func createPickerForTextField(textField: UITextField, pickerView: UIPickerView) {
+    func createPickerForTextField(_ textField: UITextField, pickerView: UIPickerView) {
         textField.delegate = self
         pickerView.delegate = self
         let toolBar = UIToolbar()
-        toolBar.barStyle = UIBarStyle.Default
-        toolBar.translucent = true
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.isTranslucent = true
         toolBar.tintColor = Helpers.sharedInstance.getRedColor()
         toolBar.sizeToFit()
         
         // Add fixed labels
         self.addFixedLabelsToPickerView(pickerView)
         
-        let doneButton = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: #selector(GeneralInfoTableViewCell.donePicker))
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: #selector(GeneralInfoTableViewCell.cancelPicker))
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(GeneralInfoTableViewCell.donePicker))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(GeneralInfoTableViewCell.cancelPicker))
         
         toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
-        toolBar.userInteractionEnabled = true
+        toolBar.isUserInteractionEnabled = true
         
         textField.inputView = pickerView
         textField.inputAccessoryView = toolBar
     }
     
-    func addFixedLabelsToPickerView(pickerView: UIPickerView) {
-        let hourLabel = UILabel(frame: CGRectMake(200, 93, 40, 30))
-        hourLabel.backgroundColor = UIColor.clearColor()
+    func addFixedLabelsToPickerView(_ pickerView: UIPickerView) {
+        let hourLabel = UILabel(frame: CGRect(x: 200, y: 93, width: 40, height: 30))
+        hourLabel.backgroundColor = UIColor.clear
         hourLabel.text = getLocalizedString("hours")
-        hourLabel.textAlignment = NSTextAlignment.Right
-        hourLabel.textColor = UIColor.blackColor()
+        hourLabel.textAlignment = NSTextAlignment.right
+        hourLabel.textColor = UIColor.black
         hourLabel.font = Helpers.sharedInstance.getTextFont(16)
         
         pickerView.addSubview(hourLabel)
         
-        let minLabel = UILabel(frame: CGRectMake(65, 93, 40, 30))
-        minLabel.backgroundColor = UIColor.clearColor()
+        let minLabel = UILabel(frame: CGRect(x: 65, y: 93, width: 40, height: 30))
+        minLabel.backgroundColor = UIColor.clear
         minLabel.text = getLocalizedString("minutes")
-        minLabel.textAlignment = NSTextAlignment.Right
-        minLabel.textColor = UIColor.blackColor()
+        minLabel.textAlignment = NSTextAlignment.right
+        minLabel.textColor = UIColor.black
         minLabel.font = Helpers.sharedInstance.getTextFont(16)
         
         pickerView.addSubview(minLabel)
     }
 
-    func getTimeFromPickerView(pickerView: UIPickerView) -> Int {
-        let hours = hoursOptions[pickerView.selectedRowInComponent(1)]
-        let minutes = minutesOptions[pickerView.selectedRowInComponent(0)]
+    func getTimeFromPickerView(_ pickerView: UIPickerView) -> Int {
+        let hours = hoursOptions[pickerView.selectedRow(inComponent: 1)]
+        let minutes = minutesOptions[pickerView.selectedRow(inComponent: 0)]
         
         return 60*hours + minutes
     }
     
-    func getTimeFromHoursSelection(pickerView: UIPickerView, selectedRow: Int) -> Int {
+    func getTimeFromHoursSelection(_ pickerView: UIPickerView, selectedRow: Int) -> Int {
         let hours = hoursOptions[selectedRow]
-        let minutes = minutesOptions[pickerView.selectedRowInComponent(0)]
+        let minutes = minutesOptions[pickerView.selectedRow(inComponent: 0)]
 
         return 60*hours + minutes
     }
     
-    func getTimeFromMinutesSelection(pickerView: UIPickerView, selectedRow: Int) -> Int {
-        let hours = hoursOptions[pickerView.selectedRowInComponent(1)]
+    func getTimeFromMinutesSelection(_ pickerView: UIPickerView, selectedRow: Int) -> Int {
+        let hours = hoursOptions[pickerView.selectedRow(inComponent: 1)]
         let minutes = minutesOptions[selectedRow]
 
         return 60*hours + minutes
     }
     
-    func getTextFromHoursSelection(pickerView: UIPickerView, selectedRow: Int) -> String {
+    func getTextFromHoursSelection(_ pickerView: UIPickerView, selectedRow: Int) -> String {
         let hours = hoursOptions[selectedRow]
-        let minutes = minutesOptions[pickerView.selectedRowInComponent(0)]
+        let minutes = minutesOptions[pickerView.selectedRow(inComponent: 0)]
         return self.getTextFromHoursAndMinutes(hours, minutes: minutes)
     }
 
-    func getTextFromMinutesSelection(pickerView: UIPickerView, selectedRow: Int) -> String {
-        let hours = hoursOptions[pickerView.selectedRowInComponent(1)]
+    func getTextFromMinutesSelection(_ pickerView: UIPickerView, selectedRow: Int) -> String {
+        let hours = hoursOptions[pickerView.selectedRow(inComponent: 1)]
         let minutes = minutesOptions[selectedRow]
         return self.getTextFromHoursAndMinutes(hours, minutes: minutes)
     }
     
-    func getTextFromHoursAndMinutes(hours: Int, minutes: Int) -> String {
+    func getTextFromHoursAndMinutes(_ hours: Int, minutes: Int) -> String {
         var text = ""
         if hours > 0 {
             text += getLocalizedString("hours") + ": \(hours)"
@@ -174,7 +174,7 @@ class TotalTimeTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerV
         
     }
 
-    func uploadRecipeSuccess(notification: NSNotification) {
+    func uploadRecipeSuccess(_ notification: Notification) {
         self.prepTimeTextField.text = ""
         self.cookTimeTextField.text = ""
     }
@@ -183,11 +183,11 @@ class TotalTimeTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerV
     // MARK: - UIPickerViewDataSource methods
     //--------------------------------------
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 2
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch component {
         case 0:
             return minutesOptions.count
@@ -199,7 +199,7 @@ class TotalTimeTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerV
 
     }
   
-    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         var text = ""
         
         switch component {
@@ -214,11 +214,11 @@ class TotalTimeTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerV
         if let label = view as? UILabel {
             return label
         }
-        let label = UILabel(frame: CGRectMake(0, 0, 40, 30))
-        label.backgroundColor = UIColor.clearColor()
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 40, height: 30))
+        label.backgroundColor = UIColor.clear
         label.text = text
-        label.textAlignment = NSTextAlignment.Right
-        label.textColor = UIColor.blackColor()
+        label.textAlignment = NSTextAlignment.right
+        label.textColor = UIColor.black
         label.font = Helpers.sharedInstance.getTextFont(24)
         return label
     }
@@ -227,11 +227,11 @@ class TotalTimeTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerV
     // MARK: - UIPickerViewDelegate methods
     //--------------------------------------
     
-    func pickerView(pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
+    func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
         return 130
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         var currentTextField: UITextField!
         if pickerView == prepTimePickerView {
             currentTextField = prepTimeTextField
@@ -262,30 +262,30 @@ class TotalTimeTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerV
     // MARK: - Text Field Delegate
     //--------------------------------------
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField as? NoActionsTextField
         
         if textField == prepTimeTextField {
             activePickerView = self.prepTimePickerView
             self.prepTimePickerView.selectRow(15, inComponent: 0, animated: true)
-            self.prepTimeTextField.text = getTextFromHoursAndMinutes(self.prepTimePickerView.selectedRowInComponent(1), minutes: self.prepTimePickerView.selectedRowInComponent(0))
+            self.prepTimeTextField.text = getTextFromHoursAndMinutes(self.prepTimePickerView.selectedRow(inComponent: 1), minutes: self.prepTimePickerView.selectedRow(inComponent: 0))
         } else if textField == cookTimeTextField {
             activePickerView = self.cookTimePickerView
             self.cookTimePickerView.selectRow(15, inComponent: 0, animated: true)
-            self.cookTimeTextField.text = getTextFromHoursAndMinutes(self.cookTimePickerView.selectedRowInComponent(1), minutes: self.cookTimePickerView.selectedRowInComponent(0))
+            self.cookTimeTextField.text = getTextFromHoursAndMinutes(self.cookTimePickerView.selectedRow(inComponent: 1), minutes: self.cookTimePickerView.selectedRow(inComponent: 0))
         }
     }
 
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         self.donePicker()
     }
 
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         return false
     }
 
