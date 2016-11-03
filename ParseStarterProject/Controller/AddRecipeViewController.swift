@@ -145,7 +145,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
                 cell.backgroundColor = .clear
                 return cell
             } else {
-                if false
+/*                if false
 //                    && self.ingredientsArray[indexPath.row] == "section"
                 {
                     let cell = tableView.dequeueReusableCell(withIdentifier: AddIngredientSectionTableViewCellIdentifier, for: indexPath) as! AddIngredientSectionTableViewCell
@@ -153,6 +153,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
                     cell.tableViewController = self
                     return cell
                 } else {
+*/
                     let cell = tableView.dequeueReusableCell(withIdentifier: AddIngredientTableViewCellIdentifier, for: indexPath) as! AddIngredientTableViewCell
                     cell.backgroundColor = .clear
                     cell.tableViewController = self
@@ -163,7 +164,9 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
                     }
                     
                     return cell
+/*
                 }
+ */
             }
             
         case 4:
@@ -181,7 +184,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
                 cell.backgroundColor = .clear
                 return cell
             } else {
-                if false
+/*                if false
 //                    && self.directionsArray[indexPath.row] == "section"
                 {
                     let cell = tableView.dequeueReusableCell(withIdentifier: AddDirectionSectionTableViewCellIdentifier, for: indexPath) as! AddDirectionSectionTableViewCell
@@ -189,6 +192,7 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
                     cell.tableViewController = self
                     return cell
                 } else {
+*/
                     let cell = tableView.dequeueReusableCell(withIdentifier: AddDirectionTableViewCellIdentifier, for: indexPath) as! AddDirectionTableViewCell
                     cell.backgroundColor = .clear
                     cell.tableViewController = self
@@ -198,7 +202,9 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
                     }
                     
                     return cell
+/*
                 }
+ */
             }
         default:
             return UITableViewCell()
@@ -421,27 +427,27 @@ class AddRecipeViewController: UITableViewController, UITextFieldDelegate {
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: AddRecipeSectionHeaderTableViewCellIdentifier) as! AddRecipeSectionHeaderTableViewCell
             
-            self.setSectionHeaderElements(cell, FAIconName: FontAwesome.Info, title: "sectionHeaderTitleGeneralInfo")
+            self.setSectionHeaderElements(cell, FAIconName: FontAwesome.info, title: "sectionHeaderTitleGeneralInfo")
             
             return cell.contentView
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: AddRecipeSectionHeaderTableViewCellIdentifier) as! AddRecipeSectionHeaderTableViewCell
             
-            self.setSectionHeaderElements(cell, FAIconName: FontAwesome.ClockO, title: "sectionHeaderTitleTime")
+            self.setSectionHeaderElements(cell, FAIconName: FontAwesome.clockO, title: "sectionHeaderTitleTime")
             
             return cell.contentView
             
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: AddRecipeSectionHeaderTableViewCellIdentifier) as! AddRecipeSectionHeaderTableViewCell
             
-            self.setSectionHeaderElements(cell, FAIconName: FontAwesome.ShoppingBasket, title: "sectionHeaderTitleIngredients")
+            self.setSectionHeaderElements(cell, FAIconName: FontAwesome.shoppingBasket, title: "sectionHeaderTitleIngredients")
             
             return cell.contentView
             
         case 4:
             let cell = tableView.dequeueReusableCell(withIdentifier: AddRecipeSectionHeaderTableViewCellIdentifier) as! AddRecipeSectionHeaderTableViewCell
             
-            self.setSectionHeaderElements(cell, FAIconName: FontAwesome.FileTextO, title: "sectionHeaderTitleDirections")
+            self.setSectionHeaderElements(cell, FAIconName: FontAwesome.fileTextO, title: "sectionHeaderTitleDirections")
             
             return cell.contentView
         default:

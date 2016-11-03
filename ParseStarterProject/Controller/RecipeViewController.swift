@@ -122,9 +122,9 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     fileprivate func setFavoriteButtonIcon(_ favoriteButton: UIButton) {
         if self.isFavorite == true {
-            favoriteButton.setTitle(String.fontAwesomeIcon(name: FontAwesome.Heart), for: UIControlState())
+            favoriteButton.setTitle(String.fontAwesomeIcon(name: FontAwesome.heart), for: UIControlState())
         } else {
-            favoriteButton.setTitle(String.fontAwesomeIcon(name: FontAwesome.HeartO), for: UIControlState())
+            favoriteButton.setTitle(String.fontAwesomeIcon(name: FontAwesome.heartO), for: UIControlState())
         }
     }
     
@@ -202,7 +202,7 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 KingfisherHelper.sharedInstance.setImageWithUrl(cell.recipeImageView, url: fileUrl)
             }
             
-            cell.favoriteButton.titleLabel?.font = UIFont.fontAwesomeOfSize(22)
+            cell.favoriteButton.titleLabel?.font = UIFont.fontAwesome(ofSize: 22)
             self.setFavoriteButtonIcon(cell.favoriteButton)
             
             self.favoriteButton = cell.favoriteButton
@@ -293,12 +293,12 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 return recipeDetailCell
             
             case 1:
-                self.setSectionHeaderElements(cell, FAIconName: FontAwesome.ClockO, title: "sectionHeaderTitleTime")
+                self.setSectionHeaderElements(cell, FAIconName: FontAwesome.clockO, title: "sectionHeaderTitleTime")
             case 2:
                 // SPLIT TEST: shopping-cart|lemon-o|pencil-square-o
-                self.setSectionHeaderElements(cell, FAIconName: FontAwesome.ShoppingBasket, title: "sectionHeaderTitleIngredients")
+                self.setSectionHeaderElements(cell, FAIconName: FontAwesome.shoppingBasket, title: "sectionHeaderTitleIngredients")
             case 3:
-                self.setSectionHeaderElements(cell, FAIconName: FontAwesome.FileTextO, title: "sectionHeaderTitleDirections")
+                self.setSectionHeaderElements(cell, FAIconName: FontAwesome.fileTextO, title: "sectionHeaderTitleDirections")
             default:
                 let dummyViewHeight: CGFloat = 45
                 let dummyView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: dummyViewHeight))

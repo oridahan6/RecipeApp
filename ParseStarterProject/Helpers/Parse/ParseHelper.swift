@@ -257,7 +257,7 @@ class ParseHelper: NSObject {
     // MARK: - Submit Data
     //--------------------------------------
     
-    func uploadRecipe(_ recipeData: [String: AnyObject], vc: AddRecipeViewController) -> Bool {
+    func uploadRecipe(_ recipeData: [String: Any], vc: AddRecipeViewController) {
         
         vc.showActivityIndicator()
         
@@ -305,7 +305,6 @@ class ParseHelper: NSObject {
             }
             
         }
-        return false
     }
     
     //--------------------------------------

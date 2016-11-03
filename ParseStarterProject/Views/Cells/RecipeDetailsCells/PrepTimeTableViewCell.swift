@@ -108,7 +108,7 @@ class PrepTimeTableViewCell: UITableViewCell {
             NSForegroundColorAttributeName: fieldColor,
             //            NSBackgroundColorAttributeName: UIColor.yellowColor(),
             NSParagraphStyleAttributeName: paraStyle,
-            NSObliquenessAttributeName: skew,
+            NSObliquenessAttributeName: skew as AnyObject,
             NSFontAttributeName: fieldFont
         ]
         
@@ -134,7 +134,7 @@ class PrepTimeTableViewCell: UITableViewCell {
             NSForegroundColorAttributeName: fieldColor,
             //            NSBackgroundColorAttributeName: UIColor.yellowColor(),
             NSParagraphStyleAttributeName: paraStyle,
-            NSObliquenessAttributeName: skew,
+            NSObliquenessAttributeName: skew as AnyObject,
             NSFontAttributeName: fieldFont
         ]
         return attributes

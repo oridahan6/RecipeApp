@@ -137,7 +137,7 @@ class FavoritesViewController: RecipesParentViewController {
         let recipe = self.getRecipeBasedOnSearch(indexPath.row)
         
         let recipeDetailsView = cell.recipeDetailsView
-        recipeDetailsView.recipe = recipe
+        recipeDetailsView?.recipe = recipe
         recipeDetailsView?.isShowDate = false
         recipeDetailsView?.setNeedsDisplay()
 

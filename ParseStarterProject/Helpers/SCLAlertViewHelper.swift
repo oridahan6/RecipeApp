@@ -21,7 +21,7 @@ class SCLAlertViewHelper {
         alert.showInfo(self.getTitle(alertTextType), subTitle: self.getSubtitle(alertTextType))
     }
     
-    func showSuccessAlert(_ alertTextType: String, action:() -> Void = {}) {
+    func showSuccessAlert(_ alertTextType: String, action:@escaping () -> Void = {}) {
         let alert = SCLAlertView(appearance: self.getAppearance())
         
         alert.addButton(getLocalizedString("OK"), action: action)
@@ -42,10 +42,11 @@ class SCLAlertViewHelper {
     fileprivate func getAppearance() -> SCLAlertView.SCLAppearance {
         let apperance = SCLAlertView.SCLAppearance(
             kTitleFont: Helpers.sharedInstance.getTitleFont(24),
-            kTitleHeight: 40,
             kTextFont: Helpers.sharedInstance.getTextFont(16),
-            kTextHeight: 30,
             kButtonFont: Helpers.sharedInstance.getTextFont(16, bold: true),
+            // passing kTitleHeight, kTextHeight not working for some reason
+//            kTitleHeight: CGFloat(40),
+//            kTextHeight: 30,
             showCloseButton: false
         )
         return apperance

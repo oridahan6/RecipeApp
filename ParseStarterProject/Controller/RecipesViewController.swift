@@ -102,7 +102,7 @@ class RecipesViewController: RecipesParentViewController {
         let recipe = self.getRecipeBasedOnSearch(indexPath.row)
         
         let recipeDetailsView = currentCell.recipeDetailsView
-        recipeDetailsView.recipe = recipe
+        recipeDetailsView?.recipe = recipe
         
         recipeDetailsView?.setNeedsDisplay()
 
