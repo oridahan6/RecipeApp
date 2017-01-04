@@ -10,4 +10,6 @@
 // If you are using Facebook, uncomment this line to get automatic import of the header inside your project.
 //#import <ParseFacebookUtils/PFFacebookUtils.h>
 
+#import <Neumob/Neumob.h>
+
 #endif

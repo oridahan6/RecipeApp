@@ -26,6 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        // http://docs.neumob.com/ios/ios.html
+        Neumob.initialize("trF3uzEMs4NErXFD");
+        
         self.customizeApp()
         
 //        KingfisherHelper.sharedInstance.clearAllCache()
