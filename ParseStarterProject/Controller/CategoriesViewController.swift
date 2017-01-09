@@ -26,6 +26,7 @@ class CategoriesViewController: UITableViewController, UISearchResultsUpdating, 
             tableView.reloadData()
         }
     }
+    var categoriesImages = [Int: CategoryImage]()
     
     //--------------------------------------
     // MARK: - Life Cycle Methods
@@ -40,6 +41,7 @@ class CategoriesViewController: UITableViewController, UISearchResultsUpdating, 
             self.showAlert()
         } else {
             ParseHelper.sharedInstance.updateCategories(self)
+            ParseHelper.sharedInstance.updateCategoriesImages(self)
         }
         
         // Create Search Button
@@ -103,10 +105,16 @@ class CategoriesViewController: UITableViewController, UISearchResultsUpdating, 
         cell.categoryNameLabel.text = category.name
         cell.recipesCountLabel.text = Helpers.sharedInstance.getSingularOrPluralForm(category.recipesCount, textToConvert: "recipe")
         
-        // update image async
-        let imageUrlString = Constants.GDCategoriesImagesPath + category.imageName
-        KingfisherHelper.sharedInstance.setImageWithUrl(cell.categoryImage, url: imageUrlString)
+        cell.categoryImage.image = UIImage(named: "placeholder.jpg")
         
+        // update image async
+        if let categoryImage = self.categoriesImages[category.catId] {
+            if let imageFile = categoryImage.imageFile {
+                let imageUrl = imageFile.getUrl()
+                KingfisherHelper.sharedInstance.setImageWithUrl(cell.categoryImage, url: imageUrl)
+            }
+        }
+
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         
         return cell
