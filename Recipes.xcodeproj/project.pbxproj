@@ -80,7 +80,8 @@
 		0C7BDA7E1CA942DF0056ADCD /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7BDA7D1CA942DF0056ADCD /* Helpers.swift */; };
 		0C7BDA811CA95E260056ADCD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C7BDA831CA95E260056ADCD /* Localizable.strings */; };
 		0C7BDA851CA969BB0056ADCD /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7BDA841CA969BB0056ADCD /* FoundationExtensions.swift */; };
-		0C8314201DCB892200F65E1A /* libCloudinary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C83141F1DCB892200F65E1A /* libCloudinary.a */; };
+		0C91BAD41E1CE3FA00588FC3 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C91BAD31E1CE3FA00588FC3 /* Parse.framework */; };
+		0C91BAD61E1CE4CC00588FC3 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C91BAD51E1CE4CC00588FC3 /* Bolts.framework */; };
 		0C999F5C1CB4D80400E3844D /* KingfisherHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C999F5B1CB4D80400E3844D /* KingfisherHelper.swift */; };
 		0C999F5E1CB5028C00E3844D /* FavoriteRecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C999F5D1CB5028C00E3844D /* FavoriteRecipeTableViewCell.swift */; };
 		0C9B154E1CD5CCD6009412AE /* AddDirectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B154D1CD5CCD6009412AE /* AddDirectionTableViewCell.swift */; };
@@ -97,11 +98,8 @@
 		0CFE0AEA1E1CCDA5006B94FD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CFE0AE91E1CCDA5006B94FD /* CoreTelephony.framework */; };
 		0CFE0AEC1E1CCDB9006B94FD /* libresolv.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CFE0AEB1E1CCDB9006B94FD /* libresolv.9.tbd */; };
 		81BA814B1A49DA1800E65899 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BA814A1A49DA1800E65899 /* AppDelegate.swift */; };
-		81BA814D1A49DA1800E65899 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BA814C1A49DA1800E65899 /* ViewController.swift */; };
 		81BA81501A49DA1800E65899 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81BA814E1A49DA1800E65899 /* Main.storyboard */; };
 		81BA81521A49DA1800E65899 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81BA81511A49DA1800E65899 /* Images.xcassets */; };
-		81BA81701A49DB6800E65899 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA816B1A49DB6800E65899 /* Bolts.framework */; };
-		81BA81711A49DB6800E65899 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA816C1A49DB6800E65899 /* Parse.framework */; };
 		81BA81721A49DB6800E65899 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA816D1A49DB6800E65899 /* ParseCrashReporting.framework */; };
 		81BA81731A49DB6800E65899 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA816E1A49DB6800E65899 /* ParseFacebookUtils.framework */; };
 		81BA81771A49E0D500E65899 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA81761A49E0D500E65899 /* libsqlite3.dylib */; };
@@ -188,7 +186,8 @@
 		0C7BDA7D1CA942DF0056ADCD /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Helpers.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0C7BDA821CA95E260056ADCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0C7BDA841CA969BB0056ADCD /* FoundationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FoundationExtensions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		0C83141F1DCB892200F65E1A /* libCloudinary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCloudinary.a; sourceTree = "<group>"; };
+		0C91BAD31E1CE3FA00588FC3 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		0C91BAD51E1CE4CC00588FC3 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		0C999F5B1CB4D80400E3844D /* KingfisherHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KingfisherHelper.swift; sourceTree = "<group>"; };
 		0C999F5D1CB5028C00E3844D /* FavoriteRecipeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteRecipeTableViewCell.swift; sourceTree = "<group>"; };
 		0C9B154D1CD5CCD6009412AE /* AddDirectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AddDirectionTableViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -209,11 +208,8 @@
 		81BA81451A49DA1800E65899 /* Recipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Recipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81BA81491A49DA1800E65899 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81BA814A1A49DA1800E65899 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		81BA814C1A49DA1800E65899 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		81BA814F1A49DA1800E65899 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		81BA81511A49DA1800E65899 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		81BA816B1A49DB6800E65899 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
-		81BA816C1A49DB6800E65899 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		81BA816D1A49DB6800E65899 /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseCrashReporting.framework; sourceTree = "<group>"; };
 		81BA816E1A49DB6800E65899 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
 		81BA81761A49E0D500E65899 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -236,13 +232,12 @@
 				81BA817B1A49E0E500E65899 /* SystemConfiguration.framework in Frameworks */,
 				81BA81791A49E0DB00E65899 /* AudioToolbox.framework in Frameworks */,
 				81BA81771A49E0D500E65899 /* libsqlite3.dylib in Frameworks */,
-				81BA81711A49DB6800E65899 /* Parse.framework in Frameworks */,
 				81BA81721A49DB6800E65899 /* ParseCrashReporting.framework in Frameworks */,
+				0C91BAD61E1CE4CC00588FC3 /* Bolts.framework in Frameworks */,
 				0CFE0AE81E1CCD3F006B94FD /* Neumob.framework in Frameworks */,
 				81BA81731A49DB6800E65899 /* ParseFacebookUtils.framework in Frameworks */,
 				81BA81811A49E10C00E65899 /* ParseUI.framework in Frameworks */,
-				0C8314201DCB892200F65E1A /* libCloudinary.a in Frameworks */,
-				81BA81701A49DB6800E65899 /* Bolts.framework in Frameworks */,
+				0C91BAD41E1CE3FA00588FC3 /* Parse.framework in Frameworks */,
 				C2E225A389DBE39B1B800B4E /* Pods_Recipes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -383,7 +378,6 @@
 		0C7BD9E31CA808A70056ADCD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				81BA814C1A49DA1800E65899 /* ViewController.swift */,
 				0C7BD9CA1CA7F7120056ADCD /* CategoriesViewController.swift */,
 				0C7BD9CC1CA8020E0056ADCD /* FavoritesViewController.swift */,
 				0C7BD9CE1CA802780056ADCD /* RecipesViewController.swift */,
@@ -517,11 +511,10 @@
 			isa = PBXGroup;
 			children = (
 				0CFE0AEB1E1CCDB9006B94FD /* libresolv.9.tbd */,
+				0C91BAD51E1CE4CC00588FC3 /* Bolts.framework */,
 				0CFE0AE91E1CCDA5006B94FD /* CoreTelephony.framework */,
-				0C83141F1DCB892200F65E1A /* libCloudinary.a */,
+				0C91BAD31E1CE3FA00588FC3 /* Parse.framework */,
 				0CFE0AE71E1CCD3F006B94FD /* Neumob.framework */,
-				81BA816B1A49DB6800E65899 /* Bolts.framework */,
-				81BA816C1A49DB6800E65899 /* Parse.framework */,
 				81BA816D1A49DB6800E65899 /* ParseCrashReporting.framework */,
 				81BA816E1A49DB6800E65899 /* ParseFacebookUtils.framework */,
 				81BA81801A49E10C00E65899 /* ParseUI.framework */,
@@ -707,7 +700,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C47CF921CC66E1000F26623 /* TextFieldsEffects.swift in Sources */,
-				81BA814D1A49DA1800E65899 /* ViewController.swift in Sources */,
 				0C7399621CE62CB90083CA34 /* DGElasticPullToRefreshView.swift in Sources */,
 				0C0CD0D11CAD61CC00F682F9 /* SectionHeaderTableViewCell.swift in Sources */,
 				0C9B15501CD5CD45009412AE /* AddDirectionSectionTableViewCell.swift in Sources */,
@@ -835,7 +827,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -872,7 +864,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

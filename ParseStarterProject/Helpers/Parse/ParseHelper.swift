@@ -264,10 +264,11 @@ class ParseHelper: NSObject {
         let recipe = PFObject(className: self.parseClassNameRecipe)
         if let title = recipeData["title"] as? String, let recipeImage = recipeData["image"] as? UIImage, let imageData = UIImagePNGRepresentation(recipeImage), let level = recipeData["level"] as? String, let type = recipeData["type"] as? String, let prepTime = recipeData["prepTime"] as? Int, let cookTime = recipeData["cookTime"] as? Int, let ingredients = recipeData["ingredients"] as? [String: [String]], let directions = recipeData["directions"] as? [String: [String]] {
             recipe.setValue(title, forKey: "title")
-            let imageFile = PFFile(name: Helpers.sharedInstance.randomStringWithLength(10) + ".png", data: imageData)
-            recipe.setObject(imageFile, forKey: "image")
-            recipe.setValue(level, forKey: "level")
-            recipe.setValue(type, forKey: "type")
+            if let imageFile = PFFile(name: Helpers.sharedInstance.randomStringWithLength(10) + ".png", data: imageData) {
+                recipe.setObject(imageFile, forKey: "image")
+                recipe.setValue(level, forKey: "level")
+                recipe.setValue(type, forKey: "type")
+            }
             
             var categoriesIds = [String]()
             var categoriesCatIds = [Int]()
@@ -351,7 +352,7 @@ class ParseHelper: NSObject {
         
         query.findObjectsInBackground(block: { (objects, error) -> Void in
             if (error == nil) {
-                if let categories = objects as? [PFObject] {
+                if let categories = objects {
                     for category in categories {
                         category.incrementKey("recipesCount")
                     }
@@ -367,7 +368,7 @@ class ParseHelper: NSObject {
         })
     }
     
-    fileprivate func findObjectsLocallyThenRemotely(_ query: PFQuery!, lastUpdateDate: Date?, successBlock:@escaping ([AnyObject]!) -> Void, extraNetworkSuccessBlock:@escaping (Void) -> Void = {}, errorBlock:(Void) -> Void = {}, updateViewBlock:@escaping (Void) -> Void = {}) {
+    fileprivate func findObjectsLocallyThenRemotely(_ query: PFQuery<PFObject>!, lastUpdateDate: Date?, successBlock:@escaping ([AnyObject]!) -> Void, extraNetworkSuccessBlock:@escaping (Void) -> Void = {}, errorBlock:(Void) -> Void = {}, updateViewBlock:@escaping (Void) -> Void = {}) {
         
         let localQuery = (query.copy() as! PFQuery).fromLocalDatastore()
         localQuery.findObjectsInBackground(block: { (localObjects, error) -> Void in
