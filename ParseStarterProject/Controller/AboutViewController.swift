@@ -48,11 +48,13 @@ class AboutViewController: UIViewController {
     }
 
     func doubleTapped() {
-
-        if ParseHelper.currentUser() != nil {
-            self.showAlert()
-        } else {
-            self.performSegue(withIdentifier: SegueLoginViewController, sender: nil)
+        
+        if let currentUser = ParseHelper.currentUser() {
+            if currentUser.objectId != nil {
+                self.showAlert()
+            } else {
+                self.performSegue(withIdentifier: SegueLoginViewController, sender: nil)
+            }
         }
 
     }
