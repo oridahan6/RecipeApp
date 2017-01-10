@@ -41,19 +41,16 @@ class ParseHelper: NSObject {
     
     var allRecipes = [Recipe]()
     var allCategories = [Category]()
-    var allCategoriesImages = [Int: CategoryImage]()
 
     // update dates
     var recipesLastFetched: Date!
     var categoriesLastFetched: Date!
-    var categoriesImagesLastFetched: Date!
     var recipesFromCategoryIdLastFetched = [String: Date]()
     var favoritesLastFetched: Date!
     
     // Parse class names
     let parseClassNameRecipe = "Recipe"
     let parseClassNameCategories = "Categories"
-    let parseClassNameCategoriesImages = "CategoriesImages"
     
     //--------------------------------------
     // MARK: - get data methods
@@ -135,44 +132,6 @@ class ParseHelper: NSObject {
         }
 
         self.findObjectsLocallyThenRemotely(query, lastUpdateDate: self.categoriesLastFetched, successBlock: successBlock, extraNetworkSuccessBlock: extraNetworkSuccessBlock, errorBlock: errorBlock, updateViewBlock: updateViewBlock)
-    }
-    
-    func updateCategoriesImages(_ vc: CategoriesViewController) -> Void {
-        
-        let query = PFQuery(className: self.parseClassNameCategoriesImages)
-        func successBlock (_ objects: [AnyObject]?) -> Void {
-            if let objects = objects {
-                vc.categoriesImages = [Int: CategoryImage]()
-                for object in objects {
-                    if let object = object as? PFObject {
-                        let parseCategoryImage = ParseCategoryImage(categoryImage: object)
-                        if let categoryImage = CategoryImage(categoryImage: parseCategoryImage) {
-                            vc.categoriesImages[categoryImage.catId] = categoryImage
-                        }
-                    }
-                }
-                self.allCategoriesImages = vc.categoriesImages
-                if objects.count > 0 {
-                    vc.endUpdateView()
-                }
-            }
-        }
-        func errorBlock () -> Void {
-            vc.endUpdateView()
-        }
-        func updateViewBlock() -> Void {
-            vc.beginUpdateView()
-        }
-        func extraNetworkSuccessBlock() -> Void {
-            self.categoriesImagesLastFetched = Date()
-            UserDefaults.standard.set(self.categoriesImagesLastFetched, forKey: "categoriesImagesLastFetched")
-        }
-        
-        if let categoriesImagesLastFetched = UserDefaults.standard.object(forKey: "categoriesImagesLastFetched") as? Date {
-            self.categoriesImagesLastFetched = categoriesImagesLastFetched
-        }
-        
-        self.findObjectsLocallyThenRemotely(query, lastUpdateDate: self.categoriesImagesLastFetched, successBlock: successBlock, extraNetworkSuccessBlock: extraNetworkSuccessBlock, errorBlock: errorBlock, updateViewBlock: updateViewBlock)
     }
     
     func updateCategories(addRecipe vc: AddRecipeViewController) -> Void {

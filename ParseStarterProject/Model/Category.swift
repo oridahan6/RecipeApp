@@ -14,6 +14,7 @@ class Category: NSObject {
     var catId: Int!
     var name: String!
     var imageName: String = ""
+    var imageFile: ParseFile!
     var recipesCount: Int!
 
 //    var recipes = [Recipe]()
@@ -27,6 +28,7 @@ class Category: NSObject {
         self.name = category.getName()
 //        self.recipes = category.getRecipes()
         self.imageName = category.getImageName()
+        self.imageFile = category.getImageFile()
         self.recipesCount = category.getRecipesCount()
         
         if id.isEmpty || name.isEmpty {

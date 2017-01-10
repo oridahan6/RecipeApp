@@ -53,4 +53,12 @@ class ParseCategory: NSObject {
         }
         return ""
     }
+
+    func getImageFile() -> ParseFile? {
+        if let imageFile = category["image"] as? PFFile {
+            return ParseFile(parseFile: imageFile)
+        }
+        return nil
+    }
+
 }

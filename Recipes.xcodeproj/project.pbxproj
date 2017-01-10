@@ -63,8 +63,6 @@
 		0C47CF921CC66E1000F26623 /* TextFieldsEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C47CF871CC66E1000F26623 /* TextFieldsEffects.swift */; };
 		0C47CF931CC66E1000F26623 /* YokoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C47CF881CC66E1000F26623 /* YokoTextField.swift */; };
 		0C47CF941CC66E1000F26623 /* YoshikoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C47CF891CC66E1000F26623 /* YoshikoTextField.swift */; };
-		0C72EEEA1E23EB180068117D /* CategoryImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C72EEE91E23EB180068117D /* CategoryImage.swift */; };
-		0C72EEEC1E23EB750068117D /* ParseCategoryImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C72EEEB1E23EB750068117D /* ParseCategoryImage.swift */; };
 		0C73995E1CE62CB90083CA34 /* DGElasticPullToRefreshConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7399591CE62CB90083CA34 /* DGElasticPullToRefreshConstants.swift */; };
 		0C73995F1CE62CB90083CA34 /* DGElasticPullToRefreshExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C73995A1CE62CB90083CA34 /* DGElasticPullToRefreshExtensions.swift */; };
 		0C7399601CE62CB90083CA34 /* DGElasticPullToRefreshLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C73995B1CE62CB90083CA34 /* DGElasticPullToRefreshLoadingView.swift */; };
@@ -171,8 +169,6 @@
 		0C47CF871CC66E1000F26623 /* TextFieldsEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldsEffects.swift; sourceTree = "<group>"; };
 		0C47CF881CC66E1000F26623 /* YokoTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YokoTextField.swift; sourceTree = "<group>"; };
 		0C47CF891CC66E1000F26623 /* YoshikoTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoshikoTextField.swift; sourceTree = "<group>"; };
-		0C72EEE91E23EB180068117D /* CategoryImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryImage.swift; sourceTree = "<group>"; };
-		0C72EEEB1E23EB750068117D /* ParseCategoryImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseCategoryImage.swift; sourceTree = "<group>"; };
 		0C7399591CE62CB90083CA34 /* DGElasticPullToRefreshConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshConstants.swift; sourceTree = "<group>"; };
 		0C73995A1CE62CB90083CA34 /* DGElasticPullToRefreshExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshExtensions.swift; sourceTree = "<group>"; };
 		0C73995B1CE62CB90083CA34 /* DGElasticPullToRefreshLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshLoadingView.swift; sourceTree = "<group>"; };
@@ -400,7 +396,6 @@
 			children = (
 				0C192F211CB38C4B00811CB4 /* Category.swift */,
 				0C7BD9E51CA808D00056ADCD /* Recipe.swift */,
-				0C72EEE91E23EB180068117D /* CategoryImage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -413,7 +408,6 @@
 				0C192F231CB38D4B00811CB4 /* ParseCategory.swift */,
 				0C151EA01CC7978E00631614 /* ParseUser.swift */,
 				0C407EBE1CDE50AD00C95F8E /* ParseFile.swift */,
-				0C72EEEB1E23EB750068117D /* ParseCategoryImage.swift */,
 			);
 			path = Parse;
 			sourceTree = "<group>";
@@ -736,7 +730,6 @@
 				0C151EB21CC8CA6100631614 /* GeneralInfoTableViewCell.swift in Sources */,
 				0C151EAA1CC7CE7D00631614 /* SectionHeaderTitleTableViewCell.swift in Sources */,
 				0C7399601CE62CB90083CA34 /* DGElasticPullToRefreshLoadingView.swift in Sources */,
-				0C72EEEC1E23EB750068117D /* ParseCategoryImage.swift in Sources */,
 				0C0BF0DF1CF48883001ED414 /* SVProgressHUDHelper.swift in Sources */,
 				0C1C31B01CECECC200D9D934 /* NoActionsTextField.swift in Sources */,
 				0C9B154E1CD5CCD6009412AE /* AddDirectionTableViewCell.swift in Sources */,
@@ -762,7 +755,6 @@
 				0C151EB01CC8BEA900631614 /* AddRecipeSectionHeaderTableViewCell.swift in Sources */,
 				0C0CD0CD1CAD614F00F682F9 /* DirectionTableViewCell.swift in Sources */,
 				0C151EA71CC7CA7F00631614 /* AddRecipeViewController.swift in Sources */,
-				0C72EEEA1E23EB180068117D /* CategoryImage.swift in Sources */,
 				0C7BDA851CA969BB0056ADCD /* FoundationExtensions.swift in Sources */,
 				0CD15FF61CB14C8500C7B828 /* RecipeSubtitleTableViewCell.swift in Sources */,
 				0C7BD9CF1CA802780056ADCD /* RecipesViewController.swift in Sources */,
