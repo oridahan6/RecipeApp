@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func customizeApp() {
 
         // Light status bar color
-        UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true)
+        UIApplication.shared.statusBarStyle = .lightContent
         
         self.customizeNavBar()
         self.customizeTabBar()

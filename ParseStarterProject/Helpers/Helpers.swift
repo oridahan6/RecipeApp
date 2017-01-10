@@ -14,35 +14,7 @@ class Helpers {
     
     fileprivate init() {}
 
-    // MARK:- Images Methods
-    func updateImageFromUrlAsync(_ url: String, imageViewToUpdate: UIImageView) {
-        let imgURL = URL(string: url)!
-        
-        let request: URLRequest = URLRequest(url: imgURL)
-        let mainQueue = OperationQueue.main
-        NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
-            if error == nil {
-                if let data = data {
-                    
-                    // Convert the downloaded data in to a UIImage object
-                    let image = UIImage(data: data)
-                    // Store the image in to our cache
-                    //                    self.imageCache[urlString] = image
-                    // Update the cell
-                    DispatchQueue.main.async(execute: {
-//                        if let cellToUpdate = tableView.cellForRowAtIndexPath(indexPath) as? RecipeTableViewCell {
-                            imageViewToUpdate.image = image
-//                        }
-                    })
-                }
-            }
-            else {
-                print("Error: \(error!.localizedDescription)")
-            }
-        })
- 
-    }
-    
+    // MARK:- Images Methods    
     func getDeviceSpecificBGImage(_ imageName: String) -> UIImage {
         var BGImage: UIImage = UIImage(named: "\(imageName).png")!
         
