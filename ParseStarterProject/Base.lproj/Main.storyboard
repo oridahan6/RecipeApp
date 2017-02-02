@@ -152,7 +152,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uop-i1-spS" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="4iB-qW-p5R"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hsg-Jv-uPW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="hsg-Jv-uPW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -226,7 +226,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Fxd-3M-9ZP" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="LO9-Z0-3iY"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0rA-p6-hha">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="0rA-p6-hha">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -647,21 +647,21 @@
                                             <outlet property="titleLabel" destination="nk5-Ls-ozf" id="gty-L3-khh"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RecipeSubtitleTableViewCell" id="5R2-Pk-1iK" customClass="RecipeSubtitleTableViewCell" customModule="Recipes" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="131" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RecipeSubtitleTableViewCell" rowHeight="21" id="5R2-Pk-1iK" customClass="RecipeSubtitleTableViewCell" customModule="Recipes" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="131" width="375" height="21"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5R2-Pk-1iK" id="WDy-eP-9kB">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="לרוטב" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IUQ-BY-UlU">
-                                                    <rect key="frame" x="16" y="11" width="313" height="21"/>
+                                                    <rect key="frame" x="16" y="0.0" width="313" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="546" id="YS4-oN-h6U"/>
                                                         <constraint firstAttribute="height" constant="21" id="s9Z-6h-57s"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="HillelCLM-Medium" family="Hillel CLM" pointSize="22"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <fontDescription key="fontDescription" name="HillelCLM-Medium" family="Hillel CLM" pointSize="20"/>
+                                                    <color key="textColor" red="0.96470588239999999" green="0.72941176470000002" blue="0.44705882349999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="default">
                                                         <mask key="constraints">
@@ -672,7 +672,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="IUQ-BY-UlU" secondAttribute="trailing" constant="46" id="CqV-oh-tK8"/>
-                                                <constraint firstItem="IUQ-BY-UlU" firstAttribute="top" secondItem="WDy-eP-9kB" secondAttribute="top" constant="11" id="IBG-SP-bUo"/>
+                                                <constraint firstItem="IUQ-BY-UlU" firstAttribute="top" secondItem="WDy-eP-9kB" secondAttribute="top" id="IBG-SP-bUo"/>
                                                 <constraint firstItem="IUQ-BY-UlU" firstAttribute="leading" secondItem="WDy-eP-9kB" secondAttribute="leading" constant="16" id="cNy-eU-xPF"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -681,7 +681,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PrepTimeTableViewCell" id="fIN-1H-OpP" customClass="PrepTimeTableViewCell" customModule="Recipes" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="175" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="152" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fIN-1H-OpP" id="pAz-ad-IFt">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -689,15 +689,15 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="IngredientTableViewCell" id="RMy-Mi-c9X" customClass="IngredientTableViewCell" customModule="Recipes" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="219" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="IngredientTableViewCell" rowHeight="25" id="RMy-Mi-c9X" customClass="IngredientTableViewCell" customModule="Recipes" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="196" width="375" height="25"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RMy-Mi-c9X" id="B0Z-h9-Iaz">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="25"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="500 גרם פסטה" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uBh-cc-y0K">
-                                                    <rect key="frame" x="16" y="11" width="274" height="21"/>
+                                                    <rect key="frame" x="16" y="3" width="274" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="1CZ-Ed-ZID"/>
                                                         <constraint firstAttribute="width" constant="546" id="Vei-P9-ShF"/>
@@ -713,7 +713,7 @@
                                                     </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="½" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8NG-Ef-X4g">
-                                                    <rect key="frame" x="298" y="9" width="31" height="24"/>
+                                                    <rect key="frame" x="298" y="1" width="31" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="31" id="ScF-zj-urw"/>
                                                         <constraint firstAttribute="height" constant="24" id="rgr-oe-lSn"/>
@@ -725,11 +725,11 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="uBh-cc-y0K" firstAttribute="leading" secondItem="B0Z-h9-Iaz" secondAttribute="leading" constant="16" id="Dvt-aY-1Up"/>
-                                                <constraint firstItem="uBh-cc-y0K" firstAttribute="top" secondItem="B0Z-h9-Iaz" secondAttribute="top" constant="11" id="MmY-Pu-fuU"/>
+                                                <constraint firstItem="uBh-cc-y0K" firstAttribute="top" secondItem="B0Z-h9-Iaz" secondAttribute="top" constant="3" id="MmY-Pu-fuU"/>
                                                 <constraint firstAttribute="trailing" secondItem="8NG-Ef-X4g" secondAttribute="trailing" constant="46" id="Shs-5o-Ddn"/>
-                                                <constraint firstItem="8NG-Ef-X4g" firstAttribute="top" secondItem="B0Z-h9-Iaz" secondAttribute="top" constant="9" id="Vj4-kM-sbd"/>
+                                                <constraint firstItem="8NG-Ef-X4g" firstAttribute="top" secondItem="B0Z-h9-Iaz" secondAttribute="top" constant="1" id="Vj4-kM-sbd"/>
                                                 <constraint firstAttribute="trailing" secondItem="uBh-cc-y0K" secondAttribute="trailing" constant="85" id="dmr-qk-fbg"/>
-                                                <constraint firstAttribute="bottom" secondItem="uBh-cc-y0K" secondAttribute="bottom" constant="12" id="sg3-gj-SOM"/>
+                                                <constraint firstAttribute="bottom" secondItem="uBh-cc-y0K" secondAttribute="bottom" constant="2" id="sg3-gj-SOM"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -738,7 +738,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DirectionTableViewCell" rowHeight="53" id="iUd-io-uW9" customClass="DirectionTableViewCell" customModule="Recipes" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="263" width="375" height="53"/>
+                                        <rect key="frame" x="0.0" y="221" width="375" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iUd-io-uW9" id="CRl-wx-dzx">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
@@ -803,7 +803,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RecipeImageTableViewCell" rowHeight="215" id="e79-R7-Kef" customClass="RecipeImageTableViewCell" customModule="Recipes" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="316" width="375" height="215"/>
+                                        <rect key="frame" x="0.0" y="274" width="375" height="215"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e79-R7-Kef" id="abl-Bo-x7h">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="215"/>
@@ -891,7 +891,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LEb-uF-Y3q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2302" y="-33"/>
+            <point key="canvasLocation" x="2301.5999999999999" y="-33.733133433283363"/>
         </scene>
         <!--Add Recipe View Controller-->
         <scene sceneID="2sC-lQ-mIB">
@@ -1442,7 +1442,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qeo-gL-a2A" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="Dwg-rM-WRg"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Sud-xw-4BE">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Sud-xw-4BE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1461,7 +1461,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OiC-Lf-kZX" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="IzI-Tr-OMT"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bfZ-1D-oD8">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="bfZ-1D-oD8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1479,7 +1479,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nHH-nx-aPb" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kst-Jn-x0g">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="kst-Jn-x0g">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

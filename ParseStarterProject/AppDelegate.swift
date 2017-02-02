@@ -37,6 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 //        ParseHelper.logOut()
         
+//        print(ParseHelper.currentUser())
+        
         return true
     }
     

@@ -266,6 +266,13 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 return cell.getHeight()
             }
         }
+        else if indexPath.section == 2 {
+            if self.tableView.cellForRow(at: indexPath) as? RecipeSubtitleTableViewCell != nil {
+                return 21
+            } else {
+                return 25
+            }
+        }
         return UITableViewAutomaticDimension
     }
     
